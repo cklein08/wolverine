@@ -1,4 +1,4 @@
-# Wolverine Wireless — EDS Prototype
+# Wolverine Mobile — EDS Prototype
 
 Edge Delivery Services prototype site for Project Wolverine (EchoStar).
 

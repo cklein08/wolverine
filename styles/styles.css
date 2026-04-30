@@ -1,27 +1,27 @@
 /*
  * PRE-PATENT CONFIDENTIAL — FORGE System
- * Auto-generated styles for Wolverine Wireless
+ * Auto-generated styles for Wolverine Mobile
  */
 
 :root {
   /* colors */
-  --link-color: #E94560;
-  --link-hover-color: #C73650;
-  --background-color: #FFFFFF;
-  --light-color: #F5F5F5;
-  --dark-color: #D0D0D0;
-  --text-color: #16213E;
+  --link-color: #1DB954;
+  --link-hover-color: #86EFAC;
+  --background-color: #0A1A0F;
+  --light-color: #1A2F1E;
+  --dark-color: #86EFAC;
+  --text-color: #FFFFFF;
 
   /* brand colors */
-  --brand-primary: #1A1A2E;
-  --brand-secondary: #E94560;
-  --brand-accent: #0F3460;
-  --button-primary-bg: #E94560;
-  --button-primary-text: #FFFFFF;
+  --brand-primary: #1DB954;
+  --brand-secondary: #0E7A3A;
+  --brand-accent: #86EFAC;
+  --button-primary-bg: #1DB954;
+  --button-primary-text: #000000;
 
   /* fonts */
-  --body-font-family: inter, inter-fallback;
-  --heading-font-family: inter, inter-fallback;
+  --body-font-family: calibri, calibri-fallback;
+  --heading-font-family: arial black, arial black-fallback;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -61,7 +61,7 @@ body.appear {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 700;
+  font-weight: 900;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: 0.5em;

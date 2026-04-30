@@ -167,11 +167,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadCSS(`${window.hlx.codeBasePath}/styles/commerce.css`);
   loadFonts();
-
-  // Initialize commerce features (minicart, cart icon)
-  import('./commerce-init.js').catch((e) => console.error('Commerce init failed', e));
 }
 
 /**

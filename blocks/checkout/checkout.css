@@ -10,14 +10,14 @@
 }
 
 .checkout-empty h2 {
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
 }
 
 .checkout-empty .button {
   display: inline-block;
   margin-top: 16px;
   padding: 12px 32px;
-  background: var(--button-primary-bg, #E94560);
+  background: var(--button-primary-bg, #1DB954);
   color: var(--button-primary-text, #fff);
   border-radius: 6px;
   text-decoration: none;
@@ -25,7 +25,7 @@
 }
 
 .checkout-summary h2 {
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
   margin-bottom: 16px;
 }
 
@@ -38,14 +38,14 @@
 .checkout-table th {
   text-align: left;
   padding: 12px 8px;
-  border-bottom: 2px solid var(--brand-primary, #1A1A2E);
+  border-bottom: 2px solid var(--brand-primary, #1DB954);
   font-size: var(--body-font-size-s);
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
 }
 
 .checkout-table td {
   padding: 12px 8px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #1A2F1E;
   vertical-align: middle;
   font-size: var(--body-font-size-s);
 }
@@ -55,11 +55,11 @@
   height: 50px;
   object-fit: cover;
   border-radius: 6px;
-  background: #f5f5f5;
+  background: #1A2F1E;
 }
 
 .checkout-table small {
-  color: #999;
+  color: #86EFAC;
 }
 
 .checkout-line-total {
@@ -71,10 +71,10 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 8px;
-  border-top: 2px solid var(--brand-primary, #1A1A2E);
+  border-top: 2px solid var(--brand-primary, #1DB954);
   font-size: var(--heading-font-size-m, 22px);
   font-weight: 700;
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
 }
 
 .checkout-actions {
@@ -89,7 +89,7 @@
   width: 100%;
   max-width: 400px;
   padding: 16px;
-  background: var(--button-primary-bg, #E94560);
+  background: var(--button-primary-bg, #1DB954);
   color: var(--button-primary-text, #fff);
   border: none;
   border-radius: 6px;
@@ -105,7 +105,7 @@
 }
 
 .checkout-continue {
-  color: var(--link-color, #0F3460);
+  color: var(--link-color, #1DB954);
   text-decoration: none;
   font-size: var(--body-font-size-s);
 }
@@ -135,7 +135,7 @@
 }
 
 .checkout-success h2 {
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
   margin-bottom: 8px;
 }
 
@@ -143,7 +143,7 @@
   display: inline-block;
   margin-top: 24px;
   padding: 12px 32px;
-  background: var(--button-primary-bg, #E94560);
+  background: var(--button-primary-bg, #1DB954);
   color: var(--button-primary-text, #fff);
   border-radius: 6px;
   text-decoration: none;

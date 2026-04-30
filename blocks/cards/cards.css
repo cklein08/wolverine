@@ -8,11 +8,12 @@
 
 .cards .card {
   flex: 1 1 300px;
-  background: var(--background-color);
-  border: 1px solid var(--light-color);
+  background: var(--light-color, #1A2F1E);
+  border: 1px solid #264a2e;
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.2s ease;
+  color: var(--text-color, #FFFFFF);
 }
 
 .cards .card:hover {

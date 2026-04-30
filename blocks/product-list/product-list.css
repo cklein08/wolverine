@@ -10,17 +10,17 @@
   gap: 8px;
   margin-bottom: 24px;
   padding: 16px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #1A2F1E;
   align-items: center;
 }
 
 .filter-btn,
 .sort-btn {
   padding: 8px 16px;
-  border: 1px solid var(--brand-accent, #0F3460);
+  border: 1px solid var(--brand-accent, #86EFAC);
   border-radius: 20px;
   background: transparent;
-  color: var(--brand-accent, #0F3460);
+  color: var(--brand-accent, #86EFAC);
   cursor: pointer;
   font-size: var(--body-font-size-xs);
   font-family: var(--body-font-family);
@@ -29,18 +29,18 @@
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: var(--brand-accent, #0F3460);
+  background: var(--brand-accent, #86EFAC);
   color: white;
 }
 
 .sort-btn {
   margin-left: auto;
-  border-color: var(--brand-secondary, #E94560);
-  color: var(--brand-secondary, #E94560);
+  border-color: var(--brand-secondary, #0E7A3A);
+  color: var(--brand-secondary, #0E7A3A);
 }
 
 .sort-btn:hover {
-  background: var(--brand-secondary, #E94560);
+  background: var(--brand-secondary, #0E7A3A);
   color: white;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .product-card {
-  background: white;
+  background: var(--light-color, #1A2F1E);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -68,7 +68,7 @@
 .product-card-image {
   aspect-ratio: 1;
   overflow: hidden;
-  background: #f5f5f5;
+  background: #0A1A0F;
 }
 
 .product-card-image img {
@@ -93,7 +93,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--brand-secondary, #E94560);
+  color: var(--brand-secondary, #0E7A3A);
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -101,13 +101,13 @@
 .product-card-title {
   font-size: var(--heading-font-size-s, 18px);
   margin: 0 0 8px;
-  color: var(--text-color, #16213E);
+  color: var(--text-color, #FFFFFF);
 }
 
 .product-card-price {
   font-size: var(--heading-font-size-m, 22px);
   font-weight: 700;
-  color: var(--brand-primary, #1A1A2E);
+  color: var(--brand-primary, #1DB954);
   margin: 0 0 16px;
 }
 
@@ -115,7 +115,7 @@
   margin-top: auto;
   width: 100%;
   padding: 10px 16px;
-  background: var(--button-primary-bg, #E94560);
+  background: var(--button-primary-bg, #0E7A3A);
   color: var(--button-primary-text, #fff);
   border: none;
   border-radius: 6px;

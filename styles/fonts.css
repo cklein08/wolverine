@@ -1,13 +1,13 @@
 /*
  * PRE-PATENT CONFIDENTIAL — FORGE System
- * Auto-generated fonts for Wolverine Wireless
+ * Auto-generated fonts for Wolverine Mobile
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Inter:wght@400&family=Roboto+Mono:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap");
 
 /* heading font fallback */
 @font-face {
-  font-family: inter-fallback;
+  font-family: arial black-fallback;
   src: local('Arial');
   size-adjust: 100%;
   ascent-override: normal;
@@ -17,7 +17,7 @@
 
 /* body font fallback */
 @font-face {
-  font-family: inter-fallback;
+  font-family: calibri-fallback;
   src: local('Arial');
   size-adjust: 100%;
   ascent-override: normal;

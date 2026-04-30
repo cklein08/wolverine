@@ -1,0 +1,36 @@
+/*
+ * PRE-PATENT CONFIDENTIAL — FORGE System
+ * Auto-generated fonts for Wolverine Wireless
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Inter:wght@400&family=Roboto+Mono:wght@400&display=swap");
+
+/* heading font fallback */
+@font-face {
+  font-family: inter-fallback;
+  src: local('Arial');
+  size-adjust: 100%;
+  ascent-override: normal;
+  descent-override: normal;
+  line-gap-override: normal;
+}
+
+/* body font fallback */
+@font-face {
+  font-family: inter-fallback;
+  src: local('Arial');
+  size-adjust: 100%;
+  ascent-override: normal;
+  descent-override: normal;
+  line-gap-override: normal;
+}
+
+/* fixed font fallback */
+@font-face {
+  font-family: roboto mono-fallback;
+  src: local('Courier New');
+  size-adjust: 100%;
+  ascent-override: normal;
+  descent-override: normal;
+  line-gap-override: normal;
+}

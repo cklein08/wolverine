@@ -1,0 +1,5 @@
+mountpoints:
+  /: https://drive.google.com/drive/folders/PLACEHOLDER
+
+folders:
+  /drafts: /drafts

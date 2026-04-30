@@ -8,7 +8,7 @@
       "title": "Wolverine Basic Plan",
       "description": "5GB data, unlimited calls & texts. Perfect for light users who want reliable coverage without breaking the bank.",
       "price": 29.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&auto=format",
       "category": "Plans",
       "sku": "WW-PLAN-001"
     },
@@ -17,7 +17,7 @@
       "title": "Wolverine Pro Plan",
       "description": "25GB data, unlimited calls & texts, plus 5G access. Great for streaming and staying connected on the go.",
       "price": 49.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&auto=format",
       "category": "Plans",
       "sku": "WW-PLAN-002"
     },
@@ -26,7 +26,7 @@
       "title": "Wolverine Unlimited Plan",
       "description": "Unlimited data, calls & texts with premium 5G and hotspot. Our best plan for power users.",
       "price": 79.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format",
       "category": "Plans",
       "sku": "WW-PLAN-003"
     },
@@ -35,7 +35,7 @@
       "title": "WolverinePhone Alpha",
       "description": "6.5\" AMOLED display, 128GB storage, 48MP triple camera. A flagship experience at mid-range pricing.",
       "price": 599.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&auto=format",
       "category": "Devices",
       "sku": "WW-DEV-001"
     },
@@ -44,7 +44,7 @@
       "title": "WolverinePhone Lite",
       "description": "6.1\" LCD display, 64GB storage, 12MP dual camera. Affordable and dependable for everyday use.",
       "price": 299.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&auto=format",
       "category": "Devices",
       "sku": "WW-DEV-002"
     },
@@ -53,7 +53,7 @@
       "title": "WolverinePhone Max",
       "description": "6.7\" AMOLED 120Hz, 256GB storage, 108MP quad camera, 5000mAh battery. The ultimate flagship.",
       "price": 999.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&auto=format",
       "category": "Devices",
       "sku": "WW-DEV-003"
     },
@@ -62,7 +62,7 @@
       "title": "Wolverine Armor Case",
       "description": "Military-grade drop protection with a slim profile. Available for all WolverinePhone models.",
       "price": 39.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&auto=format",
       "category": "Accessories",
       "sku": "WW-ACC-001"
     },
@@ -71,7 +71,7 @@
       "title": "Wolverine Fast Charger",
       "description": "65W GaN USB-C charger with quick charge support. Charge your phone to 50% in just 15 minutes.",
       "price": 49.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&auto=format",
       "category": "Accessories",
       "sku": "WW-ACC-002"
     },
@@ -80,7 +80,7 @@
       "title": "Wolverine Wireless Buds",
       "description": "Active noise cancellation, 8-hour battery life, IPX5 water resistance. Premium sound on the go.",
       "price": 129.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&auto=format",
       "category": "Accessories",
       "sku": "WW-ACC-003"
     },
@@ -89,7 +89,7 @@
       "title": "Wolverine Screen Shield",
       "description": "Tempered glass screen protector with 9H hardness. Crystal clear with anti-fingerprint coating.",
       "price": 19.99,
-      "image": "/icons/cart.svg",
+      "image": "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400&auto=format",
       "category": "Accessories",
       "sku": "WW-ACC-004"
     }

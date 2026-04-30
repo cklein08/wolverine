@@ -50,6 +50,27 @@
   gap: 24px;
 }
 
+.product-card-body {
+  color: var(--text-color, #fff);
+}
+
+.product-card-body h3 {
+  color: var(--text-color, #fff);
+}
+
+.product-card-price {
+  color: var(--brand-primary, #1DB954);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.product-card-category {
+  color: var(--brand-accent, #86EFAC);
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .product-card {
   background: var(--light-color, #1A2F1E);
   border-radius: 12px;

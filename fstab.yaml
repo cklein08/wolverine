@@ -1,5 +1,2 @@
 mountpoints:
-  /: https://drive.google.com/drive/folders/PLACEHOLDER
-
-folders:
-  /drafts: /drafts
+  /: https://content.da.live/cklein08/wolverine

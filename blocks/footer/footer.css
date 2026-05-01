@@ -2,6 +2,8 @@ footer {
   background-color: var(--light-color, #1A2F1E);
   font-size: var(--body-font-size-xs);
   color: var(--text-color, #FFFFFF);
+  border-top: 1px solid rgba(29, 185, 84, 0.2);
+  margin-top: 0;
 }
 
 footer .footer > div {

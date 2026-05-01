@@ -8,8 +8,8 @@
 
 .cards .card {
   flex: 1 1 300px;
-  background: var(--light-color, #1A2F1E);
-  border: 1px solid #264a2e;
+  background: #152218;
+  border: 1px solid rgba(29, 185, 84, 0.2);
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.2s ease;
@@ -17,7 +17,8 @@
 }
 
 .cards .card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(29, 185, 84, 0.15);
+  border-color: rgba(29, 185, 84, 0.4);
 }
 
 .cards .card .card-image picture img {

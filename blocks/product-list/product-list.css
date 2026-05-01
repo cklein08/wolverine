@@ -10,7 +10,7 @@
   gap: 8px;
   margin-bottom: 24px;
   padding: 16px 0;
-  border-bottom: 1px solid #1A2F1E;
+  border-bottom: 1px solid rgba(29, 185, 84, 0.2);
   align-items: center;
 }
 
@@ -30,18 +30,18 @@
 .filter-btn:hover,
 .filter-btn.active {
   background: var(--brand-accent, #86EFAC);
-  color: white;
+  color: #0A1A0F;
 }
 
 .sort-btn {
   margin-left: auto;
-  border-color: var(--brand-secondary, #0E7A3A);
-  color: var(--brand-secondary, #0E7A3A);
+  border-color: var(--brand-accent, #86EFAC);
+  color: var(--brand-accent, #86EFAC);
 }
 
 .sort-btn:hover {
-  background: var(--brand-secondary, #0E7A3A);
-  color: white;
+  background: var(--brand-accent, #86EFAC);
+  color: #0A1A0F;
 }
 
 .product-grid {
@@ -72,10 +72,11 @@
 }
 
 .product-card {
-  background: var(--light-color, #1A2F1E);
+  background: #152218;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(29, 185, 84, 0.15);
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
@@ -83,7 +84,8 @@
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.15);
+  border-color: rgba(29, 185, 84, 0.35);
 }
 
 .product-card-image {
@@ -114,7 +116,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--brand-secondary, #0E7A3A);
+  color: var(--brand-accent, #86EFAC);
   font-weight: 600;
   margin-bottom: 4px;
 }

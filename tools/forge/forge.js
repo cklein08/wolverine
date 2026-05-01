@@ -222,6 +222,14 @@ class ForgeApp extends LitElement {
         this.previewUrl = this.siteUrls.preview || '';
         this.generationLog = [...this.generationLog, { text: `✅ Site generated: ${data.outputDir || ''}`, done: true }];
         this.generationLog = [...this.generationLog, { text: `📁 ${data.fileCount || 'Files'} created`, done: true }];
+
+        // Store pages and push content to DA if we have daFetch
+        if (data.pages?.length) {
+          this._generatedPages = data.pages;
+          this.generationLog = [...this.generationLog, { text: `📄 ${data.pages.length} content pages ready`, done: true }];
+          // Push to DA content store via client-side auth
+          await this._createDAContent(data);
+        }
       }
 
       // If server queues and returns projectId, poll for status
@@ -255,6 +263,59 @@ class ForgeApp extends LitElement {
       this._showStatus(`Generation failed: ${err.message}`, 'error');
       this.generationLog = [...this.generationLog, { text: `❌ ${err.message}`, done: false }];
     }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  DA Content Creation                                                */
+  /* ------------------------------------------------------------------ */
+  async _createDAContent(data) {
+    if (!this._daFetch) {
+      this.generationLog = [...this.generationLog,
+        { text: '⚠️ Not inside DA.live — content pages were pushed to GitHub but not to DA content store.', done: true },
+        { text: '💡 Open da.live and use FORGE there to auto-push content, or manually create pages in DA.', done: true },
+      ];
+      return;
+    }
+
+    const org = this.brief.githubOrg || this.context?.org || 'cklein08';
+    const repoSlug = this.brief.siteName || this.brief.brandName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'site';
+    const adminOrigin = this._adminOrigin || 'https://admin.da.live';
+    const pages = data.pages || this._generatedPages || [];
+
+    if (!pages.length) return;
+
+    this.generationLog = [...this.generationLog, { text: `📤 Pushing ${pages.length} pages to DA content store...`, done: false }];
+
+    let pushed = 0;
+    for (const page of pages) {
+      try {
+        const url = `${adminOrigin}/source/${org}/${repoSlug}/${page.path}`;
+        const resp = await this._daFetch(url, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'text/html' },
+          body: page.html,
+        });
+        if (resp.ok) {
+          pushed++;
+        } else {
+          console.warn(`[FORGE] DA push failed for ${page.path}: ${resp.status}`);
+        }
+      } catch (err) {
+        console.warn(`[FORGE] DA push error for ${page.path}:`, err);
+      }
+    }
+
+    this.generationLog = [...this.generationLog,
+      { text: `✅ Pushed ${pushed}/${pages.length} pages to DA content store`, done: true },
+    ];
+
+    // Trigger preview/publish for the index page
+    try {
+      const previewResp = await fetch(`https://admin.hlx.page/preview/${org}/${repoSlug}/main/index`, { method: 'POST' });
+      if (previewResp.ok) {
+        this.generationLog = [...this.generationLog, { text: '🔄 Preview triggered for index page', done: true }];
+      }
+    } catch { /* non-fatal */ }
   }
 
   /* ------------------------------------------------------------------ */
@@ -511,16 +572,6 @@ class ForgeApp extends LitElement {
         <hr class="forge__divider" />
 
         <!-- Deployment settings -->
-        <div class="forge__field">
-          <label class="forge__label">AEM Author URL (optional)</label>
-          <input
-            class="forge__input"
-            type="text"
-            .value=${b.aemAuthorUrl}
-            @input=${(e) => this._updateBrief('aemAuthorUrl', e.target.value)}
-            placeholder="https://author-pXXXX-eYYYY.adobeaemcloud.com"
-          />
-        </div>
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
           <div class="forge__field" style="flex:1;min-width:200px;">
             <label class="forge__label">GitHub Org</label>
@@ -683,10 +734,10 @@ class ForgeApp extends LitElement {
     const urls = this.siteUrls || {};
     const links = [
       { label: '🔗 Preview', url: urls.preview || this.previewUrl },
-      { label: '✏️ Universal Editor', url: urls.ue },
       { label: '📝 DA', url: urls.da },
       { label: '🌐 Live', url: urls.live },
       { label: '🐙 GitHub', url: urls.github },
+      { label: '🔨 FORGE', url: urls.forge },
     ].filter((l) => l.url);
 
     return html`
@@ -995,6 +1046,7 @@ customElements.define(EL_NAME, ForgeApp);
 
 export default async function init(el) {
   let context = null;
+  let daFetch = null;
   try {
     // DA_SDK hangs forever when loaded outside DA.live shell — race with a timeout
     const sdk = await Promise.race([
@@ -1002,10 +1054,12 @@ export default async function init(el) {
       new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
     ]);
     context = sdk.context ?? null;
+    daFetch = sdk.actions?.daFetch ?? null;
   } catch { /* standalone or timeout — continue without DA context */ }
 
   const cmp = document.createElement(EL_NAME);
   if (context) cmp.context = context;
+  if (daFetch) cmp._daFetch = daFetch;
   el.replaceChildren();
   el.append(cmp);
 }

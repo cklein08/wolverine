@@ -49,6 +49,11 @@ forge-app *::after {
 }
 
 /* ---- Typography ---- */
+.forge__card:hover {
+  border-color: var(--spectrum-blue-800) !important;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%) !important;
+}
+
 .forge__title {
   margin: 0 0 8px;
   font-size: var(--spectrum-font-size-300);

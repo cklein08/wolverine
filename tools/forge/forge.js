@@ -52,7 +52,7 @@ class ForgeApp extends LitElement {
 
   constructor() {
     super();
-    this.activeTab = 'brief';
+    this.activeTab = 'dashboard';
     this.brief = {
       brandName: '',
       tagline: '',
@@ -640,9 +640,40 @@ class ForgeApp extends LitElement {
   /* ------------------------------------------------------------------ */
   /*  Main render                                                        */
   /* ------------------------------------------------------------------ */
+  _renderDashboard() {
+    if (this.activeTab !== 'dashboard') return nothing;
+    return html`
+      <div style="padding:24px 0;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+          <div class="forge__card" @click=${() => this._selectTab('brief')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">📋</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Briefs</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              Start from a brand brief — upload a swatch, define colors, fonts, pages, and generate a complete EDS site.
+            </p>
+          </div>
+          <div class="forge__card" @click=${() => this._selectTab('copilot')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">💬</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Co-Pilot</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              Iterate with natural language — modify CSS, add pages, change mood, inject features via conversational prompts.
+            </p>
+          </div>
+          <div class="forge__card" @click=${() => this._selectTab('preview')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">🖥️</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Preview</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              View your generated site — preview in iframe, open in Universal Editor, DA, or publish to live.
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   render() {
     return html`
-      <h1 class="forge__title">🔥 FORGE</h1>
+      <h1 class="forge__title">🔨 FORGE</h1>
       <p class="forge__lead">
         Brand-identity-driven site generator for Adobe Edge Delivery Services.
         ${this.context
@@ -654,10 +685,17 @@ class ForgeApp extends LitElement {
         ? html`<div class="forge__status forge__status--${this._statusMsg.type}">${this._statusMsg.text}</div>`
         : nothing}
 
-      ${this._renderTabs()}
-      ${this._renderBriefTab()}
-      ${this._renderCopilotTab()}
-      ${this._renderPreviewTab()}
+      ${this.activeTab === 'dashboard'
+        ? this._renderDashboard()
+        : html`
+          <div style="margin-bottom:16px;">
+            <button class="forge__btn forge__btn--ghost" @click=${() => this._selectTab('dashboard')} style="font-size:13px;">← Back to Dashboard</button>
+          </div>
+          ${this._renderTabs()}
+          ${this._renderBriefTab()}
+          ${this._renderCopilotTab()}
+          ${this._renderPreviewTab()}
+        `}
     `;
   }
 }

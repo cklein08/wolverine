@@ -5,6 +5,7 @@
  */
 import { LitElement, html, nothing } from '../../deps/lit/dist/index.js';
 import DA_SDK from 'https://da.live/nx/utils/sdk.js';
+import { daFetch as daFetchDirect } from 'https://da.live/nx/utils/daFetch.js';
 
 const EL_NAME = 'forge-app';
 
@@ -45,6 +46,7 @@ class ForgeApp extends LitElement {
     _sendingChat: { type: Boolean, state: true },
     _deviceMode: { type: String, state: true },
     _statusMsg: { type: Object, state: true },
+    _progress: { type: Number, state: true },
   };
 
   /* Render into light DOM so forge.css applies */
@@ -81,6 +83,7 @@ class ForgeApp extends LitElement {
     this._sendingChat = false;
     this._deviceMode = 'desktop';
     this._statusMsg = null;
+    this._progress = 0;
     this._apiBase = null;
   }
 
@@ -199,6 +202,7 @@ class ForgeApp extends LitElement {
     this.generating = true;
     this.generationLog = [{ text: 'Starting site generation…', done: false }];
     this._statusMsg = null;
+    this._progress = 5;
 
     try {
       // Start generation
@@ -218,6 +222,7 @@ class ForgeApp extends LitElement {
 
       // If server returns result directly
       if (data.urls || data.siteUrls) {
+        this._progress = 55;
         this.siteUrls = data.urls || data.siteUrls;
         this.previewUrl = this.siteUrls.preview || '';
         this.generationLog = [...this.generationLog, { text: `✅ Site generated: ${data.outputDir || ''}`, done: true }];
@@ -255,10 +260,12 @@ class ForgeApp extends LitElement {
         }
       }
 
+      this._progress = 100;
       this.generating = false;
       this._showStatus('Site generation complete!', 'success');
       if (this.previewUrl) this._selectTab('preview');
     } catch (err) {
+      this._progress = 0;
       this.generating = false;
       this._showStatus(`Generation failed: ${err.message}`, 'error');
       this.generationLog = [...this.generationLog, { text: `❌ ${err.message}`, done: false }];
@@ -269,53 +276,83 @@ class ForgeApp extends LitElement {
   /*  DA Content Creation                                                */
   /* ------------------------------------------------------------------ */
   async _createDAContent(data) {
-    if (!this._daFetch) {
-      this.generationLog = [...this.generationLog,
-        { text: '⚠️ Not inside DA.live — content pages were pushed to GitHub but not to DA content store.', done: true },
-        { text: '💡 Open da.live and use FORGE there to auto-push content, or manually create pages in DA.', done: true },
-      ];
-      return;
-    }
+    // Prefer the SDK-provided daFetch (injected by DA.live shell when running
+    // as a plugin). Fall back to the directly-imported daFetch, which works
+    // standalone as long as the user is logged into DA.live in this browser
+    // (it reads the IMS token via localStorage 'nx-ims' / loadIms()).
+    const fetch = this._daFetch || daFetchDirect;
 
     const org = this.brief.githubOrg || this.context?.org || 'cklein08';
     const repoSlug = this.brief.siteName || this.brief.brandName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'site';
-    const adminOrigin = this._adminOrigin || 'https://admin.da.live';
+    const adminOrigin = 'https://admin.da.live';
     const pages = data.pages || this._generatedPages || [];
 
     if (!pages.length) return;
 
-    this.generationLog = [...this.generationLog, { text: `📤 Pushing ${pages.length} pages to DA content store...`, done: false }];
+    this._progress = 65;
+    this.generationLog = [...this.generationLog, { text: `📤 Pushing ${pages.length} pages to DA (${org}/${repoSlug})…`, done: false }];
 
     let pushed = 0;
     for (const page of pages) {
       try {
+        // Match the DA SDK's own saveToDa: PUT multipart/form-data with a `data` blob.
+        // path: 'index.html' → /source/{org}/{repo}/index.html
         const url = `${adminOrigin}/source/${org}/${repoSlug}/${page.path}`;
-        const resp = await this._daFetch(url, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'text/html' },
-          body: page.html,
-        });
+        const form = new FormData();
+        form.append('data', new Blob([page.html], { type: 'text/html' }), page.path);
+        const resp = await fetch(url, { method: 'PUT', body: form });
         if (resp.ok) {
           pushed++;
         } else {
-          console.warn(`[FORGE] DA push failed for ${page.path}: ${resp.status}`);
+          const body = await resp.text().catch(() => '');
+          console.warn(`[FORGE] DA push failed ${page.path}: ${resp.status} ${body.slice(0, 120)}`);
         }
       } catch (err) {
-        console.warn(`[FORGE] DA push error for ${page.path}:`, err);
+        console.warn(`[FORGE] DA push error ${page.path}:`, err);
       }
+    }
+
+    if (pushed === 0) {
+      this.generationLog = [...this.generationLog,
+        { text: '⚠️ DA upload failed — make sure you are logged into da.live in this browser and try again.', done: true },
+      ];
+      return;
     }
 
     this.generationLog = [...this.generationLog,
       { text: `✅ Pushed ${pushed}/${pages.length} pages to DA content store`, done: true },
     ];
 
-    // Trigger preview/publish for the index page
-    try {
-      const previewResp = await fetch(`https://admin.hlx.page/preview/${org}/${repoSlug}/main/index`, { method: 'POST' });
-      if (previewResp.ok) {
-        this.generationLog = [...this.generationLog, { text: '🔄 Preview triggered for index page', done: true }];
-      }
-    } catch { /* non-fatal */ }
+    // Trigger EDS preview for every uploaded page so *.aem.page is populated.
+    // This must run AFTER the DA upload — the preview pipeline reads source
+    // from content.da.live and will 404 if content isn't there yet.
+    const previewPaths = Array.from(new Set([
+      '/',
+      ...pages.map(p => {
+        const slug = p.path.replace(/\.html$/, '').replace(/^\/+/, '');
+        return `/${slug === 'index' ? '' : slug}`.replace(/\/$/, '') || '/';
+      }),
+    ]));
+
+    this._progress = 85;
+    this.generationLog = [...this.generationLog,
+      { text: `🔄 Triggering EDS preview for ${previewPaths.length} paths…`, done: false },
+    ];
+
+    let previewed = 0;
+    for (const path of previewPaths) {
+      try {
+        const res = await globalThis.fetch(
+          `https://admin.hlx.page/preview/${org}/${repoSlug}/main${path || '/'}`,
+          { method: 'POST' },
+        );
+        if (res.ok) previewed++;
+      } catch { /* non-fatal */ }
+    }
+
+    this.generationLog = [...this.generationLog,
+      { text: `✅ Preview triggered for ${previewed}/${previewPaths.length} paths — site is live on aem.page`, done: true },
+    ];
   }
 
   /* ------------------------------------------------------------------ */
@@ -631,6 +668,13 @@ class ForgeApp extends LitElement {
               : '🚀 Generate Site'}
           </button>
         </div>
+
+        <!-- Progress bar -->
+        ${this.generating || this._progress > 0 ? html`
+          <div class="forge__progress-wrap">
+            <div class="forge__progress-bar" style="width:${this._progress}%"></div>
+          </div>
+        ` : nothing}
 
         <!-- Generation log -->
         ${this.generationLog.length

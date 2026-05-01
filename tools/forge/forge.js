@@ -640,23 +640,207 @@ class ForgeApp extends LitElement {
   /* ------------------------------------------------------------------ */
   /*  Main render                                                        */
   /* ------------------------------------------------------------------ */
+  _renderSwatchTab() {
+    return html`
+      <div style="max-width:600px;">
+        <h2 style="font-size:18px;font-weight:700;color:var(--spectrum-gray-900);margin:0 0 8px;">🎨 Swatch Generator</h2>
+        <p style="color:var(--spectrum-gray-600);font-size:14px;margin:0 0 24px;line-height:1.5;">
+          Upload a brand identity image or style guide. FORGE will scan it and extract colors, fonts, logo, and mood — then auto-populate your brief.
+        </p>
+        <div class="forge__upload-zone" style="padding:48px 24px;text-align:center;border:2px dashed var(--spectrum-gray-300);border-radius:8px;cursor:pointer;transition:border-color 0.2s;"
+          @click=${() => this.renderRoot.querySelector('#swatch-input').click()}
+          @dragover=${(e) => { e.preventDefault(); e.currentTarget.style.borderColor = 'var(--spectrum-blue-800)'; }}
+          @dragleave=${(e) => { e.currentTarget.style.borderColor = 'var(--spectrum-gray-300)'; }}
+          @drop=${(e) => { e.preventDefault(); e.currentTarget.style.borderColor = 'var(--spectrum-gray-300)'; const f = e.dataTransfer.files[0]; if (f) this._processSwatch(f); }}>
+          <div style="font-size:48px;margin-bottom:12px;">🎨</div>
+          <div style="font-size:14px;color:var(--spectrum-gray-700);font-weight:600;">Drop your brand swatch here</div>
+          <div style="font-size:13px;color:var(--spectrum-gray-500);margin-top:4px;">or click to browse</div>
+          <input type="file" id="swatch-input" accept="image/*" style="display:none;"
+            @change=${(e) => { const f = e.target.files[0]; if (f) this._processSwatch(f); }}>
+        </div>
+        <div id="swatch-preview" style="margin-top:16px;"></div>
+        <div id="swatch-status" style="margin-top:12px;font-size:13px;"></div>
+        ${this._swatchResult ? html`
+          <div style="margin-top:24px;padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;">
+            <h3 style="font-size:15px;font-weight:700;margin:0 0 16px;color:var(--spectrum-gray-900);">Extracted Brand Tokens</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+              <div><strong>Brand:</strong> ${this._swatchResult.brandName || '—'}</div>
+              <div><strong>Tagline:</strong> ${this._swatchResult.tagline || '—'}</div>
+              <div><strong>Mood:</strong> ${this._swatchResult.mood || '—'}</div>
+              <div><strong>Theme:</strong> ${this._swatchResult.darkTheme ? 'Dark' : 'Light'}</div>
+              <div><strong>Heading Font:</strong> ${this._swatchResult.fonts?.heading || '—'}</div>
+              <div><strong>Body Font:</strong> ${this._swatchResult.fonts?.body || '—'}</div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:12px;">
+              ${Object.entries(this._swatchResult.colors || {}).map(([name, hex]) => html`
+                <div style="text-align:center;">
+                  <div style="width:40px;height:40px;border-radius:6px;background:${hex};border:1px solid var(--spectrum-gray-300);"></div>
+                  <div style="font-size:10px;color:var(--spectrum-gray-500);margin-top:4px;">${name}</div>
+                  <div style="font-size:10px;color:var(--spectrum-gray-700);font-weight:600;">${hex}</div>
+                </div>
+              `)}
+            </div>
+            ${this._swatchResult.logoUrl ? html`
+              <div style="margin-top:16px;">
+                <strong style="font-size:13px;">Logo (extracted):</strong>
+                <img src="${this.apiBase}${this._swatchResult.logoUrl}" style="display:block;max-width:150px;max-height:100px;margin-top:8px;border-radius:6px;border:1px solid var(--spectrum-gray-200);">
+              </div>
+            ` : nothing}
+            <div style="margin-top:20px;display:flex;gap:8px;">
+              <button class="forge__btn forge__btn--primary" @click=${() => this._applySwatchToBrief()}>Apply to Brief →</button>
+              <button class="forge__btn forge__btn--ghost" @click=${() => { this._swatchResult = null; this.requestUpdate(); }}>Clear</button>
+            </div>
+          </div>
+        ` : nothing}
+      </div>
+    `;
+  }
+
+  async _processSwatch(file) {
+    const preview = this.renderRoot.querySelector('#swatch-preview');
+    const status = this.renderRoot.querySelector('#swatch-status');
+    if (preview) {
+      const url = URL.createObjectURL(file);
+      preview.innerHTML = '<img src="' + url + '" style="max-width:100%;max-height:200px;border-radius:8px;">';
+    }
+    if (status) {
+      status.innerHTML = '<span style="color:var(--spectrum-gray-500);">🔍 Scanning swatch for brand tokens...</span>';
+    }
+    const fd = new FormData();
+    fd.append('image', file);
+    try {
+      const resp = await fetch(this.apiBase + '/api/extract-brand', { method: 'POST', body: fd });
+      const d = await resp.json();
+      if (d.error) throw new Error(d.error);
+      this._swatchResult = d;
+      this.requestUpdate();
+      if (status) status.innerHTML = '<span style="color:#16a34a;">✅ Brand tokens extracted! Review below.</span>';
+    } catch (err) {
+      if (status) status.innerHTML = '<span style="color:#dc2626;">❌ ' + err.message + '</span>';
+    }
+  }
+
+  _applySwatchToBrief() {
+    if (!this._swatchResult) return;
+    const d = this._swatchResult;
+    if (d.brandName) this.brief = { ...this.brief, brandName: d.brandName };
+    if (d.tagline) this.brief = { ...this.brief, tagline: d.tagline };
+    if (d.colors) this.brief = { ...this.brief, colors: { ...this.brief.colors, ...d.colors } };
+    if (d.fonts) this.brief = { ...this.brief, fonts: { ...this.brief.fonts, ...d.fonts } };
+    if (d.darkTheme !== undefined) this.brief = { ...this.brief, darkTheme: d.darkTheme };
+    if (d.mood) this.brief = { ...this.brief, mood: d.mood };
+    this._selectTab('brief');
+    this._showStatus('Brand tokens applied to brief!', 'success');
+  }
+
+  _renderWorkfrontTab() {
+    return html`
+      <div style="max-width:600px;">
+        <h2 style="font-size:18px;font-weight:700;color:var(--spectrum-gray-900);margin:0 0 8px;">🔗 Workfront Import</h2>
+        <p style="color:var(--spectrum-gray-600);font-size:14px;margin:0 0 24px;line-height:1.5;">
+          Import a campaign brief from Adobe Workfront. Project metadata — brand colors, assets, goals — will be mapped to your FORGE brief automatically.
+        </p>
+        <div class="forge__field">
+          <label class="forge__label">Workfront Project ID or URL</label>
+          <input type="text" class="forge__input" id="wf-project-id" placeholder="e.g. 6789abcd1234ef567890 or paste project URL">
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px;">
+          <button class="forge__btn forge__btn--primary" @click=${() => this._importFromWorkfront()}>Import Project</button>
+          <button class="forge__btn" @click=${() => this._browseWorkfront()}>Browse Projects</button>
+        </div>
+        <div id="wf-status" style="margin-top:16px;font-size:13px;"></div>
+        ${this._wfProjects ? html`
+          <div style="margin-top:20px;">
+            <h3 style="font-size:14px;font-weight:600;margin:0 0 12px;">Available Projects</h3>
+            ${this._wfProjects.map(p => html`
+              <div style="padding:12px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:6px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;"
+                @click=${() => this._selectWfProject(p)}
+                @mouseover=${(e) => e.currentTarget.style.borderColor = 'var(--spectrum-blue-800)'}
+                @mouseout=${(e) => e.currentTarget.style.borderColor = 'var(--spectrum-gray-200)'}>
+                <div style="font-weight:600;color:var(--spectrum-gray-900);">${p.name}</div>
+                <div style="font-size:12px;color:var(--spectrum-gray-500);margin-top:4px;">
+                  ${p.status || ''} · ${p.owner || ''} ${p.dueDate ? '· Due ' + p.dueDate : ''}
+                </div>
+              </div>
+            `)}
+          </div>
+        ` : nothing}
+      </div>
+    `;
+  }
+
+  async _browseWorkfront() {
+    const status = this.renderRoot.querySelector('#wf-status');
+    if (status) status.innerHTML = '<span style="color:var(--spectrum-gray-500);">Loading projects...</span>';
+    try {
+      const resp = await fetch(this.apiBase + '/api/workfront/projects');
+      const d = await resp.json();
+      if (d.error) throw new Error(d.error);
+      this._wfProjects = d.projects || [];
+      this.requestUpdate();
+      if (status) status.innerHTML = '<span style="color:#16a34a;">' + this._wfProjects.length + ' projects found</span>';
+    } catch (err) {
+      if (status) status.innerHTML = '<span style="color:#dc2626;">❌ ' + err.message + '</span>';
+    }
+  }
+
+  async _importFromWorkfront() {
+    const input = this.renderRoot.querySelector('#wf-project-id');
+    const id = input?.value?.trim();
+    if (!id) { this._showStatus('Enter a project ID or URL', 'error'); return; }
+    const status = this.renderRoot.querySelector('#wf-status');
+    if (status) status.innerHTML = '<span style="color:var(--spectrum-gray-500);">Importing...</span>';
+    try {
+      const resp = await fetch(this.apiBase + '/api/workfront/projects/' + encodeURIComponent(id));
+      const d = await resp.json();
+      if (d.error) throw new Error(d.error);
+      if (d.brief) {
+        this.brief = { ...this.brief, ...d.brief };
+        this._selectTab('brief');
+        this._showStatus('Workfront brief imported!', 'success');
+      }
+    } catch (err) {
+      if (status) status.innerHTML = '<span style="color:#dc2626;">❌ ' + err.message + '</span>';
+    }
+  }
+
+  _selectWfProject(project) {
+    this.brief = { ...this.brief, ...project.brief };
+    this._selectTab('brief');
+    this._showStatus('Project "' + project.name + '" imported to brief!', 'success');
+  }
+
   _renderDashboard() {
     if (this.activeTab !== 'dashboard') return nothing;
     return html`
       <div style="padding:24px 0;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
           <div class="forge__card" @click=${() => this._selectTab('brief')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
             <div style="font-size:36px;margin-bottom:12px;">📋</div>
             <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Briefs</h3>
             <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
-              Start from a brand brief — upload a swatch, define colors, fonts, pages, and generate a complete EDS site.
+              Start from a brand brief — define colors, fonts, pages, and generate a complete EDS site.
+            </p>
+          </div>
+          <div class="forge__card" @click=${() => this._selectTab('swatch')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">🎨</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Swatch Generator</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              Upload a brand swatch image — auto-extract colors, fonts, logo, and mood to populate your brief.
             </p>
           </div>
           <div class="forge__card" @click=${() => this._selectTab('copilot')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
             <div style="font-size:36px;margin-bottom:12px;">💬</div>
             <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Co-Pilot</h3>
             <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
-              Iterate with natural language — modify CSS, add pages, change mood, inject features via conversational prompts.
+              Iterate with natural language — modify CSS, add pages, change mood, inject features via prompts.
+            </p>
+          </div>
+          <div class="forge__card" @click=${() => this._selectTab('workfront')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">🔗</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Workfront</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              Import a campaign brief from Workfront — auto-map project metadata to site components.
             </p>
           </div>
           <div class="forge__card" @click=${() => this._selectTab('preview')} style="cursor:pointer;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
@@ -691,10 +875,14 @@ class ForgeApp extends LitElement {
           <div style="margin-bottom:16px;">
             <button class="forge__btn forge__btn--ghost" @click=${() => this._selectTab('dashboard')} style="font-size:13px;">← Back to Dashboard</button>
           </div>
-          ${this._renderTabs()}
-          ${this._renderBriefTab()}
-          ${this._renderCopilotTab()}
-          ${this._renderPreviewTab()}
+          ${this.activeTab === 'swatch' ? this._renderSwatchTab() : nothing}
+          ${this.activeTab === 'workfront' ? this._renderWorkfrontTab() : nothing}
+          ${['brief','copilot','preview'].includes(this.activeTab) ? html`
+            ${this._renderTabs()}
+            ${this._renderBriefTab()}
+            ${this._renderCopilotTab()}
+            ${this._renderPreviewTab()}
+          ` : nothing}
         `}
     `;
   }

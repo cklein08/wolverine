@@ -39,6 +39,7 @@ class ForgeApp extends LitElement {
     context: { type: Object },
     authenticated: { type: Boolean },
     _swatchPreview: { type: String, state: true },
+    _logoPreview: { type: String, state: true },
     _chatInput: { type: String, state: true },
     _sendingChat: { type: Boolean, state: true },
     _deviceMode: { type: String, state: true },
@@ -73,6 +74,7 @@ class ForgeApp extends LitElement {
     this.context = null;
     this.authenticated = false;
     this._swatchPreview = '';
+    this._logoPreview = '';
     this._chatInput = '';
     this._sendingChat = false;
     this._deviceMode = 'desktop';
@@ -128,22 +130,34 @@ class ForgeApp extends LitElement {
     input.click();
   }
 
+  _openLogoPicker() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => {
+      const file = e.target?.files?.[0];
+      if (file) this._logoPreview = URL.createObjectURL(file);
+    };
+    input.click();
+  }
+
   async _handleSwatchUpload(e) {
     const file = e.target?.files?.[0];
     if (!file) return;
 
     this._swatchPreview = URL.createObjectURL(file);
-    this._statusMsg = { type: 'info', text: 'Extracting brand tokens from swatch…' };
+    this._statusMsg = { type: 'info', text: '🔍 Scanning swatch for brand tokens…' };
 
     try {
       const formData = new FormData();
-      formData.append('swatch', file);
+      formData.append('image', file);
       const resp = await fetch(`${this.apiBase}/api/extract-brand`, {
         method: 'POST',
         body: formData,
       });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const data = await resp.json();
+      if (data.error) throw new Error(data.error);
 
       // Fill brief from extracted data
       if (data.brandName) this._updateBrief('brandName', data.brandName);
@@ -154,15 +168,18 @@ class ForgeApp extends LitElement {
         if (data.colors.secondary) c.secondary = data.colors.secondary;
         if (data.colors.accent) c.accent = data.colors.accent;
         if (data.colors.background) c.background = data.colors.background;
-        if (data.colors.surface) c.surface = data.colors.surface;
+        if (data.colors.text) c.text = data.colors.text;
         this.brief = { ...this.brief, colors: c };
       }
-      if (data.headingFont) this._updateBrief('headingFont', data.headingFont);
-      if (data.bodyFont) this._updateBrief('bodyFont', data.bodyFont);
+      if (data.fonts?.heading) this._updateBrief('headingFont', data.fonts.heading);
+      if (data.fonts?.body) this._updateBrief('bodyFont', data.fonts.body);
+      if (data.darkTheme !== undefined) this._updateBrief('darkTheme', data.darkTheme);
+      if (data.mood) this._updateBrief('mood', data.mood);
+      if (data.logoUrl) this._logoPreview = `${this.apiBase}${data.logoUrl}`;
 
-      this._statusMsg = { type: 'success', text: 'Brand tokens extracted successfully.' };
+      this._statusMsg = { type: 'success', text: '✅ Brand tokens extracted! Review and adjust below.' };
     } catch (err) {
-      this._statusMsg = { type: 'error', text: `Extraction failed: ${err.message}` };
+      this._statusMsg = { type: 'error', text: `❌ Extraction failed: ${err.message}` };
     }
   }
 
@@ -337,6 +354,19 @@ class ForgeApp extends LitElement {
           </div>
         </div>
 
+        <!-- Logo preview -->
+        ${this._logoPreview ? html`
+          <div class="forge__field">
+            <label class="forge__label">Logo (extracted from swatch)</label>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <img src="${this._logoPreview}" style="max-width:150px;max-height:100px;border-radius:6px;border:1px solid var(--spectrum-gray-200);">
+              <div>
+                <button class="forge__btn forge__btn--ghost" style="font-size:12px;" @click=${() => this._openLogoPicker()}>Upload different logo</button>
+              </div>
+            </div>
+          </div>
+        ` : nothing}
+
         <hr class="forge__divider" />
 
         <!-- Brand name + tagline -->
@@ -385,6 +415,12 @@ class ForgeApp extends LitElement {
               `,
             )}
           </div>
+          <!-- Live color swatch strip -->
+          <div style="display:flex;gap:4px;margin-top:10px;padding:8px;background:var(--spectrum-gray-75);border-radius:6px;">
+            ${Object.entries(colors).map(([key, val]) => html`
+              <div style="flex:1;height:32px;border-radius:4px;background:${val};border:1px solid var(--spectrum-gray-200);" title="${key}: ${val}"></div>
+            `)}
+          </div>
         </div>
 
         <!-- Fonts -->
@@ -408,6 +444,15 @@ class ForgeApp extends LitElement {
             >
               ${FONT_OPTIONS.map((f) => html`<option ?selected=${b.bodyFont === f}>${f}</option>`)}
             </select>
+          </div>
+        </div>
+        <!-- Font preview -->
+        <div style="padding:12px;background:var(--spectrum-gray-75);border-radius:6px;margin-bottom:16px;">
+          <div style="font-family:${b.headingFont || 'Inter'},sans-serif;font-size:20px;font-weight:700;color:var(--spectrum-gray-900);margin-bottom:4px;">
+            ${b.brandName || 'Brand Name'} — Heading Preview
+          </div>
+          <div style="font-family:${b.bodyFont || 'Inter'},sans-serif;font-size:14px;color:var(--spectrum-gray-700);line-height:1.5;">
+            ${b.tagline || 'Your tagline will appear here. This is how body text looks with your chosen font.'}
           </div>
         </div>
 

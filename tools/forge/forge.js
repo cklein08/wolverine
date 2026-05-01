@@ -66,6 +66,7 @@ class ForgeApp extends LitElement {
       aemAuthorUrl: '',
       githubOrg: '',
       siteName: '',
+      createNewRepo: true,
     };
     this.generating = false;
     this.generationLog = [];
@@ -540,6 +541,30 @@ class ForgeApp extends LitElement {
               @input=${(e) => this._updateBrief('siteName', e.target.value)}
               placeholder="my-brand-site"
             />
+          </div>
+        </div>
+
+        <!-- Repository mode -->
+        <div class="forge__field">
+          <label class="forge__label">Repository</label>
+          <div style="display:flex;gap:16px;margin-bottom:8px;">
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;">
+              <input type="radio" name="repo-mode" value="new"
+                ?checked=${this.brief.createNewRepo !== false}
+                @change=${() => this._updateBrief('createNewRepo', true)} />
+              Create new repository
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;">
+              <input type="radio" name="repo-mode" value="existing"
+                ?checked=${this.brief.createNewRepo === false}
+                @change=${() => this._updateBrief('createNewRepo', false)} />
+              Use existing repository
+            </label>
+          </div>
+          <div style="font-size:12px;color:#888;margin-top:2px;">
+            ${this.brief.createNewRepo !== false
+              ? html`Will create <strong>${b.githubOrg || this.context?.org || 'cklein08'}/${b.siteName || b.brandName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'site'}</strong> on GitHub`
+              : html`Will push to existing repo <strong>${b.githubOrg || this.context?.org || 'cklein08'}/${b.siteName || b.brandName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'site'}</strong>`}
           </div>
         </div>
 

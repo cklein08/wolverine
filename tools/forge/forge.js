@@ -97,6 +97,13 @@ class ForgeApp extends LitElement {
   /* ------------------------------------------------------------------ */
   /*  Brief helpers                                                      */
   /* ------------------------------------------------------------------ */
+  _showStatus(text, type = 'info') {
+    this._statusMsg = { type, text };
+    if (type === 'success' || type === 'info') {
+      setTimeout(() => { if (this._statusMsg?.text === text) { this._statusMsg = null; this.requestUpdate(); } }, 5000);
+    }
+  }
+
   _updateBrief(field, value) {
     this.brief = { ...this.brief, [field]: value };
   }
@@ -193,63 +200,59 @@ class ForgeApp extends LitElement {
     this._statusMsg = null;
 
     try {
+      // Start generation
       const resp = await fetch(`${this.apiBase}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          brief: this.brief,
-          org: this.context?.org || this.brief.githubOrg,
-          repo: this.context?.repo || this.brief.siteName,
+          ...this.brief,
+          clientName: this.brief.siteName || this.brief.brandName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'site',
+          githubOrg: this.brief.githubOrg || this.context?.org || 'cklein08',
         }),
       });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const data = await resp.json();
 
-      // Try streaming (NDJSON) or fall back to plain JSON
-      const contentType = resp.headers.get('content-type') || '';
-      if (contentType.includes('ndjson') || contentType.includes('stream')) {
-        const reader = resp.body.getReader();
-        const decoder = new TextDecoder();
-        let buf = '';
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buf += decoder.decode(value, { stream: true });
-          const lines = buf.split('\n');
-          buf = lines.pop();
-          for (const line of lines) {
-            if (!line.trim()) continue;
-            try {
-              const msg = JSON.parse(line);
-              this.generationLog = [
-                ...this.generationLog,
-                { text: msg.message || msg.step || JSON.stringify(msg), done: !!msg.done },
-              ];
-              if (msg.previewUrl) this.previewUrl = msg.previewUrl;
-              if (msg.siteUrls) this.siteUrls = msg.siteUrls;
-            } catch { /* skip */ }
-          }
+      if (data.error) throw new Error(data.error);
+
+      // If server returns result directly
+      if (data.urls || data.siteUrls) {
+        this.siteUrls = data.urls || data.siteUrls;
+        this.previewUrl = this.siteUrls.preview || '';
+        this.generationLog = [...this.generationLog, { text: `✅ Site generated: ${data.outputDir || ''}`, done: true }];
+        this.generationLog = [...this.generationLog, { text: `📁 ${data.fileCount || 'Files'} created`, done: true }];
+      }
+
+      // If server queues and returns projectId, poll for status
+      if (data.projectId && !data.urls) {
+        this.generationLog = [...this.generationLog, { text: `Queued: ${data.projectId}`, done: false }];
+        let attempts = 0;
+        while (attempts < 30) {
+          await new Promise(r => setTimeout(r, 2000));
+          attempts++;
+          try {
+            const poll = await fetch(`${this.apiBase}/api/projects/${data.projectId}`);
+            const status = await poll.json();
+            if (status.log) {
+              this.generationLog = status.log.map(l => ({ text: l, done: true }));
+            }
+            if (status.status === 'complete') {
+              this.siteUrls = status.urls || status.siteUrls || {};
+              this.previewUrl = this.siteUrls.preview || '';
+              break;
+            }
+            if (status.status === 'error') throw new Error(status.error || 'Generation failed');
+          } catch (e) { if (attempts >= 30) throw e; }
         }
-      } else {
-        const data = await resp.json();
-        this.generationLog = [
-          ...this.generationLog,
-          { text: 'Site generated successfully.', done: true },
-        ];
-        if (data.previewUrl) this.previewUrl = data.previewUrl;
-        if (data.siteUrls) this.siteUrls = data.siteUrls;
       }
 
       this.generating = false;
-      this._statusMsg = { type: 'success', text: 'Site generation complete!' };
-      // Auto-switch to preview tab if we have a URL
-      if (this.previewUrl) this.activeTab = 'preview';
+      this._showStatus('Site generation complete!', 'success');
+      if (this.previewUrl) this._selectTab('preview');
     } catch (err) {
       this.generating = false;
-      this._statusMsg = { type: 'error', text: `Generation failed: ${err.message}` };
-      this.generationLog = [
-        ...this.generationLog,
-        { text: `Error: ${err.message}`, done: false },
-      ];
+      this._showStatus(`Generation failed: ${err.message}`, 'error');
+      this.generationLog = [...this.generationLog, { text: `❌ ${err.message}`, done: false }];
     }
   }
 
@@ -277,13 +280,30 @@ class ForgeApp extends LitElement {
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const data = await resp.json();
 
+      // Map server response { scope, assessment, changes } to UI format
+      const scopes = [];
+      if (data.scope) {
+        if (data.scope.styles) scopes.push('styles');
+        if (data.scope.blocks) scopes.push('blocks');
+        if (data.scope.content) scopes.push('content');
+        if (data.scope.commerce) scopes.push('commerce');
+        if (data.scope.pages) scopes.push('pages');
+      }
+      const diffs = (data.changes || []).map(c => ({
+        file: c.file || '',
+        changes: (c.diff || c.description || '').split('\n').map(line => ({
+          type: line.startsWith('+') ? 'add' : line.startsWith('-') ? 'remove' : 'context',
+          line,
+        })),
+      }));
+
       this.chatMessages = [
         ...this.chatMessages,
         {
           role: 'assistant',
-          text: data.message || data.response || 'Done.',
-          scopes: data.scopes || [],
-          diffs: data.diffs || [],
+          text: data.assessment || data.message || data.response || 'Done.',
+          scopes,
+          diffs,
         },
       ];
       if (data.previewUrl) this.previewUrl = data.previewUrl;

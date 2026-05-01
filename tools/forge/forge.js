@@ -711,47 +711,54 @@ class ForgeApp extends LitElement {
       <div style="max-width:600px;">
         <h2 style="font-size:18px;font-weight:700;color:var(--spectrum-gray-900);margin:0 0 8px;">🎨 Swatch Generator</h2>
         <p style="color:var(--spectrum-gray-600);font-size:14px;margin:0 0 24px;line-height:1.5;">
-          Upload a brand identity image or style guide. FORGE will scan it and extract colors, fonts, logo, and mood — then auto-populate your brief.
+          Enter a brand name and FORGE will generate a complete brand identity — colors, fonts, mood, and tagline — ready to use in your brief.
         </p>
-        <div class="forge__upload-zone" style="padding:48px 24px;text-align:center;border:2px dashed var(--spectrum-gray-300);border-radius:8px;cursor:pointer;transition:border-color 0.2s;"
-          @click=${() => this.renderRoot.querySelector('#swatch-input').click()}
-          @dragover=${(e) => { e.preventDefault(); e.currentTarget.style.borderColor = 'var(--spectrum-blue-800)'; }}
-          @dragleave=${(e) => { e.currentTarget.style.borderColor = 'var(--spectrum-gray-300)'; }}
-          @drop=${(e) => { e.preventDefault(); e.currentTarget.style.borderColor = 'var(--spectrum-gray-300)'; const f = e.dataTransfer.files[0]; if (f) this._processSwatch(f); }}>
-          <div style="font-size:48px;margin-bottom:12px;">🎨</div>
-          <div style="font-size:14px;color:var(--spectrum-gray-700);font-weight:600;">Drop your brand swatch here</div>
-          <div style="font-size:13px;color:var(--spectrum-gray-500);margin-top:4px;">or click to browse</div>
-          <input type="file" id="swatch-input" accept="image/*" style="display:none;"
-            @change=${(e) => { const f = e.target.files[0]; if (f) this._processSwatch(f); }}>
+        <div class="forge__field">
+          <label class="forge__label">Brand Name</label>
+          <input
+            class="forge__input"
+            type="text"
+            id="swatch-brand-input"
+            placeholder="e.g. Wolverine Mobile, Boost Mobile, Acme Corp"
+            @keydown=${(e) => { if (e.key === 'Enter') this._generateSwatch(); }}
+          />
         </div>
-        <div id="swatch-preview" style="margin-top:16px;"></div>
-        <div id="swatch-status" style="margin-top:12px;font-size:13px;"></div>
+        <div style="margin-top:16px;">
+          <button class="forge__btn forge__btn--primary" @click=${() => this._generateSwatch()}>
+            🎨 Generate Brand Identity
+          </button>
+        </div>
+        <div id="swatch-gen-status" style="margin-top:12px;font-size:13px;"></div>
         ${this._swatchResult ? html`
           <div style="margin-top:24px;padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;">
-            <h3 style="font-size:15px;font-weight:700;margin:0 0 16px;color:var(--spectrum-gray-900);">Extracted Brand Tokens</h3>
+            <h3 style="font-size:15px;font-weight:700;margin:0 0 16px;color:var(--spectrum-gray-900);">Generated Brand Identity</h3>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
               <div><strong>Brand:</strong> ${this._swatchResult.brandName || '—'}</div>
               <div><strong>Tagline:</strong> ${this._swatchResult.tagline || '—'}</div>
               <div><strong>Mood:</strong> ${this._swatchResult.mood || '—'}</div>
               <div><strong>Theme:</strong> ${this._swatchResult.darkTheme ? 'Dark' : 'Light'}</div>
-              <div><strong>Heading Font:</strong> ${this._swatchResult.fonts?.heading || '—'}</div>
-              <div><strong>Body Font:</strong> ${this._swatchResult.fonts?.body || '—'}</div>
+              <div><strong>Heading Font:</strong> ${this._swatchResult.fonts?.heading || this._swatchResult.headingFont || '—'}</div>
+              <div><strong>Body Font:</strong> ${this._swatchResult.fonts?.body || this._swatchResult.bodyFont || '—'}</div>
             </div>
-            <div style="display:flex;gap:8px;margin-top:12px;">
+            <!-- Color swatches -->
+            <div style="display:flex;gap:8px;margin-top:16px;">
               ${Object.entries(this._swatchResult.colors || {}).map(([name, hex]) => html`
-                <div style="text-align:center;">
-                  <div style="width:40px;height:40px;border-radius:6px;background:${hex};border:1px solid var(--spectrum-gray-300);"></div>
-                  <div style="font-size:10px;color:var(--spectrum-gray-500);margin-top:4px;">${name}</div>
+                <div style="text-align:center;flex:1;">
+                  <div style="height:48px;border-radius:6px;background:${hex};border:1px solid var(--spectrum-gray-300);"></div>
+                  <div style="font-size:10px;color:var(--spectrum-gray-500);margin-top:4px;text-transform:capitalize;">${name}</div>
                   <div style="font-size:10px;color:var(--spectrum-gray-700);font-weight:600;">${hex}</div>
                 </div>
               `)}
             </div>
-            ${this._swatchResult.logoUrl ? html`
-              <div style="margin-top:16px;">
-                <strong style="font-size:13px;">Logo (extracted):</strong>
-                <img src="${this.apiBase}${this._swatchResult.logoUrl}" style="display:block;max-width:150px;max-height:100px;margin-top:8px;border-radius:6px;border:1px solid var(--spectrum-gray-200);">
+            <!-- Font preview -->
+            <div style="margin-top:16px;padding:12px;background:${this._swatchResult.colors?.background || '#fff'};border-radius:6px;border:1px solid var(--spectrum-gray-200);">
+              <div style="font-family:${this._swatchResult.fonts?.heading || this._swatchResult.headingFont || 'Inter'},sans-serif;font-size:20px;font-weight:700;color:${this._swatchResult.colors?.text || '#1a1a1a'};margin-bottom:4px;">
+                ${this._swatchResult.brandName || 'Brand Name'}
               </div>
-            ` : nothing}
+              <div style="font-family:${this._swatchResult.fonts?.body || this._swatchResult.bodyFont || 'Inter'},sans-serif;font-size:14px;color:${this._swatchResult.colors?.text || '#1a1a1a'};opacity:0.8;line-height:1.5;">
+                ${this._swatchResult.tagline || 'Tagline preview'}
+              </div>
+            </div>
             <div style="margin-top:20px;display:flex;gap:8px;">
               <button class="forge__btn forge__btn--primary" @click=${() => this._applySwatchToBrief()}>Apply to Brief →</button>
               <button class="forge__btn forge__btn--ghost" @click=${() => { this._swatchResult = null; this.requestUpdate(); }}>Clear</button>
@@ -762,25 +769,25 @@ class ForgeApp extends LitElement {
     `;
   }
 
-  async _processSwatch(file) {
-    const preview = this.renderRoot.querySelector('#swatch-preview');
-    const status = this.renderRoot.querySelector('#swatch-status');
-    if (preview) {
-      const url = URL.createObjectURL(file);
-      preview.innerHTML = '<img src="' + url + '" style="max-width:100%;max-height:200px;border-radius:8px;">';
-    }
-    if (status) {
-      status.innerHTML = '<span style="color:var(--spectrum-gray-500);">🔍 Scanning swatch for brand tokens...</span>';
-    }
-    const fd = new FormData();
-    fd.append('image', file);
+  async _generateSwatch() {
+    const input = this.renderRoot.querySelector('#swatch-brand-input');
+    const brandName = input?.value?.trim();
+    if (!brandName) { this._showStatus('Enter a brand name', 'error'); return; }
+
+    const status = this.renderRoot.querySelector('#swatch-gen-status');
+    if (status) status.innerHTML = '<span style="color:var(--spectrum-gray-500);">🎨 Generating brand identity for "' + brandName + '"...</span>';
+
     try {
-      const resp = await fetch(this.apiBase + '/api/extract-brand', { method: 'POST', body: fd });
+      const resp = await fetch(this.apiBase + '/api/generate-swatch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ brandName }),
+      });
       const d = await resp.json();
       if (d.error) throw new Error(d.error);
       this._swatchResult = d;
       this.requestUpdate();
-      if (status) status.innerHTML = '<span style="color:#16a34a;">✅ Brand tokens extracted! Review below.</span>';
+      if (status) status.innerHTML = '<span style="color:#16a34a;">✅ Brand identity generated!</span>';
     } catch (err) {
       if (status) status.innerHTML = '<span style="color:#dc2626;">❌ ' + err.message + '</span>';
     }
@@ -789,14 +796,15 @@ class ForgeApp extends LitElement {
   _applySwatchToBrief() {
     if (!this._swatchResult) return;
     const d = this._swatchResult;
-    if (d.brandName) this.brief = { ...this.brief, brandName: d.brandName };
-    if (d.tagline) this.brief = { ...this.brief, tagline: d.tagline };
+    if (d.brandName) this._updateBrief('brandName', d.brandName);
+    if (d.tagline) this._updateBrief('tagline', d.tagline);
     if (d.colors) this.brief = { ...this.brief, colors: { ...this.brief.colors, ...d.colors } };
-    if (d.fonts) this.brief = { ...this.brief, fonts: { ...this.brief.fonts, ...d.fonts } };
-    if (d.darkTheme !== undefined) this.brief = { ...this.brief, darkTheme: d.darkTheme };
-    if (d.mood) this.brief = { ...this.brief, mood: d.mood };
+    if (d.fonts?.heading || d.headingFont) this._updateBrief('headingFont', d.fonts?.heading || d.headingFont);
+    if (d.fonts?.body || d.bodyFont) this._updateBrief('bodyFont', d.fonts?.body || d.bodyFont);
+    if (d.darkTheme !== undefined) this._updateBrief('darkTheme', d.darkTheme);
+    if (d.mood) this._updateBrief('mood', d.mood);
     this._selectTab('brief');
-    this._showStatus('Brand tokens applied to brief!', 'success');
+    this._showStatus('Brand identity applied to brief!', 'success');
   }
 
   _renderWorkfrontTab() {

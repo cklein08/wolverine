@@ -2,7 +2,7 @@
  * FORGE — DA.live Lit plugin
  * Brand-identity-driven EDS site generator.
  */
-import { LitElement, html, css, nothing } from '../../deps/lit/dist/index.js';
+import { LitElement, html, nothing } from '../../deps/lit/dist/index.js';
 import DA_SDK from 'https://da.live/nx/utils/sdk.js';
 
 const EL_NAME = 'forge-app';

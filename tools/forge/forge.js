@@ -1,3 +1,4 @@
+/* FORGE v2.1 - updated 2026-05-01 */
 /**
  * FORGE — DA.live Lit plugin
  * Brand-identity-driven EDS site generator.
@@ -973,4 +974,3 @@ if (document.readyState === 'loading') {
 } else {
   boot();
 }
-// cache-bust: 1777659912

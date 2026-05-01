@@ -671,9 +671,13 @@ customElements.define(EL_NAME, ForgeApp);
 export default async function init(el) {
   let context = null;
   try {
-    const sdk = await DA_SDK;
+    // DA_SDK hangs forever when loaded outside DA.live shell — race with a timeout
+    const sdk = await Promise.race([
+      DA_SDK,
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
+    ]);
     context = sdk.context ?? null;
-  } catch { /* standalone */ }
+  } catch { /* standalone or timeout — continue without DA context */ }
 
   const cmp = document.createElement(EL_NAME);
   if (context) cmp.context = context;

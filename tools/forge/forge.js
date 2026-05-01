@@ -60,11 +60,22 @@ class ForgeApp extends LitElement {
     this.brief = {
       brandName: '',
       tagline: '',
-      colors: { primary: '#0265dc', secondary: '#2c2c2c', accent: '#067a00', background: '#ffffff', surface: '#f8f8f8' },
-      headingFont: 'System Default',
-      bodyFont: 'System Default',
+      mood: '',
+      colors: {
+        primary: '#0265dc',
+        secondary: '#2c2c2c',
+        accent: '#067a00',
+        background: '#ffffff',
+        text: '#2c2c2c',
+        light: '#f8f8f8',
+        dark: '#1a1a1a',
+      },
+      fonts: { heading: 'System Default', body: 'System Default', headingWeight: '700' },
       pages: ['home', 'about', 'contact'],
       commerce: false,
+      commerceSource: '',
+      commerceUrl: '',
+      imageStyle: '',
       aemAuthorUrl: '',
       githubOrg: '',
       siteName: '',
@@ -116,6 +127,13 @@ class ForgeApp extends LitElement {
     this.brief = {
       ...this.brief,
       colors: { ...this.brief.colors, [key]: value },
+    };
+  }
+
+  _updateFont(key, value) {
+    this.brief = {
+      ...this.brief,
+      fonts: { ...this.brief.fonts, [key]: value },
     };
   }
 
@@ -183,8 +201,8 @@ class ForgeApp extends LitElement {
         if (data.colors.text) c.text = data.colors.text;
         this.brief = { ...this.brief, colors: c };
       }
-      if (data.fonts?.heading) this._updateBrief('headingFont', data.fonts.heading);
-      if (data.fonts?.body) this._updateBrief('bodyFont', data.fonts.body);
+      if (data.fonts?.heading) this._updateFont('heading', data.fonts.heading);
+      if (data.fonts?.body) this._updateFont('body', data.fonts.body);
       if (data.darkTheme !== undefined) this._updateBrief('darkTheme', data.darkTheme);
       if (data.mood) this._updateBrief('mood', data.mood);
       if (data.logoUrl) this._logoPreview = `${this.apiBase}${data.logoUrl}`;
@@ -457,61 +475,104 @@ class ForgeApp extends LitElement {
   _renderBriefTab() {
     const b = this.brief;
     const colors = b.colors || {};
+    const fonts = b.fonts || {};
+    const headingFont = fonts.heading || 'System Default';
+    const bodyFont = fonts.body || 'System Default';
+    const headingWeight = fonts.headingWeight || '700';
+
+    const COLOR_LABELS = {
+      primary: 'Primary', secondary: 'Secondary', accent: 'Accent',
+      background: 'Background', text: 'Text', light: 'Light', dark: 'Dark',
+    };
 
     return html`
       <div class="forge-tabs__panel" ?hidden=${this.activeTab !== 'brief'}>
-        <!-- Swatch upload -->
+
+        <!-- ── Brand Swatch ─────────────────────────────────────────── -->
         <div class="forge__field">
           <label class="forge__label">Brand Swatch</label>
           <div
-            class="forge__upload-zone ${this._swatchPreview ? '' : ''}"
+            class="forge__upload-zone"
             @click=${() => this._openFilePicker()}
+            @dragover=${(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; e.currentTarget.classList.add('forge__upload-zone--drag'); }}
+            @dragleave=${(e) => e.currentTarget.classList.remove('forge__upload-zone--drag')}
+            @drop=${(e) => {
+              e.preventDefault();
+              e.currentTarget.classList.remove('forge__upload-zone--drag');
+              const file = e.dataTransfer.files?.[0];
+              if (file) this._handleSwatchUpload({ target: { files: [file] } });
+            }}
           >
             ${this._swatchPreview
               ? html`<img class="forge__upload-preview" src="${this._swatchPreview}" alt="Swatch preview" />`
-              : html`<span>📎 Click to upload a brand swatch image — colors and fonts will be auto-extracted</span>`
+              : html`<span>📎 Click or drag & drop a brand swatch image — colors and fonts will be auto-extracted</span>`
             }
           </div>
+          ${this._swatchPreview ? html`
+            <button class="forge__btn forge__btn--ghost" style="font-size:12px;margin-top:6px;" @click=${(e) => { e.stopPropagation(); this._swatchPreview = ''; }}>Clear swatch</button>
+          ` : nothing}
         </div>
 
-        <!-- Logo preview -->
-        ${this._logoPreview ? html`
-          <div class="forge__field">
-            <label class="forge__label">Logo (extracted from swatch)</label>
-            <div style="display:flex;align-items:center;gap:16px;">
-              <img src="${this._logoPreview}" style="max-width:150px;max-height:100px;border-radius:6px;border:1px solid var(--spectrum-gray-200);">
-              <div>
-                <button class="forge__btn forge__btn--ghost" style="font-size:12px;" @click=${() => this._openLogoPicker()}>Upload different logo</button>
+        <!-- ── Logo ─────────────────────────────────────────────────── -->
+        <div class="forge__field">
+          <label class="forge__label">Logo</label>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            ${this._logoPreview ? html`
+              <img src="${this._logoPreview}" style="max-width:160px;max-height:80px;border-radius:6px;border:1px solid var(--spectrum-gray-200);background:var(--spectrum-gray-75);padding:8px;" alt="Logo preview" />
+            ` : html`
+              <div style="width:160px;height:80px;border-radius:6px;border:2px dashed var(--spectrum-gray-300);display:flex;align-items:center;justify-content:center;color:var(--spectrum-gray-500);font-size:12px;text-align:center;padding:8px;">
+                No logo yet
               </div>
-            </div>
+            `}
+            <button class="forge__btn forge__btn--ghost" style="font-size:12px;" @click=${() => this._openLogoPicker()}>
+              ${this._logoPreview ? 'Replace logo' : '📁 Upload logo'}
+            </button>
           </div>
-        ` : nothing}
+        </div>
 
         <hr class="forge__divider" />
 
-        <!-- Brand name + tagline -->
-        <div class="forge__field">
-          <label class="forge__label">Brand Name</label>
-          <input
-            class="forge__input"
-            type="text"
-            .value=${b.brandName}
-            @input=${(e) => this._updateBrief('brandName', e.target.value)}
-            placeholder="Acme Corp"
-          />
-        </div>
-        <div class="forge__field">
-          <label class="forge__label">Tagline</label>
-          <input
-            class="forge__input"
-            type="text"
-            .value=${b.tagline}
-            @input=${(e) => this._updateBrief('tagline', e.target.value)}
-            placeholder="Building the future, one pixel at a time"
-          />
+        <!-- ── Identity ──────────────────────────────────────────────── -->
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div class="forge__field" style="flex:2;min-width:200px;">
+            <label class="forge__label">Brand Name</label>
+            <input
+              class="forge__input"
+              type="text"
+              .value=${b.brandName}
+              @input=${(e) => this._updateBrief('brandName', e.target.value)}
+              placeholder="Acme Corp"
+            />
+          </div>
+          <div class="forge__field" style="flex:3;min-width:200px;">
+            <label class="forge__label">Tagline</label>
+            <input
+              class="forge__input"
+              type="text"
+              .value=${b.tagline}
+              @input=${(e) => this._updateBrief('tagline', e.target.value)}
+              placeholder="Building the future, one pixel at a time"
+            />
+          </div>
         </div>
 
-        <!-- Colors -->
+        <div class="forge__field">
+          <label class="forge__label">Brand Mood / Personality</label>
+          <select
+            class="forge__select"
+            .value=${b.mood}
+            @change=${(e) => this._updateBrief('mood', e.target.value)}
+          >
+            <option value="">Select mood…</option>
+            ${['Bold & Energetic', 'Calm & Trustworthy', 'Elegant & Luxurious', 'Playful & Fun', 'Modern & Minimal', 'Warm & Friendly', 'Professional & Serious', 'Creative & Innovative'].map(
+              (m) => html`<option value="${m}" ?selected=${b.mood === m}>${m}</option>`
+            )}
+          </select>
+        </div>
+
+        <hr class="forge__divider" />
+
+        <!-- ── Colors ────────────────────────────────────────────────── -->
         <div class="forge__field">
           <label class="forge__label">Brand Colors</label>
           <div class="forge__color-row">
@@ -530,7 +591,7 @@ class ForgeApp extends LitElement {
                     .value=${val}
                     @change=${(e) => this._updateColor(key, e.target.value)}
                   />
-                  <span style="font-size:11px;color:var(--spectrum-gray-600);text-transform:capitalize">${key}</span>
+                  <span style="font-size:11px;color:var(--spectrum-gray-600);text-transform:capitalize">${COLOR_LABELS[key] || key}</span>
                 </div>
               `,
             )}
@@ -538,45 +599,62 @@ class ForgeApp extends LitElement {
           <!-- Live color swatch strip -->
           <div style="display:flex;gap:4px;margin-top:10px;padding:8px;background:var(--spectrum-gray-75);border-radius:6px;">
             ${Object.entries(colors).map(([key, val]) => html`
-              <div style="flex:1;height:32px;border-radius:4px;background:${val};border:1px solid var(--spectrum-gray-200);" title="${key}: ${val}"></div>
+              <div style="flex:1;height:32px;border-radius:4px;background:${val};border:1px solid var(--spectrum-gray-200);" title="${COLOR_LABELS[key] || key}: ${val}"></div>
             `)}
           </div>
         </div>
 
-        <!-- Fonts -->
+        <hr class="forge__divider" />
+
+        <!-- ── Typography ────────────────────────────────────────────── -->
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
-          <div class="forge__field" style="flex:1;min-width:200px;">
+          <div class="forge__field" style="flex:2;min-width:180px;">
             <label class="forge__label">Heading Font</label>
             <select
               class="forge__select"
-              .value=${b.headingFont}
-              @change=${(e) => this._updateBrief('headingFont', e.target.value)}
+              @change=${(e) => this._updateFont('heading', e.target.value)}
             >
-              ${FONT_OPTIONS.map((f) => html`<option ?selected=${b.headingFont === f}>${f}</option>`)}
+              ${FONT_OPTIONS.map((f) => html`<option ?selected=${headingFont === f}>${f}</option>`)}
             </select>
           </div>
-          <div class="forge__field" style="flex:1;min-width:200px;">
+          <div class="forge__field" style="flex:2;min-width:180px;">
             <label class="forge__label">Body Font</label>
             <select
               class="forge__select"
-              .value=${b.bodyFont}
-              @change=${(e) => this._updateBrief('bodyFont', e.target.value)}
+              @change=${(e) => this._updateFont('body', e.target.value)}
             >
-              ${FONT_OPTIONS.map((f) => html`<option ?selected=${b.bodyFont === f}>${f}</option>`)}
+              ${FONT_OPTIONS.map((f) => html`<option ?selected=${bodyFont === f}>${f}</option>`)}
+            </select>
+          </div>
+          <div class="forge__field" style="flex:1;min-width:120px;">
+            <label class="forge__label">Heading Weight</label>
+            <select
+              class="forge__select"
+              @change=${(e) => this._updateFont('headingWeight', e.target.value)}
+            >
+              ${['400', '500', '600', '700', '800', '900'].map(
+                (w) => html`<option value="${w}" ?selected=${headingWeight === w}>${w}</option>`
+              )}
             </select>
           </div>
         </div>
-        <!-- Font preview -->
-        <div style="padding:12px;background:var(--spectrum-gray-75);border-radius:6px;margin-bottom:16px;">
-          <div style="font-family:${b.headingFont || 'Inter'},sans-serif;font-size:20px;font-weight:700;color:var(--spectrum-gray-900);margin-bottom:4px;">
-            ${b.brandName || 'Brand Name'} — Heading Preview
+        <!-- Typography live preview -->
+        <div style="padding:16px;background:${colors.background || '#ffffff'};border-radius:6px;margin-bottom:16px;border:1px solid var(--spectrum-gray-200);">
+          <div style="font-family:${headingFont},sans-serif;font-size:22px;font-weight:${headingWeight};color:${colors.text || colors.primary || '#1a1a1a'};margin-bottom:6px;">
+            ${b.brandName || 'Brand Name'} — Heading
           </div>
-          <div style="font-family:${b.bodyFont || 'Inter'},sans-serif;font-size:14px;color:var(--spectrum-gray-700);line-height:1.5;">
-            ${b.tagline || 'Your tagline will appear here. This is how body text looks with your chosen font.'}
+          <div style="font-family:${bodyFont},sans-serif;font-size:14px;color:${colors.text || '#444'};line-height:1.6;">
+            ${b.tagline || 'This is how your body copy will look across all pages. Clear, readable, on-brand.'}
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px;">
+            <div style="padding:6px 14px;background:${colors.primary || '#0265dc'};color:#fff;border-radius:4px;font-size:13px;font-weight:600;font-family:${bodyFont},sans-serif;">Primary CTA</div>
+            <div style="padding:6px 14px;background:${colors.accent || '#067a00'};color:#fff;border-radius:4px;font-size:13px;font-weight:600;font-family:${bodyFont},sans-serif;">Accent CTA</div>
           </div>
         </div>
 
-        <!-- Pages -->
+        <hr class="forge__divider" />
+
+        <!-- ── Pages ─────────────────────────────────────────────────── -->
         <div class="forge__field">
           <label class="forge__label">Pages</label>
           <div class="forge__pages-grid">
@@ -595,7 +673,30 @@ class ForgeApp extends LitElement {
           </div>
         </div>
 
-        <!-- Commerce toggle -->
+        <hr class="forge__divider" />
+
+        <!-- ── Images ────────────────────────────────────────────────── -->
+        <div class="forge__field">
+          <label class="forge__label">Image Style</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            ${['Photography', 'Illustration', 'Mixed', 'Minimal / Icon-only'].map((style) => html`
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid ${b.imageStyle === style ? 'var(--spectrum-blue-700)' : 'var(--spectrum-gray-300)'};background:${b.imageStyle === style ? 'var(--spectrum-blue-100)' : 'transparent'};transition:all 0.15s;">
+                <input type="radio" name="image-style" value="${style}"
+                  ?checked=${b.imageStyle === style}
+                  @change=${() => this._updateBrief('imageStyle', style)}
+                  style="display:none;" />
+                ${style}
+              </label>
+            `)}
+          </div>
+          <p style="font-size:12px;color:var(--spectrum-gray-500);margin:6px 0 0;">
+            Controls the visual treatment of hero images, cards, and media blocks generated for the site.
+          </p>
+        </div>
+
+        <hr class="forge__divider" />
+
+        <!-- ── Commerce ──────────────────────────────────────────────── -->
         <div class="forge__field">
           <div
             class="forge__toggle ${b.commerce ? 'forge__toggle--on' : ''}"
@@ -606,9 +707,55 @@ class ForgeApp extends LitElement {
           </div>
         </div>
 
+        ${b.commerce ? html`
+          <div style="padding:16px;background:var(--spectrum-gray-75);border-radius:8px;border:1px solid var(--spectrum-gray-200);margin-bottom:16px;">
+            <div class="forge__field" style="margin-bottom:12px;">
+              <label class="forge__label">Data Source</label>
+              <select
+                class="forge__select"
+                @change=${(e) => this._updateBrief('commerceSource', e.target.value)}
+              >
+                <option value="">Select source…</option>
+                <option value="google-sheets" ?selected=${b.commerceSource === 'google-sheets'}>Google Sheets</option>
+                <option value="manual" ?selected=${b.commerceSource === 'manual'}>Manual Entry</option>
+                <option value="adobe-commerce" ?selected=${b.commerceSource === 'adobe-commerce'}>Adobe Commerce (Magento)</option>
+              </select>
+            </div>
+            ${b.commerceSource === 'google-sheets' ? html`
+              <div class="forge__field" style="margin-bottom:0;">
+                <label class="forge__label">Google Sheets URL</label>
+                <input
+                  class="forge__input"
+                  type="url"
+                  .value=${b.commerceUrl || ''}
+                  @input=${(e) => this._updateBrief('commerceUrl', e.target.value)}
+                  placeholder="https://docs.google.com/spreadsheets/d/…"
+                />
+              </div>
+            ` : nothing}
+            ${b.commerceSource === 'adobe-commerce' ? html`
+              <div class="forge__field" style="margin-bottom:0;">
+                <label class="forge__label">Adobe Commerce / Magento URL</label>
+                <input
+                  class="forge__input"
+                  type="url"
+                  .value=${b.commerceUrl || ''}
+                  @input=${(e) => this._updateBrief('commerceUrl', e.target.value)}
+                  placeholder="https://your-store.example.com"
+                />
+              </div>
+            ` : nothing}
+            ${b.commerceSource === 'manual' ? html`
+              <p style="font-size:12px;color:var(--spectrum-gray-500);margin:0;">
+                Product catalog will be set up in DA.live using a spreadsheet block after generation.
+              </p>
+            ` : nothing}
+          </div>
+        ` : nothing}
+
         <hr class="forge__divider" />
 
-        <!-- Deployment settings -->
+        <!-- ── Deployment ─────────────────────────────────────────────── -->
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
           <div class="forge__field" style="flex:1;min-width:200px;">
             <label class="forge__label">GitHub Org</label>
@@ -919,8 +1066,8 @@ class ForgeApp extends LitElement {
     if (d.brandName) this._updateBrief('brandName', d.brandName);
     if (d.tagline) this._updateBrief('tagline', d.tagline);
     if (d.colors) this.brief = { ...this.brief, colors: { ...this.brief.colors, ...d.colors } };
-    if (d.fonts?.heading || d.headingFont) this._updateBrief('headingFont', d.fonts?.heading || d.headingFont);
-    if (d.fonts?.body || d.bodyFont) this._updateBrief('bodyFont', d.fonts?.body || d.bodyFont);
+    if (d.fonts?.heading || d.headingFont) this._updateFont('heading', d.fonts?.heading || d.headingFont);
+    if (d.fonts?.body || d.bodyFont) this._updateFont('body', d.fonts?.body || d.bodyFont);
     if (d.darkTheme !== undefined) this._updateBrief('darkTheme', d.darkTheme);
     if (d.mood) this._updateBrief('mood', d.mood);
     this._selectTab('brief');

@@ -14,6 +14,8 @@ forge-app {
   --spectrum-gray-700: #464646;
   --spectrum-gray-800: #2c2c2c;
   --spectrum-gray-900: #1e1e1e;
+  --spectrum-blue-100: #e8f0fd;
+  --spectrum-blue-700: #1473e6;
   --spectrum-blue-800: #0265dc;
   --spectrum-blue-900: #0054b6;
   --spectrum-blue-1000: #004491;
@@ -226,7 +228,8 @@ forge-app *::after {
   background: rgb(2 101 220 / 4%);
 }
 
-.forge__upload-zone--active {
+.forge__upload-zone--active,
+.forge__upload-zone--drag {
   border-color: var(--spectrum-blue-800);
   background: rgb(2 101 220 / 8%);
 }

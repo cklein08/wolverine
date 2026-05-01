@@ -47,6 +47,10 @@ class ForgeApp extends LitElement {
     _deviceMode: { type: String, state: true },
     _statusMsg: { type: Object, state: true },
     _progress: { type: Number, state: true },
+    _swatchResult: { type: Object, state: true },
+    _swatchGenerating: { type: Boolean, state: true },
+    _swatchStatus: { type: Object, state: true },
+    _swatchBrandInput: { type: String, state: true },
   };
 
   /* Render into light DOM so forge.css applies */
@@ -95,6 +99,10 @@ class ForgeApp extends LitElement {
     this._deviceMode = 'desktop';
     this._statusMsg = null;
     this._progress = 0;
+    this._swatchResult = null;
+    this._swatchGenerating = false;
+    this._swatchStatus = null;
+    this._swatchBrandInput = '';
     this._apiBase = null;
   }
 
@@ -974,61 +982,127 @@ class ForgeApp extends LitElement {
   /*  Main render                                                        */
   /* ------------------------------------------------------------------ */
   _renderSwatchTab() {
+    const sr = this._swatchResult;
+    const bgColor = sr?.colors?.background || '#ffffff';
+    const textColor = sr?.colors?.text || '#1a1a1a';
+    const headingFont = sr?.fonts?.heading || sr?.headingFont || 'Inter';
+    const bodyFont = sr?.fonts?.body || sr?.bodyFont || 'Inter';
+
     return html`
-      <div style="max-width:600px;">
-        <h2 style="font-size:18px;font-weight:700;color:var(--spectrum-gray-900);margin:0 0 8px;">🎨 Swatch Generator</h2>
+      <div style="max-width:640px;">
+        <h2 style="font-size:18px;font-weight:700;color:var(--spectrum-gray-900);margin:0 0 6px;">🎨 Swatch Generator</h2>
         <p style="color:var(--spectrum-gray-600);font-size:14px;margin:0 0 24px;line-height:1.5;">
-          Enter a brand name and FORGE will generate a complete brand identity — colors, fonts, mood, and tagline — ready to use in your brief.
+          Generate a complete brand identity from a name, or upload an existing brand swatch image to auto-extract colors, fonts, and mood.
         </p>
-        <div class="forge__field">
-          <label class="forge__label">Brand Name</label>
-          <input
-            class="forge__input"
-            type="text"
-            id="swatch-brand-input"
-            placeholder="e.g. Wolverine Mobile, Boost Mobile, Acme Corp"
-            @keydown=${(e) => { if (e.key === 'Enter') this._generateSwatch(); }}
-          />
-        </div>
-        <div style="margin-top:16px;">
-          <button class="forge__btn forge__btn--primary" @click=${() => this._generateSwatch()}>
-            🎨 Generate Brand Identity
-          </button>
-        </div>
-        <div id="swatch-gen-status" style="margin-top:12px;font-size:13px;"></div>
-        ${this._swatchResult ? html`
-          <div style="margin-top:24px;padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;">
-            <h3 style="font-size:15px;font-weight:700;margin:0 0 16px;color:var(--spectrum-gray-900);">Generated Brand Identity</h3>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
-              <div><strong>Brand:</strong> ${this._swatchResult.brandName || '—'}</div>
-              <div><strong>Tagline:</strong> ${this._swatchResult.tagline || '—'}</div>
-              <div><strong>Mood:</strong> ${this._swatchResult.mood || '—'}</div>
-              <div><strong>Theme:</strong> ${this._swatchResult.darkTheme ? 'Dark' : 'Light'}</div>
-              <div><strong>Heading Font:</strong> ${this._swatchResult.fonts?.heading || this._swatchResult.headingFont || '—'}</div>
-              <div><strong>Body Font:</strong> ${this._swatchResult.fonts?.body || this._swatchResult.bodyFont || '—'}</div>
+
+        <!-- ── Option A: generate from name ─────────────────────────── -->
+        <div style="padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:600;color:var(--spectrum-gray-800);margin-bottom:12px;letter-spacing:0.02em;">GENERATE FROM BRAND NAME</div>
+          <div style="display:flex;gap:8px;align-items:flex-end;">
+            <div class="forge__field" style="flex:1;margin-bottom:0;">
+              <input
+                class="forge__input"
+                type="text"
+                placeholder="e.g. Wolverine Mobile, Boost Mobile, Acme Corp"
+                .value=${this._swatchBrandInput}
+                @input=${(e) => { this._swatchBrandInput = e.target.value; }}
+                @keydown=${(e) => { if (e.key === 'Enter') this._generateSwatch(); }}
+                ?disabled=${this._swatchGenerating}
+              />
             </div>
-            <!-- Color swatches -->
-            <div style="display:flex;gap:8px;margin-top:16px;">
-              ${Object.entries(this._swatchResult.colors || {}).map(([name, hex]) => html`
-                <div style="text-align:center;flex:1;">
-                  <div style="height:48px;border-radius:6px;background:${hex};border:1px solid var(--spectrum-gray-300);"></div>
-                  <div style="font-size:10px;color:var(--spectrum-gray-500);margin-top:4px;text-transform:capitalize;">${name}</div>
+            <button
+              class="forge__btn forge__btn--primary"
+              @click=${() => this._generateSwatch()}
+              ?disabled=${this._swatchGenerating || !this._swatchBrandInput.trim()}
+              style="white-space:nowrap;"
+            >
+              ${this._swatchGenerating ? html`<span class="forge__spinner"></span> Generating…` : '🎨 Generate'}
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Option B: upload image ────────────────────────────────── -->
+        <div style="padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;margin-bottom:20px;">
+          <div style="font-size:13px;font-weight:600;color:var(--spectrum-gray-800);margin-bottom:12px;letter-spacing:0.02em;">EXTRACT FROM BRAND SWATCH IMAGE</div>
+          <div
+            class="forge__upload-zone"
+            style="min-height:90px;"
+            @click=${() => this._openSwatchImagePicker()}
+            @dragover=${(e) => { e.preventDefault(); e.currentTarget.classList.add('forge__upload-zone--drag'); }}
+            @dragleave=${(e) => e.currentTarget.classList.remove('forge__upload-zone--drag')}
+            @drop=${(e) => {
+              e.preventDefault();
+              e.currentTarget.classList.remove('forge__upload-zone--drag');
+              const file = e.dataTransfer.files?.[0];
+              if (file) this._extractSwatchFromImage(file);
+            }}
+          >
+            ${this._swatchGenerating && !this._swatchBrandInput.trim()
+              ? html`<span class="forge__spinner"></span> Scanning image…`
+              : html`<span>📎 Click or drag & drop a brand swatch image — AI will extract colors, fonts, logo, and mood</span>`
+            }
+          </div>
+        </div>
+
+        <!-- ── Status ─────────────────────────────────────────────────── -->
+        ${this._swatchStatus ? html`
+          <div class="forge__status forge__status--${this._swatchStatus.type}" style="margin-bottom:16px;">
+            ${this._swatchStatus.text}
+          </div>
+        ` : nothing}
+
+        <!-- ── Result ─────────────────────────────────────────────────── -->
+        ${sr ? html`
+          <div style="padding:20px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+              <h3 style="font-size:15px;font-weight:700;margin:0;color:var(--spectrum-gray-900);">Generated Brand Identity</h3>
+              ${sr.source ? html`<span style="font-size:11px;color:var(--spectrum-gray-500);padding:2px 8px;background:var(--spectrum-gray-200);border-radius:99px;">${sr.source}</span>` : nothing}
+            </div>
+
+            <!-- Meta grid -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;margin-bottom:16px;">
+              <div><span style="color:var(--spectrum-gray-600);">Brand</span><br><strong>${sr.brandName || '—'}</strong></div>
+              <div><span style="color:var(--spectrum-gray-600);">Theme</span><br><strong>${sr.darkTheme ? '🌙 Dark' : '☀️ Light'}</strong></div>
+              <div><span style="color:var(--spectrum-gray-600);">Tagline</span><br><strong>${sr.tagline || '—'}</strong></div>
+              <div><span style="color:var(--spectrum-gray-600);">Mood</span><br><strong style="text-transform:capitalize;">${sr.mood || '—'}</strong></div>
+              <div><span style="color:var(--spectrum-gray-600);">Heading Font</span><br><strong>${headingFont}</strong></div>
+              <div><span style="color:var(--spectrum-gray-600);">Body Font</span><br><strong>${bodyFont}</strong></div>
+            </div>
+
+            <!-- Color palette -->
+            <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
+              ${Object.entries(sr.colors || {}).map(([name, hex]) => html`
+                <div style="text-align:center;min-width:52px;flex:1;">
+                  <div style="height:44px;border-radius:6px;background:${hex};border:1px solid var(--spectrum-gray-300);cursor:pointer;"
+                    title="${name}: ${hex}"
+                    @click=${() => { navigator.clipboard?.writeText(hex); }}
+                  ></div>
+                  <div style="font-size:10px;color:var(--spectrum-gray-500);margin-top:3px;text-transform:capitalize;">${name}</div>
                   <div style="font-size:10px;color:var(--spectrum-gray-700);font-weight:600;">${hex}</div>
                 </div>
               `)}
             </div>
-            <!-- Font preview -->
-            <div style="margin-top:16px;padding:12px;background:${this._swatchResult.colors?.background || '#fff'};border-radius:6px;border:1px solid var(--spectrum-gray-200);">
-              <div style="font-family:${this._swatchResult.fonts?.heading || this._swatchResult.headingFont || 'Inter'},sans-serif;font-size:20px;font-weight:700;color:${this._swatchResult.colors?.text || '#1a1a1a'};margin-bottom:4px;">
-                ${this._swatchResult.brandName || 'Brand Name'}
+
+            <!-- Font + color live preview -->
+            <div style="padding:16px;background:${bgColor};border-radius:6px;border:1px solid var(--spectrum-gray-200);margin-bottom:16px;">
+              <div style="font-family:${headingFont},sans-serif;font-size:22px;font-weight:700;color:${textColor};margin-bottom:6px;">
+                ${sr.brandName || 'Brand Name'}
               </div>
-              <div style="font-family:${this._swatchResult.fonts?.body || this._swatchResult.bodyFont || 'Inter'},sans-serif;font-size:14px;color:${this._swatchResult.colors?.text || '#1a1a1a'};opacity:0.8;line-height:1.5;">
-                ${this._swatchResult.tagline || 'Tagline preview'}
+              <div style="font-family:${bodyFont},sans-serif;font-size:14px;color:${textColor};opacity:0.85;line-height:1.6;margin-bottom:12px;">
+                ${sr.tagline || 'Your tagline appears here. This is body text in your brand font.'}
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <div style="padding:6px 14px;background:${sr.colors?.primary || '#0265dc'};color:#fff;border-radius:4px;font-size:13px;font-weight:600;font-family:${bodyFont},sans-serif;">Primary CTA</div>
+                <div style="padding:6px 14px;background:${sr.colors?.accent || '#067a00'};color:#fff;border-radius:4px;font-size:13px;font-weight:600;font-family:${bodyFont},sans-serif;">Accent CTA</div>
+                <div style="padding:6px 14px;background:${sr.colors?.secondary || '#2c2c2c'};color:#fff;border-radius:4px;font-size:13px;font-weight:600;font-family:${bodyFont},sans-serif;">Secondary</div>
               </div>
             </div>
-            <div style="margin-top:20px;display:flex;gap:8px;">
+
+            <!-- Actions -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button class="forge__btn forge__btn--primary" @click=${() => this._applySwatchToBrief()}>Apply to Brief →</button>
-              <button class="forge__btn forge__btn--ghost" @click=${() => { this._swatchResult = null; this.requestUpdate(); }}>Clear</button>
+              <button class="forge__btn forge__btn--blue" @click=${() => { this._applySwatchToBrief(); setTimeout(() => this._generateSite(), 50); }}>Apply & Generate Site 🚀</button>
+              <button class="forge__btn forge__btn--ghost" @click=${() => { this._swatchResult = null; this._swatchStatus = null; }}>Clear</button>
             </div>
           </div>
         ` : nothing}
@@ -1037,12 +1111,12 @@ class ForgeApp extends LitElement {
   }
 
   async _generateSwatch() {
-    const input = this.renderRoot.querySelector('#swatch-brand-input');
-    const brandName = input?.value?.trim();
-    if (!brandName) { this._showStatus('Enter a brand name', 'error'); return; }
+    const brandName = this._swatchBrandInput.trim();
+    if (!brandName) { this._swatchStatus = { type: 'error', text: 'Enter a brand name first.' }; return; }
 
-    const status = this.renderRoot.querySelector('#swatch-gen-status');
-    if (status) status.innerHTML = '<span style="color:var(--spectrum-gray-500);">🎨 Generating brand identity for "' + brandName + '"...</span>';
+    this._swatchGenerating = true;
+    this._swatchStatus = { type: 'info', text: `🎨 Generating brand identity for "${brandName}"…` };
+    this._swatchResult = null;
 
     try {
       const resp = await fetch(this.apiBase + '/api/generate-swatch', {
@@ -1053,11 +1127,44 @@ class ForgeApp extends LitElement {
       const d = await resp.json();
       if (d.error) throw new Error(d.error);
       this._swatchResult = d;
-      this.requestUpdate();
-      if (status) status.innerHTML = '<span style="color:#16a34a;">✅ Brand identity generated!</span>';
+      this._swatchStatus = { type: 'success', text: '✅ Brand identity generated! Review and apply below.' };
     } catch (err) {
-      if (status) status.innerHTML = '<span style="color:#dc2626;">❌ ' + err.message + '</span>';
+      this._swatchStatus = { type: 'error', text: `❌ ${err.message}` };
     }
+    this._swatchGenerating = false;
+  }
+
+  async _extractSwatchFromImage(file) {
+    if (!file) return;
+    this._swatchGenerating = true;
+    this._swatchStatus = { type: 'info', text: '🔍 Scanning image for brand tokens…' };
+    this._swatchResult = null;
+
+    const previewUrl = URL.createObjectURL(file);
+
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      const resp = await fetch(`${this.apiBase}/api/extract-brand`, { method: 'POST', body: formData });
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const data = await resp.json();
+      if (data.error) throw new Error(data.error);
+      this._swatchResult = data;
+      if (data.logoUrl) this._logoPreview = `${this.apiBase}${data.logoUrl}`;
+      this._swatchStatus = { type: 'success', text: '✅ Brand tokens extracted! Review and apply below.' };
+    } catch (err) {
+      this._swatchStatus = { type: 'error', text: `❌ Extraction failed: ${err.message}` };
+      URL.revokeObjectURL(previewUrl);
+    }
+    this._swatchGenerating = false;
+  }
+
+  _openSwatchImagePicker() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => this._extractSwatchFromImage(e.target?.files?.[0]);
+    input.click();
   }
 
   _applySwatchToBrief() {
@@ -1065,11 +1172,12 @@ class ForgeApp extends LitElement {
     const d = this._swatchResult;
     if (d.brandName) this._updateBrief('brandName', d.brandName);
     if (d.tagline) this._updateBrief('tagline', d.tagline);
+    if (d.mood) this._updateBrief('mood', d.mood);
     if (d.colors) this.brief = { ...this.brief, colors: { ...this.brief.colors, ...d.colors } };
     if (d.fonts?.heading || d.headingFont) this._updateFont('heading', d.fonts?.heading || d.headingFont);
     if (d.fonts?.body || d.bodyFont) this._updateFont('body', d.fonts?.body || d.bodyFont);
+    if (d.fonts?.headingWeight) this._updateFont('headingWeight', d.fonts.headingWeight);
     if (d.darkTheme !== undefined) this._updateBrief('darkTheme', d.darkTheme);
-    if (d.mood) this._updateBrief('mood', d.mood);
     this._selectTab('brief');
     this._showStatus('Brand identity applied to brief!', 'success');
   }

@@ -1,4 +1,4 @@
-/* FORGE v2.1 - updated 2026-05-01 */
+/* FORGE v2.2 - updated 2026-05-08 */
 /**
  * FORGE — DA.live Lit plugin
  * Brand-identity-driven EDS site generator.
@@ -104,6 +104,11 @@ class ForgeApp extends LitElement {
     this._swatchStatus = null;
     this._swatchBrandInput = '';
     this._apiBase = null;
+    /** @type {string} */
+    this._roadmapText = '';
+    this._roadmapLoading = false;
+    /** @type {string | null} */
+    this._roadmapLoadError = null;
   }
 
   get apiBase() {
@@ -115,6 +120,24 @@ class ForgeApp extends LitElement {
   /* ------------------------------------------------------------------ */
   _selectTab(tab) {
     this.activeTab = tab;
+    if (tab === 'roadmap') this._loadCustomerRoadmap();
+  }
+
+  async _loadCustomerRoadmap() {
+    if (this._roadmapLoading || this._roadmapText) return;
+    this._roadmapLoading = true;
+    this._roadmapLoadError = null;
+    this.requestUpdate();
+    try {
+      const url = new URL('customer-demo-roadmap.md', import.meta.url).href;
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+      this._roadmapText = await r.text();
+    } catch (e) {
+      this._roadmapLoadError = e?.message ?? String(e);
+    }
+    this._roadmapLoading = false;
+    this.requestUpdate();
   }
 
   /* ------------------------------------------------------------------ */
@@ -1259,6 +1282,28 @@ class ForgeApp extends LitElement {
     this._showStatus('Project "' + project.name + '" imported to brief!', 'success');
   }
 
+  _renderRoadmapTab() {
+    return html`
+      <div class="forge__roadmap-wrap">
+        <h2 class="forge__roadmap-title">Customer demo — next steps</h2>
+        <p class="forge__lead forge__roadmap-intro">
+          Decisions and action items for the current demo window. Full product backlog is in
+          <a href="https://github.com/cklein08/forge/blob/main/ROADMAP.md" target="_blank" rel="noopener">ROADMAP.md</a>
+          on the FORGE repo.
+        </p>
+        ${this._roadmapLoading
+          ? html`<p class="forge__roadmap-status">Loading…</p>`
+          : nothing}
+        ${this._roadmapLoadError
+          ? html`<p class="forge__status forge__status--error">Could not load roadmap file: ${this._roadmapLoadError}</p>`
+          : nothing}
+        ${this._roadmapText
+          ? html`<pre class="forge__roadmap-pre" aria-label="Customer demo roadmap">${this._roadmapText}</pre>`
+          : nothing}
+      </div>
+    `;
+  }
+
   _renderDashboard() {
     if (this.activeTab !== 'dashboard') return nothing;
     return html`
@@ -1299,6 +1344,13 @@ class ForgeApp extends LitElement {
               View your generated site — preview in iframe, open in Universal Editor, DA, or publish to live.
             </p>
           </div>
+          <div class="forge__card" @click=${() => this._selectTab('roadmap')} style="cursor:pointer;grid-column:1 / -1;padding:24px;background:var(--spectrum-gray-50);border:1px solid var(--spectrum-gray-200);border-radius:8px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:36px;margin-bottom:12px;">📌</div>
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:var(--spectrum-gray-900);">Next steps (demo)</h3>
+            <p style="margin:0;font-size:13px;color:var(--spectrum-gray-600);line-height:1.5;">
+              Stakeholder decisions and action items — AJO fragments, IMS access, audience data, Catalyze out of scope.
+            </p>
+          </div>
         </div>
       </div>
     `;
@@ -1326,6 +1378,7 @@ class ForgeApp extends LitElement {
           </div>
           ${this.activeTab === 'swatch' ? this._renderSwatchTab() : nothing}
           ${this.activeTab === 'workfront' ? this._renderWorkfrontTab() : nothing}
+          ${this.activeTab === 'roadmap' ? this._renderRoadmapTab() : nothing}
           ${['brief','copilot','preview'].includes(this.activeTab) ? html`
             ${this._renderTabs()}
             ${this._renderBriefTab()}

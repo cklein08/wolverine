@@ -697,6 +697,48 @@ forge-app *::after {
   to { transform: rotate(360deg); }
 }
 
+/* ---- Roadmap / next steps (customer demo) ---- */
+.forge__roadmap-wrap {
+  max-width: 720px;
+}
+
+.forge__roadmap-title {
+  margin: 0 0 8px;
+  font-size: var(--spectrum-font-size-300);
+  font-weight: 700;
+  color: var(--spectrum-gray-900);
+}
+
+.forge__roadmap-intro {
+  margin-bottom: 16px;
+}
+
+.forge__roadmap-intro a {
+  color: var(--spectrum-blue-800);
+}
+
+.forge__roadmap-status {
+  margin: 0 0 12px;
+  color: var(--spectrum-gray-600);
+  font-size: 13px;
+}
+
+.forge__roadmap-pre {
+  margin: 0;
+  padding: 16px;
+  background: var(--spectrum-gray-50);
+  border: 1px solid var(--spectrum-gray-200);
+  border-radius: var(--spectrum-corner-radius-200);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--spectrum-gray-800);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: min(70vh, 520px);
+  overflow: auto;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 600px) {
   forge-app {

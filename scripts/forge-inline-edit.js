@@ -1,7 +1,9 @@
 /**
  * FORGE inline editing on EDS preview sites (*.aem.page).
- * Phase 2: insert blocks via FORGE API → DA source → HLX preview refresh.
+ * Inserts via admin.da.live + IMS token (com_kit / daFetch style). Optional ?forge-api= for local FORGE server.
  */
+
+import { insertBlockOnDaPageClient } from './forge-inline-edit-da.js';
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -67,6 +69,55 @@ function resolveDaToken() {
   }
 }
 
+function storeDaToken(token) {
+  const t = String(token || '').trim();
+  if (!t) return;
+  try {
+    sessionStorage.setItem('forge_da_token', t);
+  } catch {
+    /* ignore */
+  }
+}
+
+function promptDaToken() {
+  return new Promise((resolve) => {
+    document.querySelector('.forge-edit-token-backdrop')?.remove();
+    const backdrop = document.createElement('div');
+    backdrop.className = 'forge-edit-dialog-backdrop forge-edit-token-backdrop';
+    const dialog = document.createElement('div');
+    dialog.className = 'forge-edit-dialog';
+    dialog.innerHTML = `
+      <header>Document Authoring sign-in</header>
+      <div class="dialog-body">
+        <p style="margin:0 0 12px;font-size:0.875rem;line-height:1.45">
+          Paste your <strong>da.live</strong> IMS token (<code>tokenValue</code> from localStorage, starts with <code>eyJ</code>),
+          or open <a href="https://da.live" target="_blank" rel="noopener">da.live</a> in this browser and sign in, then retry.
+        </p>
+        <input type="password" id="forgeDaTokenField" placeholder="eyJ…" autocomplete="off"
+          style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-family:monospace;font-size:12px" />
+      </div>
+      <footer>
+        <button type="button" data-action="cancel">Cancel</button>
+        <button type="button" class="primary" data-action="save">Save token</button>
+      </footer>
+    `;
+    backdrop.append(dialog);
+    document.body.append(backdrop);
+    const field = dialog.querySelector('#forgeDaTokenField');
+    field?.focus();
+    dialog.querySelector('[data-action="cancel"]')?.addEventListener('click', () => {
+      backdrop.remove();
+      resolve('');
+    });
+    dialog.querySelector('[data-action="save"]')?.addEventListener('click', () => {
+      const val = field?.value?.trim() || '';
+      backdrop.remove();
+      if (val) storeDaToken(val);
+      resolve(val);
+    });
+  });
+}
+
 function sectionLabel(el) {
   const heading = el.querySelector('h1, h2, h3, h4');
   const text = heading?.textContent?.trim();
@@ -127,11 +178,9 @@ function showBanner() {
   bar.setAttribute('role', 'status');
   const { org, repo } = resolveOrgRepo();
   const target = org && repo ? `${org}/${repo}` : 'preview site';
-  const api = resolveForgeApiBase();
-  const apiHint = api ? '' : ' · Set FORGE_API_URL on server or ?forge-api=…';
   bar.innerHTML = `<strong>FORGE inline edit</strong>
     <span>Editing ${target}</span>
-    <span style="margin-left:auto;opacity:0.9">Right-click blocks · + zones save to DA${apiHint}</span>`;
+    <span style="margin-left:auto;opacity:0.9">Right-click blocks · + saves to Document Authoring (da.live session)</span>`;
   document.body.prepend(bar);
   document.documentElement.classList.add('forge-edit-active');
 }
@@ -176,18 +225,8 @@ function insertDropZones(main) {
   });
 }
 
-async function insertBlockViaApi(blockId, afterIndex) {
-  const apiBase = resolveForgeApiBase();
+async function insertBlockViaForgeApi(blockId, afterIndex, apiBase) {
   const { org, repo } = resolveOrgRepo();
-  if (!apiBase) {
-    showToast('Missing FORGE API URL — set FORGE_API_URL in .env or add ?forge-api=http://127.0.0.1:8082', true);
-    return null;
-  }
-  if (!org || !repo) {
-    showToast('Missing org/repo — add forge-org and forge-repo query params', true);
-    return null;
-  }
-
   const headers = { 'Content-Type': 'application/json' };
   const daToken = resolveDaToken();
   if (daToken) headers['X-Forge-Da-Token'] = daToken;
@@ -208,6 +247,51 @@ async function insertBlockViaApi(blockId, afterIndex) {
     throw new Error(data.error || data.hint || `Insert failed (${res.status})`);
   }
   return data;
+}
+
+async function insertBlock(blockId, afterIndex) {
+  const { org, repo } = resolveOrgRepo();
+  if (!org || !repo) {
+    showToast('Missing org/repo — add forge-org and forge-repo query params', true);
+    return null;
+  }
+
+  const apiBase = resolveForgeApiBase();
+  if (apiBase) {
+    return insertBlockViaForgeApi(blockId, afterIndex, apiBase);
+  }
+
+  let token = resolveDaToken();
+  if (!token) token = await promptDaToken();
+  if (!token) {
+    throw new Error('DA token required — sign in on da.live or paste tokenValue');
+  }
+
+  const result = await insertBlockOnDaPageClient({
+    org,
+    repo,
+    pagePath: currentPagePath(),
+    blockId,
+    afterIndex,
+    token,
+  });
+  if (!result.ok && result.needsToken) {
+    const retry = await promptDaToken();
+    if (retry) {
+      return insertBlockOnDaPageClient({
+        org,
+        repo,
+        pagePath: currentPagePath(),
+        blockId,
+        afterIndex,
+        token: retry,
+      });
+    }
+  }
+  if (!result.ok) {
+    throw new Error(result.error || 'Insert failed');
+  }
+  return result;
 }
 
 function openAddDialog({ afterIndex = -1, anchorEl = null } = {}) {
@@ -240,7 +324,7 @@ function openAddDialog({ afterIndex = -1, anchorEl = null } = {}) {
         btn.disabled = true;
         btn.textContent = 'Saving…';
         try {
-          const result = await insertBlockViaApi(id, afterIndex);
+          const result = await insertBlock(id, afterIndex);
           backdrop.remove();
           showToast(`Added ${meta?.label || id} — reloading preview…`);
           if (result?.previewUrl) {

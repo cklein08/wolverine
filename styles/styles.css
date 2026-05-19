@@ -137,9 +137,12 @@ main > div {
   box-sizing: border-box;
 }
 
+main > div:first-child,
 main > div.hero,
-main > div:has(.hero) {
+main > div:has(.hero),
+.hero-container {
   padding: 0;
+  max-width: none;
 }
 
 main > div:not(.hero):not(:has(.hero)) {

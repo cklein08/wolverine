@@ -1,9 +1,11 @@
 /**
  * FORGE inline editing on EDS preview sites (*.aem.page).
- * Inserts via admin.da.live + IMS token (com_kit / daFetch style). Optional ?forge-api= for local FORGE server.
+ * Edit text, links, and images on the page; save to Document Authoring. No Universal Editor.
  */
 
 import { insertBlockOnDaPageClient } from './forge-inline-edit-da.js';
+import { instrumentEditableFields } from './forge-inline-edit-fields.js';
+import { savePageToDaClient } from './forge-inline-edit-save.js';
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -146,18 +148,23 @@ function classifyBlock(el) {
   return { id: 'section', label: sectionLabel(el), category: 'content' };
 }
 
-function daEditUrl(pagePath) {
-  const { org, repo } = resolveOrgRepo();
-  if (!org || !repo) return null;
-  const slug = pagePath.replace(/^\//, '').replace(/\/$/, '') || 'index';
-  return `https://da.live/edit#/${org}/${repo}/${slug}`;
-}
-
 function currentPagePath() {
   let p = window.location.pathname.replace(/\.html$/, '');
   if (p.endsWith('/')) p = p.slice(0, -1);
   if (!p || p === '/') return 'index';
   return p.replace(/^\//, '');
+}
+
+let pageDirty = false;
+let saveInFlight = false;
+
+function setPageDirty() {
+  pageDirty = true;
+  const btn = document.querySelector('.forge-edit-banner__save');
+  if (btn) {
+    btn.disabled = false;
+    btn.classList.add('forge-edit-banner__save--dirty');
+  }
 }
 
 function showToast(message, isError = false) {
@@ -178,17 +185,14 @@ function showBanner() {
   bar.setAttribute('role', 'status');
   const { org, repo } = resolveOrgRepo();
   const target = org && repo ? `${org}/${repo}` : 'preview site';
-  const daUrl = daEditUrl(currentPagePath());
-  const daBtn = daUrl
-    ? `<a class="forge-edit-banner__da" href="${daUrl}" target="_blank" rel="noopener">Edit page in Document Authoring</a>`
-    : '';
   const pageLabel = currentPagePath() === 'index' ? 'Home' : currentPagePath();
   bar.innerHTML = `<strong>FORGE inline edit</strong>
     <span>${target} · ${pageLabel}</span>
-    ${daBtn}
-    <span class="forge-edit-banner__hint">Right-click sections · + Add component</span>`;
+    <button type="button" class="forge-edit-banner__save" disabled>Save page</button>
+    <span class="forge-edit-banner__hint">Click text to edit · double-click links · click images</span>`;
   document.body.prepend(bar);
   document.documentElement.classList.add('forge-edit-active');
+  bar.querySelector('.forge-edit-banner__save')?.addEventListener('click', () => savePage());
 }
 
 function decorateBlock(el, meta) {
@@ -201,6 +205,7 @@ function decorateBlock(el, meta) {
   badge.className = 'forge-edit-badge';
   badge.textContent = `${meta.label} (${meta.category})`;
   el.append(badge);
+  instrumentEditableFields(el, { onDirty: setPageDirty });
 }
 
 function findBlocks(root) {
@@ -365,18 +370,70 @@ function hideContextMenu() {
   contextMenuEl = null;
 }
 
+async function savePage() {
+  if (saveInFlight) return;
+  const { org, repo } = resolveOrgRepo();
+  if (!org || !repo) {
+    showToast('Missing org/repo', true);
+    return;
+  }
+
+  let token = resolveDaToken();
+  if (!token) token = await promptDaToken();
+  if (!token) return;
+
+  const btn = document.querySelector('.forge-edit-banner__save');
+  saveInFlight = true;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+  }
+
+  try {
+    const result = await savePageToDaClient({
+      org,
+      repo,
+      pagePath: currentPagePath(),
+      token,
+      mainEl: document.querySelector('main'),
+    });
+    if (!result.ok) {
+      if (result.needsToken) {
+        const retry = await promptDaToken();
+        if (retry) {
+          saveInFlight = false;
+          storeDaToken(retry);
+          return savePage();
+        }
+      }
+      throw new Error(result.error || 'Save failed');
+    }
+    pageDirty = false;
+    btn?.classList.remove('forge-edit-banner__save--dirty');
+    showToast('Saved to Document Authoring — refreshing preview…');
+    const u = new URL(window.location.href);
+    u.searchParams.set('_t', String(Date.now()));
+    window.location.href = u.toString();
+  } catch (e) {
+    showToast(e.message || 'Save failed', true);
+  } finally {
+    saveInFlight = false;
+    if (btn) {
+      btn.disabled = !pageDirty;
+      btn.textContent = 'Save page';
+    }
+  }
+}
+
 function showContextMenu(x, y, blockEl, meta) {
   hideContextMenu();
-  const daUrl = daEditUrl(currentPagePath());
   const menu = document.createElement('ul');
   menu.className = 'forge-edit-menu';
   menu.innerHTML = `
     <li data-action="info">${meta.label} · ${meta.category}</li>
     <li class="menu-sep"></li>
-    <li data-action="da" ${daUrl ? '' : 'class="disabled"'}>Edit in Document Authoring</li>
-    <li data-action="ue">Open DA authoring shell</li>
-    <li class="menu-sep"></li>
     <li data-action="add-after">Add component after…</li>
+    <li data-action="save">Save page to Document Authoring</li>
   `;
   menu.style.left = `${x}px`;
   menu.style.top = `${y}px`;
@@ -388,15 +445,13 @@ function showContextMenu(x, y, blockEl, meta) {
     if (!li || li.classList.contains('disabled')) return;
     const action = li.dataset.action;
     hideContextMenu();
-    if (action === 'da' && daUrl) window.open(daUrl, '_blank', 'noopener');
-    else if (action === 'ue') {
-      const { org, repo } = resolveOrgRepo();
-      if (org && repo) window.open(`https://da.live/#/${org}/${repo}`, '_blank', 'noopener');
-    } else if (action === 'add-after') {
+    if (action === 'add-after') {
       const main = document.querySelector('main');
       const sections = main ? [...main.children].filter((n) => n.tagName === 'DIV') : [];
       const idx = sections.indexOf(blockEl.closest('main > div') || blockEl);
       openAddDialog({ afterIndex: idx >= 0 ? idx : -1, anchorEl: blockEl });
+    } else if (action === 'save') {
+      savePage();
     }
   });
 }
@@ -425,20 +480,18 @@ window.addEventListener('message', (e) => {
   }
 });
 
-function maybeRedirectToDaEditor() {
-  const q = new URLSearchParams(window.location.search);
-  if (q.get('forge-da') !== '1') return;
-  const url = daEditUrl(currentPagePath());
-  if (url) window.location.replace(url);
-}
-
 function init() {
   if (!isEditMode()) return;
-  maybeRedirectToDaEditor();
   showBanner();
   scanAndDecorate();
   document.addEventListener('contextmenu', onContextMenu);
   document.addEventListener('click', () => hideContextMenu());
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      if (pageDirty) savePage();
+    }
+  });
 
   const main = document.querySelector('main');
   if (main) {

@@ -1,39 +1,56 @@
 .columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  padding: 32px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 0 0 2rem;
+  list-style: none;
 }
 
 .columns .column {
-  flex: 1 1 250px;
-  background: #152218;
-  border: 1px solid rgba(29, 185, 84, 0.15);
-  border-radius: 8px;
-  padding: 24px;
-  transition: box-shadow 0.2s ease;
+  background: var(--surface-color);
+  border: 1px solid rgb(29 185 84 / 18%);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .columns .column:hover {
-  box-shadow: 0 4px 20px rgba(29, 185, 84, 0.12);
-}
-
-.columns .column .column-image picture img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  transform: translateY(-4px);
+  border-color: rgb(29 185 84 / 40%);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 25%);
 }
 
 .columns .column h3 {
   font-size: var(--heading-font-size-m);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.columns .column h3::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin: 0 auto 1rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
 }
 
 .columns .column p {
+  margin-bottom: 0;
   font-size: var(--body-font-size-s);
 }
 
-@media (max-width: 599px) {
-  .columns .column {
-    flex-basis: 100%;
+@media (width >= 640px) {
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .columns {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }

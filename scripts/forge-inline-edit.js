@@ -223,9 +223,18 @@ function findBlocks(root) {
   return [...found];
 }
 
+function mainSections(main) {
+  return [...main.children].filter(
+    (n) => n.tagName === 'DIV' && !n.classList.contains('forge-edit-drop-zone'),
+  );
+}
+
 function insertDropZones(main) {
+  const sections = mainSections(main);
+  const existing = [...main.querySelectorAll(':scope > .forge-edit-drop-zone')];
+  if (existing.length === sections.length) return;
+
   main.querySelectorAll('.forge-edit-drop-zone').forEach((z) => z.remove());
-  const sections = [...main.children].filter((n) => n.tagName === 'DIV');
   sections.forEach((section, i) => {
     const zone = document.createElement('div');
     zone.className = 'forge-edit-drop-zone';
@@ -447,7 +456,7 @@ function showContextMenu(x, y, blockEl, meta) {
     hideContextMenu();
     if (action === 'add-after') {
       const main = document.querySelector('main');
-      const sections = main ? [...main.children].filter((n) => n.tagName === 'DIV') : [];
+      const sections = main ? mainSections(main) : [];
       const idx = sections.indexOf(blockEl.closest('main > div') || blockEl);
       openAddDialog({ afterIndex: idx >= 0 ? idx : -1, anchorEl: blockEl });
     } else if (action === 'save') {
@@ -463,11 +472,27 @@ function onContextMenu(e) {
   showContextMenu(e.clientX, e.clientY, block, classifyBlock(block));
 }
 
+let scanDebounceTimer = 0;
+let scanInProgress = false;
+
 function scanAndDecorate() {
   const main = document.querySelector('main');
-  if (!main) return;
-  findBlocks(main).forEach((el) => decorateBlock(el, classifyBlock(el)));
-  insertDropZones(main);
+  if (!main || scanInProgress) return;
+  scanInProgress = true;
+  try {
+    findBlocks(main).forEach((el) => decorateBlock(el, classifyBlock(el)));
+    insertDropZones(main);
+  } finally {
+    scanInProgress = false;
+  }
+}
+
+function scheduleScanAndDecorate() {
+  if (scanDebounceTimer) window.clearTimeout(scanDebounceTimer);
+  scanDebounceTimer = window.setTimeout(() => {
+    scanDebounceTimer = 0;
+    scanAndDecorate();
+  }, 80);
 }
 
 window.addEventListener('message', (e) => {
@@ -495,7 +520,10 @@ function init() {
 
   const main = document.querySelector('main');
   if (main) {
-    const obs = new MutationObserver(() => scanAndDecorate());
+    const obs = new MutationObserver(() => {
+      if (scanInProgress) return;
+      scheduleScanAndDecorate();
+    });
     obs.observe(main, {
       childList: true,
       subtree: true,

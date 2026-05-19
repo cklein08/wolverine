@@ -1,109 +1,143 @@
 .product-detail {
-  max-width: 1200px;
+  width: 100%;
+  max-width: var(--content-width, 1200px);
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 1rem 0 4rem;
+}
+
+.pdp-breadcrumb {
+  margin: 0 0 1.5rem;
+  font-size: var(--body-font-size-s);
+}
+
+.pdp-breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.pdp-breadcrumb a:hover {
+  color: var(--brand-accent);
 }
 
 .pdp-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   align-items: start;
 }
 
-@media (max-width: 768px) {
+@media (width >= 900px) {
   .pdp-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3.5rem;
   }
 }
 
 .pdp-image {
-  border-radius: 12px;
+  position: relative;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #0A1A0F;
+  background: var(--surface-color);
+  border: 1px solid rgb(255 255 255 / 8%);
+  aspect-ratio: 1;
 }
 
 .pdp-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
+.pdp-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .pdp-category {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--brand-secondary, #0E7A3A);
+  letter-spacing: 0.12em;
+  color: var(--brand-accent);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .pdp-title {
-  font-size: var(--heading-font-size-xl, 36px);
-  color: var(--text-color, #FFFFFF);
-  margin: 8px 0 4px;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  margin: 0 0 0.35rem;
+  line-height: 1.1;
 }
 
 .pdp-sku {
   font-size: var(--body-font-size-xs);
-  color: #86EFAC;
-  margin: 0 0 16px;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
 }
 
 .pdp-price {
-  font-size: var(--heading-font-size-l, 32px);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--brand-primary, #1DB954);
-  margin: 0 0 16px;
+  color: var(--brand-primary);
+  margin: 0 0 1.25rem;
 }
 
 .pdp-description {
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
-  color: var(--text-color, #FFFFFF);
-  margin: 0 0 24px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+  max-width: 38rem;
 }
 
 .pdp-actions {
   display: flex;
-  gap: 16px;
-  align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
 }
 
 .pdp-qty {
   display: flex;
   align-items: center;
-  border: 1px solid #1A2F1E;
-  border-radius: 6px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: var(--radius-pill);
   overflow: hidden;
+  background: var(--surface-color);
 }
 
 .pdp-qty button {
-  width: 40px;
-  height: 40px;
+  width: 2.75rem;
+  height: 2.75rem;
   border: none;
-  background: var(--light-color, #1A2F1E);
-  color: var(--text-color, #FFFFFF);
-  font-size: 18px;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 1.25rem;
   cursor: pointer;
   font-family: var(--body-font-family);
-  transition: background 0.2s;
+  transition: background 0.2s ease;
 }
 
 .pdp-qty button:hover {
-  background: #264a2e;
+  background: rgb(255 255 255 / 8%);
 }
 
 .pdp-qty-input {
-  width: 50px;
-  height: 40px;
+  width: 3rem;
+  height: 2.75rem;
   text-align: center;
   border: none;
-  border-left: 1px solid #1A2F1E;
-  border-right: 1px solid #1A2F1E;
-  background: var(--background-color, #0A1A0F);
-  color: var(--text-color, #FFFFFF);
+  border-left: 1px solid rgb(255 255 255 / 12%);
+  border-right: 1px solid rgb(255 255 255 / 12%);
+  background: transparent;
+  color: var(--text-color);
   font-size: var(--body-font-size-m);
   font-family: var(--body-font-family);
   -moz-appearance: textfield;
@@ -115,18 +149,29 @@
 }
 
 .pdp-atc {
-  padding: 12px 32px;
-  background: var(--button-primary-bg, #1DB954);
-  color: var(--button-primary-text, #000);
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.75rem 2rem;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
   border: none;
-  border-radius: 6px;
-  font-size: var(--body-font-size-m);
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   font-family: var(--body-font-family);
-  transition: opacity 0.2s;
+  transition: background 0.2s ease;
 }
 
 .pdp-atc:hover {
-  opacity: 0.9;
+  background: #e2e8f0;
+}
+
+.product-detail-not-found {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.product-detail-not-found a {
+  color: var(--brand-primary);
 }

@@ -1,5 +1,9 @@
 import { addToCart } from '../../scripts/commerce.js';
 
+function productUrl(id) {
+  return `/product/?id=${encodeURIComponent(id)}`;
+}
+
 export default async function decorate(block) {
   const blockText = block.textContent.trim();
   const params = new URLSearchParams(window.location.search);
@@ -17,7 +21,11 @@ export default async function decorate(block) {
 
   const product = products.find((p) => String(p.id) === String(productId));
   if (!product) {
-    block.innerHTML = '<p class="product-detail-not-found">Product not found. <a href="/products/">Browse all products</a></p>';
+    block.innerHTML = `
+      <p class="product-detail-not-found">
+        Product not found.
+        <a href="/products">Browse all products</a>
+      </p>`;
     return;
   }
 
@@ -26,18 +34,18 @@ export default async function decorate(block) {
   block.textContent = '';
   block.innerHTML = `
     <nav class="pdp-breadcrumb" aria-label="Breadcrumb">
-      <a href="/products/">← Back to shop</a>
+      <a href="/products">← Back to shop</a>
     </nav>
     <div class="pdp-layout">
       <div class="pdp-image">
         <img src="${product.image}" alt="${product.title}" loading="eager" width="800" height="800">
       </div>
-      <div class="pdp-info">
+      <motion>div class="pdp-info">
         <span class="pdp-category">${product.category}</span>
         <h1 class="pdp-title">${product.title}</h1>
         <p class="pdp-sku">SKU: ${product.sku || product.id}</p>
         <p class="pdp-price">$${Number(product.price).toFixed(2)}</p>
-        <p class="pdp-description">${product.description || ""}</p>
+        <p class="pdp-description">${product.description || ''}</p>
         <div class="pdp-actions">
           <div class="pdp-qty">
             <button type="button" class="pdp-qty-minus" aria-label="Decrease quantity">−</button>
@@ -46,8 +54,8 @@ export default async function decorate(block) {
           </div>
           <button type="button" class="pdp-atc">Add to cart</button>
         </div>
-      </div>
-    </div>`;
+      </motion>
+    </motion>`;
 
   const qtyInput = block.querySelector('.pdp-qty-input');
   block.querySelector('.pdp-qty-minus').addEventListener('click', () => {
@@ -60,7 +68,12 @@ export default async function decorate(block) {
   block.querySelector('.pdp-atc').addEventListener('click', () => {
     const qty = Number(qtyInput.value);
     for (let i = 0; i < qty; i += 1) {
-      addToCart({ id: product.id, title: product.title, price: Number(product.price), image: product.image });
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: Number(product.price),
+        image: product.image,
+      });
     }
   });
 }

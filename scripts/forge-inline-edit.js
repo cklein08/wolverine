@@ -178,9 +178,15 @@ function showBanner() {
   bar.setAttribute('role', 'status');
   const { org, repo } = resolveOrgRepo();
   const target = org && repo ? `${org}/${repo}` : 'preview site';
+  const daUrl = daEditUrl(currentPagePath());
+  const daBtn = daUrl
+    ? `<a class="forge-edit-banner__da" href="${daUrl}" target="_blank" rel="noopener">Edit page in Document Authoring</a>`
+    : '';
+  const pageLabel = currentPagePath() === 'index' ? 'Home' : currentPagePath();
   bar.innerHTML = `<strong>FORGE inline edit</strong>
-    <span>Editing ${target}</span>
-    <span style="margin-left:auto;opacity:0.9">Right-click blocks · + saves to Document Authoring (da.live session)</span>`;
+    <span>${target} · ${pageLabel}</span>
+    ${daBtn}
+    <span class="forge-edit-banner__hint">Right-click sections · + Add component</span>`;
   document.body.prepend(bar);
   document.documentElement.classList.add('forge-edit-active');
 }
@@ -419,8 +425,16 @@ window.addEventListener('message', (e) => {
   }
 });
 
+function maybeRedirectToDaEditor() {
+  const q = new URLSearchParams(window.location.search);
+  if (q.get('forge-da') !== '1') return;
+  const url = daEditUrl(currentPagePath());
+  if (url) window.location.replace(url);
+}
+
 function init() {
   if (!isEditMode()) return;
+  maybeRedirectToDaEditor();
   showBanner();
   scanAndDecorate();
   document.addEventListener('contextmenu', onContextMenu);

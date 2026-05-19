@@ -24,6 +24,37 @@
   font-weight: 700;
 }
 
+.forge-edit-banner__da {
+  margin-left: auto;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: #fff;
+  color: #1473e6;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.forge-edit-banner__da:hover {
+  background: #f5f5f5;
+}
+
+.forge-edit-banner__hint {
+  opacity: 0.9;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .forge-edit-banner {
+    flex-wrap: wrap;
+  }
+
+  .forge-edit-banner__hint {
+    display: none;
+  }
+}
+
 .forge-edit-block {
   position: relative;
   outline: 2px dashed #1473e6 !important;

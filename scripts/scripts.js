@@ -187,3 +187,12 @@ async function loadPage() {
 }
 
 loadPage();
+// FORGE inline edit
+try {
+  const __fe = new URLSearchParams(globalThis.location?.search || '');
+  if (__fe.get('forge-edit') === '1' || __fe.get('vse') === 'forge') {
+    import('/scripts/forge-inline-edit.js');
+  }
+} catch {
+  /* ignore */
+}

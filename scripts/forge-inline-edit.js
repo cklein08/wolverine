@@ -7,6 +7,9 @@ import { insertBlockOnDaPageClient } from './forge-inline-edit-da.js';
 import { instrumentEditableFields } from './forge-inline-edit-fields.js';
 import { savePageToDaClient } from './forge-inline-edit-save.js';
 
+/** Bump when deploying; cache-busts HLX/CDN for Chrome. */
+export const FORGE_INLINE_EDIT_BUILD = 3;
+
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
 const FORGE_REPO_PARAM = 'forge-repo';
@@ -217,7 +220,7 @@ function findBlocks(root) {
     if (!found.has(el)) found.add(el);
   });
   // Every top-level section in main is editable (Franklin default + named blocks).
-  root.querySelectorAll('main > div').forEach((section) => {
+  root.querySelectorAll('main > div:not(.forge-edit-drop-zone)').forEach((section) => {
     if (!found.has(section)) found.add(section);
   });
   return [...found];
@@ -474,16 +477,21 @@ function onContextMenu(e) {
 
 let scanDebounceTimer = 0;
 let scanInProgress = false;
+let mainDecorateObserver = null;
 
 function scanAndDecorate() {
   const main = document.querySelector('main');
   if (!main || scanInProgress) return;
   scanInProgress = true;
+  mainDecorateObserver?.disconnect();
   try {
     findBlocks(main).forEach((el) => decorateBlock(el, classifyBlock(el)));
     insertDropZones(main);
   } finally {
     scanInProgress = false;
+    if (mainDecorateObserver) {
+      mainDecorateObserver.observe(main, MAIN_OBSERVER_OPTIONS);
+    }
   }
 }
 
@@ -492,7 +500,19 @@ function scheduleScanAndDecorate() {
   scanDebounceTimer = window.setTimeout(() => {
     scanDebounceTimer = 0;
     scanAndDecorate();
-  }, 80);
+  }, 200);
+}
+
+const MAIN_OBSERVER_OPTIONS = {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: ['data-block-status'],
+};
+
+function stopMainDecorateObserver() {
+  mainDecorateObserver?.disconnect();
+  mainDecorateObserver = null;
 }
 
 window.addEventListener('message', (e) => {
@@ -507,6 +527,9 @@ window.addEventListener('message', (e) => {
 
 function init() {
   if (!isEditMode()) return;
+  if (globalThis.__forgeInlineEditInit) return;
+  globalThis.__forgeInlineEditInit = true;
+
   showBanner();
   scanAndDecorate();
   document.addEventListener('contextmenu', onContextMenu);
@@ -520,18 +543,19 @@ function init() {
 
   const main = document.querySelector('main');
   if (main) {
-    const obs = new MutationObserver(() => {
+    mainDecorateObserver = new MutationObserver(() => {
       if (scanInProgress) return;
       scheduleScanAndDecorate();
     });
-    obs.observe(main, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['data-block-status', 'class'],
-    });
+    mainDecorateObserver.observe(main, MAIN_OBSERVER_OPTIONS);
   }
-  window.addEventListener('load', () => setTimeout(scanAndDecorate, 500));
+
+  window.addEventListener('load', () => {
+    window.setTimeout(() => {
+      scanAndDecorate();
+      stopMainDecorateObserver();
+    }, 1200);
+  });
 }
 
 if (document.readyState === 'loading') {

@@ -191,7 +191,7 @@ loadPage();
 try {
   const __fe = new URLSearchParams(globalThis.location?.search || '');
   if (__fe.get('forge-edit') === '1' || __fe.get('vse') === 'forge') {
-    import('/scripts/forge-inline-edit.js');
+    import('/scripts/forge-inline-edit.js?v=3');
   }
 } catch {
   /* ignore */

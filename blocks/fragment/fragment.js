@@ -1,17 +1,43 @@
+/*
+ * Fragment Block
+ * Include content on a page as a fragment.
+ * https://www.aem.live/developer/block-collection/fragment
+ */
+
+// eslint-disable-next-line import/no-cycle
+import {
+  decorateMain,
+} from '../../scripts/scripts.js';
+
+import {
+  loadSections,
+} from '../../scripts/aem.js';
+
+/**
+ * Loads a fragment.
+ * @param {string} path The path to the fragment
+ * @returns {HTMLElement} The root element of the fragment
+ */
 export async function loadFragment(path) {
-  const resp = await fetch(`${path}.html`);
-  if (resp.ok) {
-    const main = document.createElement('main');
-    main.innerHTML = await resp.text();
-    // Decorate the fragment sections
-    const { decorateMain } = await import('../../scripts/scripts.js');
-    if (decorateMain) decorateMain(main);
+  if (path && path.startsWith('/') && !path.startsWith('//')) {
+    const resp = await fetch(`${path}.plain.html`);
+    if (resp.ok) {
+      const main = document.createElement('main');
+      main.innerHTML = await resp.text();
 
-    // Load all sections (makes them visible and loads their blocks)
-    const { loadSections } = await import('../../scripts/aem.js');
-    if (loadSections) await loadSections(main);
+      // reset base path for media to fragment base
+      const resetAttributeBase = (tag, attr) => {
+        main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+          elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
+        });
+      };
+      resetAttributeBase('img', 'src');
+      resetAttributeBase('source', 'srcset');
 
-    return main;
+      decorateMain(main);
+      await loadSections(main);
+      return main;
+    }
   }
   return null;
 }
@@ -20,11 +46,5 @@ export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
   const fragment = await loadFragment(path);
-  if (fragment) {
-    const section = document.createElement('div');
-    while (fragment.firstElementChild) section.append(fragment.firstElementChild);
-    block.closest('.section').classList.add(...section.classList);
-    block.closest('.section').dataset.sectionStatus = 'loaded';
-    block.replaceChildren(...section.childNodes);
-  }
+  if (fragment) block.replaceChildren(...fragment.childNodes);
 }

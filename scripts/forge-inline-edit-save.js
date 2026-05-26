@@ -11,6 +11,7 @@ const FORGE_UI_SELECTORS = [
   '.forge-edit-menu',
   '.forge-edit-dialog-backdrop',
   '.forge-edit-media-toolbar',
+  '.forge-personalization-backdrop',
 ].join(',');
 
 export function cleanForgeUiFromNode(root) {
@@ -27,10 +28,15 @@ export function cleanForgeUiFromNode(root) {
       'forge-edit-block--content',
       'forge-edit-block--commerce',
       'forge-edit-block--default',
+      'forge-edit-block--personalized',
     );
     delete el.dataset.forgeEditDecorated;
     delete el.dataset.forgeComponentType;
     delete el.dataset.forgeBlockId;
+    /* Keep data-forge-personalization + data-forge-variant* for RT CDP / AJO delivery */
+  });
+  root.querySelectorAll('[hidden]').forEach((el) => {
+    if (el.hasAttribute('data-forge-variant')) el.removeAttribute('hidden');
   });
 }
 

@@ -1,9 +1,6 @@
 footer {
-  background-color: var(--light-color, #1A2F1E);
+  background-color: var(--light-color);
   font-size: var(--body-font-size-xs);
-  color: var(--text-color, #FFFFFF);
-  border-top: 1px solid rgba(29, 185, 84, 0.2);
-  margin-top: 0;
 }
 
 footer .footer > div {
@@ -14,14 +11,6 @@ footer .footer > div {
 
 footer .footer p {
   margin: 0;
-}
-
-footer .footer a:any-link {
-  color: var(--brand-accent, #86EFAC);
-}
-
-footer .footer a:hover {
-  color: var(--brand-primary, #1DB954);
 }
 
 @media (width >= 900px) {

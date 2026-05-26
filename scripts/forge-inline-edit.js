@@ -5,10 +5,17 @@
 
 import { insertBlockOnDaPageClient } from './forge-inline-edit-da.js';
 import { instrumentEditableFields } from './forge-inline-edit-fields.js';
+import {
+  initPersonalizationOnBlock,
+  mountPreviewSegmentControl,
+  openPersonalizationPanel,
+  setClassifyBlockMeta,
+  updatePersonalizationBadge,
+} from './forge-inline-edit-personalization.js';
 import { savePageToDaClient } from './forge-inline-edit-save.js';
 
 /** Bump when deploying; cache-busts HLX/CDN for Chrome. */
-export const FORGE_INLINE_EDIT_BUILD = 3;
+export const FORGE_INLINE_EDIT_BUILD = 5;
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -192,10 +199,12 @@ function showBanner() {
   bar.innerHTML = `<strong>FORGE inline edit</strong>
     <span>${target} · ${pageLabel}</span>
     <button type="button" class="forge-edit-banner__save" disabled>Save page</button>
-    <span class="forge-edit-banner__hint">Click text to edit · double-click links · click images</span>`;
+    <span class="forge-edit-banner__hint">Personalization · RT CDP / AJO · click text to edit</span>`;
   document.body.prepend(bar);
   document.documentElement.classList.add('forge-edit-active');
   bar.querySelector('.forge-edit-banner__save')?.addEventListener('click', () => savePage());
+  setClassifyBlockMeta(classifyBlock);
+  mountPreviewSegmentControl(bar);
 }
 
 function decorateBlock(el, meta) {
@@ -444,6 +453,7 @@ function showContextMenu(x, y, blockEl, meta) {
   menu.innerHTML = `
     <li data-action="info">${meta.label} · ${meta.category}</li>
     <li class="menu-sep"></li>
+    <li data-action="personalize">Personalization (RT CDP / AJO)…</li>
     <li data-action="add-after">Add component after…</li>
     <li data-action="save">Save page to Document Authoring</li>
   `;
@@ -457,7 +467,9 @@ function showContextMenu(x, y, blockEl, meta) {
     if (!li || li.classList.contains('disabled')) return;
     const action = li.dataset.action;
     hideContextMenu();
-    if (action === 'add-after') {
+    if (action === 'personalize') {
+      openPersonalizationPanel(block, { onDirty: setPageDirty });
+    } else if (action === 'add-after') {
       const main = document.querySelector('main');
       const sections = main ? mainSections(main) : [];
       const idx = sections.indexOf(blockEl.closest('main > div') || blockEl);

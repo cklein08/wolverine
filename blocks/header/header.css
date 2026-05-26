@@ -1,11 +1,9 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: rgb(12 20 16 / 92%);
-  backdrop-filter: blur(12px);
+  background-color: var(--background-color);
   width: 100%;
-  z-index: 10;
+  z-index: 2;
   position: fixed;
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
 header nav {

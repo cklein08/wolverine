@@ -191,7 +191,25 @@ loadPage();
 try {
   const __fe = new URLSearchParams(globalThis.location?.search || '');
   if (__fe.get('forge-edit') === '1' || __fe.get('vse') === 'forge') {
-    import('/scripts/forge-inline-edit.js?v=3');
+    import('/scripts/forge-inline-edit.js?v=5');
+  }
+} catch {
+  /* ignore */
+}
+// FORGE personalization runtime (RT CDP / AJO segment shells on saved blocks)
+try {
+  const __fpr = new URLSearchParams(globalThis.location?.search || '');
+  if (__fpr.get('forge-demo') === '1' || document.querySelector('[data-forge-personalization]')) {
+    import('/scripts/forge-personalization-runtime.js?v=5');
+  }
+} catch {
+  /* ignore */
+}
+// FORGE demo chrome (persona switcher, RT CDP / AJO — EchoStar prototype)
+try {
+  const __fdm = new URLSearchParams(globalThis.location?.search || '');
+  if (__fdm.get('forge-demo') === '1') {
+    import('/scripts/forge-demo.js?v=5');
   }
 } catch {
   /* ignore */

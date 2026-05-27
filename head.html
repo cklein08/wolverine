@@ -3,15 +3,18 @@
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/xwalk-boost-layout.js" type="module"></script>
 <style id="forge-boost-critical">
-body:has(#save-when-you-shop-online),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
-main:has(#save-when-you-shop-online),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
-main:has(#save-when-you-shop-online)>div:first-child,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#save-when-you-shop-online)>div:last-child,main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
-.xwalk-retail-hero,main:has(#save-when-you-shop-online)>div:nth-child(2){text-align:center;padding:36px 16px 20px}
-#save-when-you-shop-online{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
-.xwalk-retail-hero-sub,.xwalk-retail-hero-kicker{color:color-mix(in srgb,#FFFFFF 88%,transparent)}
+body:has(#save-when-you-shop-online),body:has(#shop-phones-devices),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
+main:has(#save-when-you-shop-online),main:has(#shop-phones-devices),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
+main:has(#save-when-you-shop-online)>div:first-child,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#save-when-you-shop-online)>div:last-child,main:has(#shop-phones-devices)>div:first-child,main:has(#shop-phones-devices)>div:nth-child(2),main:has(#shop-phones-devices)>div:last-child,main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
+.xwalk-retail-hero,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#shop-phones-devices)>div:nth-child(2){text-align:center;padding:36px 16px 20px}
+#save-when-you-shop-online,#shop-phones-devices{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
+.xwalk-retail-hero-sub,.xwalk-retail-hero-kicker,.xwalk-phones-sub{color:color-mix(in srgb,#FFFFFF 88%,transparent)}
 a.xwalk-retail-cta-primary{background:#1DB954;color:#000!important;padding:12px 24px;font-weight:700;text-decoration:none;border-radius:2px;display:inline-block;margin:4px}
-main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6){background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
+main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has(#shop-phones-devices)>div:nth-child(3),main:has(#shop-phones-devices)>div:nth-child(4),main:has(#shop-phones-devices)>div:nth-child(5),main:has(#shop-phones-devices)>div:nth-child(6),main.xwalk-boost-main>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
 main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
+main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important}
+main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;object-fit:contain;display:block;margin:0 auto}
+main.xwalk-boost-main>div.xwalk-phone-section h3,main>div:has(h3):has(picture) h3{font-size:1.35rem;font-weight:800;margin:16px 16px 8px;color:#000}
 main:has(#save-up-to-2400-a-year)>div:last-child,main.xwalk-boost-main>div:last-child{background:#1DB954!important;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;padding:32px}
 main>div.xwalk-hero-section,main>div:has(>h1):not(:has(h3)):not(:has(#save-when-you-shop-online)){position:relative;min-height:320px;overflow:hidden;background:#0A1A0F;padding:48px 24px;text-align:center;grid-column:1/-1}
 main>div.xwalk-hero-section>p:has(picture),main>div:has(>h1):not(:has(h3))>p:has(picture){position:absolute;inset:0;margin:0;padding:0;z-index:0}
@@ -19,8 +22,8 @@ main>div.xwalk-hero-section>p:has(picture)::after,main>div:has(>h1):not(:has(h3)
 main>div.xwalk-hero-section>p:has(picture) img,main>div:has(>h1):not(:has(h3))>p:has(picture) img{width:100%;height:100%;object-fit:cover;display:block}
 main>div.xwalk-hero-section>h1,main>div.xwalk-hero-section>p:not(:has(picture)),main>div:has(>h1):not(:has(h3))>h1,main>div:has(>h1):not(:has(h3))>p:not(:has(picture)){position:relative;z-index:2;color:#fff!important;text-shadow:0 2px 18px rgb(0 0 0/55%)}
 main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(h3)) a{color:#fff!important}
-@media (max-width:1100px){main:has(#save-when-you-shop-online),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){main:has(#save-when-you-shop-online),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
+@media (max-width:1100px){main:has(#save-when-you-shop-online),main:has(#shop-phones-devices),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){main:has(#save-when-you-shop-online),main:has(#shop-phones-devices),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
 </style>
 <link rel="stylesheet" href="/styles/styles.css"/>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>

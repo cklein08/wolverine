@@ -94,6 +94,10 @@ function decorateHeroSections(main) {
       section.classList.add('xwalk-retail-hero');
       return;
     }
+    if (section.querySelector('#shop-phones-devices')) {
+      section.classList.add('xwalk-phones-head');
+      return;
+    }
     if (!section.querySelector(':scope > h1') || section.querySelector(':scope > h3')) return;
     if (section.querySelector('a') && /get the deal/i.test(section.textContent || '')) return;
 
@@ -109,11 +113,12 @@ export function decorateBoostLayout(doc = document) {
 
   decorateHeroSections(main);
 
-  const isBoostHome =
+  const isBoostRetail =
     /save when you shop online/i.test(main.textContent || '') ||
+    /shop phones\s*&\s*devices/i.test(main.textContent || '') ||
     [...main.querySelectorAll('a')].some((a) => /get the deal/i.test(a.textContent || ''));
 
-  if (isBoostHome) {
+  if (isBoostRetail) {
     doc.body?.classList.add('xwalk-boost-page');
     main.classList.add('xwalk-boost-main');
   }
@@ -137,11 +142,18 @@ export function decorateBoostLayout(doc = document) {
     );
     if (dealCtas.length >= 2) splitFlatDealSection(section);
 
-    if (section.querySelector('h3') && section.querySelector('a') && dealCtas.length <= 1) {
-      section.classList.add('xwalk-deal-section');
-      const card = section.querySelector('.xwalk-deal-card') || section;
-      card.classList.add('xwalk-deal-card');
-      tagDealCardInternals(card);
+    if (section.querySelector('h3') && section.querySelector('picture') && dealCtas.length <= 1) {
+      const isPhone = /shop now/i.test(section.textContent || '');
+      section.classList.add(isPhone ? 'xwalk-phone-section' : 'xwalk-deal-section');
+      const card = section.querySelector('.xwalk-phone-card') || section.querySelector('.xwalk-deal-card') || section;
+      card.classList.add(isPhone ? 'xwalk-phone-card' : 'xwalk-deal-card');
+      if (!isPhone) tagDealCardInternals(card);
+      else {
+        const picP = section.querySelector(':scope > p:has(picture)');
+        if (picP && !picP.classList.contains('xwalk-phone-media')) {
+          picP.classList.add('xwalk-phone-media');
+        }
+      }
     }
   });
 

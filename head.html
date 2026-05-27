@@ -2,6 +2,17 @@
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/xwalk-boost-layout.js" type="module"></script>
+<style id="forge-boost-critical">
+body.xwalk-boost-page,body:has(main.xwalk-boost-main){background:#0A1A0F;color:#FFFFFF}
+main.xwalk-boost-main,body:has(main.xwalk-boost-main) main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
+main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
+body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(3),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(4),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(5),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(6){background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
+body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(3)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(4)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(5)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
+main.xwalk-boost-main>div:nth-child(2) h2{color:#FFFFFF;font-size:2rem;font-weight:900;text-align:center;margin:24px 0 12px}
+main.xwalk-boost-main>div:last-child{background:#1DB954!important;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;padding:32px}
+@media (max-width:1100px){main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
+</style>
 <link rel="stylesheet" href="/styles/styles.css"/>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
 <link rel="stylesheet" href="/styles/forge-inline-edit.css?v=5"/>

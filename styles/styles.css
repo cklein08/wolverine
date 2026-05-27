@@ -389,6 +389,32 @@ main.xwalk-nav a {
   text-decoration: none;
 }
 
+main.xwalk-nav .xwalk-brand {
+  margin: 0;
+  line-height: 1.1;
+}
+main.xwalk-nav .xwalk-brand-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+main.xwalk-nav .xwalk-logo-img {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: min(220px, 42vw);
+  object-fit: contain;
+}
+
+main.xwalk-footer .xwalk-footer-brand img {
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
 main.xwalk-footer > div > div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

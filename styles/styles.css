@@ -233,3 +233,440 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/* FORGE Crosswalk brand theme */
+:root,
+.dropin-design {
+  --color-brand-300: #86EFAC;
+  --color-brand-500: #1DB954;
+  --color-brand-600: #0E7A3A;
+  --color-brand-700: #0A1A0F;
+  --color-button-hover: #0E7A3A;
+  --color-button-active: #0A1A0F;
+  --background-color: #0A1A0F;
+  --light-color: #1A2F1E;
+  --dark-color: #86EFAC;
+  --text-color: #FFFFFF;
+  --link-color: #86EFAC;
+  --link-hover-color: #1DB954;
+  --brand-primary: #1DB954;
+  --brand-secondary: #0E7A3A;
+  --brand-accent: #86EFAC;
+  --button-primary-bg: #1DB954;
+  --button-primary-text: #000000;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.hero {
+  min-height: 420px;
+  background: linear-gradient(
+    125deg,
+    color-mix(in srgb, #0E7A3A 92%, transparent) 0%,
+    color-mix(in srgb, #0A1A0F 88%, transparent) 50%,
+    color-mix(in srgb, #1DB954 75%, transparent) 100%
+  );
+}
+
+.hero h1,
+.hero p,
+.hero a {
+  color: #fff;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 45%);
+}
+
+.cards > ul {
+  gap: 24px;
+  margin: 48px auto;
+  max-width: 1248px;
+  padding: 0 24px;
+}
+
+.cards .cards-card-body {
+  background: var(--light-color);
+  border-radius: 12px;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.cards .cards-card-body a {
+  color: var(--link-color);
+  font-weight: 600;
+}
+
+.cards img {
+  border-radius: 12px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.columns > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1248px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.columns .columns-img-col img,
+.columns picture img {
+  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.columns h3 {
+  margin-top: 12px;
+  font-size: 1.35rem;
+}
+
+.columns p strong {
+  color: var(--brand-primary);
+  font-size: 1.5rem;
+}
+
+.targeted-block picture img {
+  max-width: 320px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+main .section:has(.targeted-block) {
+  background: color-mix(in srgb, #1DB954 12%, #0A1A0F);
+  padding: 48px 24px;
+  text-align: center;
+}
+
+footer {
+  background: #1A2F1E;
+  border-top: 1px solid color-mix(in srgb, #86EFAC 25%, transparent);
+  margin-top: 48px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+footer a {
+  color: var(--link-color);
+}
+
+body {
+  font-family: Calibri;
+}
+
+h1, h2, h3, h4, strong.brand {
+  font-family: Arial Black;
+}
+
+main.xwalk-nav,
+main.xwalk-footer {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+main.xwalk-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+main.xwalk-nav a {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+main.xwalk-footer > div > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+
+
+/* FORGE Updated Crosswalk layout */
+.xwalk-promo-strip {
+  background: color-mix(in srgb, #0E7A3A 88%, #000);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-family: Calibri;
+}
+.xwalk-promo-strip a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero.xwalk-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 48px 24px 56px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #0E7A3A 90%, transparent) 0%,
+    color-mix(in srgb, #0A1A0F 85%, transparent) 45%,
+    color-mix(in srgb, #1DB954 70%, transparent) 100%
+  );
+  font-family: Calibri;
+}
+.hero.xwalk-hero.xwalk-hero-compact,
+.hero.xwalk-hero .xwalk-hero-compact {
+  min-height: auto;
+}
+.hero.xwalk-hero-compact,
+main .hero.xwalk-hero:has(.xwalk-hero-compact) {
+  min-height: 300px;
+  padding: 36px 24px 40px;
+}
+.hero.xwalk-hero .xwalk-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+.hero.xwalk-hero .xwalk-hero-bg picture,
+.hero.xwalk-hero .xwalk-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero.xwalk-hero .xwalk-hero-eyebrow,
+.hero.xwalk-hero h1,
+.hero.xwalk-hero .xwalk-hero-sub,
+.hero.xwalk-hero .xwalk-hero-cta,
+.hero.xwalk-hero .xwalk-hero-cta-secondary,
+.hero.xwalk-hero .xwalk-hero-terms {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-shadow: 0 2px 16px rgb(0 0 0 / 50%);
+}
+.hero.xwalk-hero h1 {
+  font-family: Arial Black;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  margin: 0 0 12px;
+  font-style: italic;
+}
+.hero.xwalk-hero .xwalk-hero-price {
+  color: #86EFAC;
+  display: block;
+}
+.hero.xwalk-hero .xwalk-hero-price-suffix {
+  display: block;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.hero.xwalk-hero .xwalk-hero-sub {
+  font-size: 1.05rem;
+  max-width: 36rem;
+  margin: 0 auto 20px;
+}
+.hero.xwalk-hero .xwalk-hero-cta a {
+  display: inline-block;
+  background: #f2f2f2;
+  color: #111 !important;
+  text-shadow: none;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.hero.xwalk-hero .xwalk-hero-cta-secondary a {
+  color: #fff;
+  text-decoration: underline;
+}
+.hero.xwalk-hero .xwalk-hero-terms {
+  margin-top: 16px;
+  font-size: 0.85rem;
+}
+
+.columns.xwalk-quick-actions .xwalk-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+@media (max-width: 768px) {
+  .columns.xwalk-quick-actions .xwalk-quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.xwalk-quick-action {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px 16px;
+  text-align: center;
+  min-height: 88px;
+}
+.xwalk-quick-action a {
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.columns.xwalk-plans .xwalk-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1248px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+@media (max-width: 900px) {
+  .columns.xwalk-plans .xwalk-plans-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.xwalk-plan-card {
+  background: var(--light-color, #1A2F1E);
+  border: 2px solid color-mix(in srgb, #1DB954 40%, transparent);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.xwalk-plan-badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #86EFAC;
+  font-weight: 700;
+}
+.xwalk-plan-price strong {
+  font-size: 2rem;
+  color: #1DB954;
+  font-family: Arial Black;
+}
+.xwalk-plan-card img {
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  margin: 12px 0;
+}
+
+.cards.xwalk-promo-banner > div > div {
+  max-width: 1248px;
+  margin: 24px auto;
+  padding: 0 24px;
+}
+.xwalk-wide-promo {
+  background: linear-gradient(90deg, color-mix(in srgb, #1DB954 25%, #0A1A0F), #1A2F1E);
+  border-radius: 16px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .xwalk-wide-promo {
+    grid-template-columns: 1fr;
+  }
+}
+.xwalk-wide-promo img {
+  border-radius: 12px;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+}
+.xwalk-fine-print {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.cards.forge-device-cards > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1248px;
+  margin: 32px auto 48px;
+  padding: 0 24px;
+}
+@media (max-width: 1024px) {
+  .cards.forge-device-cards > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .cards.forge-device-cards > div {
+    grid-template-columns: 1fr;
+  }
+}
+.xwalk-phone-card {
+  background: var(--light-color, #1A2F1E);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+.xwalk-phone-card img {
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.xwalk-phone-card h3 {
+  font-family: Arial Black;
+  margin: 12px 0 4px;
+}
+.xwalk-phone-card a {
+  color: #86EFAC;
+  font-weight: 700;
+}
+
+.columns.xwalk-value-row .xwalk-value-props {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1248px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+}
+@media (max-width: 768px) {
+  .columns.xwalk-value-row .xwalk-value-props {
+    grid-template-columns: 1fr;
+  }
+}
+.columns.xwalk-value-row img {
+  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.xwalk-content-section {
+  max-width: 800px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+  font-family: Calibri;
+}
+.xwalk-content-section h2 {
+  font-family: Arial Black;
+  color: #1DB954;
+}
+

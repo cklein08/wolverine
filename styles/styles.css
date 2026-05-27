@@ -408,33 +408,56 @@ main.xwalk-nav .xwalk-logo-img {
 
 main.xwalk-nav-boost {
   display: grid;
-  grid-template-columns: minmax(140px, 220px) 1fr minmax(200px, 320px);
-  gap: 16px 24px;
+  grid-template-columns: minmax(160px, 240px) 1fr minmax(220px, 340px);
+  gap: 12px 32px;
   align-items: center;
-  max-width: 1400px;
-  padding: 12px 24px 16px;
-  background: #fff;
-  color: #111;
-  border-bottom: 1px solid #e5e5e5;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 32px 18px;
+  background: #0A1A0F;
+  color: #FFFFFF;
+  border-bottom: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
 }
 main.xwalk-nav-boost ul {
   justify-content: center;
-  gap: 28px;
+  gap: 32px;
 }
 main.xwalk-nav-boost a {
-  color: #111 !important;
+  color: #FFFFFF !important;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+main.xwalk-nav-boost a:hover {
+  color: #86EFAC !important;
 }
 main.xwalk-nav-boost .xwalk-nav-utility-top,
 main.xwalk-nav-boost .xwalk-nav-utility-bottom {
   text-align: right;
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+main.xwalk-nav-boost .xwalk-nav-utility-top a {
+  font-weight: 400;
+  opacity: 0.92;
 }
 main.xwalk-nav-boost .xwalk-nav-utility-bottom {
-  margin-top: 6px;
+  margin-top: 4px;
   font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px 12px;
+}
+main.xwalk-nav-boost .xwalk-nav-phone a {
+  display: inline-block;
+  border: 2px solid color-mix(in srgb, #FFFFFF 85%, transparent);
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #FFFFFF !important;
 }
 @media (max-width: 900px) {
   main.xwalk-nav-boost {
@@ -479,74 +502,96 @@ main.xwalk-footer > div > div {
   font-weight: 600;
 }
 
-/* Boost-style home — white deal cards on light band */
+/* Boost-style retail — dark page, boxed deal cards (Boost spacing) */
+body.xwalk-boost-page,
+body:has(main.xwalk-boost-main) {
+  background: #0A1A0F;
+  color: #FFFFFF;
+}
+body.xwalk-boost-page header,
+body:has(main.xwalk-boost-main) header {
+  background: #0A1A0F;
+  border-bottom: 1px solid color-mix(in srgb, #86EFAC 22%, transparent);
+}
 main.xwalk-boost-main,
 body:has(main.xwalk-boost-main) main {
-  background: #f3f3f3;
-  color: #111;
+  background: #0A1A0F;
+  color: #FFFFFF;
+  padding-bottom: 0;
 }
 
 .xwalk-shop-online-head {
-  max-width: 1248px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 32px 24px 8px;
+  padding: 40px 32px 20px;
   text-align: center;
 }
 .xwalk-shop-online-head h2 {
   font-family: Arial Black;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: 2rem;
   font-weight: 900;
-  color: #111;
+  color: #FFFFFF;
   margin: 0;
-  text-transform: none;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .columns.xwalk-boost-deals > div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 1248px;
-  margin: 0 auto 32px;
-  padding: 0 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1280px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+  align-items: stretch;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .columns.xwalk-boost-deals > div {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .columns.xwalk-boost-deals > div {
     grid-template-columns: 1fr;
+    padding: 0 16px;
   }
 }
 
 .xwalk-deal-card {
   background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 35%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   text-align: center;
   min-height: 100%;
-  color: #111;
+  color: #000;
+  height: 100%;
 }
 .xwalk-deal-badge {
   background: #1DB954;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  padding: 10px 12px;
+  line-height: 1.3;
+  padding: 12px 10px;
   margin: 0;
-  line-height: 1.25;
-}
-.xwalk-deal-media {
-  background: #f7f7f7;
-  padding: 16px;
-  min-height: 200px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.xwalk-deal-media {
+  background: #f5f5f5;
+  padding: 20px 16px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .xwalk-deal-media picture,
 .xwalk-deal-media img {
@@ -555,68 +600,85 @@ body:has(main.xwalk-boost-main) main {
   max-width: 100%;
   object-fit: contain;
   margin: 0 auto;
+  display: block;
 }
 .xwalk-deal-kicker {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 16px 16px 4px;
-  color: #333;
+  letter-spacing: 0.06em;
+  margin: 18px 20px 6px;
+  color: #1a1a1a;
 }
 .xwalk-deal-card h3 {
   font-family: Arial Black;
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 900;
-  margin: 0 16px 8px;
-  color: #111;
-  line-height: 1.15;
+  margin: 0 20px 10px;
+  color: #000;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 .xwalk-deal-price {
-  margin: 0 16px 8px;
+  margin: 0 20px 10px;
   font-size: 1rem;
+  line-height: 1.4;
 }
 .xwalk-price-now {
   color: #1DB954;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.125rem;
 }
 .xwalk-price-was {
-  color: #666;
+  color: #767676;
   text-decoration: line-through;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 400;
 }
 .xwalk-deal-fine {
-  font-size: 0.72rem;
-  color: #666;
-  margin: 0 16px 8px;
-  line-height: 1.35;
+  font-size: 0.6875rem;
+  color: #767676;
+  margin: 0 20px 10px;
+  line-height: 1.45;
+  min-height: 2.8em;
+}
+.xwalk-deal-details {
+  margin: 0 20px 8px;
 }
 .xwalk-deal-details a {
-  color: #111;
+  color: #000;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.xwalk-deal-details a:hover {
+  text-decoration: underline;
 }
 .xwalk-deal-plan {
-  font-size: 0.85rem;
-  color: #444;
-  margin: 12px 16px;
-  padding-top: 12px;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  margin: 0 20px;
+  padding: 14px 0 16px;
   border-top: 1px solid #e0e0e0;
 }
 .xwalk-deal-cta-wrap {
-  margin: auto 16px 20px;
-  padding-top: 8px;
+  margin: 0 20px 20px;
+  margin-top: auto;
+  padding-top: 0;
 }
 a.xwalk-deal-cta {
   display: block;
-  border: 2px solid #111;
-  border-radius: 4px;
-  padding: 14px 16px;
-  color: #111 !important;
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 2px;
+  padding: 15px 16px;
+  color: #000 !important;
   font-weight: 700;
+  font-size: 1rem;
   text-decoration: none;
   background: #fff;
+  line-height: 1.2;
 }
 a.xwalk-deal-cta:hover {
   background: #f5f5f5;
@@ -629,29 +691,37 @@ a.xwalk-deal-cta:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding: 28px 24px;
+  gap: 20px 32px;
+  padding: 32px 32px;
   margin: 0;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 .xwalk-savings-banner h2 {
   font-family: Arial Black;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-style: italic;
   font-weight: 900;
   margin: 0;
   color: #fff;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
 }
 a.xwalk-savings-cta {
   display: inline-block;
   background: #fff;
-  color: #111 !important;
+  color: #000 !important;
   font-weight: 700;
-  padding: 14px 28px;
-  border-radius: 4px;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 2px;
   text-decoration: none;
-  border: 2px solid #111;
+  border: 2px solid #000;
+  white-space: nowrap;
+}
+a.xwalk-savings-cta:hover {
+  background: #f5f5f5;
 }
 
 .hero.xwalk-hero {
@@ -1000,5 +1070,45 @@ main > div:has(h3):has(picture) > div {
 main > div:has(h3):has(picture) h3 {
   font-family: Arial Black;
   margin: 12px 0 4px;
+}
+
+/* HLX fallback — Boost grid on dark (classes stripped) */
+body.xwalk-boost-page main,
+main.xwalk-boost-main {
+  background: #0A1A0F !important;
+}
+body.xwalk-boost-page main > div:has(h2):not(:has(h3)),
+main.xwalk-boost-main > div.xwalk-shop-online-head {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px 20px;
+  text-align: center;
+}
+body.xwalk-boost-page main > div:has(h2) h2,
+main.xwalk-boost-main .xwalk-shop-online-head h2 {
+  color: #FFFFFF !important;
+  font-family: Arial Black;
+  font-size: 2rem;
+  font-weight: 900;
+}
+body.xwalk-boost-page main > div:has(a):has(h3):has(picture),
+main.xwalk-boost-main > div.xwalk-boost-deals,
+main.xwalk-boost-main > div.xwalk-boost-deals > div {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  max-width: 1280px;
+  margin: 0 auto 40px !important;
+  padding: 0 32px !important;
+}
+body.xwalk-boost-page main > div:has(h3) > div > div,
+main.xwalk-boost-main .xwalk-deal-card {
+  background: #fff !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 35%) !important;
+}
+main.xwalk-boost-main > div.xwalk-savings-banner,
+body.xwalk-boost-page main > div:last-child:has(h2):has(a) {
+  background: #1DB954 !important;
 }
 

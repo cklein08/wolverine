@@ -1,5 +1,5 @@
 {
-  "project": "Wolverine",
+  "project": "Wolverine Mobile",
   "editUrlLabel": "AEM Editor",
   "editUrlPattern": "{{contentSourceUrl}}{{pathname}}?cmd=open",
   "plugins": [

@@ -94,7 +94,7 @@ function decorateHeroSections(main) {
       section.classList.add('xwalk-retail-hero');
       return;
     }
-    if (section.querySelector('#shop-phones-devices')) {
+    if (section.querySelector('[id*="shop-phones"]')) {
       section.classList.add('xwalk-phones-head');
       return;
     }

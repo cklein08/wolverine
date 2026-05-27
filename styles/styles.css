@@ -1083,10 +1083,10 @@ main > div.xwalk-hero-section p:has(a) a:not(:has(strong)) {
 }
 
 main.xwalk-boost-main > div.xwalk-phone-section,
-main:has(#shop-phones-devices) > div:nth-child(3),
-main:has(#shop-phones-devices) > div:nth-child(4),
-main:has(#shop-phones-devices) > div:nth-child(5),
-main:has(#shop-phones-devices) > div:nth-child(6) {
+main:has([id*='shop-phones']) > div:nth-child(3),
+main:has([id*='shop-phones']) > div:nth-child(4),
+main:has([id*='shop-phones']) > div:nth-child(5),
+main:has([id*='shop-phones']) > div:nth-child(6) {
   min-width: 0;
 }
 .xwalk-phone-card {

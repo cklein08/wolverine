@@ -520,6 +520,66 @@ body:has(main.xwalk-boost-main) main {
   padding-bottom: 0;
 }
 
+/* HLX delivers one <main> child per deal — grid without columns block */
+main.xwalk-boost-main {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 40px;
+  box-sizing: border-box;
+}
+main.xwalk-boost-main > div.xwalk-promo-strip,
+main.xwalk-boost-main > div.xwalk-shop-online-head,
+main.xwalk-boost-main > div.xwalk-savings-banner,
+main.xwalk-boost-main > div:first-child,
+main.xwalk-boost-main > div:nth-child(2),
+main.xwalk-boost-main > div:last-child {
+  grid-column: 1 / -1;
+}
+main.xwalk-boost-main > div.xwalk-deal-section,
+main.xwalk-boost-main > div.xwalk-deal-section .xwalk-deal-card {
+  min-width: 0;
+}
+/* Stripped classes — deal sections are main children 3–6 on home/phones */
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(3),
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(4),
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(5),
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(6) {
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 35%);
+  color: #000;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(3) > p:first-child,
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(4) > p:first-child,
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(5) > p:first-child,
+body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(6) > p:first-child {
+  background: #1DB954;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 12px 10px;
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  main.xwalk-boost-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  main.xwalk-boost-main {
+    grid-template-columns: 1fr;
+    padding: 0 16px 32px;
+  }
+}
+
 .xwalk-shop-online-head {
   max-width: 1280px;
   margin: 0 auto;

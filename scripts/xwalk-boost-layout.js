@@ -1,5 +1,5 @@
 /**
- * Boost-style layout when HLX strips classes and/or flattens columns into one div.
+ * Boost retail layout + hero fixes when HLX strips classes / personalization attrs.
  */
 
 function tagDealCardInternals(card) {
@@ -22,7 +22,6 @@ function tagDealCardInternals(card) {
   });
 }
 
-/** Split one flat HLX section (all deals in sequential <p> tags) into a 4-column grid. */
 function splitFlatDealSection(section) {
   const dealCtas = [...section.querySelectorAll('a')].filter((a) =>
     /get the deal/i.test(a.textContent || ''),
@@ -60,21 +59,66 @@ function splitFlatDealSection(section) {
   return true;
 }
 
+/** HLX shows every personalization variant when data-forge-* is stripped — keep last h1 stack. */
+function collapseDuplicateHero(section) {
+  const h1s = [...section.querySelectorAll(':scope > h1')];
+  if (h1s.length <= 1) return;
+  const keep = h1s[h1s.length - 1];
+  let anchor = keep;
+  while (anchor.previousElementSibling) {
+    anchor = anchor.previousElementSibling;
+    if (anchor.querySelector('picture')) break;
+  }
+  while (section.firstChild && section.firstChild !== anchor) {
+    section.firstChild.remove();
+  }
+}
+
+function fixHeroBackground(section) {
+  if (section.querySelector('.xwalk-hero-bg')) return;
+  const picP = section.querySelector(':scope > p:has(picture)');
+  if (!picP) return;
+  const bg = document.createElement('div');
+  bg.className = 'xwalk-hero-bg';
+  const picture = picP.querySelector('picture');
+  if (picture) {
+    picP.replaceWith(bg);
+    bg.appendChild(picture);
+  }
+}
+
+function decorateHeroSections(main) {
+  const sections = [...main.children].filter((el) => el.tagName === 'DIV');
+  sections.forEach((section) => {
+    if (section.querySelector('#save-when-you-shop-online')) {
+      section.classList.add('xwalk-retail-hero');
+      return;
+    }
+    if (!section.querySelector(':scope > h1') || section.querySelector(':scope > h3')) return;
+    if (section.querySelector('a') && /get the deal/i.test(section.textContent || '')) return;
+
+    collapseDuplicateHero(section);
+    fixHeroBackground(section);
+    section.classList.add('xwalk-hero-section');
+  });
+}
+
 export function decorateBoostLayout(doc = document) {
   const main = doc.querySelector('main');
   if (!main) return;
+
+  decorateHeroSections(main);
 
   const isBoostHome =
     /save when you shop online/i.test(main.textContent || '') ||
     [...main.querySelectorAll('a')].some((a) => /get the deal/i.test(a.textContent || ''));
 
-  if (!isBoostHome) return;
-
-  doc.body?.classList.add('xwalk-boost-page');
-  main.classList.add('xwalk-boost-main');
+  if (isBoostHome) {
+    doc.body?.classList.add('xwalk-boost-page');
+    main.classList.add('xwalk-boost-main');
+  }
 
   const sections = [...main.children].filter((el) => el.tagName === 'DIV');
-
   sections.forEach((section) => {
     const text = section.textContent || '';
 
@@ -82,7 +126,7 @@ export function decorateBoostLayout(doc = document) {
       section.classList.add('xwalk-promo-strip');
     }
     if (/save when you shop online|shop phones & devices/i.test(text)) {
-      section.classList.add('xwalk-shop-online-head');
+      section.classList.add('xwalk-retail-hero', 'xwalk-shop-online-head');
     }
     if (/save up to \$2,400/i.test(text)) {
       section.classList.add('xwalk-savings-banner');
@@ -91,26 +135,13 @@ export function decorateBoostLayout(doc = document) {
     const dealCtas = [...section.querySelectorAll('a')].filter((a) =>
       /get the deal/i.test(a.textContent || ''),
     );
+    if (dealCtas.length >= 2) splitFlatDealSection(section);
 
-    if (dealCtas.length >= 2) {
-      splitFlatDealSection(section);
-    }
-
-    const card =
-      section.querySelector('.xwalk-deal-card') ||
-      (section.querySelector('h3') && section.querySelector('a') ? section : null);
-    if (card && card.querySelector('h3')) {
+    if (section.querySelector('h3') && section.querySelector('a') && dealCtas.length <= 1) {
       section.classList.add('xwalk-deal-section');
-      if (!card.classList.contains('xwalk-deal-card')) card.classList.add('xwalk-deal-card');
-      tagDealCardInternals(card.classList.contains('xwalk-deal-card') ? card : section);
-    }
-
-    if (section.classList.contains('xwalk-boost-deals')) {
-      section.querySelectorAll(':scope > div > div').forEach((col) => {
-        const inner = col.querySelector('.xwalk-deal-card') || col;
-        inner.classList.add('xwalk-deal-card');
-        tagDealCardInternals(inner);
-      });
+      const card = section.querySelector('.xwalk-deal-card') || section;
+      card.classList.add('xwalk-deal-card');
+      tagDealCardInternals(card);
     }
   });
 

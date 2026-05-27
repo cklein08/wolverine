@@ -142,17 +142,24 @@ export function decorateBoostLayout(doc = document) {
     );
     if (dealCtas.length >= 2) splitFlatDealSection(section);
 
-    if (section.querySelector('h3') && section.querySelector('picture') && dealCtas.length <= 1) {
-      const isPhone = /shop now/i.test(section.textContent || '');
-      section.classList.add(isPhone ? 'xwalk-phone-section' : 'xwalk-deal-section');
-      const card = section.querySelector('.xwalk-phone-card') || section.querySelector('.xwalk-deal-card') || section;
-      card.classList.add(isPhone ? 'xwalk-phone-card' : 'xwalk-deal-card');
-      if (!isPhone) tagDealCardInternals(card);
-      else {
+    const isPhonesPage = /shop phones\s*&\s*devices/i.test(main.textContent || '');
+    if (section.querySelector('h3') && section.querySelector('picture')) {
+      const isSimplePhoneCard =
+        !isPhonesPage && /shop now/i.test(section.textContent || '') && dealCtas.length === 0;
+      section.classList.add(isSimplePhoneCard ? 'xwalk-phone-section' : 'xwalk-deal-section');
+      if (isPhonesPage) section.classList.add('xwalk-phone-deal-section');
+      const card =
+        section.querySelector('.xwalk-phone-card') ||
+        section.querySelector('.xwalk-deal-card') ||
+        section;
+      card.classList.add(isSimplePhoneCard ? 'xwalk-phone-card' : 'xwalk-deal-card');
+      if (isSimplePhoneCard) {
         const picP = section.querySelector(':scope > p:has(picture)');
         if (picP && !picP.classList.contains('xwalk-phone-media')) {
           picP.classList.add('xwalk-phone-media');
         }
+      } else {
+        tagDealCardInternals(card);
       }
     }
   });

@@ -638,6 +638,26 @@ main .hero.xwalk-hero:has(.xwalk-hero-compact) {
   font-weight: 700;
 }
 
+.cards.xwalk-phone-list .xwalk-phone-list-header {
+  max-width: 1248px;
+  margin: 0 auto 16px;
+  padding: 0 24px;
+  text-align: center;
+}
+.cards.xwalk-phone-list .xwalk-phone-list-header h2 {
+  font-family: Arial Black;
+  color: #1DB954;
+  margin: 0 0 8px;
+}
+.cards.xwalk-phone-list .xwalk-phone-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1248px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+}
+
 .columns.xwalk-value-row .xwalk-value-props {
   display: grid;
   grid-template-columns: 1fr 1fr;

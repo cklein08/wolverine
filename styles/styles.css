@@ -670,3 +670,73 @@ main .hero.xwalk-hero:has(.xwalk-hero-compact) {
   color: #1DB954;
 }
 
+/* HLX delivery fallback — admin HTML keeps xwalk-* classes but *.aem.page often strips them */
+main > div:first-child:has(p > a[href="/phones"]) {
+  background: color-mix(in srgb, #0E7A3A 88%, #000);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-family: Calibri;
+}
+main > div:first-child:has(p > a[href="/phones"]) a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+main > div:has(picture):has(h1) {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 36px 24px 40px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #0E7A3A 90%, transparent) 0%,
+    color-mix(in srgb, #0A1A0F 85%, transparent) 45%,
+    color-mix(in srgb, #1DB954 70%, transparent) 100%
+  );
+  font-family: Calibri;
+}
+main > div:has(picture):has(h1) picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+main > div:has(picture):has(h1) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main > div:has(picture):has(h1) h1,
+main > div:has(picture):has(h1) p {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-shadow: 0 2px 16px rgb(0 0 0 / 50%);
+}
+main > div:has(picture):has(h1) h1 {
+  font-family: Arial Black;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  margin: 0 0 12px;
+  font-style: italic;
+}
+main > div:has(h3):has(picture) > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 24px;
+}
+main > div:has(h3):has(picture) h3 {
+  font-family: Arial Black;
+  margin: 12px 0 4px;
+}
+

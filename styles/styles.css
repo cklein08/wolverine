@@ -879,23 +879,29 @@ main > div.xwalk-hero-section .xwalk-hero-bg {
   pointer-events: none;
 }
 .hero.xwalk-hero .xwalk-hero-bg::after,
-main > div.xwalk-hero-section .xwalk-hero-bg::after {
+main > div.xwalk-hero-section .xwalk-hero-bg::after,
+main > div.xwalk-hero-section > p:has(picture)::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, #0A1A0F 55%, transparent) 0%,
-    color-mix(in srgb, #0A1A0F 92%, transparent) 100%
-  );
+  z-index: 1;
+  background: linear-gradient(180deg, rgb(10 26 15 / 50%) 0%, rgb(10 26 15 / 90%) 100%);
 }
 .hero.xwalk-hero .xwalk-hero-bg picture,
 .hero.xwalk-hero .xwalk-hero-bg img,
-main > div.xwalk-hero-section .xwalk-hero-bg img {
+main > div.xwalk-hero-section .xwalk-hero-bg img,
+main > div.xwalk-hero-section > p:has(picture) img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+main > div.xwalk-hero-section > p:has(picture) {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 0;
 }
 .hero.xwalk-hero .xwalk-hero-eyebrow,
 .hero.xwalk-hero h1,
@@ -903,23 +909,25 @@ main > div.xwalk-hero-section .xwalk-hero-bg img {
 .hero.xwalk-hero .xwalk-hero-cta,
 .hero.xwalk-hero .xwalk-hero-cta-secondary,
 .hero.xwalk-hero .xwalk-hero-terms,
-main > div.xwalk-hero-section > p,
+main > div.xwalk-hero-section > p:not(:has(picture)),
 main > div.xwalk-hero-section > h1 {
   position: relative;
-  z-index: 1;
-  color: #FFFFFF;
+  z-index: 2;
+  color: #fff !important;
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 55%);
 }
 .hero.xwalk-hero .xwalk-hero-eyebrow,
-main > div.xwalk-hero-section > p:first-of-type {
+main > div.xwalk-hero-section > p:first-of-type:not(:has(picture)) {
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #86EFAC;
+  color: #fff !important;
   margin-bottom: 8px;
+  opacity: 0.95;
 }
 .hero.xwalk-hero h1,
 main > div.xwalk-hero-section > h1 {
@@ -930,9 +938,10 @@ main > div.xwalk-hero-section > h1 {
   font-style: normal;
   font-weight: 900;
   letter-spacing: -0.02em;
+  color: #fff !important;
 }
 .hero.xwalk-hero .xwalk-hero-price {
-  color: #FFFFFF;
+  color: #fff !important;
   display: block;
 }
 .hero.xwalk-hero .xwalk-hero-price-suffix {
@@ -940,17 +949,19 @@ main > div.xwalk-hero-section > h1 {
   font-size: 0.55em;
   font-weight: 700;
   margin-top: 4px;
-  color: #86EFAC;
+  color: #fff !important;
+  opacity: 0.92;
 }
 .hero.xwalk-hero .xwalk-hero-sub,
-main > div.xwalk-hero-section > p:not(:first-of-type):not(:has(a)) {
+main > div.xwalk-hero-section > p:not(:first-of-type):not(:has(a)):not(:has(picture)) {
   font-size: 1.05rem;
   line-height: 1.45;
   margin: 0 auto 20px;
-  color: color-mix(in srgb, #FFFFFF 90%, transparent);
+  color: #fff !important;
+  opacity: 0.95;
 }
 .hero.xwalk-hero .xwalk-hero-cta a,
-main > div.xwalk-hero-section a[href]:not(.xwalk-hero-cta-secondary) {
+main > div.xwalk-hero-section p:has(strong) a {
   display: inline-block;
   background: #1DB954;
   color: #000 !important;
@@ -959,20 +970,20 @@ main > div.xwalk-hero-section a[href]:not(.xwalk-hero-cta-secondary) {
   font-weight: 700;
   text-decoration: none;
   margin: 4px 6px;
+  text-shadow: none;
 }
 .hero.xwalk-hero .xwalk-hero-cta-secondary a,
-main > div.xwalk-hero-section p:has(a) a:not([href*='phones']):not(:only-child) {
-  color: #FFFFFF !important;
+main > div.xwalk-hero-section p:has(a) a:not(:has(strong)) {
+  color: #fff !important;
   text-decoration: underline;
   background: transparent;
   padding: 0;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 45%);
 }
 .hero.xwalk-hero .xwalk-hero-terms {
   margin-top: 16px;
   font-size: 0.85rem;
-}
-main > div.xwalk-hero-section > p:has(picture) {
-  display: none;
+  color: #fff !important;
 }
 
 .columns.xwalk-quick-actions .xwalk-quick-actions-grid {
@@ -1215,14 +1226,22 @@ main > div:has(picture):has(h1):not(:has(h3)) > p:has(picture)::after {
 main > div:has(picture):has(h1):not(:has(h3)) h1,
 main > div:has(picture):has(h1):not(:has(h3)) > p:not(:has(picture)) {
   position: relative;
-  z-index: 1;
-  color: #FFFFFF;
+  z-index: 2;
+  color: #fff !important;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 55%);
 }
 main > div:has(picture):has(h1):not(:has(h3)) h1 {
   font-family: Arial Black;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-style: normal;
   font-weight: 900;
+}
+main > div:has(picture):has(h1):not(:has(h3)) > p:has(picture)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(10 26 15 / 50%) 0%, rgb(10 26 15 / 90%) 100%);
+  z-index: 1;
 }
 main > div:has(h3):has(picture) > div {
   display: grid;

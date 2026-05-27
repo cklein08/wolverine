@@ -406,6 +406,47 @@ main.xwalk-nav .xwalk-logo-img {
   object-fit: contain;
 }
 
+main.xwalk-nav-boost {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr minmax(200px, 320px);
+  gap: 16px 24px;
+  align-items: center;
+  max-width: 1400px;
+  padding: 12px 24px 16px;
+  background: #fff;
+  color: #111;
+  border-bottom: 1px solid #e5e5e5;
+}
+main.xwalk-nav-boost ul {
+  justify-content: center;
+  gap: 28px;
+}
+main.xwalk-nav-boost a {
+  color: #111 !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+main.xwalk-nav-boost .xwalk-nav-utility-top,
+main.xwalk-nav-boost .xwalk-nav-utility-bottom {
+  text-align: right;
+  margin: 0;
+  font-size: 0.85rem;
+}
+main.xwalk-nav-boost .xwalk-nav-utility-bottom {
+  margin-top: 6px;
+  font-weight: 600;
+}
+@media (max-width: 900px) {
+  main.xwalk-nav-boost {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  main.xwalk-nav-boost .xwalk-nav-utility-top,
+  main.xwalk-nav-boost .xwalk-nav-utility-bottom {
+    text-align: center;
+  }
+}
+
 main.xwalk-footer .xwalk-footer-brand img {
   display: block;
   height: 48px;
@@ -436,6 +477,181 @@ main.xwalk-footer > div > div {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
+}
+
+/* Boost-style home — white deal cards on light band */
+main.xwalk-boost-main,
+body:has(main.xwalk-boost-main) main {
+  background: #f3f3f3;
+  color: #111;
+}
+
+.xwalk-shop-online-head {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 32px 24px 8px;
+  text-align: center;
+}
+.xwalk-shop-online-head h2 {
+  font-family: Arial Black;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+  text-transform: none;
+}
+
+.columns.xwalk-boost-deals > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1248px;
+  margin: 0 auto 32px;
+  padding: 0 24px;
+}
+@media (max-width: 1024px) {
+  .columns.xwalk-boost-deals > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .columns.xwalk-boost-deals > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.xwalk-deal-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100%;
+  color: #111;
+}
+.xwalk-deal-badge {
+  background: #1DB954;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 10px 12px;
+  margin: 0;
+  line-height: 1.25;
+}
+.xwalk-deal-media {
+  background: #f7f7f7;
+  padding: 16px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.xwalk-deal-media picture,
+.xwalk-deal-media img {
+  max-height: 200px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.xwalk-deal-kicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 16px 16px 4px;
+  color: #333;
+}
+.xwalk-deal-card h3 {
+  font-family: Arial Black;
+  font-size: 1.65rem;
+  font-weight: 900;
+  margin: 0 16px 8px;
+  color: #111;
+  line-height: 1.15;
+}
+.xwalk-deal-price {
+  margin: 0 16px 8px;
+  font-size: 1rem;
+}
+.xwalk-price-now {
+  color: #1DB954;
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+.xwalk-price-was {
+  color: #666;
+  text-decoration: line-through;
+  font-size: 0.95rem;
+}
+.xwalk-deal-fine {
+  font-size: 0.72rem;
+  color: #666;
+  margin: 0 16px 8px;
+  line-height: 1.35;
+}
+.xwalk-deal-details a {
+  color: #111;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.xwalk-deal-plan {
+  font-size: 0.85rem;
+  color: #444;
+  margin: 12px 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+.xwalk-deal-cta-wrap {
+  margin: auto 16px 20px;
+  padding-top: 8px;
+}
+a.xwalk-deal-cta {
+  display: block;
+  border: 2px solid #111;
+  border-radius: 4px;
+  padding: 14px 16px;
+  color: #111 !important;
+  font-weight: 700;
+  text-decoration: none;
+  background: #fff;
+}
+a.xwalk-deal-cta:hover {
+  background: #f5f5f5;
+}
+
+.xwalk-savings-banner {
+  background: #1DB954;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 28px 24px;
+  margin: 0;
+  text-align: center;
+}
+.xwalk-savings-banner h2 {
+  font-family: Arial Black;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-style: italic;
+  font-weight: 900;
+  margin: 0;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+a.xwalk-savings-cta {
+  display: inline-block;
+  background: #fff;
+  color: #111 !important;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 2px solid #111;
 }
 
 .hero.xwalk-hero {

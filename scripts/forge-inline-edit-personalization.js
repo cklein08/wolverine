@@ -5,6 +5,7 @@
 const PERSONALIZATION_ATTR = 'data-forge-personalization';
 const VARIANT_ATTR = 'data-forge-variant';
 const PREVIEW_SEGMENT_KEY = 'forge_preview_segment';
+const PREVIEW_JOURNEY_KEY = 'forge_preview_journey';
 
 let catalogCache = null;
 let catalogPromise = null;
@@ -139,15 +140,26 @@ export function getPreviewSegmentId() {
   }
 }
 
-export function setPreviewSegmentId(segmentId) {
+export function getPreviewJourneyId() {
   try {
-    if (segmentId) sessionStorage.setItem(PREVIEW_SEGMENT_KEY, segmentId);
-    else sessionStorage.removeItem(PREVIEW_SEGMENT_KEY);
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('forge-preview-journey') || params.get('forge-journey');
+    if (q) return q;
+    return sessionStorage.getItem(PREVIEW_JOURNEY_KEY) || '';
+  } catch {
+    return '';
+  }
+}
+
+export function setPreviewJourneyId(journeyId) {
+  try {
+    if (journeyId) sessionStorage.setItem(PREVIEW_JOURNEY_KEY, journeyId);
+    else sessionStorage.removeItem(PREVIEW_JOURNEY_KEY);
   } catch {
     /* ignore */
   }
   document.querySelectorAll('.forge-edit-block').forEach((el) => {
-    syncVariantVisibility(el, segmentId);
+    syncVariantVisibility(el, getPreviewSegmentId());
   });
 }
 
@@ -160,8 +172,30 @@ export function syncVariantVisibility(blockEl, previewSegmentId) {
     return;
   }
 
-  const shells = [...blockEl.querySelectorAll(`:scope > [${VARIANT_ATTR}]`)];
+  const shells = [...blockEl.querySelectorAll(`:scope > div > [${VARIANT_ATTR}], :scope > [${VARIANT_ATTR}]`)];
   if (!shells.length) return;
+
+  const previewJourneyId = getPreviewJourneyId();
+  const journeyMode = config.variantMode === 'journey' || config.offerPlacement?.includes('persona-plan');
+
+  if (journeyMode && previewJourneyId) {
+    let matched = false;
+    for (const shell of shells) {
+      const jrn = shell.dataset.forgeVariantJourney || '';
+      const show = jrn === previewJourneyId || shell.getAttribute(VARIANT_ATTR) === `jrn-${previewJourneyId}`;
+      if (show) {
+        shell.removeAttribute('hidden');
+        matched = true;
+      } else {
+        shell.setAttribute('hidden', '');
+      }
+    }
+    if (!matched) {
+      const def = shells.find((s) => s.getAttribute(VARIANT_ATTR)?.startsWith('jrn-'));
+      def?.removeAttribute('hidden');
+    }
+    return;
+  }
 
   let matched = false;
   for (const shell of shells) {
@@ -270,6 +304,16 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
       )
       .join('');
 
+  const journeyMode = config.variantMode === 'journey' || config.offerPlacement?.includes('persona-plan');
+  const planJourneyOptions =
+    (config.variants || [])
+      .filter((v) => v.journeyId)
+      .map(
+        (v) =>
+          `<option value="${escapeAttr(v.journeyId)}" ${config.journeyId === v.journeyId || getPreviewJourneyId() === v.journeyId ? 'selected' : ''}>${escapeHtml(v.label || v.journeyName || v.journeyId)}</option>`,
+      )
+      .join('') || jrnOptions;
+
   dialog.innerHTML = `
     <header>Personalization · RT CDP & AJO</header>
     <div class="dialog-body forge-personalization-body">
@@ -277,6 +321,16 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
         Target this block to a <strong>Real-Time CDP</strong> audience and link an <strong>AJO</strong> campaign or journey.
         Saved metadata is stored on the block in Document Authoring for Edge Decisioning at runtime.
       </p>
+      ${
+        journeyMode
+          ? `<div class="forge-personalization-plan-journey">
+        <label>Plan type · switch AJO journey
+          <select id="forgePersPlanJourney">${planJourneyOptions}</select>
+        </label>
+        <p class="forge-personalization-note">Changing the journey swaps the plan offer shown on this page (authoring preview).</p>
+      </div>`
+          : ''
+      }
       <label class="forge-personalization-check">
         <input type="checkbox" id="forgePersEnabled" ${config.enabled ? 'checked' : ''} />
         Enable personalization for this block
@@ -325,6 +379,26 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
   };
   renderVariantsList();
 
+  dialog.querySelector('#forgePersPlanJourney')?.addEventListener('change', () => {
+    const jrnId = dialog.querySelector('#forgePersPlanJourney')?.value || '';
+    if (!jrnId) return;
+    const cfg = readBlockPersonalization(blockEl);
+    cfg.journeyId = jrnId;
+    const match = (cfg.variants || []).find((v) => v.journeyId === jrnId);
+    if (match) {
+      cfg.journeyName = match.journeyName || match.label || '';
+    } else {
+      const j = journeys.find((x) => x.id === jrnId);
+      cfg.journeyName = j?.name || '';
+    }
+    writeBlockPersonalization(blockEl, cfg);
+    setPreviewJourneyId(jrnId);
+    const u = new URL(window.location.href);
+    u.searchParams.set('forge-preview-journey', jrnId);
+    window.history.replaceState({}, '', u.toString());
+    onDirty?.();
+  });
+
   dialog.querySelector('#forgePersAddVariant')?.addEventListener('click', () => {
     const audSel = dialog.querySelector('#forgePersAudience');
     const audId = audSel?.value || '';
@@ -356,8 +430,14 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
     const audienceName = dialog.querySelector('#forgePersAudience')?.selectedOptions?.[0]?.textContent || '';
     const campaignId = dialog.querySelector('#forgePersCampaign')?.value || '';
     const campaignName = dialog.querySelector('#forgePersCampaign')?.selectedOptions?.[0]?.textContent || '';
-    const journeyId = dialog.querySelector('#forgePersJourney')?.value || '';
-    const journeyName = dialog.querySelector('#forgePersJourney')?.selectedOptions?.[0]?.textContent || '';
+    const journeyId =
+      dialog.querySelector('#forgePersPlanJourney')?.value ||
+      dialog.querySelector('#forgePersJourney')?.value ||
+      '';
+    const journeyName =
+      dialog.querySelector('#forgePersPlanJourney')?.selectedOptions?.[0]?.textContent ||
+      dialog.querySelector('#forgePersJourney')?.selectedOptions?.[0]?.textContent ||
+      '';
     const offerPlacement = dialog.querySelector('#forgePersPlacement')?.value?.trim() || '';
 
     const next = readBlockPersonalization(blockEl);
@@ -367,8 +447,10 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
     next.campaignId = campaignId;
     next.campaignName = campaignName !== '— None —' ? campaignName : '';
     next.journeyId = journeyId;
-    next.journeyName = journeyName !== '— None —' ? journeyName : '';
+    next.journeyName = journeyName && journeyName !== '— None —' ? journeyName : '';
     next.offerPlacement = offerPlacement;
+
+    if (journeyId) setPreviewJourneyId(journeyId);
 
     writeBlockPersonalization(blockEl, next);
     onDirty?.();
@@ -377,6 +459,46 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
 
   backdrop.append(dialog);
   document.body.append(backdrop);
+}
+
+export function mountPreviewJourneyControl(bannerEl) {
+  if (!bannerEl || bannerEl.querySelector('.forge-edit-journey-preview')) return;
+
+  const wrap = document.createElement('label');
+  wrap.className = 'forge-edit-journey-preview';
+  wrap.title = 'Switch AJO journey / plan type on persona plan blocks (authoring only)';
+  wrap.innerHTML = `<span>Journey</span><select class="forge-edit-journey-select"><option value="">Plan: default</option></select>`;
+  const sel = wrap.querySelector('select');
+  const current = getPreviewJourneyId();
+  if (current) sel.value = current;
+
+  sel.addEventListener('change', () => {
+    setPreviewJourneyId(sel.value);
+    const u = new URL(window.location.href);
+    if (sel.value) u.searchParams.set('forge-preview-journey', sel.value);
+    else u.searchParams.delete('forge-preview-journey');
+    window.history.replaceState({}, '', u.toString());
+  });
+
+  const segWrap = bannerEl.querySelector('.forge-edit-segment-preview');
+  if (segWrap?.nextSibling) bannerEl.insertBefore(wrap, segWrap.nextSibling);
+  else if (segWrap) bannerEl.insertBefore(wrap, segWrap.nextSibling);
+  else {
+    const saveBtn = bannerEl.querySelector('.forge-edit-banner__save');
+    if (saveBtn) bannerEl.insertBefore(wrap, saveBtn);
+    else bannerEl.append(wrap);
+  }
+
+  loadCatalog(resolveForgeApiBase()).then((cat) => {
+    const jrns = cat.journeys || [];
+    sel.innerHTML =
+      `<option value="">Plan: default</option>` +
+      jrns
+        .filter((j) => j.personaId || String(j.id).includes('family') || String(j.id).includes('nyc') || String(j.id).includes('college') || String(j.id).includes('student'))
+        .map((j) => `<option value="${escapeAttr(j.id)}">${escapeHtml(j.name)}</option>`)
+        .join('');
+    if (current) sel.value = current;
+  });
 }
 
 export function mountPreviewSegmentControl(bannerEl, segments = []) {

@@ -7,15 +7,17 @@ import { insertBlockOnDaPageClient } from './forge-inline-edit-da.js';
 import { instrumentEditableFields } from './forge-inline-edit-fields.js';
 import {
   initPersonalizationOnBlock,
+  mountPreviewJourneyControl,
   mountPreviewSegmentControl,
   openPersonalizationPanel,
   setClassifyBlockMeta,
+  syncVariantVisibility,
   updatePersonalizationBadge,
 } from './forge-inline-edit-personalization.js';
 import { savePageToDaClient } from './forge-inline-edit-save.js';
 
 /** Bump when deploying; cache-busts HLX/CDN for Chrome. */
-export const FORGE_INLINE_EDIT_BUILD = 5;
+export const FORGE_INLINE_EDIT_BUILD = 6;
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -35,6 +37,7 @@ const BLOCK_REGISTRY = {
   'product-detail': { label: 'Product detail', category: 'commerce' },
   minicart: { label: 'Mini cart', category: 'commerce' },
   checkout: { label: 'Checkout', category: 'commerce' },
+  'forge-persona-plan': { label: 'Persona plan offer', category: 'commerce' },
 };
 
 const PICKER_GROUPS = [
@@ -205,6 +208,7 @@ function showBanner() {
   bar.querySelector('.forge-edit-banner__save')?.addEventListener('click', () => savePage());
   setClassifyBlockMeta(classifyBlock);
   mountPreviewSegmentControl(bar);
+  mountPreviewJourneyControl(bar);
 }
 
 function decorateBlock(el, meta) {
@@ -218,6 +222,9 @@ function decorateBlock(el, meta) {
   badge.textContent = `${meta.label} (${meta.category})`;
   el.append(badge);
   instrumentEditableFields(el, { onDirty: setPageDirty });
+  if (el.hasAttribute('data-forge-personalization')) {
+    initPersonalizationOnBlock(el, meta, { onDirty: setPageDirty, classify: classifyBlock });
+  }
 }
 
 function findBlocks(root) {

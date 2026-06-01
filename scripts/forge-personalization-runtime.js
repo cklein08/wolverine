@@ -1,12 +1,10 @@
 /**
  * Runtime segment visibility for saved personalization metadata (no edit chrome).
- * Loads on *.aem.page when blocks include data-forge-personalization.
- *
- * Preview: ?forge-preview-segment=seg-device-upgrade
- * Production: integrate with AJO Edge Decisioning / Web SDK identity (see docs/PERSONALIZATION-FLOWS.md).
+ * Preview: ?forge-preview-segment=seg-family-texas
  */
 (function () {
   const VARIANT_ATTR = 'data-forge-variant';
+  const PERSONALIZATION_ATTR = 'data-forge-personalization';
 
   function segmentFromContext() {
     const params = new URLSearchParams(window.location.search);
@@ -18,8 +16,23 @@
     );
   }
 
-  function syncBlock(blockEl, segmentId) {
-    const raw = blockEl.getAttribute('data-forge-personalization');
+  function journeyFromContext() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('forge-preview-journey') || params.get('forge-journey') || '';
+  }
+
+  function variantShells(blockEl) {
+    const direct = [...blockEl.querySelectorAll(`:scope > [${VARIANT_ATTR}]`)];
+    if (direct.length) return direct;
+    const wrap = blockEl.querySelector(':scope > div');
+    if (wrap) return [...wrap.querySelectorAll(`:scope > [${VARIANT_ATTR}]`)];
+    return [...blockEl.querySelectorAll(`[${VARIANT_ATTR}]`)].filter(
+      (el) => !el.parentElement?.closest?.(`[${VARIANT_ATTR}]`) || el.parentElement?.getAttribute(VARIANT_ATTR),
+    );
+  }
+
+  function syncBlock(blockEl, segmentId, journeyId) {
+    const raw = blockEl.getAttribute(PERSONALIZATION_ATTR);
     if (!raw) return;
     let config;
     try {
@@ -29,33 +42,86 @@
     }
     if (!config.enabled) return;
 
-    const shells = [...blockEl.querySelectorAll(`:scope > [${VARIANT_ATTR}]`)];
+    const shells = variantShells(blockEl);
     if (!shells.length) return;
 
+    const offerMode = config.variantMode === 'offer' || /^family-line-\d/.test(config.offerPlacement || '');
+    const journeyMode =
+      config.variantMode === 'journey' ||
+      ((config.offerPlacement || '').includes('persona-plan') && !offerMode);
+
+    if (offerMode) {
+      if (!segmentId || segmentId === 'seg-all-visitors') {
+        shells.forEach((shell) => {
+          if (shell.getAttribute(VARIANT_ATTR) === 'default') shell.removeAttribute('hidden');
+          else shell.setAttribute('hidden', '');
+        });
+        return;
+      }
+      let matched = false;
+      shells.forEach((shell) => {
+        const aud = shell.dataset.forgeVariantAudience || '';
+        const show = aud === segmentId || shell.getAttribute(VARIANT_ATTR) === `var-${segmentId}`;
+        if (show) {
+          shell.removeAttribute('hidden');
+          matched = true;
+        } else {
+          shell.setAttribute('hidden', '');
+        }
+      });
+      if (!matched) shells.find((s) => s.getAttribute(VARIANT_ATTR) === 'default')?.removeAttribute('hidden');
+      return;
+    }
+
+    if (journeyMode) {
+      if (!journeyId) {
+        shells.forEach((shell, i) => {
+          if (i === 0) shell.removeAttribute('hidden');
+          else shell.setAttribute('hidden', '');
+        });
+        return;
+      }
+      let matched = false;
+      shells.forEach((shell) => {
+        const jrn = shell.dataset.forgeVariantJourney || '';
+        const show = jrn === journeyId || shell.getAttribute(VARIANT_ATTR) === `jrn-${journeyId}`;
+        if (show) {
+          shell.removeAttribute('hidden');
+          matched = true;
+        } else {
+          shell.setAttribute('hidden', '');
+        }
+      });
+      if (!matched) shells[0]?.removeAttribute('hidden');
+      return;
+    }
+
     let matched = false;
-    for (const shell of shells) {
+    shells.forEach((shell) => {
       const aud = shell.dataset.forgeVariantAudience || '';
       const isDefault = shell.getAttribute(VARIANT_ATTR) === 'default' || !aud;
       const show =
         !segmentId || segmentId === 'seg-all-visitors'
           ? isDefault
-          : aud === segmentId || shell.getAttribute(VARIANT_ATTR) === segmentId;
+          : aud === segmentId ||
+            shell.getAttribute(VARIANT_ATTR) === segmentId ||
+            shell.getAttribute(VARIANT_ATTR) === `var-${segmentId}`;
       if (show) {
         shell.removeAttribute('hidden');
         matched = true;
       } else {
         shell.setAttribute('hidden', '');
       }
-    }
+    });
     if (!matched && segmentId) {
-      const def = shells.find((s) => s.getAttribute(VARIANT_ATTR) === 'default');
-      def?.removeAttribute('hidden');
+      shells.find((s) => s.getAttribute(VARIANT_ATTR) === 'default')?.removeAttribute('hidden');
     }
   }
 
   function run() {
     const segmentId = segmentFromContext();
-    document.querySelectorAll('[data-forge-personalization]').forEach((el) => syncBlock(el, segmentId));
+    const journeyId = journeyFromContext();
+    document.querySelectorAll(`[${PERSONALIZATION_ATTR}]`).forEach((el) => syncBlock(el, segmentId, journeyId));
   }
 
   if (document.readyState === 'loading') {
@@ -65,4 +131,5 @@
   }
 
   window.addEventListener('forge:preview-segment', run);
+  window.addEventListener('popstate', run);
 })();

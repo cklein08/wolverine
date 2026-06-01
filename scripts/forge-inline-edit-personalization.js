@@ -158,8 +158,26 @@ export function setPreviewJourneyId(journeyId) {
   } catch {
     /* ignore */
   }
+  syncAllPersonalizedBlocks();
+}
+
+export function setPreviewSegmentId(segmentId) {
+  try {
+    if (segmentId) sessionStorage.setItem(PREVIEW_SEGMENT_KEY, segmentId);
+    else sessionStorage.removeItem(PREVIEW_SEGMENT_KEY);
+  } catch {
+    /* ignore */
+  }
+  syncAllPersonalizedBlocks();
+}
+
+function syncAllPersonalizedBlocks() {
+  const seg = getPreviewSegmentId();
   document.querySelectorAll('.forge-edit-block').forEach((el) => {
-    syncVariantVisibility(el, getPreviewSegmentId());
+    syncVariantVisibility(el, seg);
+  });
+  document.querySelectorAll('.forge-plan-offer[data-forge-personalization]').forEach((el) => {
+    if (!el.classList.contains('forge-edit-block')) syncVariantVisibility(el, seg);
   });
 }
 
@@ -172,11 +190,48 @@ export function syncVariantVisibility(blockEl, previewSegmentId) {
     return;
   }
 
-  const shells = [...blockEl.querySelectorAll(`:scope > div > [${VARIANT_ATTR}], :scope > [${VARIANT_ATTR}]`)];
+  const shells = [
+    ...blockEl.querySelectorAll(`:scope > div > [${VARIANT_ATTR}], :scope > [${VARIANT_ATTR}]`),
+  ];
   if (!shells.length) return;
 
   const previewJourneyId = getPreviewJourneyId();
-  const journeyMode = config.variantMode === 'journey' || config.offerPlacement?.includes('persona-plan');
+  const offerMode = config.variantMode === 'offer' || /^family-line-\d/.test(config.offerPlacement || '');
+  const journeyMode =
+    config.variantMode === 'journey' ||
+    (config.offerPlacement?.includes('persona-plan') && !offerMode);
+
+  if (offerMode) {
+    if (!previewSegmentId || previewSegmentId === 'seg-all-visitors') {
+      for (const shell of shells) {
+        const isDefault = shell.getAttribute(VARIANT_ATTR) === 'default';
+        if (isDefault) shell.removeAttribute('hidden');
+        else shell.setAttribute('hidden', '');
+      }
+      return;
+    }
+  }
+
+  if (offerMode && previewSegmentId) {
+    let matched = false;
+    for (const shell of shells) {
+      const aud = shell.dataset.forgeVariantAudience || '';
+      const isDefault = shell.getAttribute(VARIANT_ATTR) === 'default' || !aud;
+      const show = aud === previewSegmentId || shell.getAttribute(VARIANT_ATTR) === `var-${previewSegmentId}`;
+      if (show) {
+        shell.removeAttribute('hidden');
+        matched = true;
+      } else if (!isDefault) {
+        shell.setAttribute('hidden', '');
+      } else {
+        shell.setAttribute('hidden', '');
+      }
+    }
+    if (!matched) {
+      shells.find((s) => s.getAttribute(VARIANT_ATTR) === 'default')?.removeAttribute('hidden');
+    }
+    return;
+  }
 
   if (journeyMode && previewJourneyId) {
     let matched = false;
@@ -318,8 +373,11 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
     <header>Personalization · RT CDP & AJO</header>
     <div class="dialog-body forge-personalization-body">
       <p class="forge-personalization-intro">
-        Target this block to a <strong>Real-Time CDP</strong> audience and link an <strong>AJO</strong> campaign or journey.
-        Saved metadata is stored on the block in Document Authoring for Edge Decisioning at runtime.
+        ${
+          config.variantMode === 'offer' || config.offerPlacement?.startsWith('family-line-')
+            ? 'Map this <strong>plan line offer pill</strong> to RT CDP segments and AJO campaigns. Pick an audience below to preview alternate offer copy, or add variants for additional segments.'
+            : 'Target this block to a <strong>Real-Time CDP</strong> audience and link an <strong>AJO</strong> campaign or journey. Saved metadata is stored on the block in Document Authoring for Edge Decisioning at runtime.'
+        }
       </p>
       ${
         journeyMode

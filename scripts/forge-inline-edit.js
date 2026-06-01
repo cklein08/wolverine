@@ -17,7 +17,7 @@ import {
 import { savePageToDaClient } from './forge-inline-edit-save.js';
 
 /** Bump when deploying; cache-busts HLX/CDN for Chrome. */
-export const FORGE_INLINE_EDIT_BUILD = 6;
+export const FORGE_INLINE_EDIT_BUILD = 9;
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -38,6 +38,7 @@ const BLOCK_REGISTRY = {
   minicart: { label: 'Mini cart', category: 'commerce' },
   checkout: { label: 'Checkout', category: 'commerce' },
   'forge-persona-plan': { label: 'Persona plan offer', category: 'commerce' },
+  'forge-plan-offer': { label: 'Plan line offer (AJO)', category: 'commerce' },
 };
 
 const PICKER_GROUPS = [
@@ -488,6 +489,10 @@ function showContextMenu(x, y, blockEl, meta) {
 }
 
 function onContextMenu(e) {
+  const offer = e.target.closest('.forge-plan-offer[data-forge-personalization]');
+  if (offer && !offer.classList.contains('forge-edit-block')) {
+    decorateBlock(offer, { id: 'forge-plan-offer', label: 'Plan line offer (AJO)', category: 'commerce' });
+  }
   const block = e.target.closest('.forge-edit-block');
   if (!block) return;
   e.preventDefault();
@@ -505,6 +510,11 @@ function scanAndDecorate() {
   mainDecorateObserver?.disconnect();
   try {
     findBlocks(main).forEach((el) => decorateBlock(el, classifyBlock(el)));
+    main.querySelectorAll('.forge-plan-offer[data-forge-personalization]').forEach((el) => {
+      if (!el.dataset.forgeEditDecorated) {
+        decorateBlock(el, { id: 'forge-plan-offer', label: 'Plan line offer (AJO)', category: 'commerce' });
+      }
+    });
     insertDropZones(main);
   } finally {
     scanInProgress = false;

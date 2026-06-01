@@ -29,6 +29,35 @@ main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(h3)) a{color:#fff!impor
 @media (max-width:1100px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
 </style>
+<style id="forge-persona-critical">
+[data-forge-variant][hidden]{display:none!important}
+main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
+.xwalk-persona-experience-stack{display:block;width:100%}
+.xwalk-persona-hero-band{position:relative;background:#0A1A0F;color:#fff;padding:48px 32px;text-align:center;overflow:hidden;min-height:200px;display:flex;align-items:center;justify-content:center}
+.xwalk-persona-hero-band .xwalk-hero-bg{position:absolute;inset:0;z-index:0}
+.xwalk-persona-hero-band .xwalk-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.xwalk-persona-hero-band .xwalk-persona-hero-copy{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.xwalk-persona-hero-band h1{font-family:Arial Black;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;color:#fff;margin:0;line-height:1.1}
+.xwalk-persona-white-band{background:#fff;color:#1a1a1a;padding:28px 32px 40px}
+.xwalk-persona-white-band .xwalk-persona-quote-text{font-size:1.1rem;color:#0E7A3A;font-style:italic;margin:0 0 24px;max-width:900px}
+.xwalk-persona-plan-row{display:grid;grid-template-columns:1fr minmax(160px,200px);gap:20px;max-width:1100px;align-items:stretch}
+.xwalk-persona-white-band h2{font-family:Arial Black;color:#0E7A3A;font-size:1.5rem;margin:0 0 16px}
+.xwalk-plan-lines{margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.xwalk-plan-line{display:grid;grid-template-columns:72px 96px 1fr;gap:10px;align-items:center}
+.xwalk-plan-line-label{font-weight:700;color:#333}
+.xwalk-plan-line-price{font-weight:800;color:#0E7A3A}
+.xwalk-plan-discount{display:block;font-size:.72rem;font-style:normal;color:#1DB954}
+.xwalk-plan-line-pill,.forge-plan-offer .xwalk-plan-line-pill{margin:0}
+.xwalk-plan-line-pill--dark,.xwalk-plan-pill.xwalk-plan-line-pill--dark{background:#1a1a1a!important;color:#fff!important;border-radius:6px;padding:10px 14px;font-size:.78rem;line-height:1.35;display:block}
+.xwalk-plan-line-pill--accent{background:color-mix(in srgb,#1DB954 35%,#fff);color:#0E7A3A;border:1px solid color-mix(in srgb,#1DB954 50%,transparent);border-radius:6px;padding:10px 14px;font-size:.78rem;display:block;margin:0}
+.xwalk-persona-plan-col .xwalk-plan-shop{display:none!important}
+.xwalk-persona-cta-card{background:#1DB954;border-radius:12px;min-height:200px;display:flex}
+.xwalk-persona-cta-card a{display:flex;align-items:center;justify-content:center;width:100%;color:#0a1a0f!important;font-weight:800;font-size:1.2rem;text-decoration:none}
+.xwalk-persona-below-copy{margin-top:28px;padding-top:20px;border-top:1px solid #e5e5e5;max-width:900px}
+.xwalk-persona-below-copy p{font-size:.85rem;color:#666;margin:0;line-height:1.5}
+.xwalk-persona-plan--single .xwalk-plan-pill,.xwalk-persona-plan--student .xwalk-plan-pill{background:#1a1a1a;color:#fff;border-radius:6px;padding:10px 14px;display:inline-block;margin-bottom:16px}
+@media(max-width:768px){.xwalk-persona-plan-row{grid-template-columns:1fr}.xwalk-plan-line{grid-template-columns:1fr;gap:4px}}
+</style>
 <link rel="stylesheet" href="/styles/styles.css"/>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
-<link rel="stylesheet" href="/styles/forge-inline-edit.css?v=5"/>
+<link rel="stylesheet" href="/styles/forge-inline-edit.css?v=9"/>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wolverine Mobile — Download app</title>
+    <style>
+      :root {
+        --bg: #0a1a0f;
+        --surface: #122818;
+        --primary: #1db954;
+        --text: #f5fff7;
+        --muted: #9fb8a8;
+        --border: #1e3d2a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+      h1 {
+        font-size: 1.75rem;
+        margin: 0 0 0.25rem;
+        color: var(--primary);
+      }
+      .tagline {
+        color: var(--muted);
+        margin: 0 0 2rem;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .card h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 0.15rem 0.45rem;
+        border-radius: 4px;
+        background: var(--border);
+        color: var(--muted);
+      }
+      .badge.ready {
+        background: #0e3d22;
+        color: var(--primary);
+      }
+      a.btn {
+        display: inline-block;
+        margin-top: 0.5rem;
+        padding: 0.65rem 1.25rem;
+        background: var(--primary);
+        color: #041008;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 8px;
+      }
+      a.btn:disabled,
+      a.btn.disabled {
+        pointer-events: none;
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      a.btn.secondary {
+        background: transparent;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+      ol {
+        margin: 0.5rem 0 0;
+        padding-left: 1.25rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .qr {
+        margin-top: 1rem;
+        text-align: center;
+      }
+      .qr img {
+        background: #fff;
+        padding: 8px;
+        border-radius: 8px;
+        max-width: 160px;
+      }
+      .qr small {
+        display: block;
+        color: var(--muted);
+        margin-top: 0.35rem;
+      }
+      .meta {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+      .error {
+        color: #f87171;
+      }
+      footer {
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Wolverine Mobile</h1>
+      <p class="tagline">Prototype app — Connect. Evolve. Thrive.</p>
+      <p id="status" class="meta">Loading release info…</p>
+
+      <section class="card" id="pwa-card">
+        <h2>
+          Install now (iPhone &amp; Android)
+          <span class="badge ready">ready</span>
+        </h2>
+        <p>Works immediately — no App Store or APK build required. Full tester flow + persona journeys.</p>
+        <a class="btn" id="pwa-open" href="/mobile-app/">Open Wolverine Mobile app</a>
+        <div class="qr" id="pwa-qr-wrap">
+          <img id="pwa-qr" alt="QR code to open mobile app" width="160" height="160" />
+          <small>Scan on your phone (same Wi‑Fi or deploy FORGE publicly)</small>
+        </div>
+      </section>
+
+      <section class="card" id="android-card">
+        <h2>
+          Android
+          <span class="badge" id="android-badge">checking…</span>
+        </h2>
+        <p>Install the prototype APK on your Android phone or tablet.</p>
+        <a class="btn disabled" id="android-download" href="#">Download APK</a>
+        <ol id="android-steps"></ol>
+        <div class="qr" id="android-qr-wrap" hidden>
+          <img id="android-qr" alt="QR code for Android APK download" width="160" height="160" />
+          <small>Scan to download on Android</small>
+        </div>
+      </section>
+
+      <section class="card" id="ios-card">
+        <h2>
+          iPhone / iPad
+          <span class="badge" id="ios-badge">checking…</span>
+        </h2>
+        <p id="ios-intro">Install via TestFlight or the ad-hoc link provided by your Adobe contact.</p>
+        <a class="btn disabled" id="ios-testflight" href="#" target="_blank" rel="noopener">Open TestFlight</a>
+        <a class="btn secondary disabled" id="ios-ipa" href="#" hidden>Download IPA (ad-hoc)</a>
+        <ol id="ios-steps"></ol>
+      </section>
+
+      <section class="card">
+        <h2>No app yet? <span class="badge">fallback</span></h2>
+        <p>Add the mobile website to your home screen (Safari on iPhone).</p>
+        <a class="btn secondary" id="web-link" href="https://main--wolverine--cklein08.aem.page/">Open mobile web</a>
+      </section>
+
+      <footer>
+        Version <span id="version">—</span> ·
+        <a href="/help/mobile-app.html" style="color: var(--primary)">Tester install guide</a> ·
+        <a href="/api/mobile-app/releases" style="color: var(--primary)">releases API</a>
+      </footer>
+    </div>
+    <script>
+      const qrApi = (url) =>
+        `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}`;
+
+      function setSteps(el, steps) {
+        el.innerHTML = '';
+        (steps || []).forEach((text) => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          el.appendChild(li);
+        });
+      }
+
+      async function init() {
+        const status = document.getElementById('status');
+        try {
+          const res = await fetch('/api/mobile-app/releases');
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || res.statusText);
+
+          document.getElementById('version').textContent = `${data.version} (build ${data.build})`;
+          document.getElementById('web-link').href = data.siteUrl;
+          status.textContent = `Experience URL: ${data.siteUrl}`;
+          const pwaUrl = data.installableAppUrl || `${location.origin}/mobile-app/`;
+          document.getElementById('pwa-open').href = pwaUrl;
+          document.getElementById('pwa-qr').src = qrApi(pwaUrl);
+
+          const androidBtn = document.getElementById('android-download');
+          const androidBadge = document.getElementById('android-badge');
+          if (data.android?.available && data.android.downloadUrl) {
+            androidBadge.textContent = 'ready';
+            androidBadge.classList.add('ready');
+            androidBtn.href = data.android.downloadUrl;
+            androidBtn.classList.remove('disabled');
+            androidBtn.textContent = 'Download APK';
+            const qrWrap = document.getElementById('android-qr-wrap');
+            qrWrap.hidden = false;
+            document.getElementById('android-qr').src = qrApi(data.android.downloadUrl);
+          } else {
+            androidBadge.textContent = 'build required';
+            androidBtn.textContent = 'APK not published yet';
+          }
+          setSteps(document.getElementById('android-steps'), data.android?.installSteps);
+
+          const iosBadge = document.getElementById('ios-badge');
+          const tfBtn = document.getElementById('ios-testflight');
+          if (data.ios?.testFlightAvailable && data.ios.testFlightUrl) {
+            iosBadge.textContent = 'TestFlight';
+            iosBadge.classList.add('ready');
+            tfBtn.href = data.ios.testFlightUrl;
+            tfBtn.classList.remove('disabled');
+          } else if (data.ios?.ipaAvailable && data.ios.ipaDownloadUrl) {
+            iosBadge.textContent = 'ad-hoc IPA';
+            iosBadge.classList.add('ready');
+            tfBtn.classList.add('disabled');
+            tfBtn.textContent = 'Use IPA link below';
+            const ipa = document.getElementById('ios-ipa');
+            ipa.hidden = false;
+            ipa.href = data.ios.ipaDownloadUrl;
+            ipa.classList.remove('disabled');
+          } else {
+            iosBadge.textContent = 'pending';
+            tfBtn.textContent = 'TestFlight link coming soon';
+            document.getElementById('ios-intro').textContent = data.ios?.note || '';
+          }
+          setSteps(document.getElementById('ios-steps'), data.ios?.installSteps);
+        } catch (e) {
+          status.innerHTML = `<span class="error">Could not load releases: ${e.message}</span>`;
+        }
+      }
+      init();
+    </script>
+  </body>
+</html>

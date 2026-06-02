@@ -1,0 +1,34 @@
+{
+  "channel": "sms",
+  "personaId": "family-texas",
+  "personaLabel": "Texas Family",
+  "sender": "Wolverine Mobile",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.369Z",
+  "messages": [
+    {
+      "id": "sms-1",
+      "label": "After email sequence",
+      "body": "Your family plan offer is waiting — see devices picked for each line. wvmobile.co/family-texas?p=family-t",
+      "shortLink": "wvmobile.co/family-texas?p=family-t",
+      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=seg-family-texas",
+      "delayAfterPrevSeconds": 0,
+      "condition": "after_emails",
+      "charCount": 105,
+      "segments": 1,
+      "gsm7": false
+    },
+    {
+      "id": "sms-2",
+      "label": "Final nudge (60s)",
+      "body": "Last chance: Family plan $80/mo for 4 lines. Apple iPhone 16e from From $29/mo. wvmobile.co/family-texas?p=family-t",
+      "shortLink": "wvmobile.co/family-texas?p=family-t",
+      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=seg-family-texas",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response",
+      "charCount": 115,
+      "segments": 1,
+      "gsm7": true
+    }
+  ]
+}

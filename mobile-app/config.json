@@ -1,0 +1,33 @@
+{
+  "siteUrl": "https://main--wolverine--cklein08.aem.page",
+  "personas": [
+    {
+      "id": "family-texas",
+      "label": "Texas Family",
+      "goal": "loyalty",
+      "segmentId": "seg-family-texas",
+      "landingPath": "/family-texas",
+      "headline": "Keep your family connected",
+      "tagline": "Texas families stay connected with the right smartphone for adults and teenagers alike"
+    },
+    {
+      "id": "single-woman-nyc",
+      "label": "Single Young Woman, NYC",
+      "goal": "acquisition",
+      "segmentId": "seg-single-woman-nyc",
+      "landingPath": "/single-woman-nyc",
+      "headline": "You run this city",
+      "tagline": "Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city."
+    },
+    {
+      "id": "college-student",
+      "label": "College Student",
+      "goal": "acquisition",
+      "segmentId": "seg-college-student",
+      "landingPath": "/college-student",
+      "headline": "Wireless that fits your semester",
+      "tagline": "Affordable data and a phone that keeps up with campus life — without breaking the budget."
+    }
+  ],
+  "appName": "Wolverine"
+}

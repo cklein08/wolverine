@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "personaId": "college-student",
+  "personaLabel": "College Student",
+  "campaignGoal": "acquisition",
+  "segmentId": "seg-college-student",
+  "landingUrl": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+  "steps": [
+    {
+      "id": "email-1",
+      "channel": "email",
+      "label": "Student offer email",
+      "delayAfterStartSeconds": 0,
+      "subject": "Student wireless — plans from $25/mo",
+      "preheader": "Affordable data and a phone that keeps up with campus life — without breaking the budget.",
+      "headline": "Wireless that fits your semester",
+      "previewPath": "/social/messages/college-student/email.html",
+      "ctaUrl": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "ctaLabel": "See your personalized offer →"
+    },
+    {
+      "id": "web-landing",
+      "channel": "web",
+      "label": "Personalized landing (after email click)",
+      "delayAfterPrevSeconds": 0,
+      "condition": "cta_click",
+      "url": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student"
+    },
+    {
+      "id": "sms-1",
+      "channel": "sms",
+      "label": "No conversion (60s)",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_conversion",
+      "sender": "Wolverine Mobile",
+      "body": "Your student plan quote is ready — tap to see Moto G Play pricing. wvmobile.co/college-student?p=college-",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "shortLink": "wvmobile.co/college-student?p=college-"
+    },
+    {
+      "id": "sms-2",
+      "channel": "sms",
+      "label": "Urgency follow-up (60s)",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response",
+      "sender": "Wolverine Mobile",
+      "body": "Student Essential +$5/mo + Moto G Play From $9.99. wvmobile.co/college-student?p=college-",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "shortLink": "wvmobile.co/college-student?p=college-"
+    },
+    {
+      "id": "push-1",
+      "channel": "push",
+      "label": "After SMS sequence",
+      "delayAfterPrevSeconds": 30,
+      "condition": "after_sms",
+      "title": "Wolverine Mobile",
+      "body": "Still thinking? Moto G Play at From $9.99 — tap to claim.",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "icon": "/mobile-app/icons/icon-192.png"
+    },
+    {
+      "id": "push-2",
+      "channel": "push",
+      "label": "Urgency nudge",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response",
+      "title": "Wolverine Mobile offer",
+      "body": "Last chance: +$5/mo with nationwide 5G. Open now.",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "icon": "/mobile-app/icons/icon-192.png"
+    },
+    {
+      "id": "web-landing-final",
+      "channel": "web",
+      "label": "Personalized landing page",
+      "url": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student"
+    }
+  ]
+}

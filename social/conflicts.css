@@ -1,0 +1,109 @@
+.subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.conflicts-layout {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.loading {
+  color: var(--muted);
+}
+
+.conflict-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .conflict-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.campaign-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+
+.campaign-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.campaign-card .status {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--primary) 25%, transparent);
+  color: var(--ok);
+  margin-bottom: 0.5rem;
+}
+
+.campaign-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.overlap-panel {
+  grid-column: 1 / -1;
+  background: var(--surface2);
+  border: 1px solid var(--warn);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+
+.overlap-panel strong {
+  color: var(--warn);
+  font-size: 1.1rem;
+}
+
+.overlap-panel .muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.resolution-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.resolution-list button {
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.resolution-list button:hover {
+  border-color: var(--primary);
+  color: var(--ok);
+}
+
+.conflict-toast {
+  margin-top: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primary) 18%, var(--surface));
+  color: var(--ok);
+  font-size: 0.9rem;
+}
+
+.conflict-toast[hidden] {
+  display: none;
+}

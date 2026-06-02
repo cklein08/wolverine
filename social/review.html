@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wolverine — Campaign review</title>
+  <link rel="stylesheet" href="/social/review.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FORGE · Social · Phase 5</p>
+      <h1>Campaign review</h1>
+    </div>
+    <div class="topbar-actions">
+      <a href="/social/inbox.html" class="btn ghost">Journey simulator</a>
+      <a href="/social/conflicts.html" class="btn ghost">Conflicts</a>
+      <button type="button" id="btn-export-persona" class="btn secondary">Export persona</button>
+      <button type="button" id="btn-export-all" class="btn secondary">Export all</button>
+      <button type="button" id="btn-regenerate-all" class="btn secondary">Regenerate all</button>
+      <a href="/dashboard.html" class="btn ghost">Dashboard</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="personas" aria-label="Personas">
+      <h2>Personas</h2>
+      <div id="persona-list"></div>
+    </aside>
+
+    <section class="preview-panel">
+      <div class="preview-toolbar">
+        <div class="channel-switch">
+          <button type="button" class="channel-btn active" data-channel="email">Email</button>
+          <button type="button" class="channel-btn" data-channel="sms">SMS</button>
+          <button type="button" class="channel-btn" data-channel="push">Push</button>
+        </div>
+        <div class="preview-modes email-only">
+          <button type="button" class="mode active" data-width="600">Desktop</button>
+          <button type="button" class="mode" data-width="375">Mobile</button>
+        </div>
+        <p id="preview-label" class="preview-label">Select a persona</p>
+      </div>
+
+      <div id="panel-email" class="channel-view active">
+        <div class="preview-frame-wrap">
+          <iframe id="email-preview" title="Email preview" sandbox="allow-same-origin"></iframe>
+        </div>
+      </div>
+
+      <div id="panel-sms" class="channel-view">
+        <div class="sms-review-layout">
+          <ul id="sms-message-list" class="sms-message-list"></ul>
+          <div class="sms-preview-area">
+            <div class="phone-frame">
+              <p class="phone-header" id="sms-sender">Wolverine Mobile</p>
+              <div id="sms-bubbles" class="sms-bubbles"></div>
+            </div>
+            <p id="sms-stats" class="sms-stats"></p>
+            <p id="sms-link-display" class="sms-link-display"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-push" class="channel-view">
+        <div class="push-review-layout">
+          <ul id="push-message-list" class="push-message-list"></ul>
+          <div>
+            <div class="lock-screen-frame" aria-label="Lock screen push preview">
+              <p class="lock-screen-time" id="lock-time">9:41</p>
+              <p class="lock-screen-date" id="lock-date"></p>
+              <div class="push-notification-card">
+                <strong id="push-preview-title">Wolverine Mobile</strong>
+                <p id="push-preview-body">Select a push message</p>
+              </div>
+            </div>
+            <p id="push-stats" class="push-stats"></p>
+            <p id="push-link-display" class="sms-link-display"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="meta-panel">
+      <section class="ajo-integration" id="ajo-integration" aria-label="Adobe Journey Optimizer">
+        <div class="ajo-integration-header">
+          <h2>AJO integration</h2>
+          <span class="ajo-badge">Demo</span>
+        </div>
+        <dl id="ajo-fields" class="meta-dl ajo-dl"></dl>
+        <div class="ajo-actions">
+          <a id="ajo-campaign-link" class="btn secondary" href="#" target="_blank" rel="noopener">Open campaign</a>
+          <a id="ajo-journey-link" class="btn secondary" href="#" target="_blank" rel="noopener">Open journey</a>
+        </div>
+      </section>
+
+      <h2>Campaign metadata</h2>
+      <dl id="meta-fields" class="meta-dl"></dl>
+
+      <div id="edit-email" class="edit-block">
+        <h2>Edit email</h2>
+        <form id="edit-form" class="edit-form">
+          <label>Subject <input name="subject" type="text" autocomplete="off"></label>
+          <label>Preheader <input name="preheader" type="text" autocomplete="off"></label>
+          <label>Headline <input name="headline" type="text" autocomplete="off"></label>
+          <label>Body <textarea name="tagline" rows="3"></textarea></label>
+          <label>CTA label <input name="ctaLabel" type="text" autocomplete="off"></label>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save email</button>
+            <button type="button" id="btn-approve-email" class="btn primary">Approve email</button>
+          </div>
+        </form>
+        <h2>Email checklist</h2>
+        <ul id="checklist" class="checklist"></ul>
+      </div>
+
+      <div id="edit-push" class="edit-block" hidden>
+        <h2>Edit push</h2>
+        <form id="push-edit-form" class="edit-form">
+          <label>Title <input name="pushTitle" id="push-title-input" type="text" autocomplete="off"></label>
+          <label>Body <textarea name="pushBody" id="push-body-input" rows="3"></textarea></label>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save push</button>
+            <button type="button" id="btn-approve-push" class="btn primary">Approve push</button>
+          </div>
+        </form>
+        <h2>Push checklist</h2>
+        <ul id="push-checklist" class="checklist"></ul>
+      </div>
+
+      <div id="edit-sms" class="edit-block" hidden>
+        <h2>Edit SMS</h2>
+        <form id="sms-edit-form" class="edit-form">
+          <label>Message
+            <textarea name="smsBody" id="sms-body-input" rows="4"></textarea>
+          </label>
+          <p id="sms-char-count" class="sms-char-count"></p>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save SMS</button>
+            <button type="button" id="btn-approve-sms" class="btn primary">Approve SMS</button>
+          </div>
+        </form>
+        <h2>SMS checklist</h2>
+        <ul id="sms-checklist" class="checklist"></ul>
+      </div>
+
+      <p id="status-msg" class="status-msg" role="status"></p>
+    </aside>
+  </main>
+
+  <script src="/social/review.js" type="module"></script>
+</body>
+</html>

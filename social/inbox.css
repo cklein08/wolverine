@@ -1,0 +1,273 @@
+.inbox-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 80px);
+}
+
+@media (max-width: 900px) {
+  .inbox-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inbox-main {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  min-height: 500px;
+}
+
+.journey-progress {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.journey-progress ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.journey-progress li.done {
+  color: var(--ok);
+}
+
+.journey-progress li.current {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.timer-label {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--warn);
+  min-height: 1.2em;
+}
+
+.channel-tabs {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.channel-tab {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.channel-tab.active {
+  background: var(--primary);
+  color: #000;
+  font-weight: 700;
+  border-color: var(--primary);
+}
+
+.channel-panel {
+  display: none;
+  flex: 1;
+  grid-template-columns: 280px 1fr;
+  min-height: 0;
+}
+
+.channel-panel.active {
+  display: grid;
+}
+
+#panel-sms.active,
+#panel-push.active {
+  display: block;
+  padding: 1rem;
+}
+
+.message-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+}
+
+.message-list li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.message-list li button:hover,
+.message-list li button.active {
+  background: color-mix(in srgb, var(--primary) 18%, var(--surface2));
+}
+
+.message-list .unread strong {
+  color: var(--text);
+}
+
+.message-list .read {
+  opacity: 0.75;
+}
+
+.message-list .meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.reading-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  background: #1a1a1a;
+}
+
+.empty-state {
+  margin: auto;
+  padding: 2rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.email-open {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.email-open-header {
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.email-open-header h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.muted {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+#email-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 480px;
+  border: none;
+  background: #fff;
+}
+
+.email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.sms-thread {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.sms-bubble {
+  align-self: flex-start;
+  max-width: 88%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 18px 18px 18px 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.sms-bubble a {
+  color: var(--primary);
+  word-break: break-all;
+}
+
+.sms-meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+
+.sms-bubble.tap {
+  cursor: pointer;
+}
+
+.sms-bubble.tap:hover {
+  border-color: var(--primary);
+}
+
+.sms-short {
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+
+.push-inbox-empty {
+  color: var(--muted);
+  text-align: center;
+  max-width: 320px;
+}
+
+.push-lock-screen {
+  max-width: 340px;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 28px;
+  background: linear-gradient(165deg, #1a1a2e 0%, #0f172a 100%);
+  border: 3px solid #334155;
+}
+
+.push-lock-screen .push-card {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.push-lock-screen .push-card:hover {
+  border-color: var(--primary);
+}
+
+.push-lock-screen .push-card strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  margin-bottom: 0.25rem;
+}
+
+.push-lock-screen .push-card p {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.journey-progress li .ch-icon {
+  margin-right: 0.25rem;
+}

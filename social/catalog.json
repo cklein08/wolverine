@@ -1,0 +1,89 @@
+{
+  "brand": {
+    "name": "Wolverine Mobile",
+    "tagline": "Connect. Evolve. Thrive.",
+    "colors": {
+      "primary": "#1DB954",
+      "secondary": "#0E7A3A",
+      "accent": "#86EFAC",
+      "background": "#0A1A0F",
+      "text": "#FFFFFF"
+    },
+    "fonts": {
+      "heading": "Arial Black",
+      "body": "Calibri"
+    },
+    "logo": "images/brand/wolverine-logo.png",
+    "logoAlt": "Wolverine Mobile — Connect. Evolve. Thrive."
+  },
+  "siteUrl": "https://main--wolverine--cklein08.aem.page",
+  "ajoConsoleBase": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer",
+  "personas": [
+    {
+      "id": "family-texas",
+      "label": "Texas Family",
+      "campaignGoal": "loyalty",
+      "segmentId": "seg-family-texas",
+      "segmentName": "Men/Women married with kids, 40+, Texas",
+      "campaignName": "Texas Family Plan Loyalty",
+      "campaignId": "ajo-camp-family-texas",
+      "journeyId": "ajo-jrn-family-texas",
+      "journeyName": "Family loyalty — email nurture",
+      "ajoCampaignUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/campaigns/ajo-camp-family-texas",
+      "ajoJourneyUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/journeys/ajo-jrn-family-texas",
+      "emailStatus": "draft",
+      "smsStatus": "draft",
+      "pushStatus": "draft",
+      "hasEmail": true,
+      "hasSms": true,
+      "hasPush": true,
+      "smsCount": 2,
+      "pushCount": 2,
+      "productCount": 3
+    },
+    {
+      "id": "single-woman-nyc",
+      "label": "Single Young Woman, NYC",
+      "campaignGoal": "acquisition",
+      "segmentId": "seg-single-woman-nyc",
+      "segmentName": "Women, 25–35, NYC",
+      "campaignName": "NYC Women Acquisition",
+      "campaignId": "ajo-camp-nyc-women",
+      "journeyId": "ajo-jrn-nyc-acquisition",
+      "journeyName": "NYC acquisition — email to SMS",
+      "ajoCampaignUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/campaigns/ajo-camp-nyc-women",
+      "ajoJourneyUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/journeys/ajo-jrn-nyc-acquisition",
+      "emailStatus": "draft",
+      "smsStatus": "draft",
+      "pushStatus": "draft",
+      "hasEmail": true,
+      "hasSms": true,
+      "hasPush": true,
+      "smsCount": 2,
+      "pushCount": 2,
+      "productCount": 3
+    },
+    {
+      "id": "college-student",
+      "label": "College Student",
+      "campaignGoal": "acquisition",
+      "segmentId": "seg-college-student",
+      "segmentName": "College students 18–24, US markets",
+      "campaignName": "College Student Acquisition",
+      "campaignId": "ajo-camp-college-student",
+      "journeyId": "ajo-jrn-college-acquisition",
+      "journeyName": "Student acquisition — email to SMS",
+      "ajoCampaignUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/campaigns/ajo-camp-college-student",
+      "ajoJourneyUrl": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer/journeys/ajo-jrn-college-acquisition",
+      "emailStatus": "draft",
+      "smsStatus": "draft",
+      "pushStatus": "draft",
+      "hasEmail": true,
+      "hasSms": true,
+      "hasPush": true,
+      "smsCount": 2,
+      "pushCount": 2,
+      "productCount": 3
+    }
+  ]
+}

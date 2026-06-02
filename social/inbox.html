@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wolverine — Journey simulator</title>
+  <link rel="stylesheet" href="/social/review.css">
+  <link rel="stylesheet" href="/social/inbox.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FORGE · Social · Phase 4</p>
+      <h1>Customer journey simulator</h1>
+    </div>
+    <div class="topbar-actions">
+      <button type="button" id="btn-skip-wait" class="btn secondary" hidden>Skip 60s wait</button>
+      <button type="button" id="btn-reset" class="btn secondary">Reset journey</button>
+      <a href="/social/review.html" class="btn ghost">Marketer review</a>
+      <a href="/mobile-app/" class="btn ghost">Mobile app</a>
+    </div>
+  </header>
+
+  <main class="inbox-layout">
+    <aside class="personas">
+      <h2>Tester profile</h2>
+      <div id="persona-list"></div>
+      <div class="journey-progress">
+        <h2>Journey progress</h2>
+        <ol id="timeline"></ol>
+        <p id="timer-label" class="timer-label"></p>
+      </div>
+    </aside>
+
+    <section class="inbox-main">
+      <div class="channel-tabs">
+        <button type="button" class="channel-tab active" data-channel="email">Email</button>
+        <button type="button" class="channel-tab" data-channel="sms">SMS</button>
+        <button type="button" class="channel-tab" data-channel="push">Push</button>
+      </div>
+
+      <div id="panel-email" class="channel-panel active">
+        <ul id="email-list" class="message-list"></ul>
+        <div class="reading-pane">
+          <div id="email-empty" class="empty-state">Select an email to read</div>
+          <div id="email-open" class="email-open" hidden>
+            <div class="email-open-header">
+              <h2 id="email-subject"></h2>
+              <p id="email-preheader" class="muted"></p>
+            </div>
+            <iframe id="email-frame" title="Email body" sandbox="allow-same-origin allow-popups"></iframe>
+            <div class="email-actions">
+              <a id="email-cta" class="btn primary" href="#" target="_blank" rel="noopener">Open personalized offer</a>
+              <button type="button" id="btn-no-conversion" class="btn secondary" hidden>No conversion — wait for SMS</button>
+              <button type="button" id="btn-leave-unread" class="btn secondary">Leave unread (trigger follow-up)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-sms" class="channel-panel">
+        <div class="sms-thread" id="sms-thread">
+          <p class="empty-state">SMS messages appear after journey timers.</p>
+        </div>
+      </div>
+
+      <div id="panel-push" class="channel-panel">
+        <div id="push-inbox">
+          <p class="push-inbox-empty">App push alerts appear after the SMS sequence.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/social/inbox.js" type="module"></script>
+</body>
+</html>

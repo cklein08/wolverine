@@ -1,0 +1,52 @@
+{
+  "channel": "email",
+  "personaId": "family-texas",
+  "personaLabel": "Texas Family",
+  "campaignGoal": "loyalty",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.362Z",
+  "metadata": {
+    "segmentId": "seg-family-texas",
+    "segmentName": "Men/Women married with kids, 40+, Texas",
+    "campaignId": "ajo-camp-family-texas",
+    "campaignName": "Texas Family Plan Loyalty",
+    "journeyId": "ajo-jrn-family-texas",
+    "journeyName": "Family loyalty — email nurture",
+    "journeyStep": "Family Plan Promo email"
+  },
+  "subject": "Family plans built for everyone at home",
+  "preheader": "Texas families stay connected with the right smartphone for adults and teenagers alike",
+  "headline": "Keep your family connected",
+  "tagline": "Texas families stay connected with the right smartphone for adults and teenagers alike",
+  "heroImage": "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80",
+  "heroAlt": "Texas family outdoors — parents and teens",
+  "products": [
+    {
+      "name": "Apple iPhone 16e",
+      "price": "From $29/mo",
+      "sub": "Adult line on Family plan · mid-market",
+      "href": "/phones",
+      "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Apple iPhone 16e"
+    },
+    {
+      "name": "Moto G Play — Teen line",
+      "price": "From $9.99/mo",
+      "sub": "Low-cost smartphone for students at home",
+      "href": "/phones",
+      "image": "https://images.unsplash.com/photo-1567581937604-911a3e0d394f?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Moto G Play"
+    },
+    {
+      "name": "Family plan — 4 lines",
+      "price": "$80/mo",
+      "sub": "Save 20% vs single line · loyalty offer",
+      "href": "/plans",
+      "image": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Family wireless plan"
+    }
+  ],
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=seg-family-texas",
+  "ctaLabel": "See your personalized offer →",
+  "siteUrl": "https://main--wolverine--cklein08.aem.page/"
+}

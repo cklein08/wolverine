@@ -1,0 +1,52 @@
+{
+  "channel": "email",
+  "personaId": "college-student",
+  "personaLabel": "College Student",
+  "campaignGoal": "acquisition",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.373Z",
+  "metadata": {
+    "segmentId": "seg-college-student",
+    "segmentName": "College students 18–24, US markets",
+    "campaignId": "ajo-camp-college-student",
+    "campaignName": "College Student Acquisition",
+    "journeyId": "ajo-jrn-college-acquisition",
+    "journeyName": "Student acquisition — email to SMS",
+    "journeyStep": "Student offer email"
+  },
+  "subject": "Student wireless — plans from $25/mo",
+  "preheader": "Affordable data and a phone that keeps up with campus life — without breaking the budget.",
+  "headline": "Wireless that fits your semester",
+  "tagline": "Affordable data and a phone that keeps up with campus life — without breaking the budget.",
+  "heroImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=80",
+  "heroAlt": "College students on campus",
+  "products": [
+    {
+      "name": "Moto G Play",
+      "price": "From $9.99",
+      "sub": "Low-end device · student budget friendly",
+      "href": "/phones",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Moto G Play smartphone"
+    },
+    {
+      "name": "Student Essential",
+      "price": "$25/mo",
+      "sub": "5GB premium data · unlimited talk & text",
+      "href": "/plans",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Student wireless plan"
+    },
+    {
+      "name": "Campus data boost",
+      "price": "+$5/mo",
+      "sub": "Extra high-speed data for streaming & study",
+      "href": "/plans",
+      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Campus data add-on"
+    }
+  ],
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+  "ctaLabel": "See your personalized offer →",
+  "siteUrl": "https://main--wolverine--cklein08.aem.page/"
+}

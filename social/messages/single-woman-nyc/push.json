@@ -1,0 +1,29 @@
+{
+  "channel": "push",
+  "personaId": "single-woman-nyc",
+  "personaLabel": "Single Young Woman, NYC",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.373Z",
+  "messages": [
+    {
+      "id": "push-1",
+      "label": "After SMS sequence",
+      "title": "Wolverine Mobile",
+      "body": "Still thinking? Motorola Razr at $499.99 — tap to claim.",
+      "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+      "icon": "/mobile-app/icons/icon-192.png",
+      "delayAfterPrevSeconds": 30,
+      "condition": "after_sms"
+    },
+    {
+      "id": "push-2",
+      "label": "Urgency nudge",
+      "title": "Wolverine Mobile offer",
+      "body": "Last chance: First month $15 with nationwide 5G. Open now.",
+      "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+      "icon": "/mobile-app/icons/icon-192.png",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response"
+    }
+  ]
+}

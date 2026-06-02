@@ -1,0 +1,34 @@
+{
+  "channel": "sms",
+  "personaId": "single-woman-nyc",
+  "personaLabel": "Single Young Woman, NYC",
+  "sender": "Wolverine Mobile",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.372Z",
+  "messages": [
+    {
+      "id": "sms-1",
+      "label": "No conversion (60s)",
+      "body": "Still thinking about Razr? Your exclusive offer ends soon. wvmobile.co/single-woman-nyc?p=single-w",
+      "shortLink": "wvmobile.co/single-woman-nyc?p=single-w",
+      "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_conversion",
+      "charCount": 98,
+      "segments": 1,
+      "gsm7": true
+    },
+    {
+      "id": "sms-2",
+      "label": "Urgency follow-up (60s)",
+      "body": "Exclusive offer: Motorola Razr at $499.99. Ends soon. wvmobile.co/single-woman-nyc?p=single-w",
+      "shortLink": "wvmobile.co/single-woman-nyc?p=single-w",
+      "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response",
+      "charCount": 93,
+      "segments": 1,
+      "gsm7": true
+    }
+  ]
+}

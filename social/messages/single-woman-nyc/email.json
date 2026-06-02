@@ -1,0 +1,52 @@
+{
+  "channel": "email",
+  "personaId": "single-woman-nyc",
+  "personaLabel": "Single Young Woman, NYC",
+  "campaignGoal": "acquisition",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.371Z",
+  "metadata": {
+    "segmentId": "seg-single-woman-nyc",
+    "segmentName": "Women, 25–35, NYC",
+    "campaignId": "ajo-camp-nyc-women",
+    "campaignName": "NYC Women Acquisition",
+    "journeyId": "ajo-jrn-nyc-acquisition",
+    "journeyName": "NYC acquisition — email to SMS",
+    "journeyStep": "Promotional email"
+  },
+  "subject": "The foldable phone built for NYC life",
+  "preheader": "Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city.",
+  "headline": "You run this city",
+  "tagline": "Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city.",
+  "heroImage": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2000&q=80",
+  "heroAlt": "Young woman in New York City street scene",
+  "products": [
+    {
+      "name": "Motorola Razr",
+      "price": "$499.99",
+      "sub": "Foldable · built for on-the-go NYC life",
+      "href": "/phones",
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Motorola Razr foldable phone"
+    },
+    {
+      "name": "Unlimited Plus",
+      "price": "$45/mo",
+      "sub": "Unlimited 5G & LTE · 30GB hotspot",
+      "href": "/plans",
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Unlimited wireless plan"
+    },
+    {
+      "name": "Switch & save NYC",
+      "price": "First month $15",
+      "sub": "Bring your number — acquisition offer",
+      "href": "/plans",
+      "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
+      "imageAlt": "Switch and save promotion"
+    }
+  ],
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+  "ctaLabel": "See your personalized offer →",
+  "siteUrl": "https://main--wolverine--cklein08.aem.page/"
+}

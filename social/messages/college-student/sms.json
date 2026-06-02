@@ -1,0 +1,34 @@
+{
+  "channel": "sms",
+  "personaId": "college-student",
+  "personaLabel": "College Student",
+  "sender": "Wolverine Mobile",
+  "status": "draft",
+  "updatedAt": "2026-05-28T17:27:46.375Z",
+  "messages": [
+    {
+      "id": "sms-1",
+      "label": "No conversion (60s)",
+      "body": "Your student plan quote is ready — tap to see Moto G Play pricing. wvmobile.co/college-student?p=college-",
+      "shortLink": "wvmobile.co/college-student?p=college-",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_conversion",
+      "charCount": 105,
+      "segments": 1,
+      "gsm7": false
+    },
+    {
+      "id": "sms-2",
+      "label": "Urgency follow-up (60s)",
+      "body": "Student Essential +$5/mo + Moto G Play From $9.99. wvmobile.co/college-student?p=college-",
+      "shortLink": "wvmobile.co/college-student?p=college-",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "delayAfterPrevSeconds": 60,
+      "condition": "no_response",
+      "charCount": 89,
+      "segments": 1,
+      "gsm7": true
+    }
+  ]
+}

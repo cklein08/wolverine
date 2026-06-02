@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="theme-color" content="#1DB954" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Wolverine" />
+    <link rel="manifest" href="/mobile-app/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/mobile-app/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/mobile-app/icons/icon-192.png" />
+    <title>Wolverine Mobile</title>
+    <link rel="stylesheet" href="/mobile-app/app.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+      <section class="screen active" id="screen-splash">
+        <div class="splash-logo">
+          <h1>Wolverine Mobile</h1>
+          <p>Connect. Evolve. Thrive.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-onboard">
+        <div class="header">
+          <h2>Tester setup</h2>
+          <p>Enter contact info to simulate the customer journey (prototype).</p>
+          <p style="font-size: 0.85rem"><a href="/help/mobile-app.html" style="color: var(--primary)">How to install this app</a></p>
+        </div>
+        <div class="install-banner" id="install-banner">
+          <p>Install this app on your device for the full mobile experience.</p>
+          <button type="button" id="install-btn">Install app</button>
+        </div>
+        <form id="onboard-form">
+          <div class="field">
+            <label for="tester-email">Email</label>
+            <input id="tester-email" type="email" required placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="tester-phone">Phone (SMS)</label>
+            <input id="tester-phone" type="tel" placeholder="+1 555 0100" autocomplete="tel" />
+          </div>
+          <button type="submit" class="btn btn-primary">Continue</button>
+          <button type="button" class="btn btn-secondary" id="btn-skip">Skip — demo mode</button>
+        </form>
+      </section>
+
+      <section class="screen" id="screen-profiles">
+        <div class="header">
+          <h2>Choose profile</h2>
+          <p>Experience a personalized campaign flow for each persona.</p>
+        </div>
+        <div class="persona-list" id="persona-list"></div>
+        <p class="meta-line">Opens personalized HLX pages with RT CDP segment preview.</p>
+      </section>
+
+      <nav class="tab-bar" aria-label="Main">
+        <button type="button" data-screen="screen-profiles" class="active">
+          <span>👤</span> Profiles
+        </button>
+        <button type="button" data-screen="screen-onboard">
+          <span>✉️</span> Tester
+        </button>
+        <button type="button" data-screen="screen-experience">
+          <span>🌐</span> Experience
+        </button>
+      </nav>
+    </div>
+
+    <div class="modal-backdrop" id="journey-modal">
+      <div class="modal" role="dialog" aria-labelledby="modal-title">
+        <h3 id="modal-title">Persona</h3>
+        <p style="color: var(--muted); font-size: 0.9rem; margin: 0">Journey preview</p>
+        <ul class="journey-steps" id="modal-steps"></ul>
+        <button type="button" class="btn btn-primary" id="modal-open">Run journey → open landing</button>
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="button" class="btn btn-secondary" id="modal-simulate">Simulate only (stay in app)</button>
+      </div>
+    </div>
+
+    <script src="/mobile-app/app.js" type="module"></script>
+  </body>
+</html>

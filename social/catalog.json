@@ -1,21 +1,5 @@
 {
-  "brand": {
-    "name": "Wolverine Mobile",
-    "tagline": "Connect. Evolve. Thrive.",
-    "colors": {
-      "primary": "#1DB954",
-      "secondary": "#0E7A3A",
-      "accent": "#86EFAC",
-      "background": "#0A1A0F",
-      "text": "#FFFFFF"
-    },
-    "fonts": {
-      "heading": "Arial Black",
-      "body": "Calibri"
-    },
-    "logo": "images/brand/wolverine-logo.png",
-    "logoAlt": "Wolverine Mobile — Connect. Evolve. Thrive."
-  },
+  "brand": null,
   "siteUrl": "https://main--wolverine--cklein08.aem.page",
   "ajoConsoleBase": "https://experience.adobe.com/#/@echostar-demo/journeyoptimizer",
   "personas": [

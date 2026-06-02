@@ -15,9 +15,10 @@ import {
   updatePersonalizationBadge,
 } from './forge-inline-edit-personalization.js';
 import { savePageToDaClient } from './forge-inline-edit-save.js';
+import { productBrandName } from './forge-product-brand.js';
 
 /** Bump when deploying; cache-busts HLX/CDN for Chrome. */
-export const FORGE_INLINE_EDIT_BUILD = 9;
+export const FORGE_INLINE_EDIT_BUILD = 10;
 
 const FORGE_EDIT_PARAM = 'forge-edit';
 const FORGE_ORG_PARAM = 'forge-org';
@@ -200,7 +201,7 @@ function showBanner() {
   const { org, repo } = resolveOrgRepo();
   const target = org && repo ? `${org}/${repo}` : 'preview site';
   const pageLabel = currentPagePath() === 'index' ? 'Home' : currentPagePath();
-  bar.innerHTML = `<strong>FORGE inline edit</strong>
+  bar.innerHTML = `<strong>${productBrandName()} inline edit</strong>
     <span>${target} · ${pageLabel}</span>
     <button type="button" class="forge-edit-banner__save" disabled>Save page</button>
     <span class="forge-edit-banner__hint">Personalization · RT CDP / AJO · click text to edit</span>`;

@@ -405,6 +405,19 @@ main.xwalk-nav .xwalk-logo-img {
   max-width: min(220px, 42vw);
   object-fit: contain;
 }
+main.xwalk-nav .xwalk-logo-mark,
+main.xwalk-nav .xwalk-logo-img.xwalk-logo-mark,
+footer .xwalk-logo-mark {
+  height: 48px;
+  width: 48px;
+  max-width: 48px;
+  object-fit: contain;
+}
+footer .xwalk-logo-mark {
+  height: 40px;
+  width: 40px;
+  max-width: 40px;
+}
 
 main.xwalk-nav-boost {
   display: grid;
@@ -484,6 +497,8 @@ main.xwalk-footer > div > div {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 24px;
 }
+
+
 
 /* FORGE Updated Crosswalk layout */
 .xwalk-promo-strip {

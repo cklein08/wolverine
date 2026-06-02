@@ -1,7 +1,9 @@
 /**
  * Demo chrome for EchoStar: persona switcher + RT CDP / AJO strip (?forge-demo=1).
  */
-const DEMO_BUILD = 5;
+import { productBrandName } from './forge-product-brand.js';
+
+const DEMO_BUILD = 6;
 
 function isDemoMode() {
   const p = new URLSearchParams(window.location.search);
@@ -80,7 +82,7 @@ function mountChrome(catalog) {
 
   chrome.innerHTML = `
     <div class="forge-demo-chrome__inner">
-      <span class="forge-demo-chrome__brand">FORGE Demo</span>
+      <span class="forge-demo-chrome__brand">${productBrandName()} Demo</span>
       <span class="forge-demo-chrome__meta">RT CDP · AJO · Target</span>
       <div class="forge-demo-personas" id="forgeDemoPersonas">${personaButtons}</div>
       <div class="forge-demo-chrome__actions">

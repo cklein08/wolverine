@@ -485,8 +485,6 @@ main.xwalk-footer > div > div {
   gap: 24px;
 }
 
-
-
 /* FORGE Updated Crosswalk layout */
 .xwalk-promo-strip {
   background: color-mix(in srgb, #0E7A3A 88%, #000);
@@ -1355,9 +1353,16 @@ body.xwalk-boost-page main > div:last-child:has(h2):has(a) {
   text-align: left;
   grid-column: 1 / -1;
 }
+.xwalk-ai-strip,
+.xwalk-ai-separator-bar,
+.xwalk-hero-image-note,
+.fragment.xwalk-ai-separator {
+  display: none !important;
+}
+
 .hero.xwalk-persona-landing-hero .xwalk-ai-strip,
 .hero.xwalk-persona-home-hero .xwalk-ai-strip {
-  display: inline-block;
+  display: none !important;
   background: #1DB954;
   color: #0a1a0f;
   font-weight: 800;
@@ -1431,13 +1436,7 @@ body.xwalk-boost-page main > div:last-child:has(h2):has(a) {
   margin: 0;
 }
 .xwalk-ai-separator-bar {
-  background: #1DB954;
-  color: #0a1a0f;
-  text-align: center;
-  font-weight: 800;
-  font-size: 0.8rem;
-  padding: 10px 16px;
-  margin: 0;
+  display: none !important;
 }
 .fragment.xwalk-persona-quote,
 .fragment.xwalk-persona-home-quote {

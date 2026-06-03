@@ -1,6 +1,7 @@
 /**
  * Family BYOD landing grid — runs from scripts.js after decorateBlocks.
  */
+import { CAMPAIGN_HERO_CSS, createCampaignHeroEl } from './persona-campaign-hero.js';
 
 const PRIMARY = '#1DB954';
 const SECONDARY = '#0E7A3A';
@@ -44,7 +45,8 @@ function injectFamilyStyles(doc) {
 body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{display:block!important;max-width:none!important;padding:0!important;background:${MINT_PAGE}!important;grid-template-columns:1fr!important}
 body.xwalk-persona-offer-page header{display:block!important;visibility:visible!important;z-index:200!important;background:${HERO_BG}!important}
 body.xwalk-persona-offer-page header nav,body.xwalk-persona-offer-page header a{color:#fff!important}
-.xwalk-family-hero,main>div>p:first-child:has(picture):not(:has(a)){display:none!important}
+.xwalk-family-hero,main>div>p:first-child:has(picture):not(:has(a)):not(.xwalk-campaign-hero *){display:none!important}
+${CAMPAIGN_HERO_CSS}
 `.trim();
   doc.head.appendChild(style);
 }
@@ -134,7 +136,12 @@ function buildFromSection(section) {
   }
 
   const root = document.createElement('div');
-  root.className = 'xwalk-persona-mockup xwalk-family-plans-page';
+  root.className = 'xwalk-persona-mockup xwalk-family-plans-page xwalk-family-plans-page--campaign';
+  const personaId = gridPersonaId();
+  if (personaId) {
+    const hero = createCampaignHeroEl(personaId, headline);
+    if (hero) root.append(hero);
+  }
   const wrap = document.createElement('section');
   wrap.className = 'xwalk-family-main';
   wrap.style.background = MINT_PAGE;

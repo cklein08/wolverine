@@ -213,22 +213,44 @@
     buildTopFromFlat(section);
   }
 
+  const NEWSLETTER_HTML =
+    '<div class="xwalk-footer-newsletter">' +
+    '<h2>Want the latest scoop?</h2>' +
+    '<p>Sign up and get the latest news and updates from Wolverine Mobile.</p>' +
+    '<p class="xwalk-footer-newsletter-form">' +
+    '<label for="xwalk-footer-email">Email address</label>' +
+    '<input type="email" id="xwalk-footer-email" name="email" placeholder="Email address" autocomplete="email">' +
+    '<a class="xwalk-footer-subscribe-btn" href="/customer/login">Subscribe</a>' +
+    '</p></div>';
+
+  function repairPersonaLeak(section) {
+    const content = sectionContent(section);
+    if (!content.querySelector('.xwalk-family-plans-page, .xwalk-family-headline, .xwalk-family-grid')) {
+      return false;
+    }
+    content.innerHTML = NEWSLETTER_HTML;
+    return true;
+  }
+
   function decorateNewsletter(section) {
-    const h2 = section.querySelector('h2');
+    repairPersonaLeak(section);
+    const content = sectionContent(section);
+    const h2 = content.querySelector('h2');
     if (!h2 || !/scoop/i.test(h2.textContent || '')) return;
 
-    section.className = 'xwalk-footer-newsletter';
-    section.style.cssText =
+    content.closest('.section')?.classList.add('xwalk-footer-newsletter-section');
+    const newsletterRoot = content.querySelector('.xwalk-footer-newsletter') || content;
+    newsletterRoot.style.cssText =
       'padding:28px 0 32px;border-top:1px solid color-mix(in srgb,#86EFAC 18%,transparent);border-bottom:1px solid color-mix(in srgb,#86EFAC 18%,transparent);text-align:left;max-width:none;margin:0;color:' +
       TEXT +
       ';';
 
-    const desc = [...section.querySelectorAll('p')].find((p) => !p.classList.contains('xwalk-footer-newsletter-form'));
+    const desc = [...newsletterRoot.querySelectorAll('p')].find((p) => !p.classList.contains('xwalk-footer-newsletter-form'));
     if (desc) desc.style.margin = '0 0 20px';
 
-    if (section.querySelector('.xwalk-footer-newsletter-form input')) return;
+    if (newsletterRoot.querySelector('.xwalk-footer-newsletter-form input')) return;
 
-    const oldForm = [...section.querySelectorAll('p')].find(
+    const oldForm = [...newsletterRoot.querySelectorAll('p')].find(
       (p) => p !== desc && /subscribe|email/i.test(p.textContent || ''),
     );
     if (!oldForm) return;

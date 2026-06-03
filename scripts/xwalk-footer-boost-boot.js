@@ -7,20 +7,43 @@
   const SOCIAL_ICON = { Facebook: 'f', X: 'X', Instagram: 'ig', YouTube: '▶' };
 
   function footerWrap() {
-    return document.querySelector('footer .footer') || null;
+    const all = document.querySelectorAll('footer .footer');
+    for (const el of all) {
+      if (el.querySelector(':scope > .section')) return el;
+    }
+    return all[all.length - 1] || null;
   }
 
   function footerHost() {
     const wrap = footerWrap();
     if (!wrap) return null;
     return (
-      wrap.querySelector('main.xwalk-footer-boost, main.xwalk-footer, main') ||
-      (wrap.firstElementChild?.tagName === 'MAIN' ? wrap.firstElementChild : wrap)
+      wrap.querySelector('main.xwalk-footer-boost, main.xwalk-footer, main') || wrap
     );
   }
 
+  function sectionContent(section) {
+    return section.querySelector('.default-content-wrapper') || section;
+  }
+
   function sectionDivs(host) {
+    const sections = [...host.children].filter(
+      (el) => el.tagName === 'DIV' && el.classList.contains('section'),
+    );
+    if (sections.length) return sections;
     return [...host.children].filter((el) => el.tagName === 'DIV');
+  }
+
+  function showFooterContent() {
+    document.querySelectorAll('footer .footer').forEach((el) => {
+      el.style.visibility = 'visible';
+      el.style.opacity = '1';
+    });
+    const block = document.querySelector('footer .footer.block[data-block-status="loaded"]');
+    block?.querySelectorAll('.footer').forEach((el) => {
+      el.style.visibility = 'visible';
+      el.style.opacity = '1';
+    });
   }
 
   function fixLogos(scope) {
@@ -71,12 +94,13 @@
   }
 
   function splitFlatColumns(section) {
-    if (section.querySelector('.xwalk-footer-columns')) {
-      styleColumnsGrid(section.querySelector('.xwalk-footer-columns'));
+    const content = sectionContent(section);
+    if (content.querySelector('.xwalk-footer-columns')) {
+      styleColumnsGrid(content.querySelector('.xwalk-footer-columns'));
       return true;
     }
 
-    const nodes = [...section.children];
+    const nodes = [...content.children];
     const groups = [];
     let group = null;
     for (const el of nodes) {
@@ -125,19 +149,20 @@
       });
       grid.append(col);
     });
-    section.replaceChildren(grid);
+    content.replaceChildren(grid);
     styleColumnsGrid(grid);
     return true;
   }
 
   function buildTopFromFlat(section) {
-    const socialLabel = [...section.querySelectorAll('p')].find((p) =>
+    const content = sectionContent(section);
+    const socialLabel = [...content.querySelectorAll('p')].find((p) =>
       /connect with us on social/i.test(p.textContent || ''),
     );
-    const socialUl = section.querySelector('ul');
+    const socialUl = content.querySelector('ul');
     if (!socialLabel || !socialUl) return false;
 
-    const brandPs = [...section.children].filter(
+    const brandPs = [...content.children].filter(
       (el) => el.tagName === 'P' && el !== socialLabel,
     );
 
@@ -166,7 +191,7 @@
     socialWrap.append(socialLabel, socialUl);
 
     top.append(brand, socialWrap);
-    section.replaceChildren(top);
+    content.replaceChildren(top);
     fixLogos(top);
     return true;
   }
@@ -244,6 +269,7 @@
   }
 
   function run() {
+    showFooterContent();
     const wrap = footerWrap();
     const host = footerHost();
     if (!wrap || !host) return;

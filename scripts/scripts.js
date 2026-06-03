@@ -1,5 +1,4 @@
 import { decorateFamilyTexasMain } from './decorate-family-texas.js';
-import { decoratePersonaDeckMain, schedulePersonaDeckDecorate } from './decorate-persona-deck.js';
 import {
   buildBlock,
   loadHeader,
@@ -127,7 +126,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateButtons(main);
     decorateFamilyTexasMain(main);
-  decoratePersonaDeckMain(main);
 }
 
 /**
@@ -191,7 +189,6 @@ async function loadPage() {
 }
 
 loadPage();
-schedulePersonaDeckDecorate();
 // FORGE inline edit
 try {
   const __fe = new URLSearchParams(globalThis.location?.search || '');

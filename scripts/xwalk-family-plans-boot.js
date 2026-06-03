@@ -180,6 +180,7 @@
   }
 
   function run() {
+    if (!document.body) return;
     const path = (location.pathname || '').replace(/\/$/, '');
     if (path !== '/family-texas' && path !== '/college-student' && path !== '/single-woman-nyc') return;
     const personaId = path.slice(1);

@@ -97,8 +97,9 @@
           const em = el.querySelector('em');
           let priceHtml;
           if (!del && !strong) {
-            const m = (el.textContent || '').match(/\$\d+/);
-            priceHtml = '<span class="xwalk-family-now">' + (m ? m[0] : '') + '</span>';
+            const t = (el.textContent || '').trim();
+            const m = t.match(/(?:From\s+)?\$[\d.]+(?:\/mo)?/i);
+            priceHtml = '<span class="xwalk-family-now">' + (m ? m[0] : t) + '</span>';
           } else {
             priceHtml =
               '<span class="xwalk-family-price"><s class="xwalk-family-was">' +

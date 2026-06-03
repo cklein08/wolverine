@@ -76,10 +76,19 @@ function isLine(p) {
 function buildFromFlat(section) {
   const doc = section.ownerDocument;
   const nodes = [...section.children];
-  const heroPic = section.querySelector('picture');
   const offers = [];
+  let headline = 'Keep your family connected';
   let i = 0;
   while (i < nodes.length) {
+    if (nodes[i].tagName === 'H1') {
+      headline = nodes[i].textContent.trim() || headline;
+      i += 1;
+      continue;
+    }
+    if (nodes[i].tagName === 'P' && nodes[i].querySelector('picture') && !nodes[i].querySelector('a[href="/"]')) {
+      i += 1;
+      continue;
+    }
     if (nodes[i].tagName !== 'H2') {
       i += 1;
       continue;
@@ -124,20 +133,12 @@ function buildFromFlat(section) {
 
   const root = doc.createElement('div');
   root.className = 'xwalk-family-plans-page';
-  if (heroPic) {
-    const fig = doc.createElement('figure');
-    fig.className = 'xwalk-family-hero';
-    const img = heroPic.querySelector('img');
-    if (img) {
-      const ni = doc.createElement('img');
-      ni.src = img.currentSrc || img.src;
-      ni.alt = img.alt || '';
-      fig.append(ni);
-    }
-    root.append(fig);
-  }
   const main = doc.createElement('section');
   main.className = 'xwalk-family-main';
+  const h1 = doc.createElement('h1');
+  h1.className = 'xwalk-family-headline';
+  h1.textContent = headline;
+  main.append(h1);
   offers.forEach((offer, oi) => {
     const shell = doc.createElement('div');
     shell.className = 'xwalk-family-offer';

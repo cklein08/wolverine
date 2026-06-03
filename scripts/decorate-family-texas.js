@@ -250,6 +250,7 @@ export function decorateFamilyTexasMain(main) {
   const personaId = gridPersonaId();
   if (!personaId || !main) return;
 
+  const segment = hasForgeSegmentParam();
   injectFamilyStyles(document);
   document.body.classList.add('xwalk-persona-offer-page', `xwalk-persona-offer-page--${personaId}`);
   main.classList.remove('xwalk-boost-main');
@@ -257,8 +258,6 @@ export function decorateFamilyTexasMain(main) {
   main.style.maxWidth = 'none';
   main.style.padding = '0';
   main.style.background = segment ? '#fff' : MINT_PAGE;
-
-  const segment = hasForgeSegmentParam();
   document.body.classList.toggle('xwalk-persona-segment-landing', segment);
   if (segment) {
     document

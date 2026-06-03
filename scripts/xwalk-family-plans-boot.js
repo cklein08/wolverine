@@ -219,6 +219,7 @@
   const GRID_DEFAULT = {
     'family-texas': {
       headline: 'Keep your family connected',
+      headlineId: 'keep-your-family-connected',
       title: 'Family Plans – Bring your own device',
       titleId: 'family-plans--bring-your-own-device',
       shop: '/plans',
@@ -231,6 +232,7 @@
     },
     'single-woman-nyc': {
       headline: 'You run this city',
+      headlineId: 'you-run-this-city',
       title: 'Unlimited Plus + Motorola Razr — NYC wireless',
       shop: '/phones',
       rows: [
@@ -242,6 +244,7 @@
     },
     'college-student': {
       headline: 'Wireless that fits your semester',
+      headlineId: 'wireless-that-fits-your-semester',
       title: 'Student Essential — campus wireless',
       shop: '/phones',
       rows: [
@@ -282,6 +285,7 @@
       'background:' + MINT_PAGE + ';padding:36px 40px 56px;max-width:1040px;margin:0 auto;';
     const h1 = document.createElement('h1');
     h1.className = 'xwalk-family-headline';
+    if (meta.headlineId) h1.id = meta.headlineId;
     h1.textContent = headline || meta.headline;
     h1.style.cssText =
       'margin:0 0 24px;font-family:Arial Black,Arial,sans-serif;font-size:1.75rem;font-weight:900;color:' +

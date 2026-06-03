@@ -114,6 +114,13 @@
     main.className = 'xwalk-family-main';
     const h1 = doc.createElement('h1');
     h1.className = 'xwalk-family-headline';
+    const personaId = root.dataset.personaId || 'family-texas';
+    const headlineIds = {
+      'family-texas': 'keep-your-family-connected',
+      'single-woman-nyc': 'you-run-this-city',
+      'college-student': 'wireless-that-fits-your-semester',
+    };
+    if (headlineIds[personaId]) h1.id = headlineIds[personaId];
     h1.textContent = headline;
     main.append(h1);
     const wrap = doc.createElement('div');
@@ -200,7 +207,7 @@
       main.style.display = 'block';
       main.style.maxWidth = 'none';
       main.style.padding = '0';
-      main.style.background = '#fff';
+      main.style.background = '#eef8f1';
     }
     doc.body?.classList.remove('xwalk-boost-page');
 
@@ -234,7 +241,7 @@
       main.style.display = 'block';
       main.style.maxWidth = 'none';
       main.style.padding = '0';
-      main.style.background = '#fff';
+      main.style.background = '#eef8f1';
     }
 
     mockup.querySelectorAll('[data-forge-variant][hidden]').forEach((el) => {

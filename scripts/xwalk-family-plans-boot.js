@@ -165,7 +165,7 @@
   }
 
   function run() {
-    if (!/\/family-texas$/.test((location.pathname || '').replace(/\/$/, ''))) return;
+    if (!/family-texas/i.test(location.pathname || '')) return;
     injectCss();
     document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--family-texas');
     const main = document.querySelector('main');
@@ -187,10 +187,16 @@
     section.replaceChildren(built);
   }
 
-  run();
-  document.addEventListener('DOMContentLoaded', run);
-  document.addEventListener('aem:loaded', run);
-  setTimeout(run, 0);
-  setTimeout(run, 400);
-  setTimeout(run, 1200);
+  function schedule() {
+    run();
+  }
+
+  document.addEventListener('DOMContentLoaded', schedule);
+  document.addEventListener('aem:loaded', schedule);
+  for (const ms of [0, 100, 400, 800, 1500, 3000, 5000]) setTimeout(schedule, ms);
+
+  const main = document.querySelector('main');
+  if (main) {
+    new MutationObserver(() => schedule()).observe(main, { childList: true, subtree: true });
+  }
 })();

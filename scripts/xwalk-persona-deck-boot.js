@@ -17,18 +17,6 @@
         ['50MP Camera', '4200mAh Battery', '256GB Storage'],
       ],
     },
-    '/college-student': {
-      id: 'college-student',
-      deviceName: 'Moto G Play',
-      planPrefix: 'Student Essential',
-      headline: 'Wireless that fits your semester',
-      quote:
-        'Affordable data and a phone that keeps up with campus life — without breaking the budget.',
-      specs: [
-        ['6.5" HD+ display', '5G ready', 'All-day battery'],
-        ['50MP camera', 'Student budget friendly', 'Campus-ready essentials'],
-      ],
-    },
   };
 
   function pageCfg() {
@@ -41,8 +29,8 @@
     const s = document.createElement('style');
     s.id = 'forge-persona-deck-boot';
     s.textContent = [
-      'body.xwalk-persona-offer-page--single-woman-nyc main,body.xwalk-persona-offer-page--college-student main{display:block!important;max-width:none!important;padding:0!important;background:#fff!important;grid-template-columns:1fr!important;color:#111!important}',
-      'body.xwalk-persona-offer-page--single-woman-nyc main>div,body.xwalk-persona-offer-page--college-student main>div{background:#fff!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important}',
+      'body.xwalk-persona-offer-page--single-woman-nyc main{display:block!important;max-width:none!important;padding:0!important;background:#fff!important;grid-template-columns:1fr!important;color:#111!important}',
+      'body.xwalk-persona-offer-page--single-woman-nyc main>div{background:#fff!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important}',
       '.xwalk-mockup-intro{background:#fff!important;color:#111!important;padding:28px 32px 12px!important;max-width:1200px!important;margin:0 auto!important}',
       '.xwalk-mockup-intro h1{margin:0!important;font-family:Arial Black,Arial,sans-serif!important;font-size:clamp(1.75rem,3.5vw,2.5rem)!important;font-weight:900!important}',
       '.xwalk-family-hero,.xwalk-mockup-hero,.xwalk-mockup-hero-right,main>div>p:only-child:has(picture){display:none!important}',

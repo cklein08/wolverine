@@ -1,4 +1,5 @@
 import { decorateFamilyTexasMain } from './decorate-family-texas.js';
+import { decoratePersonaDeckMain } from './decorate-persona-deck.js';
 import {
   buildBlock,
   loadHeader,
@@ -125,7 +126,8 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
-  decorateFamilyTexasMain(main);
+    decorateFamilyTexasMain(main);
+  decoratePersonaDeckMain(main);
 }
 
 /**

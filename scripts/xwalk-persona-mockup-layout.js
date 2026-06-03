@@ -2,7 +2,7 @@
  * Persona offer pages: hide promo chrome, rebuild family grid when HLX flattens HTML.
  */
 (function (global) {
-  const FAMILY_LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
+  const FAMILY_LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
 
   function isFamilyCtaParagraph(p) {
     const a = p?.querySelector?.('a');
@@ -170,7 +170,7 @@
   }
 
   function gridPersonaPath(path) {
-    if (path === '/family-texas' || path === '/college-student') return path.slice(1);
+    if (path === '/family-texas' || path === '/college-student' || path === '/single-woman-nyc') return path.slice(1);
     return null;
   }
 

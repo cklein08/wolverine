@@ -122,7 +122,10 @@
   function run() {
     const segmentId = segmentFromContext();
     const journeyId = journeyFromContext();
-    document.querySelectorAll(`[${PERSONALIZATION_ATTR}]`).forEach((el) => syncBlock(el, segmentId, journeyId));
+    document.querySelectorAll(`[${PERSONALIZATION_ATTR}]`).forEach((el) => {
+      if (el.closest('footer')) return;
+      syncBlock(el, segmentId, journeyId);
+    });
   }
 
   if (document.readyState === 'loading') {

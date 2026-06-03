@@ -25,6 +25,9 @@
         '.xwalk-family-cta{display:inline-block!important;background:' + PRIMARY + '!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important}',
         '.xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}',
         'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
+        'main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:' + MINT_PAGE + '!important;color:#111!important;display:block!important}',
+        'main:has(#you-run-this-city)>div,main:has(#keep-your-family-connected)>div,main:has(#wireless-that-fits-your-semester)>div{background:transparent!important;color:#111!important;min-height:0!important;overflow:visible!important}',
+        'main:has(#you-run-this-city) h1,main:has(#you-run-this-city) h2,main:has(#you-run-this-city) p,main:has(#keep-your-family-connected) h1,main:has(#keep-your-family-connected) h2,main:has(#keep-your-family-connected) p,main:has(#wireless-that-fits-your-semester) h1,main:has(#wireless-that-fits-your-semester) h2,main:has(#wireless-that-fits-your-semester) p{color:#111!important;text-shadow:none!important}',
       ].join('');
     }
     document.head.appendChild(s);

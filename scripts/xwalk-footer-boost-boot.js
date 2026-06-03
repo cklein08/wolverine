@@ -213,76 +213,19 @@
     buildTopFromFlat(section);
   }
 
-  const NEWSLETTER_HTML =
-    '<div class="xwalk-footer-newsletter">' +
-    '<h2>Want the latest scoop?</h2>' +
-    '<p>Sign up and get the latest news and updates from Wolverine Mobile.</p>' +
-    '<p class="xwalk-footer-newsletter-form">' +
-    '<label for="xwalk-footer-email">Email address</label>' +
-    '<input type="email" id="xwalk-footer-email" name="email" placeholder="Email address" autocomplete="email">' +
-    '<a class="xwalk-footer-subscribe-btn" href="/customer/login">Subscribe</a>' +
-    '</p></div>';
-
-  function repairPersonaLeak(section) {
+  function isNewsletterOrLeakSection(section) {
     const content = sectionContent(section);
-    if (!content.querySelector('.xwalk-family-plans-page, .xwalk-family-headline, .xwalk-family-grid')) {
-      return false;
+    if (content.querySelector('.xwalk-family-plans-page, .xwalk-family-headline, .xwalk-family-grid')) {
+      return true;
     }
-    content.innerHTML = NEWSLETTER_HTML;
-    return true;
+    if (content.querySelector('.xwalk-footer-newsletter, input[type="email"]')) return true;
+    return /want the latest scoop|newsletter/i.test(content.textContent || '');
   }
 
-  function decorateNewsletter(section) {
-    repairPersonaLeak(section);
-    const content = sectionContent(section);
-    const h2 = content.querySelector('h2');
-    if (!h2 || !/scoop/i.test(h2.textContent || '')) return;
-
-    content.closest('.section')?.classList.add('xwalk-footer-newsletter-section');
-    const newsletterRoot = content.querySelector('.xwalk-footer-newsletter') || content;
-    newsletterRoot.style.cssText =
-      'padding:28px 0 32px;border-top:1px solid color-mix(in srgb,#86EFAC 18%,transparent);border-bottom:1px solid color-mix(in srgb,#86EFAC 18%,transparent);text-align:left;max-width:none;margin:0;color:' +
-      TEXT +
-      ';';
-
-    const desc = [...newsletterRoot.querySelectorAll('p')].find((p) => !p.classList.contains('xwalk-footer-newsletter-form'));
-    if (desc) desc.style.margin = '0 0 20px';
-
-    if (newsletterRoot.querySelector('.xwalk-footer-newsletter-form input')) return;
-
-    const oldForm = [...newsletterRoot.querySelectorAll('p')].find(
-      (p) => p !== desc && /subscribe|email/i.test(p.textContent || ''),
-    );
-    if (!oldForm) return;
-
-    const form = document.createElement('p');
-    form.className = 'xwalk-footer-newsletter-form';
-    form.style.cssText = 'display:flex;flex-wrap:nowrap;align-items:stretch;gap:12px;margin:0;';
-
-    const label = document.createElement('label');
-    label.htmlFor = 'xwalk-footer-email';
-    label.textContent = 'Email address';
-    label.style.cssText =
-      'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;';
-
-    const input = document.createElement('input');
-    input.type = 'email';
-    input.id = 'xwalk-footer-email';
-    input.name = 'email';
-    input.placeholder = 'Email address';
-    input.autocomplete = 'email';
-    input.style.cssText =
-      'flex:0 1 25%;width:25%;min-width:160px;max-width:280px;padding:12px 16px;border:1px solid color-mix(in srgb,#fff 35%,transparent);border-radius:4px;background:#0A1A0F;color:#fff;font-size:1rem;box-sizing:border-box;';
-
-    const sub = document.createElement('a');
-    sub.href = oldForm.querySelector('a[href]')?.getAttribute('href') || '/customer/login';
-    sub.className = 'xwalk-footer-subscribe-btn';
-    sub.textContent = 'Subscribe';
-    sub.style.cssText =
-      `display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;padding:12px 28px;background:${PRIMARY};color:#000;font-weight:800;text-decoration:none;border-radius:4px;font-size:0.9375rem;white-space:nowrap;`;
-
-    form.append(label, input, sub);
-    oldForm.replaceWith(form);
+  function removeNewsletterSections(host) {
+    sectionDivs(host).forEach((section) => {
+      if (isNewsletterOrLeakSection(section)) section.remove();
+    });
   }
 
   function isReady(host) {
@@ -297,6 +240,8 @@
     if (!wrap || !host) return;
     if (host.dataset.xwalkFooterBoost === '1' && isReady(host)) return;
 
+    removeNewsletterSections(host);
+
     const sections = sectionDivs(host);
     if (sections.length < 2) return;
 
@@ -308,11 +253,18 @@
     wrap.style.minHeight = '0';
 
     enhanceTop(sections[0]);
-    if (!splitFlatColumns(sections[1])) return;
-    if (sections[2]) decorateNewsletter(sections[2]);
-    if (sections[3]) {
-      sections[3].className = 'xwalk-footer-legal';
-      sections[3].style.cssText = 'padding:24px 0 8px;text-align:center;color:color-mix(in srgb,#fff 75%,transparent);';
+    const columnsSection = sections.find(
+      (s, i) => i > 0 && !isNewsletterOrLeakSection(s) && !/all rights reserved/i.test(s.textContent || ''),
+    );
+    if (!columnsSection || !splitFlatColumns(columnsSection)) return;
+
+    const legalSection =
+      sections.find((s) => /all rights reserved|©/i.test(s.textContent || '')) ||
+      sections[sections.length - 1];
+    if (legalSection && legalSection !== sections[0] && legalSection !== columnsSection) {
+      legalSection.className = 'xwalk-footer-legal';
+      legalSection.style.cssText =
+        'padding:24px 0 8px;text-align:center;color:color-mix(in srgb,#fff 75%,transparent);';
     }
 
     fixLogos(host);

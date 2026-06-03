@@ -6,7 +6,7 @@
   const MINT_ROW = '#f3fbf6';
   const MINT_PILL = '#d8f3e0';
   const DARK_PILL = '#1a1a1a';
-  const LINE_RE = /^(\d+(?:st|nd|rd|th) line)\b/i;
+  const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
 
   function injectCss() {
     if (document.getElementById('forge-family-plans')) return;
@@ -24,7 +24,7 @@
         '.xwalk-family-title{color:' + PRIMARY + '!important;font-family:Arial Black,Arial,sans-serif!important;font-size:1.65rem!important;font-weight:900!important}',
         '.xwalk-family-cta{display:inline-block!important;background:' + PRIMARY + '!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important}',
         '.xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}',
-        'body.xwalk-persona-offer-page--family-texas main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
+        'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
       ].join('');
     }
     document.head.appendChild(s);
@@ -50,7 +50,14 @@
     return p?.tagName === 'P' && p.querySelector('a') && /shop\s*now/i.test(p.textContent || '');
   }
   function isLine(p) {
-    return p?.tagName === 'P' && LINE_RE.test((p.textContent || '').trim());
+    const t = (p.textContent || '').trim();
+    return p?.tagName === 'P' && LINE_RE.test(t);
+  }
+
+  function lineLabel(p) {
+    const t = (p.textContent || '').trim();
+    const m = t.match(LINE_RE);
+    return m ? m[1] : t.split(/\s+\$/)[0].trim();
   }
 
   function build(section) {
@@ -84,7 +91,7 @@
           break;
         }
         if (isLine(el)) {
-          const label = (el.textContent || '').trim().match(LINE_RE)?.[1] || '';
+          const label = lineLabel(el);
           const del = el.querySelector('del');
           const strong = el.querySelector('strong');
           const em = el.querySelector('em');
@@ -169,9 +176,11 @@
   }
 
   function run() {
-    if (!/family-texas/i.test(location.pathname || '')) return;
+    const path = (location.pathname || '').replace(/\/$/, '');
+    if (path !== '/family-texas' && path !== '/college-student') return;
+    const personaId = path.slice(1);
     injectCss();
-    document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--family-texas');
+    document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--' + personaId);
     const main = document.querySelector('main');
     if (main) {
       main.classList.remove('xwalk-boost-main');

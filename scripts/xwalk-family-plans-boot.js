@@ -7,6 +7,78 @@
   const MINT_PILL = '#d8f3e0';
   const DARK_PILL = '#1a1a1a';
   const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
+  const HERO_BG = '#0A1A0F';
+  const LOGO = '/images/brand/wolverine-logo-mark.svg';
+  const CAMPAIGN_HERO = {
+    'family-texas': {
+      headline: 'Keep your family connected',
+      tagline:
+        'Texas families stay connected with the right smartphone for adults and teenagers alike',
+      hero: '/images/fpo/persona-family-texas-street.png',
+      heroAlt: 'Texas family outdoors — parents and teens',
+    },
+    'single-woman-nyc': {
+      headline: 'You run this city',
+      tagline:
+        'Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city.',
+      hero: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2000&q=80',
+      heroAlt: 'Young woman in New York City street scene',
+    },
+    'college-student': {
+      headline: 'Wireless that fits your semester',
+      tagline:
+        'Affordable data and a phone that keeps up with campus life — without breaking the budget.',
+      hero: '/images/fpo/persona-college-student.jpg',
+      heroAlt: 'College student on campus',
+    },
+  };
+
+  function createCampaignHero(personaId, headlineOverride) {
+    const meta = CAMPAIGN_HERO[personaId];
+    if (!meta) return null;
+    const headline = headlineOverride || meta.headline;
+    const section = document.createElement('section');
+    section.className = 'xwalk-campaign-hero';
+    section.style.cssText = 'background:' + HERO_BG + ';color:#fff;width:100%;';
+    const grid = document.createElement('div');
+    grid.className = 'xwalk-campaign-hero-grid';
+    grid.style.cssText =
+      'display:grid;grid-template-columns:1fr 1fr;min-height:min(420px,48vw);max-width:1280px;margin:0 auto;width:100%;';
+    const copy = document.createElement('div');
+    copy.className = 'xwalk-campaign-hero-copy';
+    copy.style.cssText =
+      'display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 56px;';
+    copy.innerHTML =
+      '<p class="xwalk-campaign-hero-logo" style="margin:0 0 20px;"><img src="' +
+      LOGO +
+      '" alt="Wolverine Mobile" width="40" height="40" style="display:block;"></p><h1 class="xwalk-campaign-hero-headline" style="margin:0 0 16px;font-family:Arial Black,Arial,sans-serif;font-size:clamp(2rem,4.5vw,3.25rem);font-weight:900;line-height:1.05;color:#fff;">' +
+      headline +
+      '</h1>' +
+      (meta.tagline
+        ? '<p class="xwalk-campaign-hero-tagline" style="margin:0;font-size:1.0625rem;line-height:1.45;color:color-mix(in srgb,#fff 92%,transparent);max-width:36rem;">' +
+          meta.tagline +
+          '</p>'
+        : '');
+    const visual = document.createElement('div');
+    visual.className = 'xwalk-campaign-hero-visual';
+    visual.style.cssText = 'position:relative;min-height:320px;overflow:hidden;background:#111;';
+    visual.innerHTML =
+      '<div class="xwalk-campaign-hero-bg" style="position:absolute;inset:0;"><picture><img src="' +
+      meta.hero +
+      '" alt="' +
+      meta.heroAlt +
+      '" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></picture></div>';
+    grid.append(copy, visual);
+    section.append(grid);
+    return section;
+  }
+
+  function ensureCampaignHero(personaId, headline) {
+    const page = document.querySelector('.xwalk-family-plans-page');
+    if (!page || page.querySelector('.xwalk-campaign-hero')) return;
+    const hero = createCampaignHero(personaId, headline || '');
+    if (hero) page.insertBefore(hero, page.firstChild);
+  }
 
   function injectCss() {
     if (document.getElementById('forge-family-plans')) return;
@@ -28,6 +100,13 @@
         'main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:' + MINT_PAGE + '!important;color:#111!important;display:block!important}',
         'main:has(#you-run-this-city)>div,main:has(#keep-your-family-connected)>div,main:has(#wireless-that-fits-your-semester)>div{background:transparent!important;color:#111!important;min-height:0!important;overflow:visible!important}',
         'main:has(#you-run-this-city) h1,main:has(#you-run-this-city) h2,main:has(#you-run-this-city) p,main:has(#keep-your-family-connected) h1,main:has(#keep-your-family-connected) h2,main:has(#keep-your-family-connected) p,main:has(#wireless-that-fits-your-semester) h1,main:has(#wireless-that-fits-your-semester) h2,main:has(#wireless-that-fits-your-semester) p{color:#111!important;text-shadow:none!important}',
+        '.xwalk-campaign-hero{background:' + HERO_BG + '!important;color:#fff!important;width:100%!important;display:block!important}',
+        '.xwalk-campaign-hero-grid{display:grid!important;grid-template-columns:1fr 1fr!important;min-height:min(420px,48vw)!important;max-width:1280px!important;margin:0 auto!important}',
+        '.xwalk-campaign-hero-headline{color:#fff!important;text-shadow:none!important}',
+        '.xwalk-campaign-hero-tagline{color:color-mix(in srgb,#fff 92%,transparent)!important}',
+        '.xwalk-campaign-hero-visual{position:relative!important;min-height:320px!important;overflow:hidden!important}',
+        '.xwalk-campaign-hero-bg img{width:100%!important;height:100%!important;object-fit:cover!important}',
+        '@media(max-width:900px){.xwalk-campaign-hero-grid{grid-template-columns:1fr!important}.xwalk-campaign-hero-visual{min-height:280px!important;order:-1!important}}',
       ].join('');
     }
     document.head.appendChild(s);
@@ -128,8 +207,12 @@
     }
 
     const root = document.createElement('div');
-    root.className = 'xwalk-family-plans-page';
+    root.className = 'xwalk-persona-mockup xwalk-family-plans-page xwalk-family-plans-page--campaign';
     root.style.cssText = 'background:' + MINT_PAGE + ';width:100%;';
+    const path = (location.pathname || '').replace(/\/$/, '');
+    const personaId = path.slice(1);
+    const hero = createCampaignHero(personaId, headline);
+    if (hero) root.append(hero);
     const main = document.createElement('section');
     main.className = 'xwalk-family-main';
     main.style.cssText = 'background:' + MINT_PAGE + ';padding:36px 40px 56px;max-width:1040px;margin:0 auto;';
@@ -192,6 +275,8 @@
       main.style.cssText = 'display:block;max-width:none;padding:0;background:' + MINT_PAGE + ';';
     }
     if (document.querySelector('.xwalk-family-plans-page .xwalk-family-grid')) {
+      const h1 = document.querySelector('.xwalk-family-headline');
+      ensureCampaignHero(personaId, h1?.textContent?.trim() || '');
       document.querySelectorAll('.xwalk-family-row').forEach((r, i) => paintRow(r, i));
       return;
     }

@@ -2,7 +2,7 @@
  * Persona offer pages: hide promo chrome, rebuild family grid when HLX flattens HTML.
  */
 (function (global) {
-  const FAMILY_LINE_RE = /^(\d+(?:st|nd|rd|th) line)\b/i;
+  const FAMILY_LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
 
   function isFamilyCtaParagraph(p) {
     const a = p?.querySelector?.('a');
@@ -14,8 +14,9 @@
   }
 
   function lineLabelFromParagraph(p) {
-    const m = (p.textContent || '').trim().match(FAMILY_LINE_RE);
-    return m ? m[1] : '';
+    const t = (p.textContent || '').trim();
+    const m = t.match(FAMILY_LINE_RE);
+    return m ? m[1] : t.split(/\s+\$/)[0].trim();
   }
 
   function priceHtmlFromParagraph(p) {
@@ -107,7 +108,7 @@
     const { headline, offers } = parsed;
     const root = doc.createElement('div');
     root.className = 'xwalk-persona-mockup xwalk-family-plans-page';
-    root.dataset.personaId = 'family-texas';
+    root.dataset.personaId = doc.location?.pathname?.replace(/^\//, '').replace(/\/$/, '') || 'family-texas';
 
     const main = doc.createElement('section');
     main.className = 'xwalk-family-main';
@@ -168,11 +169,17 @@
     return main.querySelector('div');
   }
 
+  function gridPersonaPath(path) {
+    if (path === '/family-texas' || path === '/college-student') return path.slice(1);
+    return null;
+  }
+
   function decorateFamilyTexasPage(doc) {
     const path = (doc.location?.pathname || '').replace(/\/$/, '');
-    if (path !== '/family-texas') return false;
+    const personaId = gridPersonaPath(path);
+    if (!personaId) return false;
 
-    doc.body?.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--family-texas');
+    doc.body?.classList.add('xwalk-persona-offer-page', `xwalk-persona-offer-page--${personaId}`);
 
     if (doc.querySelector('.xwalk-family-plans-page')) return true;
 

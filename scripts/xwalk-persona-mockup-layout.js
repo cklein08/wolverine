@@ -155,7 +155,7 @@
 
   function findFamilySection(doc) {
     if (doc.querySelector('.xwalk-family-plans-page')) return null;
-    const main = doc.querySelector('main');
+    const main = doc.querySelector('body > main');
     if (!main) return null;
     const candidates = [
       ...main.querySelectorAll(':scope > div'),
@@ -268,6 +268,9 @@
         decorateFamilyTexasPage(document);
       });
     };
-    new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
+    const pageMain = document.querySelector('body > main');
+    if (pageMain) {
+      new MutationObserver(schedule).observe(pageMain, { childList: true, subtree: true });
+    }
   }
 })(typeof window !== 'undefined' ? window : globalThis);

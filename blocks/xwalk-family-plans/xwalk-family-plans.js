@@ -7,7 +7,7 @@ const MINT_ROW = '#f3fbf6';
 const MINT_PILL = '#d8f3e0';
 const DARK_PILL = '#1a1a1a';
 
-const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
+const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
 
 function injectFamilyStyles(doc) {
   if (doc.getElementById('forge-family-plans')) return;

@@ -2,7 +2,8 @@
  * Family BYOD landing grid — runs from scripts.js after decorateBlocks.
  */
 import { CAMPAIGN_HERO_CSS, createCampaignHeroEl } from './persona-campaign-hero.js';
-import { createGreenAiBar, createSingleOfferSection } from './persona-single-offer-dom.js';
+import { hasForgeSegmentParam } from './persona-landing-mode.js';
+import { createSingleOfferSection } from './persona-single-offer-dom.js';
 
 const PRIMARY = '#1DB954';
 const SECONDARY = '#0E7A3A';
@@ -102,19 +103,128 @@ function headlineFromSection(section) {
   return h1?.textContent?.trim() || '';
 }
 
+function buildGridFromSection(section) {
+  const personaId = gridPersonaId();
+  if (!personaId) return null;
+  const headline = headlineFromSection(section) || 'Keep your family connected';
+  const nodes = [...section.children];
+  const offers = [];
+  let i = 0;
+  while (i < nodes.length) {
+    if (nodes[i].tagName === 'H1') {
+      i += 1;
+      continue;
+    }
+    if (nodes[i].tagName === 'P' && nodes[i].querySelector('picture') && !nodes[i].querySelector('a[href="/"]')) {
+      i += 1;
+      continue;
+    }
+    if (nodes[i].tagName !== 'H2') {
+      i += 1;
+      continue;
+    }
+    const title = nodes[i].textContent.trim();
+    const rows = [];
+    let cta = personaId === 'single-woman-nyc' ? '/phones' : '/plans';
+    i += 1;
+    while (i < nodes.length && nodes[i].tagName !== 'H2') {
+      const el = nodes[i];
+      if (isCta(el)) {
+        cta = el.querySelector('a')?.getAttribute('href') || cta;
+        i += 1;
+        break;
+      }
+      if (isLine(el)) {
+        const label = lineLabelFromParagraph(el);
+        const del = el.querySelector('del');
+        const strong = el.querySelector('strong');
+        const em = el.querySelector('em');
+        let priceHtml;
+        if (!del && !strong) {
+          const m = (el.textContent || '').match(/\$\d+/);
+          priceHtml = `<span class="xwalk-family-now">${m ? m[0] : ''}</span>`;
+        } else {
+          priceHtml = `<span class="xwalk-family-price"><s class="xwalk-family-was">${del.textContent}</s> <strong class="xwalk-family-now">${strong.textContent}</strong>${em ? ` <em class="xwalk-family-off">${em.textContent}</em>` : ''}</span>`;
+        }
+        i += 1;
+        let pill = '';
+        if (i < nodes.length && nodes[i].tagName === 'P' && !isLine(nodes[i]) && !isCta(nodes[i])) {
+          pill = nodes[i].textContent.trim();
+          i += 1;
+        }
+        rows.push({ label, priceHtml, pill });
+        continue;
+      }
+      i += 1;
+    }
+    if (rows.length) offers.push({ title, rows, cta });
+  }
+
+  const root = document.createElement('div');
+  root.className = 'xwalk-persona-mockup xwalk-family-plans-page';
+  const wrap = document.createElement('section');
+  wrap.className = 'xwalk-family-main';
+  wrap.style.background = MINT_PAGE;
+  const h1 = document.createElement('h1');
+  h1.className = 'xwalk-family-headline';
+  h1.textContent = headline;
+  h1.style.cssText = `margin:0 0 24px;font-family:Arial Black,Arial,sans-serif;font-size:1.75rem;font-weight:900;color:${PRIMARY};`;
+  wrap.append(h1);
+  offers.forEach((offer, oi) => {
+    const shell = document.createElement('div');
+    shell.className = 'xwalk-family-offer';
+    if (oi > 0) shell.hidden = true;
+    const h2 = document.createElement('h2');
+    h2.className = 'xwalk-family-title';
+    h2.textContent = offer.title;
+    if (oi === 0 && personaId === 'family-texas') h2.id = 'family-plans--bring-your-own-device';
+    shell.append(h2);
+    const grid = document.createElement('div');
+    grid.className = 'xwalk-family-grid';
+    offer.rows.forEach((row, ri) => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'xwalk-family-row';
+      rowEl.innerHTML = `<span class="xwalk-family-line-label">${row.label}</span><span class="xwalk-family-line-price">${row.priceHtml}</span><p class="xwalk-family-pill xwalk-family-pill--${ri < 2 ? 'dark' : 'accent'}">${row.pill}</p>`;
+      grid.append(rowEl);
+      paintRow(rowEl, ri);
+    });
+    shell.append(grid);
+    const ctaP = document.createElement('p');
+    ctaP.className = 'xwalk-family-cta-wrap';
+    ctaP.innerHTML = `<a class="xwalk-family-cta" href="${offer.cta}">Shop Now →</a>`;
+    shell.append(ctaP);
+    wrap.append(shell);
+  });
+  root.append(wrap);
+  return root;
+}
+
 function buildFromSection(section) {
   const personaId = gridPersonaId();
   if (!personaId) return null;
   const headline = headlineFromSection(section) || 'Keep your family connected';
 
+  if (!hasForgeSegmentParam()) {
+    return buildGridFromSection(section);
+  }
+
+  document.body.classList.add('xwalk-persona-segment-landing');
+  document
+    .querySelectorAll('header .xwalk-promo-strip, .fragment.xwalk-promo-strip, main .xwalk-promo-strip')
+    .forEach((el) => el.style.setProperty('display', 'none', 'important'));
+
   const root = document.createElement('div');
   root.className =
-    'xwalk-persona-mockup xwalk-family-plans-page xwalk-family-plans-page--campaign xwalk-family-plans-page--single-offer';
+    'xwalk-persona-mockup xwalk-family-plans-page xwalk-family-plans-page--campaign xwalk-family-plans-page--single-offer xwalk-persona-segment-landing';
   const hero = createCampaignHeroEl(personaId, headline);
   if (hero) root.append(hero);
-  root.append(createGreenAiBar());
   const offer = createSingleOfferSection(personaId, headline);
-  if (offer) root.append(offer);
+  if (offer) {
+    offer.querySelectorAll('.xwalk-plan-line-pill').forEach((p) => {
+      p.style.color = '#fff';
+    });
+    root.append(offer);
+  }
   return root;
 }
 
@@ -146,10 +256,41 @@ export function decorateFamilyTexasMain(main) {
   main.style.display = 'block';
   main.style.maxWidth = 'none';
   main.style.padding = '0';
-  main.style.background = '#fff';
+  main.style.background = segment ? '#fff' : MINT_PAGE;
+
+  const segment = hasForgeSegmentParam();
+  document.body.classList.toggle('xwalk-persona-segment-landing', segment);
+  if (segment) {
+    document
+      .querySelectorAll('header .xwalk-promo-strip, .fragment.xwalk-promo-strip, main .xwalk-promo-strip')
+      .forEach((el) => el.style.setProperty('display', 'none', 'important'));
+    document.querySelectorAll('.xwalk-mockup-green-bar').forEach((el) => el.remove());
+  }
 
   const existing = main.querySelector('.xwalk-family-plans-page');
-  if (existing?.querySelector('.xwalk-mockup-offer-row')) return;
+  if (segment && existing?.querySelector('.xwalk-mockup-offer-row')) {
+    existing.querySelectorAll('.xwalk-plan-line-pill').forEach((p) => p.style.setProperty('color', '#fff', 'important'));
+    return;
+  }
+  if (segment && existing?.querySelector('.xwalk-family-grid')) {
+    const headline =
+      existing.querySelector('.xwalk-family-headline')?.textContent?.trim() ||
+      existing.querySelector('h1')?.textContent?.trim() ||
+      '';
+    const built = buildFromSection(existing);
+    if (built) existing.replaceWith(built);
+    return;
+  }
+  if (!segment && existing?.querySelector('.xwalk-family-grid')) {
+    existing.querySelectorAll('.xwalk-family-row').forEach((r, i) => paintRow(r, i));
+    return;
+  }
+  if (!segment && existing?.querySelector('.xwalk-mockup-offer-row')) {
+    const personaId = gridPersonaId();
+    const built = buildGridFromSection(existing);
+    if (built) existing.replaceWith(built);
+    return;
+  }
 
   const section = findContentRoot(main);
   if (!section || section.querySelector('.xwalk-mockup-offer-row')) return;

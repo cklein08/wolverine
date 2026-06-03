@@ -10,10 +10,15 @@
   }
 
   function paintSocialLink(a) {
+    const href = a.getAttribute('href') || '';
     const label = (a.getAttribute('aria-label') || a.textContent || '').trim();
-    const key = Object.keys(SOCIAL_ICON).find((k) => label.toLowerCase().includes(k.toLowerCase()));
-    const glyph = key ? SOCIAL_ICON[key] : label.slice(0, 2);
-    a.setAttribute('aria-label', label || 'Social');
+    let key = Object.keys(SOCIAL_ICON).find((k) => label.toLowerCase().includes(k.toLowerCase()));
+    if (!key && /facebook/i.test(href)) key = 'Facebook';
+    if (!key && /twitter|x\.com/i.test(href)) key = 'X';
+    if (!key && /instagram/i.test(href)) key = 'Instagram';
+    if (!key && /youtube/i.test(href)) key = 'YouTube';
+    const glyph = key ? SOCIAL_ICON[key] : label.slice(0, 2) || '•';
+    if (key) a.setAttribute('aria-label', key);
     a.innerHTML = `<span aria-hidden="true">${glyph}</span>`;
     a.style.cssText =
       'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#1a1a1a;color:#fff;font-weight:800;font-size:0.8125rem;text-decoration:none;line-height:1;';
@@ -174,6 +179,8 @@
   function schedule() {
     run();
   }
+
+  globalThis.xwalkFooterBoostDecorate = run;
 
   document.addEventListener('DOMContentLoaded', schedule);
   document.addEventListener('aem:loaded', schedule);

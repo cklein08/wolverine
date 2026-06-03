@@ -9,12 +9,13 @@ const MINT_ROW = '#f3fbf6';
 const MINT_PILL = '#d8f3e0';
 const DARK_PILL = '#1a1a1a';
 const HERO_BG = '#0A1A0F';
-const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
+const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
 
 function gridPersonaId() {
   const path = (window.location?.pathname || '').replace(/\/$/, '');
   if (path === '/family-texas') return 'family-texas';
   if (path === '/college-student') return 'college-student';
+  if (path === '/single-woman-nyc') return 'single-woman-nyc';
   return null;
 }
 
@@ -40,7 +41,7 @@ function injectFamilyStyles(doc) {
 .xwalk-family-main{background:${MINT_PAGE}!important;padding:36px 40px 56px!important;max-width:1040px!important;margin:0 auto!important}
 .xwalk-family-cta{display:inline-block!important;background:${PRIMARY}!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important;font-family:"Arial Black",Arial,sans-serif!important}
 .xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}
-body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main{display:block!important;max-width:none!important;padding:0!important;background:${MINT_PAGE}!important;grid-template-columns:1fr!important}
+body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{display:block!important;max-width:none!important;padding:0!important;background:${MINT_PAGE}!important;grid-template-columns:1fr!important}
 body.xwalk-persona-offer-page header{display:block!important;visibility:visible!important;z-index:200!important;background:${HERO_BG}!important}
 body.xwalk-persona-offer-page header nav,body.xwalk-persona-offer-page header a{color:#fff!important}
 .xwalk-family-hero,main>div>p:first-child:has(picture):not(:has(a)){display:none!important}

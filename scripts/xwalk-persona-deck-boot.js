@@ -1,4 +1,4 @@
-/** NYC + college deck pages — inject CSS + rebuild DOM (HLX strips classes). */
+/** NYC + college deck — rebuild after EDS decorateBlocks (same timing as family boot). */
 (function () {
   const PRIMARY = '#1DB954';
   const HERO_BG = '#0A1A0F';
@@ -43,7 +43,6 @@
     s.textContent = [
       'body.xwalk-persona-offer-page--single-woman-nyc main,body.xwalk-persona-offer-page--college-student main{display:block!important;max-width:none!important;padding:0!important;background:#fff!important;grid-template-columns:1fr!important;color:#111!important}',
       'body.xwalk-persona-offer-page--single-woman-nyc main>div,body.xwalk-persona-offer-page--college-student main>div{background:#fff!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important}',
-      'body.xwalk-persona-offer-page--single-woman-nyc main>div>h1,body.xwalk-persona-offer-page--college-student main>div>h1,body.xwalk-persona-offer-page--single-woman-nyc main>div>p,body.xwalk-persona-offer-page--college-student main>div>p{text-shadow:none!important}',
       '.xwalk-mockup-hero{background:' + HERO_BG + '!important;color:#fff!important}',
       '.xwalk-mockup-hero-grid{display:grid!important;grid-template-columns:1fr 1fr!important;min-height:400px!important}',
       '.xwalk-mockup-hero-left{display:flex!important;flex-direction:column!important;justify-content:center!important;padding:48px 40px 48px 56px!important}',
@@ -195,9 +194,11 @@
   }
 
   function specsHtml(cols) {
-    return cols.map(function (items) {
-      return '<ul>' + items.map(function (li) { return '<li>' + li + '</li>'; }).join('') + '</ul>';
-    }).join('');
+    return cols
+      .map(function (items) {
+        return '<ul>' + items.map(function (li) { return '<li>' + li + '</li>'; }).join('') + '</ul>';
+      })
+      .join('');
   }
 
   function offerRow(offer) {
@@ -210,27 +211,21 @@
     return (
       '<div class="xwalk-mockup-offer-row">' +
       '<div class="xwalk-mockup-offer-main">' +
-      '<div class="xwalk-mockup-plan-head">' +
-      '<h2 class="xwalk-mockup-plan-title">' +
+      '<div class="xwalk-mockup-plan-head"><h2 class="xwalk-mockup-plan-title">' +
       offer.title +
       ' <span class="xwalk-mockup-plan-price">' +
       offer.price +
       '</span></h2>' +
       pill +
-      '</div>' +
-      '<div class="xwalk-mockup-plan-body">' +
-      '<div class="xwalk-mockup-device">' +
+      '</div><div class="xwalk-mockup-plan-body"><div class="xwalk-mockup-device">' +
       deviceImg +
       '<p class="xwalk-mockup-device-name">' +
       offer.deviceName +
-      '</p></div>' +
-      '<div class="xwalk-mockup-specs">' +
+      '</p></div><div class="xwalk-mockup-specs">' +
       specsHtml(offer.specCols) +
-      '</div></div>' +
-      '<p class="xwalk-mockup-device-price"><strong>' +
+      '</div></div><p class="xwalk-mockup-device-price"><strong>' +
       offer.devicePrice +
-      '</strong></p></div>' +
-      '<a class="xwalk-mockup-cta" href="' +
+      '</strong></p></div><a class="xwalk-mockup-cta" href="' +
       offer.ctaHref +
       '">Shop Now →</a></div>'
     );
@@ -243,8 +238,7 @@
     const heroImg = parsed.heroSrc
       ? '<img src="' + parsed.heroSrc + '" alt="' + parsed.heroAlt + '" loading="eager" decoding="async">'
       : '';
-    const offers = parsed.offers.length ? parsed.offers : [];
-    const variants = offers
+    const variants = parsed.offers
       .map(function (offer, idx) {
         const hidden = idx > 0 ? ' hidden' : '';
         return '<div data-forge-variant="offer-' + idx + '"' + hidden + '>' + offerRow(offer) + '</div>';
@@ -256,27 +250,19 @@
     root.dataset.personaId = cfg.id;
     root.innerHTML =
       '<section class="xwalk-mockup-hero"><div class="xwalk-mockup-hero-grid">' +
-      '<div class="xwalk-mockup-hero-left">' +
-      '<p class="xwalk-mockup-logo"><a href="/"><img src="' +
+      '<div class="xwalk-mockup-hero-left"><p class="xwalk-mockup-logo"><a href="/"><img src="' +
       logo +
-      '" alt="Wolverine Mobile" width="40" height="40"></a></p>' +
-      '<p class="xwalk-mockup-ai-badge">' +
+      '" alt="Wolverine Mobile" width="40" height="40"></a></p><p class="xwalk-mockup-ai-badge">' +
       BADGE +
-      '</p>' +
-      '<h1>' +
+      '</p><h1>' +
       parsed.headline +
-      '</h1></div>' +
-      '<div class="xwalk-mockup-hero-right">' +
+      '</h1></div><div class="xwalk-mockup-hero-right">' +
       heroImg +
-      '</div></div></section>' +
-      '<div class="xwalk-mockup-green-bar">' +
+      '</div></div></section><div class="xwalk-mockup-green-bar">' +
       BADGE +
-      '</div>' +
-      '<section class="xwalk-mockup-white">' +
-      '<p class="xwalk-mockup-quote"><em>' +
+      '</div><section class="xwalk-mockup-white"><p class="xwalk-mockup-quote"><em>' +
       parsed.quote +
-      '</em></p>' +
-      '<div class="xwalk-mockup-offers">' +
+      '</em></p><div class="xwalk-mockup-offers">' +
       variants +
       '</div></section>';
     return root;
@@ -284,16 +270,16 @@
 
   function findSection() {
     return (
-      document.querySelector('main > .section > div') ||
-      document.querySelector('main > div') ||
+      document.querySelector('.xwalk-persona-deck .default-content-wrapper') ||
       document.querySelector('.xwalk-persona-deck > div > div') ||
-      document.querySelector('.xwalk-persona-deck .default-content-wrapper')
+      document.querySelector('main > .section > div') ||
+      document.querySelector('main > div')
     );
   }
 
   function run() {
     const cfg = pageCfg();
-    if (!cfg) return;
+    if (!cfg || !document.body) return;
 
     injectCss();
     document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--' + cfg.id);
@@ -314,17 +300,18 @@
     const parsed = parseSection(section, cfg);
     if (!parsed.offers.length) return;
 
-    section.replaceChildren(build(parsed, cfg));
+    const built = build(parsed, cfg);
+    if (!built.querySelector('.xwalk-mockup-offer-row')) return;
+    section.replaceChildren(built);
   }
 
   function schedule() {
     run();
   }
 
-  schedule();
   document.addEventListener('DOMContentLoaded', schedule);
   document.addEventListener('aem:loaded', schedule);
-  [0, 50, 100, 400, 800, 1500, 3000, 5000].forEach(function (ms) {
+  [100, 400, 800, 1500, 3000, 5000].forEach(function (ms) {
     setTimeout(schedule, ms);
   });
 

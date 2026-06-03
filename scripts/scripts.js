@@ -1,5 +1,5 @@
 import { decorateFamilyTexasMain } from './decorate-family-texas.js';
-import { decoratePersonaDeckMain } from './decorate-persona-deck.js';
+import { decoratePersonaDeckMain, schedulePersonaDeckDecorate } from './decorate-persona-deck.js';
 import {
   buildBlock,
   loadHeader,

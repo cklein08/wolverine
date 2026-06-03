@@ -108,6 +108,9 @@ function decorateHeroSections(main) {
 }
 
 export function decorateBoostLayout(doc = document) {
+  const path = (doc.location?.pathname || '').replace(/\/$/, '');
+  if (path === '/family-texas' || path === '/single-woman-nyc' || path === '/college-student') return;
+
   const main = doc.querySelector('main');
   if (!main) return;
 

@@ -191,6 +191,7 @@ async function loadPage() {
 }
 
 loadPage();
+schedulePersonaDeckDecorate();
 // FORGE inline edit
 try {
   const __fe = new URLSearchParams(globalThis.location?.search || '');

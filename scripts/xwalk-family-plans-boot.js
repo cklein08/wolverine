@@ -55,10 +55,19 @@
 
   function build(section) {
     const nodes = [...section.children];
-    const heroPic = section.querySelector('picture');
     const offers = [];
+    let headline = 'Keep your family connected';
     let i = 0;
     while (i < nodes.length) {
+      if (nodes[i].tagName === 'H1') {
+        headline = nodes[i].textContent.trim() || headline;
+        i += 1;
+        continue;
+      }
+      if (nodes[i].tagName === 'P' && nodes[i].querySelector('picture') && !nodes[i].querySelector('a[href="/"]')) {
+        i += 1;
+        continue;
+      }
       if (nodes[i].tagName !== 'H2') {
         i += 1;
         continue;
@@ -110,22 +119,17 @@
     const root = document.createElement('div');
     root.className = 'xwalk-family-plans-page';
     root.style.cssText = 'background:' + MINT_PAGE + ';width:100%;';
-    if (heroPic) {
-      const fig = document.createElement('figure');
-      fig.className = 'xwalk-family-hero';
-      const img = heroPic.querySelector('img');
-      if (img) {
-        const ni = document.createElement('img');
-        ni.src = img.currentSrc || img.src;
-        ni.alt = img.alt || '';
-        ni.style.cssText = 'display:block;width:100%;max-height:400px;object-fit:cover;';
-        fig.append(ni);
-      }
-      root.append(fig);
-    }
     const main = document.createElement('section');
     main.className = 'xwalk-family-main';
     main.style.cssText = 'background:' + MINT_PAGE + ';padding:36px 40px 56px;max-width:1040px;margin:0 auto;';
+    const h1 = document.createElement('h1');
+    h1.className = 'xwalk-family-headline';
+    h1.textContent = headline;
+    h1.style.cssText =
+      'margin:0 0 24px;font-family:Arial Black,Arial,sans-serif;font-size:1.75rem;font-weight:900;color:' +
+      PRIMARY +
+      ';';
+    main.append(h1);
     offers.forEach((offer, oi) => {
       const shell = document.createElement('div');
       shell.className = 'xwalk-family-offer';

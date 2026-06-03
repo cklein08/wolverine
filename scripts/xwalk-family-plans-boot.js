@@ -6,7 +6,7 @@
   const MINT_ROW = '#f3fbf6';
   const MINT_PILL = '#d8f3e0';
   const DARK_PILL = '#1a1a1a';
-  const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot)\b/i;
+  const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
 
   function injectCss() {
     if (document.getElementById('forge-family-plans')) return;
@@ -24,7 +24,7 @@
         '.xwalk-family-title{color:' + PRIMARY + '!important;font-family:Arial Black,Arial,sans-serif!important;font-size:1.65rem!important;font-weight:900!important}',
         '.xwalk-family-cta{display:inline-block!important;background:' + PRIMARY + '!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important}',
         '.xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}',
-        'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
+        'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
       ].join('');
     }
     document.head.appendChild(s);
@@ -177,7 +177,7 @@
 
   function run() {
     const path = (location.pathname || '').replace(/\/$/, '');
-    if (path !== '/family-texas' && path !== '/college-student') return;
+    if (path !== '/family-texas' && path !== '/college-student' && path !== '/single-woman-nyc') return;
     const personaId = path.slice(1);
     injectCss();
     document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--' + personaId);

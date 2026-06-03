@@ -16,6 +16,9 @@ export default async function decorate(block) {
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
-  globalThis.xwalkFooterBoostDecorate?.();
-  requestAnimationFrame(() => globalThis.xwalkFooterBoostDecorate?.());
+  const run = () => globalThis.xwalkFooterBoostDecorate?.();
+  run();
+  requestAnimationFrame(run);
+  setTimeout(run, 150);
+  setTimeout(run, 600);
 }

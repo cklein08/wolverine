@@ -1,3 +1,4 @@
+import { decorateFamilyTexasMain } from './decorate-family-texas.js';
 import {
   buildBlock,
   loadHeader,
@@ -124,6 +125,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateFamilyTexasMain(main);
 }
 
 /**

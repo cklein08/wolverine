@@ -181,7 +181,7 @@ body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) em{color:#
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/xwalk-boost-layout.js" type="module"></script>
-<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-2"></script>
+<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-3"></script>
 <script id="forge-persona-deck-class">(function(){var p=(location.pathname||'').replace(/\/$/,'');if(p==='/single-woman-nyc')document.documentElement.dataset.forgePersona=p.slice(1);})();</script>
 <script src="/scripts/xwalk-family-plans-boot.js?v=grid-5"></script>
 <script src="/scripts/xwalk-persona-deck-boot.js?v=deck-3"></script>
@@ -245,18 +245,45 @@ main.xwalk-footer-boost .xwalk-footer-top {
   padding: 32px 0 28px;
   border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand {
-  max-width: 360px;
+main.xwalk-footer-boost .xwalk-footer-top-brand,
+footer .footer .xwalk-footer-top-brand {
+  max-width: 420px;
+  overflow: visible;
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand {
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand,
+footer .footer .xwalk-footer-brand {
   margin: 0 0 8px;
+  overflow: visible;
+  line-height: 0;
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img {
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img,
+main.xwalk-footer-boost .xwalk-footer-top-brand picture img,
+footer .footer .xwalk-footer-brand img,
+footer .footer .xwalk-footer-top-brand img,
+footer .footer .xwalk-footer-top-brand picture img {
   display: block;
-  height: 48px;
+  height: auto;
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
+  max-height: 72px;
   object-fit: contain;
+  object-position: left center;
+}
+footer .footer > main,
+footer .footer main.xwalk-footer-boost {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  min-height: 0;
+}
+footer .footer > main > div,
+footer .footer main.xwalk-footer-boost > div {
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
 }
 main.xwalk-footer-boost .xwalk-footer-top-social {
   text-align: right;
@@ -444,17 +471,29 @@ main.xwalk-footer-boost .xwalk-footer-legal a {
     grid-template-columns: 1fr;
   }
 }
-/* Flat HLX footer (classes stripped) — boot script adds xwalk-footer-* wrappers */
 footer .footer .xwalk-footer-top,
 footer .footer .xwalk-footer-columns,
 footer .xwalk-footer-top,
 footer .xwalk-footer-columns {
   width: 100%;
   box-sizing: border-box;
+  visibility: visible;
+  opacity: 1;
 }
+footer .footer .xwalk-footer-columns,
 html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+footer .footer .xwalk-footer-col,
+footer .footer .xwalk-footer-col a,
+footer .footer .xwalk-footer-col p {
+  visibility: visible;
+  opacity: 1;
+  color: color-mix(in srgb, #FFFFFF 92%, transparent);
+}
+footer .footer .xwalk-footer-col p strong {
+  color: #FFFFFF;
 }
 @media (max-width: 900px) {
   html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
@@ -468,6 +507,7 @@ html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
 }
 
 </style>
+<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
@@ -584,6 +624,7 @@ main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
 .xwalk-persona-plan--single .xwalk-plan-pill,.xwalk-persona-plan--student .xwalk-plan-pill{background:#1a1a1a;color:#fff;border-radius:6px;padding:10px 14px;display:inline-block;margin-bottom:16px}
 @media(max-width:768px){.xwalk-persona-plan-row{grid-template-columns:1fr}.xwalk-plan-line{grid-template-columns:1fr;gap:4px}}
 </style>
+<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>

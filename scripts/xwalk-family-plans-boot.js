@@ -416,6 +416,15 @@
         }
       } else if (page?.querySelector('.xwalk-family-grid')) {
         document.querySelectorAll('.xwalk-family-row').forEach((r, i) => paintRow(r, i));
+      } else {
+        const section =
+          document.querySelector('main > .section > div') ||
+          document.querySelector('main > div') ||
+          document.querySelector('.xwalk-family-plans > div > div');
+        if (section && !section.querySelector('.xwalk-family-grid')) {
+          const built = buildGridPage(personaId, headline);
+          if (built) section.replaceChildren(built);
+        }
       }
       return;
     }

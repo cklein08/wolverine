@@ -8,6 +8,7 @@ const MINT_PAGE = '#eef8f1';
 const MINT_ROW = '#f3fbf6';
 const MINT_PILL = '#d8f3e0';
 const DARK_PILL = '#1a1a1a';
+const HERO_BG = '#0A1A0F';
 const LINE_RE = /^(\d+(?:st|nd|rd|th) line)\b/i;
 
 function isFamilyPage() {
@@ -33,6 +34,9 @@ function injectFamilyStyles(doc) {
 .xwalk-family-cta{display:inline-block!important;background:${PRIMARY}!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important;font-family:"Arial Black",Arial,sans-serif!important}
 .xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}
 body.xwalk-persona-offer-page--family-texas main{display:block!important;max-width:none!important;padding:0!important;background:${MINT_PAGE}!important;grid-template-columns:1fr!important}
+body.xwalk-persona-offer-page header{display:block!important;visibility:visible!important;z-index:200!important;background:${HERO_BG}!important}
+body.xwalk-persona-offer-page header nav,body.xwalk-persona-offer-page header a{color:#fff!important}
+.xwalk-family-hero,main>div>p:first-child:has(picture):not(:has(a)){display:none!important}
 `.trim();
   doc.head.appendChild(style);
 }
@@ -60,10 +64,19 @@ function isLine(p) {
 
 function buildFromSection(section) {
   const nodes = [...section.children];
-  const heroPic = section.querySelector('picture');
   const offers = [];
+  let headline = 'Keep your family connected';
   let i = 0;
   while (i < nodes.length) {
+    if (nodes[i].tagName === 'H1') {
+      headline = nodes[i].textContent.trim() || headline;
+      i += 1;
+      continue;
+    }
+    if (nodes[i].tagName === 'P' && nodes[i].querySelector('picture') && !nodes[i].querySelector('a[href="/"]')) {
+      i += 1;
+      continue;
+    }
     if (nodes[i].tagName !== 'H2') {
       i += 1;
       continue;
@@ -107,22 +120,14 @@ function buildFromSection(section) {
 
   const root = document.createElement('div');
   root.className = 'xwalk-persona-mockup xwalk-family-plans-page';
-  if (heroPic) {
-    const fig = document.createElement('figure');
-    fig.className = 'xwalk-family-hero';
-    const img = heroPic.querySelector('img');
-    if (img) {
-      const ni = document.createElement('img');
-      ni.src = img.currentSrc || img.src;
-      ni.alt = img.alt || '';
-      ni.style.cssText = 'display:block;width:100%;max-height:400px;object-fit:cover;';
-      fig.append(ni);
-    }
-    root.append(fig);
-  }
   const wrap = document.createElement('section');
   wrap.className = 'xwalk-family-main';
   wrap.style.background = MINT_PAGE;
+  const h1 = document.createElement('h1');
+  h1.className = 'xwalk-family-headline';
+  h1.textContent = headline;
+  h1.style.cssText = `margin:0 0 24px;font-family:Arial Black,Arial,sans-serif;font-size:1.75rem;font-weight:900;color:${PRIMARY};`;
+  wrap.append(h1);
 
   offers.forEach((offer, oi) => {
     const shell = document.createElement('div');

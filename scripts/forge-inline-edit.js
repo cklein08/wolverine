@@ -513,7 +513,16 @@ function scanAndDecorate() {
     findBlocks(main).forEach((el) => decorateBlock(el, classifyBlock(el)));
     main.querySelectorAll('.forge-plan-offer[data-forge-personalization]').forEach((el) => {
       if (!el.dataset.forgeEditDecorated) {
-        decorateBlock(el, { id: 'forge-plan-offer', label: 'Plan line offer (AJO)', category: 'commerce' });
+        let label = 'Plan line offer (AJO)';
+        try {
+          const cfg = JSON.parse(el.getAttribute('data-forge-personalization') || '{}');
+          if ((cfg.offerPlacement || '').startsWith('persona-plan-switch-')) {
+            label = 'Plan tier switch (black pill)';
+          }
+        } catch {
+          /* ignore */
+        }
+        decorateBlock(el, { id: 'forge-plan-offer', label, category: 'commerce' });
       }
     });
     insertDropZones(main);

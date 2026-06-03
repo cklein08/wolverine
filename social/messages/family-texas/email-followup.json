@@ -4,9 +4,9 @@
   "personaLabel": "Texas Family",
   "campaignGoal": "loyalty",
   "status": "draft",
-  "updatedAt": "2026-05-28T17:27:46.366Z",
+  "updatedAt": "2026-06-03T03:48:42.646Z",
   "metadata": {
-    "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+    "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
     "segmentName": "Men/Women married with kids, 40+, Texas",
     "campaignId": "ajo-camp-family-texas",
     "campaignName": "Texas Family Plan Loyalty",
@@ -18,7 +18,7 @@
   "preheader": "We noticed you have not opened yet — your personalized offer is still available.",
   "headline": "Your family plan offer is still waiting",
   "tagline": "Devices for adults and teens — family plan from $80/mo. Tap below before this offer expires.",
-  "heroImage": "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80",
+  "heroImage": "https://main--wolverine--cklein08.aem.page/images/fpo/persona-family-texas-street.png",
   "heroAlt": "Texas family outdoors — parents and teens",
   "products": [
     {
@@ -46,7 +46,7 @@
       "imageAlt": "Family wireless plan"
     }
   ],
-  "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
   "ctaLabel": "Claim your offer →",
   "siteUrl": "https://main--wolverine--cklein08.aem.page/",
   "id": "email-followup"

@@ -7,9 +7,9 @@
     "personaLabel": "Single Young Woman, NYC",
     "campaignGoal": "acquisition",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.371Z",
+    "updatedAt": "2026-06-03T03:48:42.670Z",
     "metadata": {
-      "segmentId": "seg-single-woman-nyc",
+      "segmentId": "a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
       "segmentName": "Women, 25–35, NYC",
       "campaignId": "ajo-camp-nyc-women",
       "campaignName": "NYC Women Acquisition",
@@ -49,7 +49,7 @@
         "imageAlt": "Switch and save promotion"
       }
     ],
-    "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+    "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
     "ctaLabel": "See your personalized offer →",
     "siteUrl": "https://main--wolverine--cklein08.aem.page/"
   },
@@ -60,14 +60,14 @@
     "personaLabel": "Single Young Woman, NYC",
     "sender": "Wolverine Mobile",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.372Z",
+    "updatedAt": "2026-06-03T03:48:42.671Z",
     "messages": [
       {
         "id": "sms-1",
         "label": "No conversion (60s)",
-        "body": "Still thinking about Razr? Your exclusive offer ends soon. wvmobile.co/single-woman-nyc?p=single-w",
-        "shortLink": "wvmobile.co/single-woman-nyc?p=single-w",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "body": "Still thinking about Razr? Your exclusive offer ends soon. wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "shortLink": "wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "delayAfterPrevSeconds": 60,
         "condition": "no_conversion",
         "charCount": 98,
@@ -77,9 +77,9 @@
       {
         "id": "sms-2",
         "label": "Urgency follow-up (60s)",
-        "body": "Exclusive offer: Motorola Razr at $499.99. Ends soon. wvmobile.co/single-woman-nyc?p=single-w",
-        "shortLink": "wvmobile.co/single-woman-nyc?p=single-w",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "body": "Exclusive offer: Motorola Razr at $499.99. Ends soon. wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "shortLink": "wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "delayAfterPrevSeconds": 60,
         "condition": "no_response",
         "charCount": 93,
@@ -93,14 +93,14 @@
     "personaId": "single-woman-nyc",
     "personaLabel": "Single Young Woman, NYC",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.373Z",
+    "updatedAt": "2026-06-03T03:48:42.672Z",
     "messages": [
       {
         "id": "push-1",
         "label": "After SMS sequence",
         "title": "Wolverine Mobile",
         "body": "Still thinking? Motorola Razr at $499.99 — tap to claim.",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "icon": "/mobile-app/icons/icon-192.png",
         "delayAfterPrevSeconds": 30,
         "condition": "after_sms"
@@ -110,7 +110,7 @@
         "label": "Urgency nudge",
         "title": "Wolverine Mobile offer",
         "body": "Last chance: First month $15 with nationwide 5G. Open now.",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "icon": "/mobile-app/icons/icon-192.png",
         "delayAfterPrevSeconds": 60,
         "condition": "no_response"
@@ -121,8 +121,8 @@
     "personaId": "single-woman-nyc",
     "personaLabel": "Single Young Woman, NYC",
     "campaignGoal": "acquisition",
-    "segmentId": "seg-single-woman-nyc",
-    "landingUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+    "segmentId": "a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
+    "landingUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
     "steps": [
       {
         "id": "email-1",
@@ -133,7 +133,7 @@
         "preheader": "Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city.",
         "headline": "You run this city",
         "previewPath": "/social/messages/single-woman-nyc/email.html",
-        "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "ctaLabel": "See your personalized offer →"
       },
       {
@@ -142,7 +142,7 @@
         "label": "Personalized landing (after email click)",
         "delayAfterPrevSeconds": 0,
         "condition": "cta_click",
-        "url": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc"
+        "url": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09"
       },
       {
         "id": "sms-1",
@@ -151,9 +151,9 @@
         "delayAfterPrevSeconds": 60,
         "condition": "no_conversion",
         "sender": "Wolverine Mobile",
-        "body": "Still thinking about Razr? Your exclusive offer ends soon. wvmobile.co/single-woman-nyc?p=single-w",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
-        "shortLink": "wvmobile.co/single-woman-nyc?p=single-w"
+        "body": "Still thinking about Razr? Your exclusive offer ends soon. wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
+        "shortLink": "wvmobile.co/single-woman-nyc?p=7189-7e9"
       },
       {
         "id": "sms-2",
@@ -162,9 +162,9 @@
         "delayAfterPrevSeconds": 60,
         "condition": "no_response",
         "sender": "Wolverine Mobile",
-        "body": "Exclusive offer: Motorola Razr at $499.99. Ends soon. wvmobile.co/single-woman-nyc?p=single-w",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
-        "shortLink": "wvmobile.co/single-woman-nyc?p=single-w"
+        "body": "Exclusive offer: Motorola Razr at $499.99. Ends soon. wvmobile.co/single-woman-nyc?p=7189-7e9",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
+        "shortLink": "wvmobile.co/single-woman-nyc?p=7189-7e9"
       },
       {
         "id": "push-1",
@@ -174,7 +174,7 @@
         "condition": "after_sms",
         "title": "Wolverine Mobile",
         "body": "Still thinking? Motorola Razr at $499.99 — tap to claim.",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "icon": "/mobile-app/icons/icon-192.png"
       },
       {
@@ -185,14 +185,14 @@
         "condition": "no_response",
         "title": "Wolverine Mobile offer",
         "body": "Last chance: First month $15 with nationwide 5G. Open now.",
-        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+        "link": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
         "icon": "/mobile-app/icons/icon-192.png"
       },
       {
         "id": "web-landing-final",
         "channel": "web",
         "label": "Personalized landing page",
-        "url": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc"
+        "url": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09"
       }
     ]
   },

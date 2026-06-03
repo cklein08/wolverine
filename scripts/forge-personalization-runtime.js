@@ -48,7 +48,8 @@
     const offerMode = config.variantMode === 'offer' || /^family-line-\d/.test(config.offerPlacement || '');
     const journeyMode =
       config.variantMode === 'journey' ||
-      ((config.offerPlacement || '').includes('persona-plan') && !offerMode);
+      ((config.offerPlacement || '').includes('persona-plan') && !offerMode) ||
+      (config.offerPlacement || '').startsWith('persona-plan-switch-');
 
     if (offerMode) {
       if (!segmentId || segmentId === 'seg-all-visitors') {

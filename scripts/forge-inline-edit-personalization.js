@@ -199,7 +199,8 @@ export function syncVariantVisibility(blockEl, previewSegmentId) {
   const offerMode = config.variantMode === 'offer' || /^family-line-\d/.test(config.offerPlacement || '');
   const journeyMode =
     config.variantMode === 'journey' ||
-    (config.offerPlacement?.includes('persona-plan') && !offerMode);
+    (config.offerPlacement?.includes('persona-plan') && !offerMode) ||
+    (config.offerPlacement || '').startsWith('persona-plan-switch-');
 
   if (offerMode) {
     if (!previewSegmentId || previewSegmentId === 'seg-all-visitors') {
@@ -376,16 +377,18 @@ export async function openPersonalizationPanel(blockEl, { onDirty } = {}) {
         ${
           config.variantMode === 'offer' || config.offerPlacement?.startsWith('family-line-')
             ? 'Map this <strong>plan line offer pill</strong> to RT CDP segments and AJO campaigns. Pick an audience below to preview alternate offer copy, or add variants for additional segments.'
-            : 'Target this block to a <strong>Real-Time CDP</strong> audience and link an <strong>AJO</strong> campaign or journey. Saved metadata is stored on the block in Document Authoring for Edge Decisioning at runtime.'
+            : (config.offerPlacement || '').startsWith('persona-plan-switch-')
+              ? 'Use <strong>Plan type</strong> to preview the alternate secondary plan (black pill). Line prices and row count update on the plan block below.'
+              : 'Target this block to a <strong>Real-Time CDP</strong> audience and link an <strong>AJO</strong> campaign or journey. Saved metadata is stored on the block in Document Authoring for Edge Decisioning at runtime.'
         }
       </p>
       ${
         journeyMode
           ? `<div class="forge-personalization-plan-journey">
-        <label>Plan type · switch AJO journey
+        <label>Plan type · secondary offer
           <select id="forgePersPlanJourney">${planJourneyOptions}</select>
         </label>
-        <p class="forge-personalization-note">Changing the journey swaps the plan offer shown on this page (authoring preview).</p>
+        <p class="forge-personalization-note">Switches the black plan pill and the line prices below. Alternate family plan shows 3 lines (no 4th line).</p>
       </div>`
           : ''
       }

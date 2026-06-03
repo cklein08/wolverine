@@ -3,14 +3,14 @@
   "personaId": "college-student",
   "personaLabel": "College Student",
   "status": "draft",
-  "updatedAt": "2026-05-28T17:27:46.376Z",
+  "updatedAt": "2026-06-03T03:48:42.677Z",
   "messages": [
     {
       "id": "push-1",
       "label": "After SMS sequence",
       "title": "Wolverine Mobile",
       "body": "Still thinking? Moto G Play at From $9.99 — tap to claim.",
-      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=8d2b1883-3808-4880-a8f8-843fe5cbfe6c",
       "icon": "/mobile-app/icons/icon-192.png",
       "delayAfterPrevSeconds": 30,
       "condition": "after_sms"
@@ -20,7 +20,7 @@
       "label": "Urgency nudge",
       "title": "Wolverine Mobile offer",
       "body": "Last chance: +$5/mo with nationwide 5G. Open now.",
-      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+      "link": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=8d2b1883-3808-4880-a8f8-843fe5cbfe6c",
       "icon": "/mobile-app/icons/icon-192.png",
       "delayAfterPrevSeconds": 60,
       "condition": "no_response"

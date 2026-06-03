@@ -29,6 +29,12 @@ const QUICK_PROMPTS = [
   'Improve mobile responsiveness',
 ];
 
+const WOLVERINE_EMAIL_QUICK_PROMPTS = [
+  'Can you build me a email campaign and brief for a Man/Woman, married w/children, 40+ living in Texas with the Acquisition of May 21st to July 1st of 2026',
+  'Can you build me a email campaign and brief for a Single Woman ages 25-35 living in NYC with the Acquisition of May 21st to July 1st of 2026',
+  'Can you build me a email campaign and brief for a College Students ages 18-24 with the Acquisition of May 21st to July 1st of 2026',
+];
+
 /** Match server/brand-slug.js — keep in sync for repo naming. */
 function brandToSlug(name) {
   return String(name || 'site')
@@ -772,13 +778,18 @@ class ForgeApp extends LitElement {
         })),
       }));
 
+      const assessmentText = Array.isArray(data.assessment)
+        ? data.assessment.join('\n')
+        : data.assessment || data.message || data.response || 'Done.';
+
       this.chatMessages = [
         ...this.chatMessages,
         {
           role: 'assistant',
-          text: data.assessment || data.message || data.response || 'Done.',
-          scopes,
+          text: assessmentText,
+          scopes: data.emailCampaign ? ['emailCampaign', ...scopes] : scopes,
           diffs,
+          emailCampaign: data.emailCampaign || null,
         },
       ];
       if (data.previewUrl) this.previewUrl = data.previewUrl;
@@ -796,6 +807,18 @@ class ForgeApp extends LitElement {
       e.preventDefault();
       this._sendPrompt(this._chatInput);
     }
+  }
+
+  _isWolverineBrief() {
+    const name = `${this.brief?.brandName || ''} ${this.brief?.siteName || ''}`.toLowerCase();
+    return Boolean(this.brief?.wolverineDemo || this.brief?.echoStarDemo || name.includes('wolverine'));
+  }
+
+  _copilotQuickPrompts() {
+    if (this._isWolverineBrief()) {
+      return [...WOLVERINE_EMAIL_QUICK_PROMPTS, ...QUICK_PROMPTS.slice(0, 2)];
+    }
+    return QUICK_PROMPTS;
   }
 
   /* ------------------------------------------------------------------ */
@@ -1214,7 +1237,7 @@ class ForgeApp extends LitElement {
 
         <!-- Quick prompts -->
         <div class="forge__quick-prompts">
-          ${QUICK_PROMPTS.map(
+          ${this._copilotQuickPrompts().map(
             (p) => html`
               <button
                 class="forge__quick-btn"
@@ -1253,6 +1276,15 @@ class ForgeApp extends LitElement {
                             </div>
                           `,
                         )
+                      : nothing}
+                    ${m.emailCampaign
+                      ? html`
+                          <div class="forge__email-campaign-links" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;">
+                            <a class="forge__btn forge__btn--blue" href="${m.emailCampaign.reviewUrl}" target="_blank" rel="noopener">Review email</a>
+                            <a class="forge__btn" href="${m.emailCampaign.previewUrl}" target="_blank" rel="noopener">Preview HTML</a>
+                            <a class="forge__btn" href="${m.emailCampaign.inboxUrl}" target="_blank" rel="noopener">Simulate journey</a>
+                          </div>
+                        `
                       : nothing}
                   </div>
                 `,

@@ -4,9 +4,9 @@
   "personaLabel": "Single Young Woman, NYC",
   "campaignGoal": "acquisition",
   "status": "draft",
-  "updatedAt": "2026-05-28T17:27:46.371Z",
+  "updatedAt": "2026-06-03T03:48:42.670Z",
   "metadata": {
-    "segmentId": "seg-single-woman-nyc",
+    "segmentId": "a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
     "segmentName": "Women, 25–35, NYC",
     "campaignId": "ajo-camp-nyc-women",
     "campaignName": "NYC Women Acquisition",
@@ -46,7 +46,7 @@
       "imageAlt": "Switch and save promotion"
     }
   ],
-  "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=seg-single-woman-nyc",
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/single-woman-nyc?forge-preview-segment=a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
   "ctaLabel": "See your personalized offer →",
   "siteUrl": "https://main--wolverine--cklein08.aem.page/"
 }

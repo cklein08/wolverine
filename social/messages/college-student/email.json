@@ -4,9 +4,9 @@
   "personaLabel": "College Student",
   "campaignGoal": "acquisition",
   "status": "draft",
-  "updatedAt": "2026-05-28T17:27:46.373Z",
+  "updatedAt": "2026-06-03T03:48:42.673Z",
   "metadata": {
-    "segmentId": "seg-college-student",
+    "segmentId": "8d2b1883-3808-4880-a8f8-843fe5cbfe6c",
     "segmentName": "College students 18–24, US markets",
     "campaignId": "ajo-camp-college-student",
     "campaignName": "College Student Acquisition",
@@ -46,7 +46,7 @@
       "imageAlt": "Campus data add-on"
     }
   ],
-  "ctaUrl": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=seg-college-student",
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/college-student?forge-preview-segment=8d2b1883-3808-4880-a8f8-843fe5cbfe6c",
   "ctaLabel": "See your personalized offer →",
   "siteUrl": "https://main--wolverine--cklein08.aem.page/"
 }

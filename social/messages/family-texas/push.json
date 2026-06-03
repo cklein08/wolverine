@@ -3,14 +3,14 @@
   "personaId": "family-texas",
   "personaLabel": "Texas Family",
   "status": "draft",
-  "updatedAt": "2026-05-28T17:27:46.370Z",
+  "updatedAt": "2026-06-03T03:48:42.668Z",
   "messages": [
     {
       "id": "push-1",
       "label": "App alert after SMS",
       "title": "Wolverine Mobile",
       "body": "Family plan $80/mo — Apple iPhone 16e at From $29/mo. Tap to shop.",
-      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
       "icon": "/mobile-app/icons/icon-192.png",
       "delayAfterPrevSeconds": 30,
       "condition": "after_sms"
@@ -20,7 +20,7 @@
       "label": "Final app nudge",
       "title": "Wolverine Mobile",
       "body": "Your family devices are still on hold — open your personalized offer before it expires.",
-      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+      "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
       "icon": "/mobile-app/icons/icon-192.png",
       "delayAfterPrevSeconds": 60,
       "condition": "no_response"

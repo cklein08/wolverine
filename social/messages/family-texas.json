@@ -7,9 +7,9 @@
     "personaLabel": "Texas Family",
     "campaignGoal": "loyalty",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.362Z",
+    "updatedAt": "2026-06-03T03:48:42.630Z",
     "metadata": {
-      "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+      "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
       "segmentName": "Men/Women married with kids, 40+, Texas",
       "campaignId": "ajo-camp-family-texas",
       "campaignName": "Texas Family Plan Loyalty",
@@ -21,7 +21,7 @@
     "preheader": "Texas families stay connected with the right smartphone for adults and teenagers alike",
     "headline": "Keep your family connected",
     "tagline": "Texas families stay connected with the right smartphone for adults and teenagers alike",
-    "heroImage": "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80",
+    "heroImage": "https://main--wolverine--cklein08.aem.page/images/fpo/persona-family-texas-street.png",
     "heroAlt": "Texas family outdoors — parents and teens",
     "products": [
       {
@@ -49,7 +49,7 @@
         "imageAlt": "Family wireless plan"
       }
     ],
-    "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+    "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
     "ctaLabel": "See your personalized offer →",
     "siteUrl": "https://main--wolverine--cklein08.aem.page/"
   },
@@ -59,9 +59,9 @@
     "personaLabel": "Texas Family",
     "campaignGoal": "loyalty",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.366Z",
+    "updatedAt": "2026-06-03T03:48:42.646Z",
     "metadata": {
-      "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+      "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
       "segmentName": "Men/Women married with kids, 40+, Texas",
       "campaignId": "ajo-camp-family-texas",
       "campaignName": "Texas Family Plan Loyalty",
@@ -73,7 +73,7 @@
     "preheader": "We noticed you have not opened yet — your personalized offer is still available.",
     "headline": "Your family plan offer is still waiting",
     "tagline": "Devices for adults and teens — family plan from $80/mo. Tap below before this offer expires.",
-    "heroImage": "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80",
+    "heroImage": "https://main--wolverine--cklein08.aem.page/images/fpo/persona-family-texas-street.png",
     "heroAlt": "Texas family outdoors — parents and teens",
     "products": [
       {
@@ -101,7 +101,7 @@
         "imageAlt": "Family wireless plan"
       }
     ],
-    "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+    "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
     "ctaLabel": "Claim your offer →",
     "siteUrl": "https://main--wolverine--cklein08.aem.page/",
     "id": "email-followup"
@@ -112,14 +112,14 @@
     "personaLabel": "Texas Family",
     "sender": "Wolverine Mobile",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.369Z",
+    "updatedAt": "2026-06-03T03:48:42.668Z",
     "messages": [
       {
         "id": "sms-1",
         "label": "After email sequence",
-        "body": "Your family plan offer is waiting — see devices picked for each line. wvmobile.co/family-texas?p=family-t",
-        "shortLink": "wvmobile.co/family-texas?p=family-t",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "body": "Your family plan offer is waiting — see devices picked for each line. wvmobile.co/family-texas?p=981f-358",
+        "shortLink": "wvmobile.co/family-texas?p=981f-358",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "delayAfterPrevSeconds": 0,
         "condition": "after_emails",
         "charCount": 105,
@@ -129,9 +129,9 @@
       {
         "id": "sms-2",
         "label": "Final nudge (60s)",
-        "body": "Last chance: Family plan $80/mo for 4 lines. Apple iPhone 16e from From $29/mo. wvmobile.co/family-texas?p=family-t",
-        "shortLink": "wvmobile.co/family-texas?p=family-t",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "body": "Last chance: Family plan $80/mo for 4 lines. Apple iPhone 16e from From $29/mo. wvmobile.co/family-texas?p=981f-358",
+        "shortLink": "wvmobile.co/family-texas?p=981f-358",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "delayAfterPrevSeconds": 60,
         "condition": "no_response",
         "charCount": 115,
@@ -145,14 +145,14 @@
     "personaId": "family-texas",
     "personaLabel": "Texas Family",
     "status": "draft",
-    "updatedAt": "2026-05-28T17:27:46.370Z",
+    "updatedAt": "2026-06-03T03:48:42.668Z",
     "messages": [
       {
         "id": "push-1",
         "label": "App alert after SMS",
         "title": "Wolverine Mobile",
         "body": "Family plan $80/mo — Apple iPhone 16e at From $29/mo. Tap to shop.",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "icon": "/mobile-app/icons/icon-192.png",
         "delayAfterPrevSeconds": 30,
         "condition": "after_sms"
@@ -162,7 +162,7 @@
         "label": "Final app nudge",
         "title": "Wolverine Mobile",
         "body": "Your family devices are still on hold — open your personalized offer before it expires.",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "icon": "/mobile-app/icons/icon-192.png",
         "delayAfterPrevSeconds": 60,
         "condition": "no_response"
@@ -173,8 +173,8 @@
     "personaId": "family-texas",
     "personaLabel": "Texas Family",
     "campaignGoal": "loyalty",
-    "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
-    "landingUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+    "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
+    "landingUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
     "steps": [
       {
         "id": "email-1",
@@ -185,7 +185,7 @@
         "preheader": "Texas families stay connected with the right smartphone for adults and teenagers alike",
         "headline": "Keep your family connected",
         "previewPath": "/social/messages/family-texas/email.html",
-        "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "ctaLabel": "See your personalized offer →"
       },
       {
@@ -198,7 +198,7 @@
         "preheader": "We noticed you have not opened yet — your personalized offer is still available.",
         "headline": "Your family plan offer is still waiting",
         "previewPath": "/social/messages/family-texas/email-followup.html",
-        "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "ctaLabel": "Claim your offer →"
       },
       {
@@ -208,9 +208,9 @@
         "delayAfterPrevSeconds": 0,
         "condition": "after_emails",
         "sender": "Wolverine Mobile",
-        "body": "Your family plan offer is waiting — see devices picked for each line. wvmobile.co/family-texas?p=family-t",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
-        "shortLink": "wvmobile.co/family-texas?p=family-t"
+        "body": "Your family plan offer is waiting — see devices picked for each line. wvmobile.co/family-texas?p=981f-358",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
+        "shortLink": "wvmobile.co/family-texas?p=981f-358"
       },
       {
         "id": "sms-2",
@@ -219,9 +219,9 @@
         "delayAfterPrevSeconds": 60,
         "condition": "no_response",
         "sender": "Wolverine Mobile",
-        "body": "Last chance: Family plan $80/mo for 4 lines. Apple iPhone 16e from From $29/mo. wvmobile.co/family-texas?p=family-t",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
-        "shortLink": "wvmobile.co/family-texas?p=family-t"
+        "body": "Last chance: Family plan $80/mo for 4 lines. Apple iPhone 16e from From $29/mo. wvmobile.co/family-texas?p=981f-358",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
+        "shortLink": "wvmobile.co/family-texas?p=981f-358"
       },
       {
         "id": "push-1",
@@ -231,7 +231,7 @@
         "condition": "after_sms",
         "title": "Wolverine Mobile",
         "body": "Family plan $80/mo — Apple iPhone 16e at From $29/mo. Tap to shop.",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "icon": "/mobile-app/icons/icon-192.png"
       },
       {
@@ -242,14 +242,14 @@
         "condition": "no_response",
         "title": "Wolverine Mobile",
         "body": "Your family devices are still on hold — open your personalized offer before it expires.",
-        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+        "link": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0",
         "icon": "/mobile-app/icons/icon-192.png"
       },
       {
         "id": "web-landing-final",
         "channel": "web",
         "label": "Personalized landing page",
-        "url": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba"
+        "url": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=9597981f-358d-4203-82e8-1a10362d81a0"
       }
     ]
   },

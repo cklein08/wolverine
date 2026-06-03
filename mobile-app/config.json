@@ -5,7 +5,7 @@
       "id": "family-texas",
       "label": "Texas Family",
       "goal": "loyalty",
-      "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
+      "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
       "landingPath": "/family-texas",
       "headline": "Keep your family connected",
       "tagline": "Texas families stay connected with the right smartphone for adults and teenagers alike"
@@ -14,7 +14,7 @@
       "id": "single-woman-nyc",
       "label": "Single Young Woman, NYC",
       "goal": "acquisition",
-      "segmentId": "seg-single-woman-nyc",
+      "segmentId": "a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
       "landingPath": "/single-woman-nyc",
       "headline": "You run this city",
       "tagline": "Active New Yorkers love the Razr compact foldable design — perfect for your on-the-go lifestyle in the city."
@@ -23,7 +23,7 @@
       "id": "college-student",
       "label": "College Student",
       "goal": "acquisition",
-      "segmentId": "seg-college-student",
+      "segmentId": "8d2b1883-3808-4880-a8f8-843fe5cbfe6c",
       "landingPath": "/college-student",
       "headline": "Wireless that fits your semester",
       "tagline": "Affordable data and a phone that keeps up with campus life — without breaking the budget."

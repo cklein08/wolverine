@@ -48,12 +48,21 @@
 
   function parseFamilyOffers(section) {
     const nodes = [...section.children];
-    const heroPicture = section.querySelector('picture');
     const offers = [];
+    let headline = 'Keep your family connected';
     let i = 0;
 
     while (i < nodes.length) {
       const node = nodes[i];
+      if (node.tagName === 'H1') {
+        headline = node.textContent.trim() || headline;
+        i += 1;
+        continue;
+      }
+      if (node.tagName === 'P' && node.querySelector('picture') && !node.querySelector('a[href="/"]')) {
+        i += 1;
+        continue;
+      }
       if (node.tagName !== 'H2') {
         i += 1;
         continue;
@@ -91,32 +100,21 @@
       if (rows.length) offers.push({ title, rows, ctaHref });
     }
 
-    return { heroPicture, offers };
+    return { headline, offers };
   }
 
   function buildFamilyPlansDom(doc, parsed) {
-    const { heroPicture, offers } = parsed;
+    const { headline, offers } = parsed;
     const root = doc.createElement('div');
     root.className = 'xwalk-persona-mockup xwalk-family-plans-page';
     root.dataset.personaId = 'family-texas';
 
-    if (heroPicture) {
-      const hero = doc.createElement('figure');
-      hero.className = 'xwalk-family-hero';
-      const img = heroPicture.querySelector('img');
-      const figureImg = doc.createElement('img');
-      if (img) {
-        figureImg.src = img.currentSrc || img.src;
-        figureImg.alt = img.alt || 'Texas family outdoors';
-        figureImg.loading = 'eager';
-        figureImg.decoding = 'async';
-      }
-      hero.append(figureImg);
-      root.append(hero);
-    }
-
     const main = doc.createElement('section');
     main.className = 'xwalk-family-main';
+    const h1 = doc.createElement('h1');
+    h1.className = 'xwalk-family-headline';
+    h1.textContent = headline;
+    main.append(h1);
     const wrap = doc.createElement('div');
     wrap.className = 'xwalk-family-offers';
 

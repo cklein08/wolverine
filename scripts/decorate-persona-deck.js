@@ -321,9 +321,10 @@ export function decoratePersonaDeckMain(main) {
   if (!section) return;
 
   const parsed = parseDeckOffers(section, cfg);
-  if (!parsed.offers.length && !parsed.headline) return;
+  if (!parsed.offers.length) return;
 
   const built = buildDeckDom(parsed, personaId);
+  if (!built.querySelector('.xwalk-mockup-offer-row')) return;
   const host = section.closest('.default-content-wrapper') || section;
   host.replaceChildren(built);
 
@@ -331,7 +332,7 @@ export function decoratePersonaDeckMain(main) {
   if (block) block.classList.add('xwalk-persona-deck-ready');
 }
 
-/** Retry deck decorate when main mutates (matches family boot). */
+/** Retry after decorateBlocks (import-time decorate runs too early and gets wiped). */
 export function schedulePersonaDeckDecorate() {
   const personaId = deckPersonaId();
   if (!personaId) return;
@@ -339,17 +340,11 @@ export function schedulePersonaDeckDecorate() {
     const main = document.querySelector('main');
     if (main) decoratePersonaDeckMain(main);
   };
-  run();
-  document.addEventListener('DOMContentLoaded', run);
-  document.addEventListener('aem:loaded', run);
-  [100, 400, 800, 1500, 3000].forEach((ms) => setTimeout(run, ms));
-  const main = document.querySelector('main');
-  if (main && !main.dataset.forgeDeckObserve) {
-    main.dataset.forgeDeckObserve = '1';
-    new MutationObserver(run).observe(main, { childList: true, subtree: true });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
   }
-}
-
-if (typeof window !== 'undefined' && deckPersonaId()) {
-  schedulePersonaDeckDecorate();
+  document.addEventListener('aem:loaded', run);
+  [0, 100, 400, 800, 1500, 3000, 5000].forEach((ms) => setTimeout(run, ms));
 }

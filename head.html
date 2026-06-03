@@ -30,10 +30,50 @@ main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(h3)) a{color:#fff!impor
 @media (max-width:1100px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
 </style>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <style id="forge-persona-critical">
-.xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
+.xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-ai-badge,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
 [data-forge-variant][hidden]{display:none!important}
+main:has(.hero.xwalk-persona-landing-hero){display:block!important;max-width:none!important;padding:0!important;background:#fff!important}
+main:has(.hero.xwalk-persona-landing-hero)>div{grid-column:1/-1!important;background:transparent!important;box-shadow:none!important}
+.hero.xwalk-persona-landing-hero{position:relative;min-height:380px;overflow:hidden;background:#0A1A0F;padding:56px 32px 48px;text-align:center;grid-column:1/-1}
+.hero.xwalk-persona-landing-hero .xwalk-hero-bg{position:absolute;inset:0;z-index:0}
+.hero.xwalk-persona-landing-hero .xwalk-hero-bg picture,.hero.xwalk-persona-landing-hero .xwalk-hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.xwalk-persona-landing-hero .xwalk-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(10 26 15/45%) 0%,rgb(10 26 15/92%) 100%)}
+.hero.xwalk-persona-landing-hero h1{position:relative;z-index:2;font-family:Arial Black;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff!important;margin:0;text-shadow:0 2px 20px rgb(0 0 0/55%)}
+.hero.xwalk-persona-landing-hero--deck{min-height:420px;padding:0;text-align:left;background:#0A1A0F}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-landing-split{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:420px;max-width:none;margin:0;align-items:stretch}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-copy{display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 56px;position:relative;z-index:2}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-logo{margin:0 0 28px}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-logo img{display:block;width:40px;height:40px}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-copy h1{font-size:clamp(2.25rem,4.5vw,3.25rem);margin:0;text-align:left;line-height:1.05}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-visual{position:relative;min-height:420px;border-radius:0;overflow:hidden;background:#111}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-visual .xwalk-hero-bg{position:absolute;inset:0}
+.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-visual .xwalk-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:1}
+.fragment.xwalk-persona-quote{grid-column:1/-1;background:#fff;padding:20px 32px 8px;text-align:center;max-width:none;margin:0}
+main:has(.xwalk-persona-landing-hero--deck) .fragment.xwalk-persona-quote{padding:24px 32px 16px}
+main:has(.xwalk-persona-landing-hero--deck) .xwalk-persona-quote-text{color:#1DB954;font-size:1.125rem;text-align:center;display:block;max-width:720px;margin:0 auto}
+.columns.xwalk-persona-plan-landing--deck>div>[data-forge-variant]{grid-template-columns:1fr minmax(180px,220px);max-width:1100px;padding:12px 32px 48px;align-items:stretch}
+.xwalk-persona-plan--deck .xwalk-plan-title{font-family:Arial Black;font-size:1.5rem;font-weight:900;color:#111;margin:0}
+.xwalk-persona-plan--deck .xwalk-plan-highlight{color:#1DB954}
+.xwalk-persona-plan--deck .xwalk-plan-header-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin-bottom:20px}
+.xwalk-persona-plan--deck .xwalk-plan-header-pill{flex:1;min-width:200px;max-width:520px}
+.xwalk-persona-plan--deck .xwalk-plan-header-pill .xwalk-plan-tier-switch{margin:0;font-size:.8rem;line-height:1.35;padding:12px 18px;border-radius:8px}
+.xwalk-persona-plan--deck .xwalk-plan-deck-main{display:grid;grid-template-columns:minmax(140px,200px) 1fr;gap:28px 32px;align-items:start}
+.xwalk-persona-plan--deck .xwalk-plan-device-stack{text-align:center}
+.xwalk-persona-plan--deck .xwalk-plan-device-img img{max-height:220px;width:auto;max-width:100%;object-fit:contain;display:block;margin:0 auto}
+.xwalk-persona-plan--deck .xwalk-plan-device-name{font-family:Arial Black;font-size:1.35rem;font-weight:900;color:#1DB954;margin:12px 0 0}
+.xwalk-persona-plan--deck .xwalk-plan-specs-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;align-content:start;padding-top:8px}
+.xwalk-persona-plan--deck .xwalk-device-specs--col{margin:0;padding:0;list-style:none}
+.xwalk-persona-plan--deck .xwalk-device-specs--col li{color:#1DB954;font-size:1rem;line-height:1.5;margin:0 0 8px;font-weight:600}
+.xwalk-persona-plan--deck .xwalk-device-specs--col li::before{content:'✓ ';font-weight:800}
+.xwalk-persona-plan--deck .xwalk-device-price-deck{margin:16px 0 0;font-size:1rem;color:#111}
+.xwalk-persona-plan-landing--deck .xwalk-persona-cta-card{min-height:280px}
+@media(max-width:900px){.hero.xwalk-persona-landing-hero--deck .xwalk-persona-landing-split{grid-template-columns:1fr}.hero.xwalk-persona-landing-hero--deck .xwalk-persona-hero-visual{min-height:280px}.xwalk-persona-plan--deck .xwalk-plan-deck-main{grid-template-columns:1fr}.columns.xwalk-persona-plan-landing--deck>div>[data-forge-variant]{grid-template-columns:1fr}}
+.xwalk-persona-quote-text{font-size:1.15rem;color:#0E7A3A;font-style:italic;margin:0;max-width:900px;display:inline-block}
+.fragment.xwalk-persona-plan-switch{grid-column:1/-1;background:#fff;padding:0 32px 8px;max-width:1100px;margin:0 auto}
+.xwalk-persona-plan-switch-wrap .xwalk-plan-tier-switch{cursor:pointer;margin:0 0 4px}
+.columns.forge-persona-plan.xwalk-persona-plan-landing{grid-column:1/-1;background:#fff}
+.columns.forge-persona-plan.xwalk-persona-plan-landing>div>[data-forge-variant]{display:grid;grid-template-columns:1fr minmax(160px,200px);gap:20px;max-width:1100px;margin:0 auto;padding:8px 32px 40px;align-items:stretch}
 main:has(.xwalk-persona-experience-stack){display:block!important;max-width:none!important;padding:0!important;background:transparent!important}
 main:has(.xwalk-persona-experience-stack)>div{grid-column:unset!important;background:transparent!important;box-shadow:none!important}
 main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
@@ -78,7 +118,7 @@ main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
 .xwalk-persona-plan--single .xwalk-plan-pill,.xwalk-persona-plan--student .xwalk-plan-pill{background:#1a1a1a;color:#fff;border-radius:6px;padding:10px 14px;display:inline-block;margin-bottom:16px}
 @media(max-width:768px){.xwalk-persona-plan-row{grid-template-columns:1fr}.xwalk-plan-line{grid-template-columns:1fr;gap:4px}}
 </style>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <link rel="stylesheet" href="/styles/styles.css"/>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
 <link rel="stylesheet" href="/styles/forge-inline-edit.css?v=9"/>
+<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>

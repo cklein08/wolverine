@@ -51,9 +51,11 @@ function injectDeckStyles(doc) {
   style.textContent = `
 body.xwalk-persona-offer-page--single-woman-nyc main,
 body.xwalk-persona-offer-page--college-student main{display:block!important;max-width:none!important;padding:0!important;background:#fff!important;grid-template-columns:1fr!important;color:#111!important}
-body.xwalk-persona-offer-page--single-woman-nyc .xwalk-mockup-hero,
-body.xwalk-persona-offer-page--college-student .xwalk-mockup-hero{background:${HERO_BG}!important;color:#fff!important}
-.xwalk-mockup-hero-grid{display:grid!important;grid-template-columns:1fr 1fr!important;min-height:400px!important}
+.xwalk-mockup-intro{background:#fff!important;color:#111!important;padding:28px 32px 12px!important;max-width:1200px!important;margin:0 auto!important}
+.xwalk-mockup-intro h1{margin:0!important;font-family:Arial Black,Arial,sans-serif!important;font-size:clamp(1.75rem,3.5vw,2.5rem)!important;font-weight:900!important;color:#111!important}
+.xwalk-family-hero,.xwalk-mockup-hero-right{display:none!important}
+body.xwalk-persona-offer-page header{display:block!important;visibility:visible!important;position:relative!important;z-index:200!important;background:${HERO_BG}!important}
+body.xwalk-persona-offer-page header nav,body.xwalk-persona-offer-page header a{color:#fff!important}
 .xwalk-mockup-offer-row{display:grid!important;grid-template-columns:1fr minmax(160px,200px)!important;gap:24px!important;align-items:stretch!important}
 .xwalk-mockup-plan-body{display:grid!important;grid-template-columns:minmax(160px,220px) 1fr!important;gap:32px!important}
 .xwalk-mockup-specs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:24px 40px!important}
@@ -248,9 +250,6 @@ function buildOfferRow(offer) {
 function buildDeckDom(parsed, personaId) {
   const cfg = DECK_PAGES[personaId];
   const logo = parsed.logoSrc || '/media_1a7ada75bcb9954749625b6afdc636958c6f4b3dd.svg?width=64&format=svg&optimize=medium';
-  const heroImg = parsed.heroSrc
-    ? `<img src="${parsed.heroSrc}" alt="${parsed.heroAlt}" loading="eager" decoding="async">`
-    : '';
 
   const variantShells = (parsed.offers.length ? parsed.offers : [{ title: cfg.planTitlePrefix, price: '', specCols: cfg.defaultSpecs, deviceName: cfg.deviceName, devicePrice: '', ctaHref: '/phones', pill: '' }])
     .map((offer, idx) => {
@@ -263,15 +262,10 @@ function buildDeckDom(parsed, personaId) {
   root.className = `xwalk-persona-mockup xwalk-persona-mockup--${personaId}`;
   root.dataset.personaId = personaId;
   root.innerHTML = `
-<section class="xwalk-mockup-hero">
-  <div class="xwalk-mockup-hero-grid">
-    <div class="xwalk-mockup-hero-left">
-      <p class="xwalk-mockup-logo"><a href="/"><img src="${logo}" alt="Wolverine Mobile" width="40" height="40"></a></p>
-      <p class="xwalk-mockup-ai-badge">${BADGE}</p>
-      <h1>${parsed.headline}</h1>
-    </div>
-    <div class="xwalk-mockup-hero-right">${heroImg}</div>
-  </div>
+<section class="xwalk-mockup-intro">
+  <p class="xwalk-mockup-logo"><a href="/"><img src="${logo}" alt="Wolverine Mobile" width="40" height="40"></a></p>
+  <p class="xwalk-mockup-ai-badge">${BADGE}</p>
+  <h1>${parsed.headline}</h1>
 </section>
 <div class="xwalk-mockup-green-bar">${BADGE}</div>
 <section class="xwalk-mockup-white">

@@ -79,12 +79,16 @@ function renderAjoPanel() {
   ];
   $('#ajo-fields').innerHTML = fields.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
 
+  const segmentUrl = rtcdp.segmentUrl || persona?.segmentUrl || '#';
   const campaignUrl = ajo.campaignUrl || persona?.ajoCampaignUrl || '#';
   const journeyUrl = ajo.journeyUrl || persona?.ajoJourneyUrl || '#';
+  const segmentLink = $('#ajo-segment-link');
   const campaignLink = $('#ajo-campaign-link');
   const journeyLink = $('#ajo-journey-link');
+  segmentLink.href = segmentUrl;
   campaignLink.href = campaignUrl;
   journeyLink.href = journeyUrl;
+  segmentLink.toggleAttribute('aria-disabled', segmentUrl === '#');
   campaignLink.toggleAttribute('aria-disabled', campaignUrl === '#');
   journeyLink.toggleAttribute('aria-disabled', journeyUrl === '#');
 }

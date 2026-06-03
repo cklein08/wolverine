@@ -6,11 +6,11 @@
   "status": "draft",
   "updatedAt": "2026-05-28T17:27:46.366Z",
   "metadata": {
-    "segmentId": "seg-family-texas",
+    "segmentId": "013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
     "segmentName": "Men/Women married with kids, 40+, Texas",
     "campaignId": "ajo-camp-family-texas",
     "campaignName": "Texas Family Plan Loyalty",
-    "journeyId": "ajo-jrn-family-texas",
+    "journeyId": "de418248-5975-4cb6-9b6d-c2197f1d5c1e",
     "journeyName": "Family loyalty — email nurture",
     "journeyStep": "2nd email (no engagement)"
   },
@@ -46,7 +46,7 @@
       "imageAlt": "Family wireless plan"
     }
   ],
-  "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=seg-family-texas",
+  "ctaUrl": "https://main--wolverine--cklein08.aem.page/family-texas?forge-preview-segment=013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba",
   "ctaLabel": "Claim your offer →",
   "siteUrl": "https://main--wolverine--cklein08.aem.page/",
   "id": "email-followup"

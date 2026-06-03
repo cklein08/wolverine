@@ -10,7 +10,7 @@
     "segmentName": "College students 18–24, US markets",
     "campaignId": "ajo-camp-college-student",
     "campaignName": "College Student Acquisition",
-    "journeyId": "ajo-jrn-college-acquisition",
+    "journeyId": "35826dfa-f769-4bdd-936f-82dd6f7207a1",
     "journeyName": "Student acquisition — email to SMS",
     "journeyStep": "Student offer email"
   },

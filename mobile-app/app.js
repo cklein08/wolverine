@@ -213,7 +213,7 @@ const FALLBACK_PERSONAS = [
     id: 'family-texas',
     label: 'Texas Family',
     goal: 'loyalty',
-    segmentId: 'seg-family-texas',
+    segmentId: '013c7a2c-2c48-4bd4-a2ec-35af5ecc1aba',
     landingPath: '/family-texas',
     headline: 'Keep your family connected',
     tagline: 'Plans for adults and kids in Texas',

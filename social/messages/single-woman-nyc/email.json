@@ -10,7 +10,7 @@
     "segmentName": "Women, 25–35, NYC",
     "campaignId": "ajo-camp-nyc-women",
     "campaignName": "NYC Women Acquisition",
-    "journeyId": "ajo-jrn-nyc-acquisition",
+    "journeyId": "ab268ff6-a3d7-4e1e-aa02-acef726c2b2f",
     "journeyName": "NYC acquisition — email to SMS",
     "journeyStep": "Promotional email"
   },

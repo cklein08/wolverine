@@ -203,6 +203,15 @@
         'display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px 40px;padding:32px 0 28px;border-bottom:1px solid color-mix(in srgb,#86EFAC 20%,transparent);width:100%;box-sizing:border-box;';
       const brand = top.querySelector('.xwalk-footer-top-brand');
       if (brand) brand.style.cssText = 'max-width:420px;overflow:visible;';
+      const socialWrap = top.querySelector('.xwalk-footer-top-social');
+      if (socialWrap) {
+        socialWrap.style.textAlign = 'right';
+        const socialUl = socialWrap.querySelector('ul');
+        if (socialUl) {
+          socialUl.style.cssText =
+            'display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;list-style:none;padding:0;margin:0;';
+        }
+      }
       fixLogos(top);
       paintSocial(top);
       top.querySelectorAll('p').forEach((p) => {

@@ -109,6 +109,33 @@ function decorateHeroSections(main) {
 }
 
 /** HLX strips xwalk-footer-* classes from footer.html — rebuild Boost grid in the DOM. */
+function paintFooterSocialLink(a) {
+  const icons = { Facebook: 'f', X: 'X', Instagram: 'ig', YouTube: '▶' };
+  const href = a.getAttribute('href') || '';
+  const label = (a.getAttribute('aria-label') || a.textContent || '').trim();
+  let key = Object.keys(icons).find((k) => label.toLowerCase().includes(k.toLowerCase()));
+  if (!key && /facebook/i.test(href)) key = 'Facebook';
+  if (!key && /twitter|x\.com/i.test(href)) key = 'X';
+  if (!key && /instagram/i.test(href)) key = 'Instagram';
+  if (!key && /youtube/i.test(href)) key = 'YouTube';
+  const glyph = key ? icons[key] : label.slice(0, 2) || '•';
+  if (key) a.setAttribute('aria-label', key);
+  a.innerHTML = `<span aria-hidden="true">${glyph}</span>`;
+}
+
+function styleFooterTop(top) {
+  top.style.cssText =
+    'display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px 40px;padding:32px 0 28px;width:100%;box-sizing:border-box;';
+  const social = top.querySelector('.xwalk-footer-top-social');
+  if (social) social.style.textAlign = 'right';
+  const ul = top.querySelector('ul');
+  if (ul) {
+    ul.style.cssText =
+      'display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;list-style:none;padding:0;margin:0;';
+    ul.querySelectorAll('a').forEach(paintFooterSocialLink);
+  }
+}
+
 function decorateFooterLayout(doc = document) {
   const foot = doc.querySelector('footer .footer');
   if (!foot || foot.dataset.xwalkFooterDecorated) return;
@@ -129,6 +156,10 @@ function decorateFooterLayout(doc = document) {
     kids.slice(3).forEach((n) => social.appendChild(n));
     top.append(brand, social);
     topWrap.replaceChildren(top);
+    styleFooterTop(top);
+  } else {
+    const top = topWrap.querySelector('.xwalk-footer-top');
+    if (top) styleFooterTop(top);
   }
 
   const colsWrap = sections[1]?.querySelector('.default-content-wrapper');
@@ -227,7 +258,7 @@ export function decorateBoostLayout(doc = document) {
     if (text.includes('Trade in your iPhone') && section.querySelector('a[href="/phones"]')) {
       section.classList.add('xwalk-promo-strip');
     }
-    if (/save when you shop online|shop phones & devices/i.test(text)) {
+    if (/save when you shop online|shop phones & devices|plans from \$25\/mo|deals & offers/i.test(text)) {
       section.classList.add('xwalk-retail-hero', 'xwalk-shop-online-head');
     }
     if (/save up to \$2,400/i.test(text)) {

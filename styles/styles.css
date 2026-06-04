@@ -551,8 +551,42 @@ footer .footer main.xwalk-footer-boost > div {
   visibility: visible;
   opacity: 1;
 }
-main.xwalk-footer-boost .xwalk-footer-top-social {
+main.xwalk-footer-boost .xwalk-footer-top-social,
+footer .footer .xwalk-footer-top-social {
   text-align: right;
+}
+footer .footer .xwalk-footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 24px 40px;
+  padding: 32px 0 28px;
+  border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
+  width: 100%;
+  box-sizing: border-box;
+}
+footer .footer .xwalk-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+footer .footer .xwalk-footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  line-height: 1;
 }
 main.xwalk-footer-boost .xwalk-footer-social-label {
   margin: 0 0 12px;
@@ -1332,9 +1366,8 @@ main > div.xwalk-hero-section p:has(a) a:not(:has(strong)) {
   }
 }
 
-/* Plans grid — HLX delivers one section per plan tile */
-main:has(#plans-from-25mo),
-main:has(.xwalk-plan-section) {
+/* Plans grid — HLX delivers one section per plan tile (legacy plan pages only) */
+main:has(.xwalk-plan-section):not(.xwalk-boost-main) {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
@@ -1343,27 +1376,20 @@ main:has(.xwalk-plan-section) {
   padding: 0 32px 40px;
   box-sizing: border-box;
 }
-main:has(#plans-from-25mo) > div:first-child,
-main:has(#plans-from-25mo) > div:nth-child(2),
-main:has(#plans-from-25mo) > div:nth-child(n + 6),
-main:has(.xwalk-plan-section) > div:first-child,
-main:has(.xwalk-plan-section) > div:nth-child(2),
-main:has(.xwalk-plan-section) > div:nth-child(n + 6) {
+main:has(.xwalk-plan-section):not(.xwalk-boost-main) > div:first-child,
+main:has(.xwalk-plan-section):not(.xwalk-boost-main) > div:nth-child(2),
+main:has(.xwalk-plan-section):not(.xwalk-boost-main) > div:nth-child(n + 6) {
   grid-column: 1 / -1;
 }
 @media (max-width: 900px) {
-  main:has(#plans-from-25mo),
-  main:has(.xwalk-plan-section) {
+  main:has(.xwalk-plan-section):not(.xwalk-boost-main) {
     grid-template-columns: 1fr;
     padding: 0 16px 32px;
   }
 }
 
 .xwalk-plan-card,
-main:has(#plans-from-25mo) > div.xwalk-plan-section,
-main:has(#plans-from-25mo) > div:nth-child(3),
-main:has(#plans-from-25mo) > div:nth-child(4),
-main:has(#plans-from-25mo) > div:nth-child(5),
+main:has(.xwalk-plan-section):not(.xwalk-boost-main) > div.xwalk-plan-section,
 .fragment.xwalk-plan-section > div > .xwalk-plan-card {
   background: #eef8f1;
   border: 2px solid color-mix(in srgb, #1DB954 35%, transparent);
@@ -1375,20 +1401,10 @@ main:has(#plans-from-25mo) > div:nth-child(5),
 }
 .xwalk-plan-card h3,
 .xwalk-plan-card p,
-.xwalk-plan-card a,
-main:has(#plans-from-25mo) > div:nth-child(3) h3,
-main:has(#plans-from-25mo) > div:nth-child(3) p,
-main:has(#plans-from-25mo) > div:nth-child(3) a,
-main:has(#plans-from-25mo) > div:nth-child(4) h3,
-main:has(#plans-from-25mo) > div:nth-child(4) p,
-main:has(#plans-from-25mo) > div:nth-child(4) a,
-main:has(#plans-from-25mo) > div:nth-child(5) h3,
-main:has(#plans-from-25mo) > div:nth-child(5) p,
-main:has(#plans-from-25mo) > div:nth-child(5) a {
+.xwalk-plan-card a {
   color: #0E7A3A;
 }
-.xwalk-plan-card a:hover,
-main:has(#plans-from-25mo) > div:nth-child(n + 3):nth-child(-n + 5) a:hover {
+.xwalk-plan-card a:hover {
   color: color-mix(in srgb, #0E7A3A 75%, #1DB954);
 }
 .xwalk-plan-badge {

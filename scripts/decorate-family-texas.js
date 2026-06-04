@@ -40,7 +40,8 @@ function injectFamilyStyles(doc) {
 .xwalk-mockup-plan-head{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:16px 20px!important;margin-bottom:24px!important}
 .xwalk-mockup-plan-title{margin:0!important;font-weight:900!important;color:#111!important}
 .xwalk-mockup-plan-price{color:${PRIMARY}!important}
-.xwalk-mockup-plan-pill .xwalk-plan-line-pill{background:${DARK_PILL}!important;color:#fff!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important}
+.xwalk-mockup-plan-pill .xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--dark{background:${DARK_PILL}!important;color:#fff!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important;display:block!important}
+.xwalk-mockup-plan-pill .xwalk-plan-line-pill--accent,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--accent{background:${MINT_PILL}!important;color:${SECONDARY}!important;border:1px solid ${PRIMARY}!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important;display:block!important;font-weight:700!important}
 .xwalk-mockup-plan-body{display:grid!important;grid-template-columns:minmax(160px,240px) 1fr!important;gap:32px 40px!important}
 .xwalk-mockup-device-footer{display:grid!important;grid-template-columns:1fr 1.4fr!important;align-items:baseline!important;max-width:240px!important;margin:0 auto!important}
 .xwalk-mockup-device-name{color:${PRIMARY}!important;font-weight:900!important;margin:0!important}
@@ -61,7 +62,8 @@ function injectFamilyStyles(doc) {
 .xwalk-family-main{background:${MINT_PAGE}!important;padding:36px 40px 56px!important;max-width:1040px!important;margin:0 auto!important}
 .xwalk-family-cta{display:inline-block!important;background:${PRIMARY}!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important;font-family:"Arial Black",Arial,sans-serif!important}
 .xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}
-body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{display:block!important;max-width:none!important;padding:0!important;background:${MINT_PAGE}!important;grid-template-columns:1fr!important}
+body.xwalk-persona-segment-landing{background:${HERO_BG}!important}
+body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{display:block!important;max-width:none!important;padding:0!important;background:transparent!important;grid-template-columns:1fr!important}
 body.xwalk-persona-offer-page header{display:block!important;visibility:visible!important;z-index:200!important;background:${HERO_BG}!important}
 body.xwalk-persona-offer-page header nav,body.xwalk-persona-offer-page header a{color:#fff!important}
 .xwalk-family-hero,main>div>p:first-child:has(picture):not(:has(a)):not(.xwalk-campaign-hero *){display:none!important}

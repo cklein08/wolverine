@@ -16,6 +16,7 @@
       planTitle: 'Your Plan',
       planPrice: '$50.00',
       pill: 'Unlimited talk, text and data with Global Roaming',
+      altPill: 'Unlimited talk, text and premium global roaming in 200+ countries',
       deviceName: 'Razr',
       devicePrice: '$499.99. or $50/month for 12 months',
       phone:
@@ -31,6 +32,7 @@
       planTitle: 'Student Essential',
       planPrice: '$25/mo',
       pill: '5GB premium data · unlimited talk & text',
+      altPill: '5GB premium data + Campus data boost · unlimited talk & text',
       deviceName: 'Moto G Play',
       devicePrice: 'From $9.99/mo on Student Essential',
       phone:
@@ -47,6 +49,7 @@
       planTitle: 'Your Plan',
       planPrice: '$80.00',
       pill: 'Unlimited talk, text and premium data with hotspot',
+      altPill: 'Unlimited premium data with hotspot on every line',
       deviceName: 'Apple iPhone 16e',
       devicePrice: 'From $29/mo',
       phone:
@@ -141,14 +144,16 @@
         'body.xwalk-persona-segment-landing header .xwalk-promo-strip,body.xwalk-persona-segment-landing .fragment.xwalk-promo-strip,body.xwalk-persona-segment-landing main .xwalk-promo-strip{display:none!important}',
         'body.xwalk-persona-segment-landing .xwalk-mockup-green-bar{display:none!important}',
         'body.xwalk-persona-segment-landing .xwalk-campaign-hero-headline,body.xwalk-persona-segment-landing .xwalk-campaign-hero-tagline,body.xwalk-persona-segment-landing .xwalk-campaign-hero-copy{color:#fff!important}',
-        'body.xwalk-persona-segment-landing .xwalk-plan-line-pill,body.xwalk-persona-segment-landing .xwalk-plan-tier-switch{color:#fff!important}',
+        'body.xwalk-persona-segment-landing .xwalk-plan-line-pill--dark,body.xwalk-persona-segment-landing .xwalk-plan-tier-switch.xwalk-plan-line-pill--dark{color:#fff!important}',
+        'body.xwalk-persona-segment-landing .xwalk-plan-line-pill--accent{color:' + SECONDARY + '!important}',
         '.xwalk-mockup-white{background:#fff!important;padding:28px 32px 48px!important;max-width:1200px!important;margin:0 auto!important}',
         '.xwalk-mockup-green-bar{background:' + PRIMARY + '!important;color:#000!important;text-align:center!important;padding:14px 24px!important;font-weight:800!important;display:block!important}',
         '.xwalk-mockup-quote{text-align:center!important;font-style:italic!important;color:' + PRIMARY + '!important;margin:0 0 28px!important}',
         '.xwalk-mockup-offer-row{display:grid!important;grid-template-columns:1fr minmax(160px,200px)!important;gap:24px!important}',
         '.xwalk-mockup-plan-title{color:#111!important;margin:0!important;font-weight:900!important}',
         '.xwalk-mockup-plan-price{color:' + PRIMARY + '!important}',
-        '.xwalk-mockup-plan-pill .xwalk-plan-line-pill{background:' + DARK_PILL + '!important;color:#fff!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important}',
+        '.xwalk-mockup-plan-pill .xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--dark{background:' + DARK_PILL + '!important;color:#fff!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important;display:block!important}',
+        '.xwalk-mockup-plan-pill .xwalk-plan-line-pill--accent,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--accent{background:' + MINT_PILL + '!important;color:' + SECONDARY + '!important;border:1px solid ' + PRIMARY + '!important;border-radius:8px!important;padding:12px 18px!important;margin:0!important;display:block!important;font-weight:700!important}',
         '.xwalk-mockup-plan-body{display:grid!important;grid-template-columns:minmax(160px,240px) 1fr!important;gap:32px 40px!important}',
         '.xwalk-mockup-device-footer{display:grid!important;grid-template-columns:1fr 1.4fr!important;align-items:baseline!important;max-width:240px!important;margin:0 auto!important}',
         '.xwalk-mockup-device-name{color:' + PRIMARY + '!important;font-weight:900!important;margin:0!important}',
@@ -165,7 +170,9 @@
         '.xwalk-family-title{color:' + PRIMARY + '!important;font-family:Arial Black,Arial,sans-serif!important;font-size:1.65rem!important;font-weight:900!important}',
         '.xwalk-family-cta{display:inline-block!important;background:' + PRIMARY + '!important;color:#fff!important;font-size:1.625rem!important;font-weight:900!important;padding:20px 56px!important;border-radius:14px!important;text-decoration:none!important}',
         '.xwalk-family-cta-wrap{text-align:center!important;margin:40px 0 0!important}',
-        'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{background:' + MINT_PAGE + '!important;display:block!important;max-width:none!important;padding:0!important}',
+        'body.xwalk-persona-segment-landing{background:#0A1A0F!important}',
+        'body.xwalk-persona-offer-page--family-texas main,body.xwalk-persona-offer-page--college-student main,body.xwalk-persona-offer-page--single-woman-nyc main{background:transparent!important;display:block!important;max-width:none!important;padding:0!important}',
+        '@media(max-width:900px){body.xwalk-persona-segment-landing,body.xwalk-persona-offer-page--family-texas,body.xwalk-persona-offer-page--college-student,body.xwalk-persona-offer-page--single-woman-nyc{background:#0A1A0F!important}}',
         'main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:' + MINT_PAGE + '!important;color:#111!important;display:block!important}',
         'main:has(#you-run-this-city)>div,main:has(#keep-your-family-connected)>div,main:has(#wireless-that-fits-your-semester)>div{background:transparent!important;color:#111!important;min-height:0!important;overflow:visible!important}',
         'main:has(#you-run-this-city) h1,main:has(#you-run-this-city) h2,main:has(#you-run-this-city) p,main:has(#keep-your-family-connected) h1,main:has(#keep-your-family-connected) h2,main:has(#keep-your-family-connected) p,main:has(#wireless-that-fits-your-semester) h1,main:has(#wireless-that-fits-your-semester) h2,main:has(#wireless-that-fits-your-semester) p{color:#111!important;text-shadow:none!important}',
@@ -175,7 +182,7 @@
         '.xwalk-campaign-hero-tagline{color:color-mix(in srgb,#fff 92%,transparent)!important}',
         '.xwalk-campaign-hero-visual{position:relative!important;min-height:320px!important;overflow:hidden!important}',
         '.xwalk-campaign-hero-bg img{width:100%!important;height:100%!important;object-fit:cover!important}',
-        '@media(max-width:900px){.xwalk-campaign-hero-grid{grid-template-columns:1fr!important}.xwalk-campaign-hero-visual{min-height:280px!important;order:-1!important}}',
+        '@media(max-width:900px){.xwalk-campaign-hero-grid{grid-template-columns:1fr!important}.xwalk-campaign-hero-visual{min-height:280px!important;order:-1!important}.xwalk-mockup-offer-row{grid-template-columns:1fr!important}.xwalk-mockup-cta{display:flex!important;width:100%!important;min-height:120px!important}}',
       ].join('');
     }
     document.head.appendChild(s);
@@ -332,6 +339,20 @@
     return root;
   }
 
+  function planPillsHtml(meta) {
+    let html =
+      '<p class="xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--dark">' +
+      meta.pill +
+      '</p>';
+    if (meta.altPill) {
+      html +=
+        '<p class="xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--accent">' +
+        meta.altPill +
+        '</p>';
+    }
+    return html;
+  }
+
   function buildSingleOfferPage(personaId, headline) {
     const meta = SINGLE_OFFER[personaId];
     if (!meta) return null;
@@ -352,9 +373,9 @@
       meta.planTitle +
       ' <span class="xwalk-mockup-plan-price">' +
       meta.planPrice +
-      '</span></h2><div class="xwalk-mockup-plan-pill"><p class="xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--dark" style="color:#fff">' +
-      meta.pill +
-      '</p></div></div><div class="xwalk-mockup-plan-body"><div class="xwalk-mockup-device-col"><div class="xwalk-mockup-device"><img src="' +
+      '</span></h2><div class="xwalk-mockup-plan-pill">' +
+      planPillsHtml(meta) +
+      '</div></div><div class="xwalk-mockup-plan-body"><div class="xwalk-mockup-device-col"><div class="xwalk-mockup-device"><img src="' +
       meta.phone +
       '" alt="' +
       meta.deviceName +
@@ -432,7 +453,7 @@
     if (page?.querySelector('.xwalk-mockup-offer-row')) {
       stripAiBadges();
       ensureCampaignHero(personaId, headline);
-      page.querySelectorAll('.xwalk-plan-line-pill').forEach((p) => p.style.setProperty('color', '#fff', 'important'));
+      page.querySelectorAll('.xwalk-plan-line-pill--dark').forEach((p) => p.style.setProperty('color', '#fff', 'important'));
       return;
     }
 

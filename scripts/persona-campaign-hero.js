@@ -86,6 +86,8 @@ export function createCampaignHeroEl(personaId, headlineOverride = '') {
   return section;
 }
 
+import { PERSONA_MOBILE_SAFE_AREA_CSS } from './persona-mobile-safe-area.js';
+
 export const CAMPAIGN_HERO_CSS = `
 .xwalk-campaign-hero{background:#0A1A0F!important;color:#fff!important;width:100%!important;display:block!important}
 .xwalk-campaign-hero-grid{display:grid!important;grid-template-columns:1fr 1fr!important;min-height:min(420px,48vw)!important;max-width:1280px!important;margin:0 auto!important;width:100%!important}
@@ -95,4 +97,5 @@ export const CAMPAIGN_HERO_CSS = `
 .xwalk-campaign-hero-visual{position:relative!important;min-height:320px!important;overflow:hidden!important}
 .xwalk-campaign-hero-bg img{width:100%!important;height:100%!important;object-fit:cover!important}
 @media(max-width:900px){.xwalk-campaign-hero-grid{grid-template-columns:1fr!important}.xwalk-campaign-hero-visual{min-height:280px!important;order:-1!important}}
+${PERSONA_MOBILE_SAFE_AREA_CSS}
 `;

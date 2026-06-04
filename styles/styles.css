@@ -96,6 +96,10 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+footer .footer.block[data-block-status="loaded"] > .footer {
+  visibility: visible;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
@@ -484,6 +488,11 @@ footer {
   color: #FFFFFF;
   font-family: Calibri;
 }
+footer .footer.block[data-block-status="loaded"] > .footer,
+footer .footer.block[data-block-status="loaded"] .footer .footer {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 main.xwalk-footer,
 main.xwalk-footer-boost {
   max-width: 1280px;
@@ -502,18 +511,45 @@ main.xwalk-footer-boost .xwalk-footer-top {
   padding: 32px 0 28px;
   border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand {
-  max-width: 360px;
+main.xwalk-footer-boost .xwalk-footer-top-brand,
+footer .footer .xwalk-footer-top-brand {
+  max-width: 420px;
+  overflow: visible;
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand {
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand,
+footer .footer .xwalk-footer-brand {
   margin: 0 0 8px;
+  overflow: visible;
+  line-height: 0;
 }
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img {
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img,
+main.xwalk-footer-boost .xwalk-footer-top-brand picture img,
+footer .footer .xwalk-footer-brand img,
+footer .footer .xwalk-footer-top-brand img,
+footer .footer .xwalk-footer-top-brand picture img {
   display: block;
-  height: 48px;
+  height: auto;
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
+  max-height: 72px;
   object-fit: contain;
+  object-position: left center;
+}
+footer .footer > main,
+footer .footer main.xwalk-footer-boost {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  min-height: 0;
+}
+footer .footer > main > div,
+footer .footer main.xwalk-footer-boost > div {
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
 }
 main.xwalk-footer-boost .xwalk-footer-top-social {
   text-align: right;
@@ -530,24 +566,33 @@ main.xwalk-footer-boost .xwalk-footer-social {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 12px 20px;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 main.xwalk-footer-boost .xwalk-footer-social a {
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8125rem;
   text-decoration: none;
+  line-height: 1;
 }
 main.xwalk-footer-boost .xwalk-footer-social a:hover {
-  color: #86EFAC;
+  background: #000;
+  color: #fff;
 }
 main.xwalk-footer-boost .xwalk-footer-columns {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 28px 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 32px;
   padding: 32px 0 28px;
 }
 main.xwalk-footer-boost .xwalk-footer-col p {
@@ -577,9 +622,9 @@ main.xwalk-footer-boost .xwalk-footer-newsletter {
   padding: 28px 0 32px;
   border-top: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
   border-bottom: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
+  text-align: left;
+  max-width: none;
+  margin: 0;
 }
 main.xwalk-footer-boost .xwalk-footer-newsletter h2 {
   margin: 0 0 8px;
@@ -597,11 +642,12 @@ main.xwalk-footer-boost .xwalk-footer-newsletter > p {
 }
 main.xwalk-footer-boost .xwalk-footer-newsletter-form {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 12px;
   margin: 0;
+  max-width: 100%;
 }
 main.xwalk-footer-boost .xwalk-footer-newsletter-form label {
   position: absolute;
@@ -614,16 +660,23 @@ main.xwalk-footer-boost .xwalk-footer-newsletter-form label {
   border: 0;
 }
 main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
-  min-width: min(320px, 100%);
+  flex: 0 1 25%;
+  width: 25%;
+  min-width: 160px;
+  max-width: 280px;
   padding: 12px 16px;
   border: 1px solid color-mix(in srgb, #FFFFFF 35%, transparent);
   border-radius: 4px;
   background: #0A1A0F;
   color: #FFFFFF;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 main.xwalk-footer-boost .xwalk-footer-subscribe-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   padding: 12px 28px;
   background: #1DB954;
   color: #000 !important;
@@ -631,6 +684,7 @@ main.xwalk-footer-boost .xwalk-footer-subscribe-btn {
   text-decoration: none;
   border-radius: 4px;
   font-size: 0.9375rem;
+  white-space: nowrap;
 }
 main.xwalk-footer-boost .xwalk-footer-legal {
   padding: 24px 0 8px;
@@ -655,9 +709,17 @@ main.xwalk-footer-boost .xwalk-footer-legal a {
   font-size: 0.8125rem;
   text-decoration: underline;
 }
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   main.xwalk-footer-boost .xwalk-footer-columns {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  main.xwalk-footer-boost .xwalk-footer-newsletter-form {
+    flex-wrap: wrap;
+  }
+  main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: none;
   }
 }
 @media (max-width: 700px) {
@@ -672,7 +734,48 @@ main.xwalk-footer-boost .xwalk-footer-legal a {
     justify-content: center;
   }
   main.xwalk-footer-boost .xwalk-footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+  }
+}
+footer .footer .xwalk-footer-top,
+footer .footer .xwalk-footer-columns,
+footer .xwalk-footer-top,
+footer .xwalk-footer-columns {
+  width: 100%;
+  box-sizing: border-box;
+  visibility: visible;
+  opacity: 1;
+}
+footer .footer .xwalk-footer-columns,
+html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+footer .footer .xwalk-footer-col,
+footer .footer .xwalk-footer-col a,
+footer .footer .xwalk-footer-col p {
+  visibility: visible;
+  opacity: 1;
+  color: color-mix(in srgb, #FFFFFF 92%, transparent);
+}
+footer .footer .xwalk-footer-col p strong {
+  color: #FFFFFF;
+}
+footer .xwalk-footer-newsletter,
+footer .xwalk-footer-newsletter-section,
+footer .section:has(.xwalk-footer-newsletter),
+footer .section:has(#want-the-latest-scoop),
+footer .section:has(input[type="email"]) {
+  display: none !important;
+}
+@media (max-width: 900px) {
+  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 700px) {
+  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -1217,31 +1320,98 @@ main > div.xwalk-hero-section p:has(a) a:not(:has(strong)) {
     grid-template-columns: 1fr;
   }
 }
-.xwalk-plan-card {
-  background: var(--light-color, #1A2F1E);
-  border: 2px solid color-mix(in srgb, #1DB954 40%, transparent);
+
+/* Plans grid — HLX delivers one section per plan tile */
+main:has(#plans-from-25mo),
+main:has(.xwalk-plan-section) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 40px;
+  box-sizing: border-box;
+}
+main:has(#plans-from-25mo) > div:first-child,
+main:has(#plans-from-25mo) > div:nth-child(2),
+main:has(#plans-from-25mo) > div:nth-child(n + 6),
+main:has(.xwalk-plan-section) > div:first-child,
+main:has(.xwalk-plan-section) > div:nth-child(2),
+main:has(.xwalk-plan-section) > div:nth-child(n + 6) {
+  grid-column: 1 / -1;
+}
+@media (max-width: 900px) {
+  main:has(#plans-from-25mo),
+  main:has(.xwalk-plan-section) {
+    grid-template-columns: 1fr;
+    padding: 0 16px 32px;
+  }
+}
+
+.xwalk-plan-card,
+main:has(#plans-from-25mo) > div.xwalk-plan-section,
+main:has(#plans-from-25mo) > div:nth-child(3),
+main:has(#plans-from-25mo) > div:nth-child(4),
+main:has(#plans-from-25mo) > div:nth-child(5),
+.fragment.xwalk-plan-section > div > .xwalk-plan-card {
+  background: #eef8f1;
+  border: 2px solid color-mix(in srgb, #1DB954 35%, transparent);
   border-radius: 12px;
   padding: 20px;
   text-align: center;
+  color: #0E7A3A;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
+}
+.xwalk-plan-card h3,
+.xwalk-plan-card p,
+.xwalk-plan-card a,
+main:has(#plans-from-25mo) > div:nth-child(3) h3,
+main:has(#plans-from-25mo) > div:nth-child(3) p,
+main:has(#plans-from-25mo) > div:nth-child(3) a,
+main:has(#plans-from-25mo) > div:nth-child(4) h3,
+main:has(#plans-from-25mo) > div:nth-child(4) p,
+main:has(#plans-from-25mo) > div:nth-child(4) a,
+main:has(#plans-from-25mo) > div:nth-child(5) h3,
+main:has(#plans-from-25mo) > div:nth-child(5) p,
+main:has(#plans-from-25mo) > div:nth-child(5) a {
+  color: #0E7A3A;
+}
+.xwalk-plan-card a:hover,
+main:has(#plans-from-25mo) > div:nth-child(n + 3):nth-child(-n + 5) a:hover {
+  color: color-mix(in srgb, #0E7A3A 75%, #1DB954);
 }
 .xwalk-plan-badge {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #86EFAC;
+  color: #0E7A3A;
   font-weight: 700;
 }
 .xwalk-plan-price strong {
   font-size: 2rem;
-  color: #1DB954;
+  color: #0E7A3A;
   font-family: Arial Black;
 }
+.xwalk-plan-card-media {
+  margin: 12px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.xwalk-plan-card-media img,
 .xwalk-plan-card img {
   border-radius: 8px;
   width: 100%;
   aspect-ratio: 16/10;
   object-fit: cover;
-  margin: 12px 0;
+  margin: 0;
+  display: block;
+}
+.xwalk-plan-card-media--device img {
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  max-height: 200px;
+  margin: 0 auto;
 }
 
 .cards.xwalk-promo-banner > div > div {

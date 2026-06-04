@@ -122,6 +122,6 @@ body.forge-demo-active {
 
 @media (max-width: 640px) {
   body.forge-demo-active {
-    padding-top: 120px;
+    padding-top: calc(120px + env(safe-area-inset-top, 0px));
   }
 }

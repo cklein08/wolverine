@@ -1,5 +1,403 @@
-<script id="forge-persona-flat-fix">(function(){var p=(location.pathname||'').replace(/\/$/,'');if(!/^\/(family-texas|single-woman-nyc|college-student)$/.test(p))return;var pid=p.slice(1);document.documentElement.classList.add('xwalk-persona-path--'+pid);var seg=/(?:^|[?&])(?:forge-preview-segment|forge-segment)=/.test(location.search||'');var ids={"family-texas":"keep-your-family-connected","single-woman-nyc":"you-run-this-city","college-student":"wireless-that-fits-your-semester"};function tagH1(){var h=document.querySelector('main h1');if(h&&!h.id&&ids[pid])h.id=ids[pid];return!!h;}tagH1();document.addEventListener('DOMContentLoaded',tagH1);if(!tagH1()&&document.documentElement){var mo=new MutationObserver(function(){if(tagH1())mo.disconnect();});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect();tagH1();},3000);}var m=seg?'#fff':'#eef8f1';var pr='#1DB954';var css='html.xwalk-persona-path--'+pid+' main,main:has(#keep-your-family-connected),main:has(#you-run-this-city),main:has(#wireless-that-fits-your-semester){background:'+m+'!important;color:#111!important;display:block!important;max-width:none!important;padding:0!important}html.xwalk-persona-path--'+pid+' main>div,main:has(#keep-your-family-connected)>div,main:has(#you-run-this-city)>div,main:has(#wireless-that-fits-your-semester)>div{background:'+m+'!important;color:#111!important;min-height:auto!important;padding:24px 32px 48px!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important}html.xwalk-persona-path--'+pid+' main h1,html.xwalk-persona-path--'+pid+' main h2,main:has(#keep-your-family-connected) h1,main:has(#you-run-this-city) h1,main:has(#wireless-that-fits-your-semester) h1,main:has(#keep-your-family-connected) h2,main:has(#you-run-this-city) h2,main:has(#wireless-that-fits-your-semester) h2{color:'+pr+'!important;text-shadow:none!important;position:static!important}html.xwalk-persona-path--'+pid+' main p,html.xwalk-persona-path--'+pid+' main span,html.xwalk-persona-path--'+pid+' main strong,html.xwalk-persona-path--'+pid+' main em,html.xwalk-persona-path--'+pid+' main del,main:has(#keep-your-family-connected) p,main:has(#you-run-this-city) p,main:has(#wireless-that-fits-your-semester) p{color:#111!important;text-shadow:none!important}main>div:has(>h1){background:transparent!important;min-height:0!important;padding:0!important}main>div:has(>h1)>h1,main>div:has(>h1)>h2{color:'+pr+'!important;text-shadow:none!important}main>div:has(>h1)>p{color:#111!important;text-shadow:none!important}';var s=document.createElement('style');s.id='forge-persona-flat-fix-live';s.textContent=css;document.head.appendChild(s);if(document.body){if(seg)document.body.classList.add('xwalk-persona-segment-landing');document.body.classList.add('xwalk-persona-offer-page','xwalk-persona-offer-page--'+pid);}})();</script>
-<script id="forge-persona-path-class">(function(){var p=(location.pathname||'').replace(/\/$/,'');if(!/^\/(family-texas|single-woman-nyc|college-student)$/.test(p))return;var id=p.slice(1);document.documentElement.classList.add('xwalk-persona-path--'+id);var v=document.querySelector('meta[name="viewport"]');if(v&&!/viewport-fit/i.test(v.content||'')){v.setAttribute('content',(v.getAttribute('content')||'width=device-width, initial-scale=1')+', viewport-fit=cover');}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="/scripts/aem.js" type="module"></script>
+<script src="/scripts/scripts.js" type="module"></script>
+<script src="/scripts/xwalk-boost-layout.js" type="module"></script>
+<script src="/scripts/xwalk-persona-mockup-layout.js?v=family-grid-2" defer></script>
+<style id="forge-boost-critical">
+.xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
+body:has(#save-when-you-shop-online),body:has([id*="shop-phones"]),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
+main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
+main:has(#save-when-you-shop-online)>div:first-child,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:first-child,main:has([id*="shop-phones"])>div:nth-child(2),main:has([id*="shop-phones"])>div:last-child,main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
+.xwalk-retail-hero,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2){text-align:center;padding:36px 16px 20px}
+#save-when-you-shop-online,[id*="shop-phones"]{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
+.xwalk-retail-hero-sub,.xwalk-retail-hero-kicker,.xwalk-phones-sub{color:color-mix(in srgb,#FFFFFF 88%,transparent)}
+a.xwalk-retail-cta-primary{background:#1DB954;color:#000!important;padding:12px 24px;font-weight:700;text-decoration:none;border-radius:2px;display:inline-block;margin:4px}
+main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has([id*="shop-phones"])>div:nth-child(3),main:has([id*="shop-phones"])>div:nth-child(4),main:has([id*="shop-phones"])>div:nth-child(5),main:has([id*="shop-phones"])>div:nth-child(6),main.xwalk-boost-main>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
+main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
+main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture),main:has([id*="shop-phones"])>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important;overflow:visible!important}
+main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
+main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)){background:#1DB954;color:#fff!important;font-weight:700;padding:12px 10px;margin:0}
+main:has([id*="shop-phones"])>div:has(h3):has(picture)>h3{font-size:1.75rem;font-weight:900;margin:12px 16px 8px;color:#000}
+main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:not(:has(picture)):not(:has(a)){margin:0 16px 8px;color:#1a1a1a}
+main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href*="products"],main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href="/plans"]{color:#1DB954;font-weight:700}
+main.xwalk-boost-main>div.xwalk-phone-section h3,main>div:has(h3):has(picture) h3{font-size:1.35rem;font-weight:800;margin:16px 16px 8px;color:#000}
+main:has(#save-up-to-2400-a-year)>div:last-child,main.xwalk-boost-main>div:last-child{background:#1DB954!important;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;padding:32px}
+main>div.xwalk-hero-section,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(#save-when-you-shop-online)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-grid)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester)){position:relative;min-height:320px;overflow:hidden;background:#0A1A0F;padding:48px 24px;text-align:center;grid-column:1/-1}
+main>div.xwalk-hero-section>p:has(picture),main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture){position:absolute;inset:0;margin:0;padding:0;z-index:0}
+main>div.xwalk-hero-section>p:has(picture)::after,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture)::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(10 26 15/50%) 0%,rgb(10 26 15/90%) 100%);z-index:1}
+main>div.xwalk-hero-section>p:has(picture) img,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture) img{width:100%;height:100%;object-fit:cover;display:block}
+main>div.xwalk-hero-section>h1,main>div.xwalk-hero-section>p:not(:has(picture)),main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>h1,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:not(:has(picture)){position:relative;z-index:2;color:#fff!important;text-shadow:0 2px 18px rgb(0 0 0/55%)}
+main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester)) a{color:#fff!important}
+@media (max-width:1100px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
+main:has(#plans-from-25mo){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
+main:has(#plans-from-25mo)>div:first-child,main:has(#plans-from-25mo)>div:nth-child(2),main:has(#plans-from-25mo)>div:nth-child(n+6){grid-column:1/-1}
+main:has(#plans-from-25mo)>div:nth-child(3),main:has(#plans-from-25mo)>div:nth-child(4),main:has(#plans-from-25mo)>div:nth-child(5){background:#eef8f1;border:2px solid color-mix(in srgb,#1DB954 35%,transparent);border-radius:12px;padding:20px;text-align:center;color:#0E7A3A!important;box-shadow:0 2px 10px rgb(0 0 0/12%)}
+main:has(#plans-from-25mo)>div:nth-child(3) h3,main:has(#plans-from-25mo)>div:nth-child(3) p,main:has(#plans-from-25mo)>div:nth-child(3) a,main:has(#plans-from-25mo)>div:nth-child(4) h3,main:has(#plans-from-25mo)>div:nth-child(4) p,main:has(#plans-from-25mo)>div:nth-child(4) a,main:has(#plans-from-25mo)>div:nth-child(5) h3,main:has(#plans-from-25mo)>div:nth-child(5) p,main:has(#plans-from-25mo)>div:nth-child(5) a{color:#0E7A3A!important}
+main:has(#plans-from-25mo)>div:nth-child(3)>p:first-of-type:not(:has(picture)),main:has(#plans-from-25mo)>div:nth-child(4)>p:first-of-type:not(:has(picture)),main:has(#plans-from-25mo)>div:nth-child(5)>p:first-of-type:not(:has(picture)){font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+main:has(#plans-from-25mo)>div:nth-child(3)>p:has(strong):not(:has(a)),main:has(#plans-from-25mo)>div:nth-child(4)>p:has(strong):not(:has(a)),main:has(#plans-from-25mo)>div:nth-child(5)>p:has(strong):not(:has(a)){font-size:2rem;font-weight:900;font-family:Arial Black}
+main:has(#plans-from-25mo)>div:nth-child(3)>p:has(picture),main:has(#plans-from-25mo)>div:nth-child(4)>p:has(picture),main:has(#plans-from-25mo)>div:nth-child(5)>p:has(picture),main:has(#plans-from-25mo)>div:nth-child(3) .xwalk-plan-card-media,main:has(#plans-from-25mo)>div:nth-child(4) .xwalk-plan-card-media,main:has(#plans-from-25mo)>div:nth-child(5) .xwalk-plan-card-media{display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:16px;margin:12px 0;border-radius:8px;min-height:180px}
+main:has(#plans-from-25mo)>div:nth-child(3) p:has(picture) img,main:has(#plans-from-25mo)>div:nth-child(4) p:has(picture) img,main:has(#plans-from-25mo)>div:nth-child(5) p:has(picture) img,main:has(#plans-from-25mo)>div:nth-child(3) .xwalk-plan-card-media img,main:has(#plans-from-25mo)>div:nth-child(4) .xwalk-plan-card-media img,main:has(#plans-from-25mo)>div:nth-child(5) .xwalk-plan-card-media img{max-height:200px;width:auto!important;max-width:100%;object-fit:contain;display:block!important;margin:0 auto}
+@media (max-width:900px){main:has(#plans-from-25mo){grid-template-columns:1fr;padding:0 16px 32px}}
+
+main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
+main:has(.xwalk-family-grid),
+main:has(#family-plans--bring-your-own-device),
+main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page)>div,
+main:has(.xwalk-family-grid)>div,
+main:has(#family-plans--bring-your-own-device)>div,
+main:has(#you-run-this-city)>div,main:has(#keep-your-family-connected)>div,main:has(#wireless-that-fits-your-semester)>div{background:transparent!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important;border:none!important}
+main:has(.xwalk-family-plans-page) > div:has(> h1),
+main:has(.xwalk-family-headline){background:transparent!important;min-height:0!important;padding:0!important;text-align:left!important}
+main:has(.xwalk-family-plans-page) > div > h1,
+main:has(.xwalk-family-headline),
+main:has(#you-run-this-city) h1,main:has(#keep-your-family-connected) h1,main:has(#wireless-that-fits-your-semester) h1{color:#1DB954!important;font-weight:900!important;text-shadow:none!important;position:static!important}
+main:has(#you-run-this-city) h1,main:has(#you-run-this-city) h2,main:has(#you-run-this-city) p:not(:has(picture)),main:has(#keep-your-family-connected) h1,main:has(#keep-your-family-connected) h2,main:has(#keep-your-family-connected) p:not(:has(picture)),main:has(#wireless-that-fits-your-semester) h1,main:has(#wireless-that-fits-your-semester) h2,main:has(#wireless-that-fits-your-semester) p:not(:has(picture)){color:#111!important;text-shadow:none!important;position:static!important}
+main:has(#family-plans--bring-your-own-device) h2,
+main:has(#you-run-this-city) h2,main:has(#keep-your-family-connected) h2,main:has(#wireless-that-fits-your-semester) h2{color:#1DB954!important}
+main:has(#family-plans--bring-your-own-device) p:has(strong),
+main:has(#family-plans--bring-your-own-device) p:has(strong) strong,
+main:has(#family-plans--bring-your-own-device) p:has(strong) del,
+main:has(#you-run-this-city) p,main:has(#keep-your-family-connected) p,main:has(#wireless-that-fits-your-semester) p{color:#111!important}
+main:has(#you-run-this-city) .xwalk-family-cta,
+main:has(#keep-your-family-connected) .xwalk-family-cta,
+main:has(#wireless-that-fits-your-semester) .xwalk-family-cta{background:#1DB954!important;color:#fff!important}
+html:has(main #you-run-this-city) header,html:has(main #keep-your-family-connected) header,html:has(main #wireless-that-fits-your-semester) header{overflow:visible!important;min-height:auto!important}
+html:has(main #you-run-this-city) header .xwalk-logo-mark,
+html:has(main #you-run-this-city) header .xwalk-logo-img,
+html:has(main #keep-your-family-connected) header .xwalk-logo-mark,
+html:has(main #keep-your-family-connected) header .xwalk-logo-img,
+html:has(main #wireless-that-fits-your-semester) header .xwalk-logo-mark,
+html:has(main #wireless-that-fits-your-semester) header .xwalk-logo-img{height:auto!important;max-height:56px!important;object-fit:contain!important;overflow:visible!important}
+html:has(main #you-run-this-city) header nav,
+html:has(main #keep-your-family-connected) header nav,
+html:has(main #wireless-that-fits-your-semester) header nav{overflow:visible!important;align-items:center!important;padding-top:12px!important;padding-bottom:12px!important}
+body.xwalk-persona-offer-page header{height:auto!important;min-height:var(--nav-height,64px)!important;overflow:visible!important}
+body.xwalk-persona-offer-page header .header,body.xwalk-persona-offer-page header .header[data-block-status="loaded"]{visibility:visible!important;overflow:visible!important}
+body.xwalk-persona-offer-page header nav{overflow:visible!important;min-height:56px!important}
+body.xwalk-persona-offer-page header nav .nav-brand,
+body.xwalk-persona-offer-page header nav p:has(img){margin:0!important;line-height:1!important;overflow:visible!important}
+body.xwalk-persona-offer-page header nav .nav-brand img,
+body.xwalk-persona-offer-page header .xwalk-logo-img,
+body.xwalk-persona-offer-page header .xwalk-logo-mark,
+body.xwalk-persona-offer-page header img[alt*="Wolverine"]{width:auto!important;height:48px!important;max-height:48px!important;max-width:56px!important;object-fit:contain!important;display:block!important}
+footer .footer.block[data-block-status="loaded"] > .footer,
+footer .footer.block .footer .footer{visibility:visible!important;opacity:1!important}
+footer .xwalk-footer-top-brand img,footer .xwalk-footer-top-brand picture img,footer .xwalk-footer-brand img{height:auto!important;max-height:72px!important;width:auto!important;object-fit:contain!important;overflow:visible!important}
+main:has(#you-run-this-city) a[href="/phones"],
+main:has(#keep-your-family-connected) a[href="/plans"],
+main:has(#wireless-that-fits-your-semester) a[href="/plans"]{color:#fff!important;background:#1DB954!important}
+
+body:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),body:has(#family-plans--bring-your-own-device),body:has(#you-run-this-city),body:has(#keep-your-family-connected),body:has(#wireless-that-fits-your-semester),body.xwalk-persona-offer-page--family-texas:not(.xwalk-persona-segment-landing),body.xwalk-persona-offer-page--college-student:not(.xwalk-persona-segment-landing),body.xwalk-persona-offer-page--single-woman-nyc:not(.xwalk-persona-segment-landing){background:#eef8f1!important;color:#111!important}
+body:has(.xwalk-family-plans-page) main,body:has(#family-plans--bring-your-own-device) main,body:has(#you-run-this-city) main,body:has(#keep-your-family-connected) main,body:has(#wireless-that-fits-your-semester) main,body.xwalk-persona-offer-page--family-texas:not(.xwalk-persona-segment-landing) main,body.xwalk-persona-offer-page--college-student:not(.xwalk-persona-segment-landing) main,body.xwalk-persona-offer-page--single-woman-nyc:not(.xwalk-persona-segment-landing) main{background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important}
+body:has(.xwalk-family-plans-page) main>div,body:has(.xwalk-family-plans-page) main .section>div,body:has(#family-plans--bring-your-own-device) main>div,body:has(#family-plans--bring-your-own-device) main .section>div,body:has(#you-run-this-city) main>div,body:has(#keep-your-family-connected) main>div,body:has(#wireless-that-fits-your-semester) main>div{background:transparent!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important}
+body:has(.xwalk-family-plans-page) main>div>h1,body:has(.xwalk-family-headline),body:has(#you-run-this-city) main h1,body:has(#keep-your-family-connected) main h1,body:has(#wireless-that-fits-your-semester) main h1{color:#1DB954!important;text-shadow:none!important;position:static!important}
+body:has(.xwalk-family-plans-page) main>div>p:not(:has(picture)),body:has(.xwalk-family-plans-page) main>div>h2,body:has(#family-plans--bring-your-own-device) main>div>p:not(:has(picture)),body:has(#family-plans--bring-your-own-device) main>div>h2{color:inherit!important;text-shadow:none!important;position:static!important}
+body:has(.xwalk-family-plans-page) main>div>h2,body:has(#family-plans--bring-your-own-device) main>div>h2{color:#1DB954!important}
+body:has(.xwalk-family-plans-page) main>div>p:has(strong),body:has(#family-plans--bring-your-own-device) main>div>p:has(strong),body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) strong,body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) del{color:#1DB954!important}
+
+footer {
+  background: #1A2F1E;
+  border-top: 1px solid color-mix(in srgb, #86EFAC 25%, transparent);
+  margin-top: 48px;
+  color: #FFFFFF;
+  font-family: Calibri;
+}
+footer .footer.block[data-block-status="loaded"] > .footer,
+footer .footer.block[data-block-status="loaded"] .footer .footer {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+main.xwalk-footer,
+main.xwalk-footer-boost {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  box-sizing: border-box;
+}
+main.xwalk-footer-boost > div {
+  width: 100%;
+}
+main.xwalk-footer-boost .xwalk-footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 24px 40px;
+  padding: 32px 0 28px;
+  border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
+}
+main.xwalk-footer-boost .xwalk-footer-top-brand,
+footer .footer .xwalk-footer-top-brand {
+  max-width: 420px;
+  overflow: visible;
+}
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand,
+footer .footer .xwalk-footer-brand {
+  margin: 0 0 8px;
+  overflow: visible;
+  line-height: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img,
+main.xwalk-footer-boost .xwalk-footer-top-brand picture img,
+footer .footer .xwalk-footer-brand img,
+footer .footer .xwalk-footer-top-brand img,
+footer .footer .xwalk-footer-top-brand picture img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-width: 220px;
+  max-height: 72px;
+  object-fit: contain;
+  object-position: left center;
+}
+footer .footer > main,
+footer .footer main.xwalk-footer-boost {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  min-height: 0;
+}
+footer .footer > main > div,
+footer .footer main.xwalk-footer-boost > div {
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+main.xwalk-footer-boost .xwalk-footer-top-social {
+  text-align: right;
+}
+main.xwalk-footer-boost .xwalk-footer-social-label {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #FFFFFF 88%, transparent);
+}
+main.xwalk-footer-boost .xwalk-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  line-height: 1;
+}
+main.xwalk-footer-boost .xwalk-footer-social a:hover {
+  background: #000;
+  color: #fff;
+}
+main.xwalk-footer-boost .xwalk-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 32px;
+  padding: 32px 0 28px;
+}
+main.xwalk-footer-boost .xwalk-footer-col p {
+  margin: 0 0 12px;
+  font-family: Arial Black;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+main.xwalk-footer-boost .xwalk-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-col li {
+  margin: 0 0 8px;
+}
+main.xwalk-footer-boost .xwalk-footer-col a {
+  color: color-mix(in srgb, #FFFFFF 92%, transparent);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+main.xwalk-footer-boost .xwalk-footer-col a:hover {
+  color: #86EFAC;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter {
+  padding: 28px 0 32px;
+  border-top: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter h2 {
+  margin: 0 0 8px;
+  font-family: Arial Black;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-transform: none;
+  letter-spacing: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter > p {
+  margin: 0 0 20px;
+  color: color-mix(in srgb, #FFFFFF 85%, transparent);
+  font-size: 1rem;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter-form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  margin: 0;
+  max-width: 100%;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter-form label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
+  flex: 0 1 25%;
+  width: 25%;
+  min-width: 160px;
+  max-width: 280px;
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, #FFFFFF 35%, transparent);
+  border-radius: 4px;
+  background: #0A1A0F;
+  color: #FFFFFF;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+main.xwalk-footer-boost .xwalk-footer-subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 12px 28px;
+  background: #1DB954;
+  color: #000 !important;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+main.xwalk-footer-boost .xwalk-footer-legal {
+  padding: 24px 0 8px;
+  text-align: center;
+}
+main.xwalk-footer-boost .xwalk-footer-legal > p {
+  margin: 0 0 12px;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, #FFFFFF 75%, transparent);
+}
+main.xwalk-footer-boost .xwalk-footer-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+main.xwalk-footer-boost .xwalk-footer-legal a {
+  color: color-mix(in srgb, #FFFFFF 88%, transparent);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  main.xwalk-footer-boost .xwalk-footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  main.xwalk-footer-boost .xwalk-footer-newsletter-form {
+    flex-wrap: wrap;
+  }
+  main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: none;
+  }
+}
+@media (max-width: 700px) {
+  main.xwalk-footer-boost .xwalk-footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  main.xwalk-footer-boost .xwalk-footer-top-social {
+    text-align: center;
+  }
+  main.xwalk-footer-boost .xwalk-footer-social {
+    justify-content: center;
+  }
+  main.xwalk-footer-boost .xwalk-footer-columns {
+    grid-template-columns: 1fr;
+  }
+}
+footer .footer .xwalk-footer-top,
+footer .footer .xwalk-footer-columns,
+footer .xwalk-footer-top,
+footer .xwalk-footer-columns {
+  width: 100%;
+  box-sizing: border-box;
+  visibility: visible;
+  opacity: 1;
+}
+footer .footer .xwalk-footer-columns,
+html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+footer .footer .xwalk-footer-col,
+footer .footer .xwalk-footer-col a,
+footer .footer .xwalk-footer-col p {
+  visibility: visible;
+  opacity: 1;
+  color: color-mix(in srgb, #FFFFFF 92%, transparent);
+}
+footer .footer .xwalk-footer-col p strong {
+  color: #FFFFFF;
+}
+footer .xwalk-footer-newsletter,
+footer .xwalk-footer-newsletter-section,
+footer .section:has(.xwalk-footer-newsletter),
+footer .section:has(#want-the-latest-scoop),
+footer .section:has(input[type="email"]) {
+  display: none !important;
+}
+@media (max-width: 900px) {
+  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 700px) {
+  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
+<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <style id="forge-persona-mockup-critical">
 
 html.xwalk-persona-path--family-texas main,
@@ -519,435 +917,6 @@ background:#1DB954!important;color:#fff!important;font-size:1.25rem!important;fo
 
 
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script src="/scripts/aem.js" type="module"></script>
-<script src="/scripts/scripts.js" type="module"></script>
-<script src="/scripts/xwalk-boost-layout.js" type="module"></script>
-<script src="/scripts/xwalk-family-plans-boot.js?v=grid-18" defer></script>
-<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-6"></script>
-<script src="/scripts/xwalk-persona-mockup-layout.js?v=grid-3" defer></script>
-<style id="forge-boost-critical">
-.xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
-body:has(#save-when-you-shop-online),body:has([id*="shop-phones"]),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
-main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
-main:has(#save-when-you-shop-online)>div:first-child,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:first-child,main:has([id*="shop-phones"])>div:nth-child(2),main:has([id*="shop-phones"])>div:last-child,main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
-.xwalk-retail-hero,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2){text-align:center;padding:36px 16px 20px}
-#save-when-you-shop-online,[id*="shop-phones"]{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
-.xwalk-retail-hero-sub,.xwalk-retail-hero-kicker,.xwalk-phones-sub{color:color-mix(in srgb,#FFFFFF 88%,transparent)}
-a.xwalk-retail-cta-primary{background:#1DB954;color:#000!important;padding:12px 24px;font-weight:700;text-decoration:none;border-radius:2px;display:inline-block;margin:4px}
-main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has([id*="shop-phones"])>div:nth-child(3),main:has([id*="shop-phones"])>div:nth-child(4),main:has([id*="shop-phones"])>div:nth-child(5),main:has([id*="shop-phones"])>div:nth-child(6),main.xwalk-boost-main>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
-main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
-main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture),main:has([id*="shop-phones"])>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important;overflow:visible!important}
-main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
-main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)){background:#1DB954;color:#fff!important;font-weight:700;padding:12px 10px;margin:0}
-main:has([id*="shop-phones"])>div:has(h3):has(picture)>h3{font-size:1.75rem;font-weight:900;margin:12px 16px 8px;color:#000}
-main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:not(:has(picture)):not(:has(a)){margin:0 16px 8px;color:#1a1a1a}
-main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href*="products"],main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href="/plans"]{color:#1DB954;font-weight:700}
-main.xwalk-boost-main>div.xwalk-phone-section h3,main>div:has(h3):has(picture) h3{font-size:1.35rem;font-weight:800;margin:16px 16px 8px;color:#000}
-main:has(#save-up-to-2400-a-year)>div:last-child,main.xwalk-boost-main>div:last-child{background:#1DB954!important;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;padding:32px}
-main>div.xwalk-hero-section,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(#save-when-you-shop-online)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-grid)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester)){position:relative;min-height:320px;overflow:hidden;background:#0A1A0F;padding:48px 24px;text-align:center;grid-column:1/-1}
-main>div.xwalk-hero-section>p:has(picture),main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture){position:absolute;inset:0;margin:0;padding:0;z-index:0}
-main>div.xwalk-hero-section>p:has(picture)::after,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture)::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(10 26 15/50%) 0%,rgb(10 26 15/90%) 100%);z-index:1}
-main>div.xwalk-hero-section>p:has(picture) img,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture) img{width:100%;height:100%;object-fit:cover;display:block}
-main>div.xwalk-hero-section>h1,main>div.xwalk-hero-section>p:not(:has(picture)),main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>h1,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:not(:has(picture)){position:relative;z-index:2;color:#fff!important;text-shadow:0 2px 18px rgb(0 0 0/55%)}
-main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester)) a{color:#fff!important}
-@media (max-width:1100px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
-
-main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
-main:has(.xwalk-family-grid),
-main:has(#family-plans--bring-your-own-device),
-main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page)>div,
-main:has(.xwalk-family-grid)>div,
-main:has(#family-plans--bring-your-own-device)>div,
-main:has(#you-run-this-city)>div,main:has(#keep-your-family-connected)>div,main:has(#wireless-that-fits-your-semester)>div{background:transparent!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important;border:none!important}
-main:has(.xwalk-family-plans-page) > div:has(> h1),
-main:has(.xwalk-family-headline){background:transparent!important;min-height:0!important;padding:0!important;text-align:left!important}
-main:has(.xwalk-family-plans-page) > div > h1,
-main:has(.xwalk-family-headline),
-main:has(#you-run-this-city) h1,main:has(#keep-your-family-connected) h1,main:has(#wireless-that-fits-your-semester) h1{color:#1DB954!important;font-weight:900!important;text-shadow:none!important;position:static!important}
-main:has(#you-run-this-city) h1,main:has(#you-run-this-city) h2,main:has(#you-run-this-city) p:not(:has(picture)),main:has(#keep-your-family-connected) h1,main:has(#keep-your-family-connected) h2,main:has(#keep-your-family-connected) p:not(:has(picture)),main:has(#wireless-that-fits-your-semester) h1,main:has(#wireless-that-fits-your-semester) h2,main:has(#wireless-that-fits-your-semester) p:not(:has(picture)){color:#111!important;text-shadow:none!important;position:static!important}
-main:has(#family-plans--bring-your-own-device) h2,
-main:has(#you-run-this-city) h2,main:has(#keep-your-family-connected) h2,main:has(#wireless-that-fits-your-semester) h2{color:#1DB954!important}
-main:has(#family-plans--bring-your-own-device) p:has(strong),
-main:has(#family-plans--bring-your-own-device) p:has(strong) strong,
-main:has(#family-plans--bring-your-own-device) p:has(strong) del,
-main:has(#you-run-this-city) p,main:has(#keep-your-family-connected) p,main:has(#wireless-that-fits-your-semester) p{color:#111!important}
-main:has(#you-run-this-city) .xwalk-family-cta,
-main:has(#keep-your-family-connected) .xwalk-family-cta,
-main:has(#wireless-that-fits-your-semester) .xwalk-family-cta{background:#1DB954!important;color:#fff!important}
-html:has(main #you-run-this-city) header,html:has(main #keep-your-family-connected) header,html:has(main #wireless-that-fits-your-semester) header{overflow:visible!important;min-height:auto!important}
-html:has(main #you-run-this-city) header .xwalk-logo-mark,
-html:has(main #you-run-this-city) header .xwalk-logo-img,
-html:has(main #keep-your-family-connected) header .xwalk-logo-mark,
-html:has(main #keep-your-family-connected) header .xwalk-logo-img,
-html:has(main #wireless-that-fits-your-semester) header .xwalk-logo-mark,
-html:has(main #wireless-that-fits-your-semester) header .xwalk-logo-img{height:auto!important;max-height:56px!important;object-fit:contain!important;overflow:visible!important}
-html:has(main #you-run-this-city) header nav,
-html:has(main #keep-your-family-connected) header nav,
-html:has(main #wireless-that-fits-your-semester) header nav{overflow:visible!important;align-items:center!important;padding-top:12px!important;padding-bottom:12px!important}
-body.xwalk-persona-offer-page header{height:auto!important;min-height:var(--nav-height,64px)!important;overflow:visible!important}
-body.xwalk-persona-offer-page header .header,body.xwalk-persona-offer-page header .header[data-block-status="loaded"]{visibility:visible!important;overflow:visible!important}
-body.xwalk-persona-offer-page header nav{overflow:visible!important;min-height:56px!important}
-body.xwalk-persona-offer-page header nav .nav-brand,
-body.xwalk-persona-offer-page header nav p:has(img){margin:0!important;line-height:1!important;overflow:visible!important}
-body.xwalk-persona-offer-page header nav .nav-brand img,
-body.xwalk-persona-offer-page header .xwalk-logo-img,
-body.xwalk-persona-offer-page header .xwalk-logo-mark,
-body.xwalk-persona-offer-page header img[alt*="Wolverine"]{width:auto!important;height:48px!important;max-height:48px!important;max-width:56px!important;object-fit:contain!important;display:block!important}
-footer .footer.block[data-block-status="loaded"] > .footer,
-footer .footer.block .footer .footer{visibility:visible!important;opacity:1!important}
-footer .xwalk-footer-top-brand img,footer .xwalk-footer-top-brand picture img,footer .xwalk-footer-brand img{height:auto!important;max-height:72px!important;width:auto!important;object-fit:contain!important;overflow:visible!important}
-main:has(#you-run-this-city) a[href="/phones"],
-main:has(#keep-your-family-connected) a[href="/plans"],
-main:has(#wireless-that-fits-your-semester) a[href="/plans"]{color:#fff!important;background:#1DB954!important}
-
-body:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),body:has(#family-plans--bring-your-own-device),body:has(#you-run-this-city),body:has(#keep-your-family-connected),body:has(#wireless-that-fits-your-semester),body.xwalk-persona-offer-page--family-texas:not(.xwalk-persona-segment-landing),body.xwalk-persona-offer-page--college-student:not(.xwalk-persona-segment-landing),body.xwalk-persona-offer-page--single-woman-nyc:not(.xwalk-persona-segment-landing){background:#eef8f1!important;color:#111!important}
-body:has(.xwalk-family-plans-page) main,body:has(#family-plans--bring-your-own-device) main,body:has(#you-run-this-city) main,body:has(#keep-your-family-connected) main,body:has(#wireless-that-fits-your-semester) main,body.xwalk-persona-offer-page--family-texas:not(.xwalk-persona-segment-landing) main,body.xwalk-persona-offer-page--college-student:not(.xwalk-persona-segment-landing) main,body.xwalk-persona-offer-page--single-woman-nyc:not(.xwalk-persona-segment-landing) main{background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important}
-body:has(.xwalk-family-plans-page) main>div,body:has(.xwalk-family-plans-page) main .section>div,body:has(#family-plans--bring-your-own-device) main>div,body:has(#family-plans--bring-your-own-device) main .section>div,body:has(#you-run-this-city) main>div,body:has(#keep-your-family-connected) main>div,body:has(#wireless-that-fits-your-semester) main>div{background:transparent!important;color:#111!important;min-height:0!important;padding:0!important;position:static!important;overflow:visible!important;text-align:left!important}
-body:has(.xwalk-family-plans-page) main>div>h1,body:has(.xwalk-family-headline),body:has(#you-run-this-city) main h1,body:has(#keep-your-family-connected) main h1,body:has(#wireless-that-fits-your-semester) main h1{color:#1DB954!important;text-shadow:none!important;position:static!important}
-body:has(.xwalk-family-plans-page) main>div>p:not(:has(picture)),body:has(.xwalk-family-plans-page) main>div>h2,body:has(#family-plans--bring-your-own-device) main>div>p:not(:has(picture)),body:has(#family-plans--bring-your-own-device) main>div>h2{color:inherit!important;text-shadow:none!important;position:static!important}
-body:has(.xwalk-family-plans-page) main>div>h2,body:has(#family-plans--bring-your-own-device) main>div>h2{color:#1DB954!important}
-body:has(.xwalk-family-plans-page) main>div>p:has(strong),body:has(#family-plans--bring-your-own-device) main>div>p:has(strong),body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) strong,body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) del{color:#1DB954!important}
-
-footer {
-  background: #1A2F1E;
-  border-top: 1px solid color-mix(in srgb, #86EFAC 25%, transparent);
-  margin-top: 48px;
-  color: #FFFFFF;
-  font-family: Calibri;
-}
-footer .footer.block[data-block-status="loaded"] > .footer,
-footer .footer.block[data-block-status="loaded"] .footer .footer {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-main.xwalk-footer,
-main.xwalk-footer-boost {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px 32px;
-  box-sizing: border-box;
-}
-main.xwalk-footer-boost > div {
-  width: 100%;
-}
-main.xwalk-footer-boost .xwalk-footer-top {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 24px 40px;
-  padding: 32px 0 28px;
-  border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
-}
-main.xwalk-footer-boost .xwalk-footer-top-brand,
-footer .footer .xwalk-footer-top-brand {
-  max-width: 420px;
-  overflow: visible;
-}
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand,
-footer .footer .xwalk-footer-brand {
-  margin: 0 0 8px;
-  overflow: visible;
-  line-height: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-top-brand .xwalk-footer-brand img,
-main.xwalk-footer-boost .xwalk-footer-top-brand picture img,
-footer .footer .xwalk-footer-brand img,
-footer .footer .xwalk-footer-top-brand img,
-footer .footer .xwalk-footer-top-brand picture img {
-  display: block;
-  height: auto;
-  width: auto;
-  max-width: 220px;
-  max-height: 72px;
-  object-fit: contain;
-  object-position: left center;
-}
-footer .footer > main,
-footer .footer main.xwalk-footer-boost {
-  display: block;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px 32px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  min-height: 0;
-}
-footer .footer > main > div,
-footer .footer main.xwalk-footer-boost > div {
-  width: 100%;
-  visibility: visible;
-  opacity: 1;
-}
-main.xwalk-footer-boost .xwalk-footer-top-social {
-  text-align: right;
-}
-main.xwalk-footer-boost .xwalk-footer-social-label {
-  margin: 0 0 12px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, #FFFFFF 88%, transparent);
-}
-main.xwalk-footer-boost .xwalk-footer-social {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.8125rem;
-  text-decoration: none;
-  line-height: 1;
-}
-main.xwalk-footer-boost .xwalk-footer-social a:hover {
-  background: #000;
-  color: #fff;
-}
-main.xwalk-footer-boost .xwalk-footer-columns {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px 32px;
-  padding: 32px 0 28px;
-}
-main.xwalk-footer-boost .xwalk-footer-col p {
-  margin: 0 0 12px;
-  font-family: Arial Black;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-main.xwalk-footer-boost .xwalk-footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-col li {
-  margin: 0 0 8px;
-}
-main.xwalk-footer-boost .xwalk-footer-col a {
-  color: color-mix(in srgb, #FFFFFF 92%, transparent);
-  font-size: 0.9375rem;
-  text-decoration: none;
-}
-main.xwalk-footer-boost .xwalk-footer-col a:hover {
-  color: #86EFAC;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter {
-  padding: 28px 0 32px;
-  border-top: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, #86EFAC 18%, transparent);
-  text-align: left;
-  max-width: none;
-  margin: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter h2 {
-  margin: 0 0 8px;
-  font-family: Arial Black;
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #FFFFFF;
-  text-transform: none;
-  letter-spacing: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter > p {
-  margin: 0 0 20px;
-  color: color-mix(in srgb, #FFFFFF 85%, transparent);
-  font-size: 1rem;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter-form {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 12px;
-  margin: 0;
-  max-width: 100%;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter-form label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
-  flex: 0 1 25%;
-  width: 25%;
-  min-width: 160px;
-  max-width: 280px;
-  padding: 12px 16px;
-  border: 1px solid color-mix(in srgb, #FFFFFF 35%, transparent);
-  border-radius: 4px;
-  background: #0A1A0F;
-  color: #FFFFFF;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-main.xwalk-footer-boost .xwalk-footer-subscribe-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  padding: 12px 28px;
-  background: #1DB954;
-  color: #000 !important;
-  font-weight: 800;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.9375rem;
-  white-space: nowrap;
-}
-main.xwalk-footer-boost .xwalk-footer-legal {
-  padding: 24px 0 8px;
-  text-align: center;
-}
-main.xwalk-footer-boost .xwalk-footer-legal > p {
-  margin: 0 0 12px;
-  font-size: 0.8125rem;
-  color: color-mix(in srgb, #FFFFFF 75%, transparent);
-}
-main.xwalk-footer-boost .xwalk-footer-legal ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-main.xwalk-footer-boost .xwalk-footer-legal a {
-  color: color-mix(in srgb, #FFFFFF 88%, transparent);
-  font-size: 0.8125rem;
-  text-decoration: underline;
-}
-@media (max-width: 900px) {
-  main.xwalk-footer-boost .xwalk-footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  main.xwalk-footer-boost .xwalk-footer-newsletter-form {
-    flex-wrap: wrap;
-  }
-  main.xwalk-footer-boost .xwalk-footer-newsletter-form input[type="email"] {
-    flex: 1 1 100%;
-    width: 100%;
-    max-width: none;
-  }
-}
-@media (max-width: 700px) {
-  main.xwalk-footer-boost .xwalk-footer-top {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  main.xwalk-footer-boost .xwalk-footer-top-social {
-    text-align: center;
-  }
-  main.xwalk-footer-boost .xwalk-footer-social {
-    justify-content: center;
-  }
-  main.xwalk-footer-boost .xwalk-footer-columns {
-    grid-template-columns: 1fr;
-  }
-}
-footer .footer .xwalk-footer-top,
-footer .footer .xwalk-footer-columns,
-footer .xwalk-footer-top,
-footer .xwalk-footer-columns {
-  width: 100%;
-  box-sizing: border-box;
-  visibility: visible;
-  opacity: 1;
-}
-footer .footer .xwalk-footer-columns,
-html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-}
-footer .footer .xwalk-footer-col,
-footer .footer .xwalk-footer-col a,
-footer .footer .xwalk-footer-col p {
-  visibility: visible;
-  opacity: 1;
-  color: color-mix(in srgb, #FFFFFF 92%, transparent);
-}
-footer .footer .xwalk-footer-col p strong {
-  color: #FFFFFF;
-}
-footer .xwalk-footer-newsletter,
-footer .xwalk-footer-newsletter-section,
-footer .section:has(.xwalk-footer-newsletter),
-footer .section:has(#want-the-latest-scoop),
-footer .section:has(input[type="email"]) {
-  display: none !important;
-}
-@media (max-width: 900px) {
-  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-@media (max-width: 700px) {
-  html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-</style>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <style id="forge-persona-critical">
 .xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-ai-badge,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
 [data-forge-variant][hidden]{display:none!important}
@@ -1046,42 +1015,6 @@ main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
 @media(max-width:768px){.xwalk-persona-plan-row{grid-template-columns:1fr}.xwalk-plan-line{grid-template-columns:1fr;gap:4px}}
 </style>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <link rel="stylesheet" href="/styles/styles.css"/>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
 <link rel="stylesheet" href="/styles/forge-inline-edit.css?v=9"/>

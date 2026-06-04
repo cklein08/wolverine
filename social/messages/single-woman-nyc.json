@@ -7,7 +7,7 @@
     "personaLabel": "Single Young Woman, NYC",
     "campaignGoal": "acquisition",
     "status": "draft",
-    "updatedAt": "2026-06-03T03:48:42.670Z",
+    "updatedAt": "2026-06-03T19:06:41.370Z",
     "metadata": {
       "segmentId": "a0747189-7e95-4ae2-a0b2-0a7907bbfd09",
       "segmentName": "Women, 25–35, NYC",
@@ -60,7 +60,7 @@
     "personaLabel": "Single Young Woman, NYC",
     "sender": "Wolverine Mobile",
     "status": "draft",
-    "updatedAt": "2026-06-03T03:48:42.671Z",
+    "updatedAt": "2026-06-03T19:06:41.372Z",
     "messages": [
       {
         "id": "sms-1",
@@ -93,7 +93,7 @@
     "personaId": "single-woman-nyc",
     "personaLabel": "Single Young Woman, NYC",
     "status": "draft",
-    "updatedAt": "2026-06-03T03:48:42.672Z",
+    "updatedAt": "2026-06-03T19:06:41.373Z",
     "messages": [
       {
         "id": "push-1",

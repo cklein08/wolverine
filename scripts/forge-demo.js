@@ -3,7 +3,7 @@
  */
 import { productBrandName } from './forge-product-brand.js';
 
-const DEMO_BUILD = 6;
+const DEMO_BUILD = 7;
 
 function isDemoMode() {
   const p = new URLSearchParams(window.location.search);

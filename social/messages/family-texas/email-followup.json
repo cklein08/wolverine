@@ -2,9 +2,9 @@
   "channel": "email",
   "personaId": "family-texas",
   "personaLabel": "Texas Family",
-  "campaignGoal": "loyalty",
-  "status": "draft",
-  "updatedAt": "2026-06-03T03:48:42.646Z",
+  "campaignGoal": "acquisition",
+  "status": "approved",
+  "updatedAt": "2026-06-03T21:36:09.250Z",
   "metadata": {
     "segmentId": "9597981f-358d-4203-82e8-1a10362d81a0",
     "segmentName": "Men/Women married with kids, 40+, Texas",

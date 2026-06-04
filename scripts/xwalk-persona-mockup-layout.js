@@ -177,8 +177,8 @@
   }
 
   function gridPersonaPath(path) {
-    if (path === '/family-texas' || path === '/college-student' || path === '/single-woman-nyc') return path.slice(1);
-    return null;
+    const m = (path || '').replace(/\/$/, '').match(/\/(family-texas|college-student|single-woman-nyc)$/);
+    return m ? m[1] : null;
   }
 
   function decorateFamilyTexasPage(doc) {

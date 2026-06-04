@@ -158,6 +158,40 @@ function decorateFooterLayout(doc = document) {
   foot.dataset.xwalkFooterDecorated = '1';
 }
 
+function observeAsyncFooter(doc = document) {
+  if (doc.documentElement.classList.contains('xwalk-footer-boost-ready')) return;
+
+  const tryFooter = () => decorateFooterLayout(doc);
+
+  doc.addEventListener('aem:loaded', tryFooter);
+
+  const watchBlock = (block) => {
+    if (!block || block.dataset.xwalkFooterObserved) return;
+    block.dataset.xwalkFooterObserved = '1';
+    if (block.getAttribute('data-block-status') === 'loaded') {
+      tryFooter();
+      return;
+    }
+    new MutationObserver(() => {
+      if (block.getAttribute('data-block-status') === 'loaded') tryFooter();
+    }).observe(block, { attributes: true, attributeFilter: ['data-block-status'] });
+  };
+
+  const foot = doc.querySelector('footer');
+  if (foot) {
+    watchBlock(foot.querySelector('.footer.block'));
+    tryFooter();
+  }
+
+  new MutationObserver((_, obs) => {
+    const block = doc.querySelector('footer .footer.block');
+    if (!block) return;
+    watchBlock(block);
+    tryFooter();
+    if (doc.documentElement.classList.contains('xwalk-footer-boost-ready')) obs.disconnect();
+  }).observe(doc.body || doc.documentElement, { childList: true, subtree: true });
+}
+
 export function decorateBoostLayout(doc = document) {
   const path = (doc.location?.pathname || '').replace(/\/$/, '');
   const isPersonaLanding =
@@ -233,7 +267,10 @@ export function decorateBoostLayout(doc = document) {
 }
 
 if (typeof document !== 'undefined') {
-  const run = () => decorateBoostLayout();
+  const run = () => {
+    decorateBoostLayout();
+    observeAsyncFooter();
+  };
   run();
   document.addEventListener('DOMContentLoaded', run);
 }

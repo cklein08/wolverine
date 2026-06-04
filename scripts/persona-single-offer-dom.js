@@ -9,6 +9,7 @@ const OFFER = {
     planTitle: 'Your Plan',
     planPrice: '$50.00',
     pill: 'Unlimited talk, text and data with Global Roaming',
+    altPill: 'Unlimited talk, text and premium global roaming in 200+ countries',
     deviceName: 'Razr',
     devicePrice: '$499.99. or $50/month for 12 months',
     phone:
@@ -24,6 +25,7 @@ const OFFER = {
     planTitle: 'Student Essential',
     planPrice: '$25/mo',
     pill: '5GB premium data · unlimited talk & text',
+    altPill: '5GB premium data + Campus data boost · unlimited talk & text',
     deviceName: 'Moto G Play',
     devicePrice: 'From $9.99/mo on Student Essential',
     phone:
@@ -40,6 +42,7 @@ const OFFER = {
     planTitle: 'Your Plan',
     planPrice: '$80.00',
     pill: 'Unlimited talk, text and premium data with hotspot',
+    altPill: 'Unlimited premium data with hotspot on every line',
     deviceName: 'Apple iPhone 16e',
     devicePrice: 'From $29/mo',
     phone:
@@ -109,11 +112,16 @@ export function createSingleOfferSection(personaId, headline) {
   planHead.append(h2);
   const pillWrap = document.createElement('div');
   pillWrap.className = 'xwalk-mockup-plan-pill';
-  const pill = document.createElement('p');
-  pill.className = 'xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--dark';
-  pill.style.color = '#fff';
-  pill.textContent = meta.pill;
-  pillWrap.append(pill);
+  const darkPill = document.createElement('p');
+  darkPill.className = 'xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--dark';
+  darkPill.textContent = meta.pill;
+  pillWrap.append(darkPill);
+  if (meta.altPill) {
+    const accentPill = document.createElement('p');
+    accentPill.className = 'xwalk-plan-pill xwalk-plan-line-pill xwalk-plan-line-pill--accent';
+    accentPill.textContent = meta.altPill;
+    pillWrap.append(accentPill);
+  }
   planHead.append(pillWrap);
   main.append(planHead);
 

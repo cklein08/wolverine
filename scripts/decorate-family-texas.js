@@ -2,7 +2,7 @@
  * Family BYOD landing grid — runs from scripts.js after decorateBlocks.
  */
 import { CAMPAIGN_HERO_CSS, createCampaignHeroEl } from './persona-campaign-hero.js';
-import { hasForgeSegmentParam } from './persona-landing-mode.js';
+import { hasForgeSegmentParam, personaIdFromPathname } from './persona-landing-mode.js';
 import { createSingleOfferSection } from './persona-single-offer-dom.js';
 
 const PRIMARY = '#1DB954';
@@ -15,11 +15,7 @@ const HERO_BG = '#0A1A0F';
 const LINE_RE = /^(\d+(?:st|nd|rd|th) line|Phone|Plan|Talk|Data boost|Hotspot|Global roaming)\b/i;
 
 function gridPersonaId() {
-  const path = (window.location?.pathname || '').replace(/\/$/, '');
-  if (path === '/family-texas') return 'family-texas';
-  if (path === '/college-student') return 'college-student';
-  if (path === '/single-woman-nyc') return 'single-woman-nyc';
-  return null;
+  return personaIdFromPathname();
 }
 
 function isFamilyPage() {

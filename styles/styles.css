@@ -768,6 +768,15 @@ footer .section:has(#want-the-latest-scoop),
 footer .section:has(input[type="email"]) {
   display: none !important;
 }
+footer .footer > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+footer .footer > div > .section .default-content-wrapper {
+  width: 100%;
+}
 @media (max-width: 900px) {
   html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -1448,8 +1457,45 @@ main.xwalk-boost-main > div.xwalk-phone-section,
 main:has([id*='shop-phones']) > div:nth-child(3),
 main:has([id*='shop-phones']) > div:nth-child(4),
 main:has([id*='shop-phones']) > div:nth-child(5),
-main:has([id*='shop-phones']) > div:nth-child(6) {
+main:has([id*='shop-phones']) > div:nth-child(6),
+main:has([id*='shop-phones']) > div:has(h3),
+main:has([id*='shop-phones']) .xwalk-deal-section {
   min-width: 0;
+}
+main:has([id*='shop-phones']) > div:has(h3),
+main:has([id*='shop-phones']) .xwalk-deal-section,
+main.xwalk-boost-main > div:has(h3):has(picture) {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+main:has([id*='shop-phones']) .default-content-wrapper,
+main.xwalk-boost-main > div:has(h3) .default-content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  grid-template-columns: none !important;
+  align-items: stretch !important;
+}
+main:has([id*='shop-phones']) .xwalk-deal-media,
+main.xwalk-boost-main .xwalk-deal-media {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f5f5f5 !important;
+  padding: 20px 16px !important;
+  min-height: 220px !important;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+main:has([id*='shop-phones']) .xwalk-deal-section .default-content-wrapper > p:first-child,
+main:has([id*='shop-phones']) .xwalk-deal-badge {
+  background: #1DB954 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 12px 10px !important;
+  margin: 0 !important;
 }
 .xwalk-phone-card {
   display: flex;
@@ -1460,7 +1506,8 @@ main:has([id*='shop-phones']) > div:nth-child(6) {
 }
 .xwalk-phone-card picture,
 .xwalk-phone-card .xwalk-phone-media,
-main > div:has(h3) > p:has(picture) {
+main > div:has(h3) > p:has(picture),
+main .xwalk-deal-media {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1470,7 +1517,8 @@ main > div:has(h3) > p:has(picture) {
   margin: 0;
 }
 .xwalk-phone-card img,
-main > div.xwalk-phone-section img {
+main > div.xwalk-phone-section img,
+main .xwalk-deal-media img {
   max-height: 220px;
   width: auto;
   max-width: 100%;

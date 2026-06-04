@@ -3,18 +3,19 @@
  */
 
 function tagDealCardInternals(card) {
-  const firstP = card.querySelector(':scope > p');
+  const root = card.querySelector('.default-content-wrapper') || card;
+  const firstP = root.querySelector(':scope > p');
   if (firstP && !firstP.classList.contains('xwalk-deal-badge')) {
     firstP.classList.add('xwalk-deal-badge');
   }
-  const picture = card.querySelector('picture');
+  const picture = root.querySelector('picture');
   if (picture?.parentElement?.tagName === 'P') {
     const media = document.createElement('div');
     media.className = 'xwalk-deal-media';
     picture.parentElement.replaceWith(media);
     media.appendChild(picture);
   }
-  card.querySelectorAll('a').forEach((a) => {
+  root.querySelectorAll('a').forEach((a) => {
     if (/get the deal/i.test(a.textContent || '')) {
       a.classList.add('xwalk-deal-cta');
       a.closest('p')?.classList.add('xwalk-deal-cta-wrap');
@@ -107,12 +108,67 @@ function decorateHeroSections(main) {
   });
 }
 
+/** HLX strips xwalk-footer-* classes from footer.html — rebuild Boost grid in the DOM. */
+function decorateFooterLayout(doc = document) {
+  const foot = doc.querySelector('footer .footer');
+  if (!foot || foot.dataset.xwalkFooterDecorated) return;
+
+  const sections = [...foot.querySelectorAll(':scope > div > .section')];
+  if (sections.length < 2) return;
+
+  const topWrap = sections[0]?.querySelector('.default-content-wrapper');
+  if (topWrap && !topWrap.querySelector('.xwalk-footer-top')) {
+    const top = doc.createElement('div');
+    top.className = 'xwalk-footer-top';
+    const brand = doc.createElement('div');
+    brand.className = 'xwalk-footer-top-brand';
+    const social = doc.createElement('div');
+    social.className = 'xwalk-footer-top-social';
+    const kids = [...topWrap.children];
+    kids.slice(0, 3).forEach((n) => brand.appendChild(n));
+    kids.slice(3).forEach((n) => social.appendChild(n));
+    top.append(brand, social);
+    topWrap.replaceChildren(top);
+  }
+
+  const colsWrap = sections[1]?.querySelector('.default-content-wrapper');
+  if (colsWrap && !colsWrap.querySelector('.xwalk-footer-columns')) {
+    const row = doc.createElement('div');
+    row.className = 'xwalk-footer-columns';
+    const kids = [...colsWrap.children];
+    for (let i = 0; i < kids.length; i += 2) {
+      const col = doc.createElement('div');
+      col.className = 'xwalk-footer-col';
+      if (kids[i]) col.appendChild(kids[i]);
+      if (kids[i + 1]) col.appendChild(kids[i + 1]);
+      row.appendChild(col);
+    }
+    colsWrap.replaceChildren(row);
+  }
+
+  const legalWrap = sections[2]?.querySelector('.default-content-wrapper');
+  if (legalWrap && !legalWrap.querySelector('.xwalk-footer-legal')) {
+    const legal = doc.createElement('div');
+    legal.className = 'xwalk-footer-legal';
+    [...legalWrap.children].forEach((n) => legal.appendChild(n));
+    legalWrap.replaceChildren(legal);
+  }
+
+  doc.documentElement.classList.add('xwalk-footer-boost-ready');
+  foot.dataset.xwalkFooterDecorated = '1';
+}
+
 export function decorateBoostLayout(doc = document) {
   const path = (doc.location?.pathname || '').replace(/\/$/, '');
-  if (path === '/family-texas' || path === '/single-woman-nyc' || path === '/college-student') return;
+  const isPersonaLanding =
+    path === '/family-texas' || path === '/single-woman-nyc' || path === '/college-student';
 
+  if (!isPersonaLanding) {
   const main = doc.querySelector('main');
-  if (!main) return;
+  if (!main) {
+    decorateFooterLayout(doc);
+    return;
+  }
 
   decorateHeroSections(main);
 
@@ -171,6 +227,9 @@ export function decorateBoostLayout(doc = document) {
   if (nav) nav.classList.add('xwalk-nav-boost');
 
   main.dataset.xwalkBoostDecorated = '1';
+  }
+
+  decorateFooterLayout(doc);
 }
 
 if (typeof document !== 'undefined') {

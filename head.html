@@ -15,7 +15,11 @@ a.xwalk-retail-cta-primary{background:#1DB954;color:#000!important;padding:12px 
 main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has([id*="shop-phones"])>div:nth-child(3),main:has([id*="shop-phones"])>div:nth-child(4),main:has([id*="shop-phones"])>div:nth-child(5),main:has([id*="shop-phones"])>div:nth-child(6),main.xwalk-boost-main>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
 main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
 main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture),main:has([id*="shop-phones"])>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important;overflow:visible!important}
-main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
+main:has([id*="shop-phones"])>div:has(h3),main:has([id*="shop-phones"]) .xwalk-deal-section,main.xwalk-boost-main>div:has(h3):has(picture){display:flex!important;flex-direction:column!important;overflow:hidden!important;min-width:0!important}
+main:has([id*="shop-phones"]) .default-content-wrapper,main.xwalk-boost-main>div:has(h3) .default-content-wrapper{display:flex!important;flex-direction:column!important;width:100%!important;grid-template-columns:none!important;align-items:stretch!important}
+main:has([id*="shop-phones"]) .xwalk-deal-media,main.xwalk-boost-main .xwalk-deal-media{display:flex!important;align-items:center!important;justify-content:center!important;background:#f5f5f5!important;padding:20px 16px!important;min-height:220px!important;margin:0!important;width:100%!important;box-sizing:border-box!important;order:2!important}
+main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:first-child{background:#1DB954!important;color:#fff!important;font-weight:700!important;padding:12px 10px!important;margin:0!important;order:1!important}
+main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img,main.xwalk-boost-main .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
 main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)){background:#1DB954;color:#fff!important;font-weight:700;padding:12px 10px;margin:0}
 main:has([id*="shop-phones"])>div:has(h3):has(picture)>h3{font-size:1.75rem;font-weight:900;margin:12px 16px 8px;color:#000}
 main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:not(:has(picture)):not(:has(a)){margin:0 16px 8px;color:#1a1a1a}
@@ -384,6 +388,15 @@ footer .section:has(.xwalk-footer-newsletter),
 footer .section:has(#want-the-latest-scoop),
 footer .section:has(input[type="email"]) {
   display: none !important;
+}
+footer .footer > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+footer .footer > div > .section .default-content-wrapper {
+  width: 100%;
 }
 @media (max-width: 900px) {
   html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {

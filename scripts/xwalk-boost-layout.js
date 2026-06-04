@@ -209,6 +209,10 @@ export function decorateBoostLayout(doc = document) {
   const isBoostRetail =
     /save when you shop online/i.test(main.textContent || '') ||
     /shop phones\s*&\s*devices/i.test(main.textContent || '') ||
+    /plans from \$25\/mo/i.test(main.textContent || '') ||
+    /deals\s*&\s*offers/i.test(main.textContent || '') ||
+    main.querySelector('.xwalk-retail-deals-head') ||
+    main.querySelector('.xwalk-phone-deal-section') ||
     [...main.querySelectorAll('a')].some((a) => /get the deal/i.test(a.textContent || ''));
 
   if (isBoostRetail) {

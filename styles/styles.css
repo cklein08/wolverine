@@ -978,10 +978,12 @@ body.xwalk-boost-page main.xwalk-boost-main > div:nth-child(6) > p:first-child {
   font-family: Arial Black;
   font-size: 1.75rem;
   font-weight: 900;
-  margin: 0 20px 10px;
+  margin: 0 24px 10px 20px;
+  padding-right: 6px;
   color: #000;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 .xwalk-deal-price {
   margin: 0 20px 10px;
@@ -1459,17 +1461,20 @@ main:has([id*='shop-phones']) > div:nth-child(4),
 main:has([id*='shop-phones']) > div:nth-child(5),
 main:has([id*='shop-phones']) > div:nth-child(6),
 main:has([id*='shop-phones']) > div:has(h3),
-main:has([id*='shop-phones']) .xwalk-deal-section {
+main:has([id*='shop-phones']) .xwalk-deal-section,
+main:has(.xwalk-retail-deals-head) .xwalk-deal-section {
   min-width: 0;
 }
 main:has([id*='shop-phones']) > div:has(h3),
 main:has([id*='shop-phones']) .xwalk-deal-section,
+main:has(.xwalk-retail-deals-head) .xwalk-deal-section,
 main.xwalk-boost-main > div:has(h3):has(picture) {
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
 }
 main:has([id*='shop-phones']) .default-content-wrapper,
+main:has(.xwalk-retail-deals-head) .default-content-wrapper,
 main.xwalk-boost-main > div:has(h3) .default-content-wrapper {
   display: flex !important;
   flex-direction: column !important;
@@ -1478,6 +1483,7 @@ main.xwalk-boost-main > div:has(h3) .default-content-wrapper {
   align-items: stretch !important;
 }
 main:has([id*='shop-phones']) .xwalk-deal-media,
+main:has(.xwalk-retail-deals-head) .xwalk-deal-media,
 main.xwalk-boost-main .xwalk-deal-media {
   display: flex !important;
   align-items: center !important;
@@ -1490,7 +1496,8 @@ main.xwalk-boost-main .xwalk-deal-media {
   box-sizing: border-box !important;
 }
 main:has([id*='shop-phones']) .xwalk-deal-section .default-content-wrapper > p:first-child,
-main:has([id*='shop-phones']) .xwalk-deal-badge {
+main:has([id*='shop-phones']) .xwalk-deal-badge,
+main:has(.xwalk-retail-deals-head) .xwalk-deal-badge {
   background: #1DB954 !important;
   color: #fff !important;
   font-weight: 700 !important;

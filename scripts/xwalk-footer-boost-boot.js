@@ -73,8 +73,30 @@
     const glyph = key ? SOCIAL_ICON[key] : label.slice(0, 2) || '•';
     if (key) a.setAttribute('aria-label', key);
     a.innerHTML = `<span aria-hidden="true">${glyph}</span>`;
-    a.style.cssText =
-      'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#1a1a1a;color:#fff;font-weight:800;font-size:0.8125rem;text-decoration:none;line-height:1;';
+    a.classList.add('xwalk-footer-social-link');
+    ['display', 'align-items', 'justify-content', 'width', 'height', 'border-radius', 'background', 'color', 'font-weight', 'font-size', 'text-decoration', 'line-height'].forEach((prop) => {
+      const val =
+        prop === 'display'
+          ? 'inline-flex'
+          : prop === 'align-items' || prop === 'justify-content'
+            ? 'center'
+            : prop === 'width' || prop === 'height'
+              ? '40px'
+              : prop === 'border-radius'
+                ? '50%'
+                : prop === 'background'
+                  ? '#1a1a1a'
+                  : prop === 'color'
+                    ? '#fff'
+                    : prop === 'font-weight'
+                      ? '800'
+                      : prop === 'font-size'
+                        ? '0.8125rem'
+                        : prop === 'text-decoration'
+                          ? 'none'
+                          : '1';
+      a.style.setProperty(prop, val, 'important');
+    });
   }
 
   function paintSocial(scope) {
@@ -185,6 +207,7 @@
     socialWrap.style.textAlign = 'right';
     socialLabel.style.cssText =
       'margin:0 0 12px;font-size:0.875rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:color-mix(in srgb,#fff 88%,transparent);';
+    socialUl.classList.add('xwalk-footer-social');
     socialUl.style.cssText =
       'display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;list-style:none;padding:0;margin:0;';
     socialUl.querySelectorAll('a').forEach(paintSocialLink);
@@ -290,4 +313,11 @@
   document.addEventListener('DOMContentLoaded', () => setTimeout(run, 0));
   document.addEventListener('aem:loaded', () => setTimeout(run, 0));
   for (const ms of [100, 400, 1000, 2500]) setTimeout(run, ms);
+
+  const footerRoot = document.querySelector('footer');
+  if (footerRoot) {
+    const mo = new MutationObserver(() => setTimeout(run, 50));
+    mo.observe(footerRoot, { childList: true, subtree: true, attributes: true });
+    setTimeout(() => mo.disconnect(), 15000);
+  }
 })();

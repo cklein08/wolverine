@@ -2080,3 +2080,35 @@ main .forge-persona-plan {
   }
 }
 
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+  max-width:1280px!important;
+  margin:0 auto!important;
+  padding:0 32px 40px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  background:#0A1A0F!important;
+  color:#FFFFFF!important;
+}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:first-child,body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:last-child{grid-column:1/-1!important}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div{margin:0!important}
+@media(max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:1fr!important;padding:0 16px 32px!important}}
+footer .footer .xwalk-footer-top-social ul,footer .footer ul:has(a[href*="facebook"]){
+  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;
+  list-style:none!important;padding:0!important;margin:0!important;
+}
+footer .footer .xwalk-footer-top-social a,
+footer .footer ul:has(a[href*="facebook"]) a,
+footer .footer ul:has(a[href*="twitter"]) a,
+footer .footer ul:has(a[href*="instagram"]) a,
+footer .footer ul:has(a[href*="youtube"]) a{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;
+  color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important;
+}
+header nav>.nav-hamburger~.nav-hamburger,header .nav-hamburger~.nav-hamburger{display:none!important}
+
+

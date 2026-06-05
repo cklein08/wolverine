@@ -2,7 +2,7 @@
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/xwalk-boost-layout.js" type="module"></script>
-<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-8"></script>
+<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-9"></script>
 <script src="/scripts/xwalk-persona-mockup-layout.js?v=family-grid-2" defer></script>
 <style id="forge-boost-critical">
 .xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
@@ -42,10 +42,10 @@ footer .footer .xwalk-footer-social a,html.xwalk-footer-boost-ready footer .foot
 footer .footer .xwalk-footer-columns,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:28px 32px!important;padding:32px 0 28px!important;width:100%!important}
 
 main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
-main:has(.xwalk-family-grid),
-main:has(#family-plans--bring-your-own-device),
-main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)):not(:has(.xwalk-deal-section)),
+main:has(.xwalk-family-grid):not(:has(.xwalk-deal-section)),
+main:has(#family-plans--bring-your-own-device):not(:has(.xwalk-deal-section)),
+main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester):not(:has(.xwalk-deal-section)){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
 main:has(.xwalk-family-plans-page)>div,
 main:has(.xwalk-family-grid)>div,
 main:has(#family-plans--bring-your-own-device)>div,
@@ -440,6 +440,38 @@ footer .footer > div > .section .default-content-wrapper {
   }
 }
 
+
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+  max-width:1280px!important;
+  margin:0 auto!important;
+  padding:0 32px 40px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  background:#0A1A0F!important;
+  color:#FFFFFF!important;
+}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:first-child,body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:last-child{grid-column:1/-1!important}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div{margin:0!important}
+@media(max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:1fr!important;padding:0 16px 32px!important}}
+footer .footer .xwalk-footer-top-social ul,footer .footer ul:has(a[href*="facebook"]){
+  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;
+  list-style:none!important;padding:0!important;margin:0!important;
+}
+footer .footer .xwalk-footer-top-social a,
+footer .footer ul:has(a[href*="facebook"]) a,
+footer .footer ul:has(a[href*="twitter"]) a,
+footer .footer ul:has(a[href*="instagram"]) a,
+footer .footer ul:has(a[href*="youtube"]) a{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;
+  color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important;
+}
+header nav>.nav-hamburger~.nav-hamburger,header .nav-hamburger~.nav-hamburger{display:none!important}
+
 </style>
 <script id="forge-appear-fallback">(function(){function a(){try{document.body&&document.body.classList.add('appear')}catch(e){}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',a);else a();setTimeout(a,50);setTimeout(a,500)})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
@@ -594,10 +626,10 @@ body:has(#family-plans--bring-your-own-device) main {
 }
 
 main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
-main:has(.xwalk-family-grid),
-main:has(#family-plans--bring-your-own-device),
-main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)):not(:has(.xwalk-deal-section)),
+main:has(.xwalk-family-grid):not(:has(.xwalk-deal-section)),
+main:has(#family-plans--bring-your-own-device):not(:has(.xwalk-deal-section)),
+main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester):not(:has(.xwalk-deal-section)){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
 main:has(.xwalk-family-plans-page)>div,
 main:has(.xwalk-family-grid)>div,
 main:has(#family-plans--bring-your-own-device)>div,
@@ -1061,5 +1093,37 @@ main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
 </style>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <link rel="stylesheet" href="/styles/styles.css"/>
+<style id="forge-retail-grid-lock">
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+  max-width:1280px!important;
+  margin:0 auto!important;
+  padding:0 32px 40px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  background:#0A1A0F!important;
+  color:#FFFFFF!important;
+}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:first-child,body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div:last-child{grid-column:1/-1!important}
+body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section)>div{margin:0!important}
+@media(max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main.xwalk-boost-main:has(.xwalk-deal-section),main:has(#save-when-you-shop-online):has(.xwalk-deal-section),main:has([id*="shop-phones"]):has(.xwalk-deal-section),main:has(#xwalk-plans-retail-head):has(.xwalk-deal-section),main:has(#plans-from-25mo):has(.xwalk-deal-section),main:has(#shop-deals-offers):has(.xwalk-deal-section){grid-template-columns:1fr!important;padding:0 16px 32px!important}}
+footer .footer .xwalk-footer-top-social ul,footer .footer ul:has(a[href*="facebook"]){
+  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;
+  list-style:none!important;padding:0!important;margin:0!important;
+}
+footer .footer .xwalk-footer-top-social a,
+footer .footer ul:has(a[href*="facebook"]) a,
+footer .footer ul:has(a[href*="twitter"]) a,
+footer .footer ul:has(a[href*="instagram"]) a,
+footer .footer ul:has(a[href*="youtube"]) a{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;
+  color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important;
+}
+header nav>.nav-hamburger~.nav-hamburger,header .nav-hamburger~.nav-hamburger{display:none!important}
+</style>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
 <link rel="stylesheet" href="/styles/forge-inline-edit.css?v=9"/>

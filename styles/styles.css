@@ -1498,6 +1498,7 @@ main:has(#plans-from-25mo) > div:has(h3):has(picture),
 main.xwalk-boost-main > div:has(h3):has(picture) {
   width: 80%;
   max-width: 280px;
+  justify-self: center;
   margin: 0 auto;
 }
 @media (max-width: 600px) {
@@ -1506,8 +1507,9 @@ main.xwalk-boost-main > div:has(h3):has(picture) {
   main:has(#xwalk-plans-retail-head) > div:has(h3):has(picture),
   main:has(#plans-from-25mo) > div:has(h3):has(picture),
   main.xwalk-boost-main > div:has(h3):has(picture) {
-    width: 90%;
+    width: 100%;
     max-width: 100%;
+    justify-self: stretch;
   }
 }
 main:has([id*='shop-phones']) > div:has(h3),

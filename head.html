@@ -1,31 +1,23 @@
-<script id="forge-persona-flat-fix">(function(){var p=(location.pathname||'').replace(/\/$/,'');if(!/^\/(family-texas|single-woman-nyc|college-student)$/.test(p))return;var pid=p.slice(1);document.documentElement.classList.add('xwalk-persona-path--'+pid);var seg=/(?:^|[?&])(?:forge-preview-segment|forge-segment)=/.test(location.search||'');var ids={"family-texas":"keep-your-family-connected","single-woman-nyc":"you-run-this-city","college-student":"wireless-that-fits-your-semester"};function tagH1(){var h=document.querySelector('main h1');if(h&&!h.id&&ids[pid])h.id=ids[pid];return!!h;}tagH1();document.addEventListener('DOMContentLoaded',tagH1);if(!tagH1()&&document.documentElement){var mo=new MutationObserver(function(){if(tagH1())mo.disconnect();});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect();tagH1();},3000);}var m=seg?'#fff':'#eef8f1';var pr='#1DB954';var css='html.xwalk-persona-path--'+pid+' main,main:has(#keep-your-family-connected),main:has(#you-run-this-city),main:has(#wireless-that-fits-your-semester){background:'+m+'!important;color:#111!important;display:block!important;max-width:none!important;padding:0!important}html.xwalk-persona-path--'+pid+' main>div,main:has(#keep-your-family-connected)>div,main:has(#you-run-this-city)>div,main:has(#wireless-that-fits-your-semester)>div{background:'+m+'!important;color:#111!important;min-height:auto!important;padding:24px 32px 48px!important;position:static!important;overflow:visible!important;text-align:left!important;box-shadow:none!important}html.xwalk-persona-path--'+pid+' main h1,html.xwalk-persona-path--'+pid+' main h2,main:has(#keep-your-family-connected) h1,main:has(#you-run-this-city) h1,main:has(#wireless-that-fits-your-semester) h1,main:has(#keep-your-family-connected) h2,main:has(#you-run-this-city) h2,main:has(#wireless-that-fits-your-semester) h2{color:'+pr+'!important;text-shadow:none!important;position:static!important}html.xwalk-persona-path--'+pid+' main p,html.xwalk-persona-path--'+pid+' main span,html.xwalk-persona-path--'+pid+' main strong,html.xwalk-persona-path--'+pid+' main em,html.xwalk-persona-path--'+pid+' main del,main:has(#keep-your-family-connected) p,main:has(#you-run-this-city) p,main:has(#wireless-that-fits-your-semester) p{color:#111!important;text-shadow:none!important}main>div:has(>h1){background:transparent!important;min-height:0!important;padding:0!important}main>div:has(>h1)>h1,main>div:has(>h1)>h2{color:'+pr+'!important;text-shadow:none!important}main>div:has(>h1)>p{color:#111!important;text-shadow:none!important}';var s=document.createElement('style');s.id='forge-persona-flat-fix-live';s.textContent=css;document.head.appendChild(s);if(document.body){if(seg)document.body.classList.add('xwalk-persona-segment-landing');document.body.classList.add('xwalk-persona-offer-page','xwalk-persona-offer-page--'+pid);}})();</script>
-<script id="forge-persona-path-class">(function(){var p=(location.pathname||'').replace(/\/$/,'');if(!/^\/(family-texas|single-woman-nyc|college-student)$/.test(p))return;var id=p.slice(1);document.documentElement.classList.add('xwalk-persona-path--'+id);var v=document.querySelector('meta[name="viewport"]');if(v&&!/viewport-fit/i.test(v.content||'')){v.setAttribute('content',(v.getAttribute('content')||'width=device-width, initial-scale=1')+', viewport-fit=cover');}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/xwalk-boost-layout.js" type="module"></script>
-<script src="/scripts/xwalk-family-plans-boot.js?v=grid-18" defer></script>
-<script src="/scripts/xwalk-footer-boost-boot.js?v=boost-6"></script>
-<script src="/scripts/xwalk-persona-mockup-layout.js?v=grid-3" defer></script>
+<script src="/scripts/xwalk-persona-mockup-layout.js?v=family-grid-2" defer></script>
 <style id="forge-boost-critical">
 .xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
-body:has(#save-when-you-shop-online),body:has([id*="shop-phones"]),body:has(#xwalk-plans-retail-head),body:has(#shop-deals-offers),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
-body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box;width:100%}
-body.xwalk-boost-page main.xwalk-boost-main>div:first-child,main:has(#save-when-you-shop-online)>div:first-child,main:has([id*="shop-phones"])>div:first-child,main:has(#xwalk-plans-retail-head)>div:first-child,main:has(#plans-from-25mo)>div:first-child,main:has(#shop-deals-offers)>div:first-child,main.xwalk-boost-main>div:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(2),main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2),main:has(#xwalk-plans-retail-head)>div:nth-child(2),main:has(#plans-from-25mo)>div:nth-child(2),main:has(#shop-deals-offers)>div:nth-child(2),main.xwalk-boost-main>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main>div:last-child,main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:last-child,main:has(#xwalk-plans-retail-head)>div:last-child,main:has(#plans-from-25mo)>div:last-child,main:has(#shop-deals-offers)>div:last-child,main.xwalk-boost-main>div:last-child{grid-column:1/-1}
-.xwalk-retail-hero,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(2),main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2),main:has(#xwalk-plans-retail-head)>div:nth-child(2),main:has(#plans-from-25mo)>div:nth-child(2),main:has(#shop-deals-offers)>div:nth-child(2),main.xwalk-boost-main>div:nth-child(2){text-align:center;padding:36px 16px 20px}
-#save-when-you-shop-online,[id*="shop-phones"],#xwalk-plans-retail-head,#plans-from-25mo,#shop-deals-offers{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
+body:has(#save-when-you-shop-online),body:has([id*="shop-phones"]),body.xwalk-boost-page{background:#0A1A0F;color:#FFFFFF}
+main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{background:#0A1A0F;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1280px;margin:0 auto;padding:0 32px 40px;box-sizing:border-box}
+main:has(#save-when-you-shop-online)>div:first-child,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:first-child,main:has([id*="shop-phones"])>div:nth-child(2),main:has([id*="shop-phones"])>div:last-child,main.xwalk-boost-main>div:first-child,main.xwalk-boost-main>div:nth-child(2),main.xwalk-boost-main>div:last-child{grid-column:1/-1}
+.xwalk-retail-hero,main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2){text-align:center;padding:36px 16px 20px}
+#save-when-you-shop-online,[id*="shop-phones"]{color:#FFFFFF;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin:0 0 10px;font-style:normal}
 .xwalk-retail-hero-sub,.xwalk-retail-hero-kicker,.xwalk-phones-sub{color:color-mix(in srgb,#FFFFFF 88%,transparent)}
 a.xwalk-retail-cta-primary{background:#1DB954;color:#000!important;padding:12px 24px;font-weight:700;text-decoration:none;border-radius:2px;display:inline-block;margin:4px}
-body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(3),main:has([id*="shop-phones"])>div:nth-child(3),main:has(#xwalk-plans-retail-head)>div:nth-child(3),main:has(#plans-from-25mo)>div:nth-child(3),main:has(#shop-deals-offers)>div:nth-child(3),main.xwalk-boost-main>div:nth-child(3),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has([id*="shop-phones"])>div:nth-child(4),main:has(#xwalk-plans-retail-head)>div:nth-child(4),main:has(#plans-from-25mo)>div:nth-child(4),main:has(#shop-deals-offers)>div:nth-child(4),main.xwalk-boost-main>div:nth-child(4),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has([id*="shop-phones"])>div:nth-child(5),main:has(#xwalk-plans-retail-head)>div:nth-child(5),main:has(#plans-from-25mo)>div:nth-child(5),main:has(#shop-deals-offers)>div:nth-child(5),main.xwalk-boost-main>div:nth-child(5),body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(6),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has([id*="shop-phones"])>div:nth-child(6),main:has(#xwalk-plans-retail-head)>div:nth-child(6),main:has(#plans-from-25mo)>div:nth-child(6),main:has(#shop-deals-offers)>div:nth-child(6),main.xwalk-boost-main>div:nth-child(6),body.xwalk-boost-page main.xwalk-boost-main>div.xwalk-deal-section,main:has(#save-when-you-shop-online)>div.xwalk-deal-section,main:has([id*="shop-phones"])>div.xwalk-deal-section,main:has(#xwalk-plans-retail-head)>div.xwalk-deal-section,main:has(#plans-from-25mo)>div.xwalk-deal-section,main:has(#shop-deals-offers)>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-deal-section,body.xwalk-boost-page main.xwalk-boost-main>div.xwalk-phone-section,main:has(#save-when-you-shop-online)>div.xwalk-phone-section,main:has([id*="shop-phones"])>div.xwalk-phone-section,main:has(#xwalk-plans-retail-head)>div.xwalk-phone-section,main:has(#plans-from-25mo)>div.xwalk-phone-section,main:has(#shop-deals-offers)>div.xwalk-phone-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has([id*="shop-phones"])>div:nth-child(3)>p:first-child,main:has(#xwalk-plans-retail-head)>div:nth-child(3)>p:first-child,main:has(#plans-from-25mo)>div:nth-child(3)>p:first-child,main:has(#shop-deals-offers)>div:nth-child(3)>p:first-child,main.xwalk-boost-main>div:nth-child(3)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has([id*="shop-phones"])>div:nth-child(4)>p:first-child,main:has(#xwalk-plans-retail-head)>div:nth-child(4)>p:first-child,main:has(#plans-from-25mo)>div:nth-child(4)>p:first-child,main:has(#shop-deals-offers)>div:nth-child(4)>p:first-child,main.xwalk-boost-main>div:nth-child(4)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has([id*="shop-phones"])>div:nth-child(5)>p:first-child,main:has(#xwalk-plans-retail-head)>div:nth-child(5)>p:first-child,main:has(#plans-from-25mo)>div:nth-child(5)>p:first-child,main:has(#shop-deals-offers)>div:nth-child(5)>p:first-child,main.xwalk-boost-main>div:nth-child(5)>p:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(6)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child,main:has([id*="shop-phones"])>div:nth-child(6)>p:first-child,main:has(#xwalk-plans-retail-head)>div:nth-child(6)>p:first-child,main:has(#plans-from-25mo)>div:nth-child(6)>p:first-child,main:has(#shop-deals-offers)>div:nth-child(6)>p:first-child,main.xwalk-boost-main>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
-main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture),body.xwalk-boost-page main.xwalk-boost-main>div:has(h3)>p:has(picture),main:has(#save-when-you-shop-online)>div:has(h3)>p:has(picture),main:has([id*="shop-phones"])>div:has(h3)>p:has(picture),main:has(#xwalk-plans-retail-head)>div:has(h3)>p:has(picture),main:has(#plans-from-25mo)>div:has(h3)>p:has(picture),main:has(#shop-deals-offers)>div:has(h3)>p:has(picture),main.xwalk-boost-main>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important;overflow:visible!important}
-main.xwalk-boost-main>div:has(h3):has(picture){display:flex!important;flex-direction:column!important;overflow:hidden!important;min-width:0!important}
-main.xwalk-boost-main>div:has(h3) .default-content-wrapper{display:flex!important;flex-direction:column!important;width:100%!important;grid-template-columns:none!important;align-items:stretch!important}
-main.xwalk-boost-main .xwalk-deal-media{display:flex!important;align-items:center!important;justify-content:center!important;background:#f5f5f5!important;padding:20px 16px!important;min-height:220px!important;margin:0!important;width:100%!important;box-sizing:border-box!important}
-body.xwalk-boost-page main.xwalk-boost-main .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has(#save-when-you-shop-online) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has(#xwalk-plans-retail-head) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has(#plans-from-25mo) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,main.xwalk-boost-main .xwalk-deal-section .default-content-wrapper>.xwalk-deal-badge,body.xwalk-boost-page main.xwalk-boost-main .xwalk-deal-section .default-content-wrapper>p:first-child,main:has(#save-when-you-shop-online) .xwalk-deal-section .default-content-wrapper>p:first-child,main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:first-child,main:has(#xwalk-plans-retail-head) .xwalk-deal-section .default-content-wrapper>p:first-child,main:has(#plans-from-25mo) .xwalk-deal-section .default-content-wrapper>p:first-child,main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:first-child,main.xwalk-boost-main .xwalk-deal-section .default-content-wrapper>p:first-child,body.xwalk-boost-page main.xwalk-boost-main .xwalk-deal-badge,main:has(#save-when-you-shop-online) .xwalk-deal-badge,main:has([id*="shop-phones"]) .xwalk-deal-badge,main:has(#xwalk-plans-retail-head) .xwalk-deal-badge,main:has(#plans-from-25mo) .xwalk-deal-badge,main:has(#shop-deals-offers) .xwalk-deal-badge,main.xwalk-boost-main .xwalk-deal-badge{background:#1DB954!important;color:#fff!important;font-weight:700!important;padding:12px 10px!important;margin:0!important}
-main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,body.xwalk-boost-page main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main:has(#save-when-you-shop-online)>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has(#xwalk-plans-retail-head)>div:has(h3)>p:has(picture) img,main:has(#plans-from-25mo)>div:has(h3)>p:has(picture) img,main:has(#shop-deals-offers)>div:has(h3)>p:has(picture) img,main.xwalk-boost-main>div:has(h3)>p:has(picture) img,body.xwalk-boost-page main.xwalk-boost-main>div:has(h3) .xwalk-deal-media img,main:has(#save-when-you-shop-online)>div:has(h3) .xwalk-deal-media img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img,main:has(#xwalk-plans-retail-head)>div:has(h3) .xwalk-deal-media img,main:has(#plans-from-25mo)>div:has(h3) .xwalk-deal-media img,main:has(#shop-deals-offers)>div:has(h3) .xwalk-deal-media img,main.xwalk-boost-main>div:has(h3) .xwalk-deal-media img,main.xwalk-boost-main .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
-body.xwalk-boost-page main.xwalk-boost-main>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main:has(#save-when-you-shop-online)>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main:has(#xwalk-plans-retail-head)>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main:has(#plans-from-25mo)>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main:has(#shop-deals-offers)>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)),main.xwalk-boost-main>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)){background:#1DB954;color:#fff!important;font-weight:700;padding:12px 10px;margin:0}
-main.xwalk-boost-main .xwalk-deal-card h3{font-size:1.75rem;font-weight:900;margin:12px 20px 8px 24px;padding-right:6px;color:#000;overflow-wrap:break-word}
+main:has(#save-when-you-shop-online)>div:nth-child(3),main:has(#save-when-you-shop-online)>div:nth-child(4),main:has(#save-when-you-shop-online)>div:nth-child(5),main:has(#save-when-you-shop-online)>div:nth-child(6),main:has([id*="shop-phones"])>div:nth-child(3),main:has([id*="shop-phones"])>div:nth-child(4),main:has([id*="shop-phones"])>div:nth-child(5),main:has([id*="shop-phones"])>div:nth-child(6),main.xwalk-boost-main>div.xwalk-deal-section,main.xwalk-boost-main>div.xwalk-phone-section{background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgb(0 0 0/35%);color:#000;text-align:center;overflow:hidden;display:flex;flex-direction:column}
+main:has(#save-when-you-shop-online)>div:nth-child(3)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(4)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(5)>p:first-child,main:has(#save-when-you-shop-online)>div:nth-child(6)>p:first-child{background:#1DB954;color:#fff;font-weight:700;padding:12px 10px;margin:0}
+main.xwalk-boost-main>div:has(h3)>p:has(picture),main>div:has(h3)>p:has(picture),main:has([id*="shop-phones"])>div:has(h3)>p:has(picture){display:flex!important;align-items:center;justify-content:center;background:#f5f5f5;padding:20px 16px;min-height:220px;margin:0;position:static!important;overflow:visible!important}
+main.xwalk-boost-main>div:has(h3)>p:has(picture) img,main>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3)>p:has(picture) img,main:has([id*="shop-phones"])>div:has(h3) .xwalk-deal-media img{max-height:220px;width:auto!important;max-width:100%;height:auto!important;min-height:120px;object-fit:contain;display:block!important;visibility:visible!important;margin:0 auto}
+main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:first-of-type:not(:has(picture)){background:#1DB954;color:#fff!important;font-weight:700;padding:12px 10px;margin:0}
+main:has([id*="shop-phones"])>div:has(h3):has(picture)>h3{font-size:1.75rem;font-weight:900;margin:12px 16px 8px;color:#000}
 main:has([id*="shop-phones"])>div:has(h3):has(picture)>p:not(:has(picture)):not(:has(a)){margin:0 16px 8px;color:#1a1a1a}
 main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href*="products"],main:has([id*="shop-phones"])>div:has(h3):has(picture) a[href="/plans"]{color:#1DB954;font-weight:700}
 main.xwalk-boost-main>div.xwalk-phone-section h3,main>div:has(h3):has(picture) h3{font-size:1.35rem;font-weight:800;margin:16px 16px 8px;color:#000}
@@ -36,19 +28,14 @@ main>div.xwalk-hero-section>p:has(picture)::after,main>div:has(>h1):not(:has(>h2
 main>div.xwalk-hero-section>p:has(picture) img,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:has(picture) img{width:100%;height:100%;object-fit:cover;display:block}
 main>div.xwalk-hero-section>h1,main>div.xwalk-hero-section>p:not(:has(picture)),main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(.xwalk-family-headline)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>h1,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester))>p:not(:has(picture)){position:relative;z-index:2;color:#fff!important;text-shadow:0 2px 18px rgb(0 0 0/55%)}
 main>div.xwalk-hero-section a,main>div:has(>h1):not(:has(>h2)):not(:has(h3)):not(:has(.xwalk-family-plans-page)):not(:has(#keep-your-family-connected)):not(:has(#you-run-this-city)):not(:has(#wireless-that-fits-your-semester)) a{color:#fff!important}
-@media (max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
-footer .footer .xwalk-footer-top,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-top{display:grid!important;grid-template-columns:1fr auto!important;align-items:start!important;gap:24px 40px!important;padding:32px 0 28px!important;border-bottom:1px solid color-mix(in srgb,#86EFAC 20%,transparent)!important;width:100%!important;box-sizing:border-box!important}
-footer .footer .xwalk-footer-top-social,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-top-social{text-align:right!important;justify-self:end!important}
-footer .footer .xwalk-footer-social,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-social{display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;list-style:none!important;padding:0!important;margin:0!important}
-footer .footer .xwalk-footer-social a,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-social a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important}
-footer .footer .xwalk-footer-columns,html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:28px 32px!important;padding:32px 0 28px!important;width:100%!important}
+@media (max-width:1100px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main.xwalk-boost-main{grid-template-columns:1fr;padding:0 16px 32px}}
 
 main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)):not(:has(.xwalk-deal-section)),
-main:has(.xwalk-family-grid):not(:has(.xwalk-deal-section)),
-main:has(#family-plans--bring-your-own-device):not(:has(.xwalk-deal-section)),
-main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester):not(:has(.xwalk-deal-section)){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
+main:has(.xwalk-family-grid),
+main:has(#family-plans--bring-your-own-device),
+main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
 main:has(.xwalk-family-plans-page)>div,
 main:has(.xwalk-family-grid)>div,
 main:has(#family-plans--bring-your-own-device)>div,
@@ -172,42 +159,8 @@ footer .footer main.xwalk-footer-boost > div {
   visibility: visible;
   opacity: 1;
 }
-main.xwalk-footer-boost .xwalk-footer-top-social,
-footer .footer .xwalk-footer-top-social {
+main.xwalk-footer-boost .xwalk-footer-top-social {
   text-align: right;
-}
-footer .footer .xwalk-footer-top {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 24px 40px;
-  padding: 32px 0 28px;
-  border-bottom: 1px solid color-mix(in srgb, #86EFAC 20%, transparent);
-  width: 100%;
-  box-sizing: border-box;
-}
-footer .footer .xwalk-footer-social {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-footer .footer .xwalk-footer-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.8125rem;
-  text-decoration: none;
-  line-height: 1;
 }
 main.xwalk-footer-boost .xwalk-footer-social-label {
   margin: 0 0 12px;
@@ -423,15 +376,6 @@ footer .section:has(#want-the-latest-scoop),
 footer .section:has(input[type="email"]) {
   display: none !important;
 }
-footer .footer > div {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-  box-sizing: border-box;
-}
-footer .footer > div > .section .default-content-wrapper {
-  width: 100%;
-}
 @media (max-width: 900px) {
   html.xwalk-footer-boost-ready footer .footer .xwalk-footer-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -443,98 +387,7 @@ footer .footer > div > .section .default-content-wrapper {
   }
 }
 
-
-/* Home / plans / deals — copy + images at 80% of tile (tile column width unchanged) */
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-media,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:has(picture),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .default-content-wrapper>p:has(picture),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section h3,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card h3,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-kicker,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-kicker,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-price,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-price,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-fine,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-fine,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-details,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-details,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-plan,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-plan,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-cta-wrap,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-cta-wrap,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:not(:has(picture)):not(:first-child),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .default-content-wrapper>p:not(:has(picture)):not(:first-child){
-  width:80%!important;
-  max-width:80%!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  box-sizing:border-box!important;
-}
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:has(picture){
-  align-self:center!important;
-}
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media img,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section picture img,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-media img{
-  max-width:100%!important;
-  width:auto!important;
-  height:auto!important;
-}
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section h3,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card h3{
-  margin-left:auto!important;
-  margin-right:auto!important;
-  padding-left:0!important;
-  padding-right:0!important;
-}
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-kicker,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-price,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-fine,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-details,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-plan,
-main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-cta-wrap{
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
-/* Phones — green badge, titles, center copy: 5% right padding (tile width unchanged) */
-main:has([id*="shop-phones"]) .xwalk-deal-badge,
-main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:first-child,
-main:has([id*="shop-phones"]) .xwalk-deal-section h3,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-card h3,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-kicker,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-price,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-fine,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-details,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-plan,
-main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:not(:has(picture)):not(:first-child){
-  padding-right:5%!important;
-  box-sizing:border-box!important;
-}
-main:has([id*="shop-phones"]) .xwalk-deal-section h3,
-main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-card h3{
-  margin-left:0!important;
-  margin-right:0!important;
-}
-
-
-body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:12px!important;
-  max-width:1280px!important;
-  margin:0 auto!important;
-  padding:0 32px 40px!important;
-  box-sizing:border-box!important;
-  width:100%!important;
-  background:#0A1A0F!important;
-  color:#FFFFFF!important;
-}
-body.xwalk-boost-page main.xwalk-boost-main>div:first-child,main:has(#save-when-you-shop-online)>div:first-child,main:has([id*="shop-phones"])>div:first-child,main:has(#xwalk-plans-retail-head)>div:first-child,main:has(#plans-from-25mo)>div:first-child,main:has(#shop-deals-offers)>div:first-child,main.xwalk-boost-main>div:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(2),main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2),main:has(#xwalk-plans-retail-head)>div:nth-child(2),main:has(#plans-from-25mo)>div:nth-child(2),main:has(#shop-deals-offers)>div:nth-child(2),main.xwalk-boost-main>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main>div:last-child,main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:last-child,main:has(#xwalk-plans-retail-head)>div:last-child,main:has(#plans-from-25mo)>div:last-child,main:has(#shop-deals-offers)>div:last-child,main.xwalk-boost-main>div:last-child{grid-column:1/-1!important}
-body.xwalk-boost-page main.xwalk-boost-main>div,main:has(#save-when-you-shop-online)>div,main:has([id*="shop-phones"])>div,main:has(#xwalk-plans-retail-head)>div,main:has(#plans-from-25mo)>div,main:has(#shop-deals-offers)>div,main.xwalk-boost-main>div{margin:0!important}
-@media(max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:1fr!important;padding:0 16px 32px!important}}
-footer .footer .xwalk-footer-top-social ul,footer .footer ul:has(a[href*="facebook"]){
-  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;
-  list-style:none!important;padding:0!important;margin:0!important;
-}
-footer .footer .xwalk-footer-top-social a,
-footer .footer ul:has(a[href*="facebook"]) a,
-footer .footer ul:has(a[href*="twitter"]) a,
-footer .footer ul:has(a[href*="instagram"]) a,
-footer .footer ul:has(a[href*="youtube"]) a{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;
-  color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important;
-}
-header nav>.nav-hamburger~.nav-hamburger,header .nav-hamburger~.nav-hamburger{display:none!important}
-
 </style>
-<script id="forge-appear-fallback">(function(){function a(){try{document.body&&document.body.classList.add('appear')}catch(e){}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',a);else a();setTimeout(a,50);setTimeout(a,500)})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-appear-fallback">(function(){function a(){try{document.body&&document.body.classList.add('appear')}catch(e){}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',a);else a();setTimeout(a,50);setTimeout(a,500)})();</script>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <style id="forge-persona-mockup-critical">
 
@@ -687,10 +540,10 @@ body:has(#family-plans--bring-your-own-device) main {
 }
 
 main:has(#xwalk-single-offer-plan){background:#fff!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
-main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)):not(:has(.xwalk-deal-section)),
-main:has(.xwalk-family-grid):not(:has(.xwalk-deal-section)),
-main:has(#family-plans--bring-your-own-device):not(:has(.xwalk-deal-section)),
-main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester):not(:has(.xwalk-deal-section)){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
+main:has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)),
+main:has(.xwalk-family-grid),
+main:has(#family-plans--bring-your-own-device),
+main:has(#you-run-this-city),main:has(#keep-your-family-connected),main:has(#wireless-that-fits-your-semester){background:#eef8f1!important;color:#111!important;display:block!important;grid-template-columns:1fr!important;max-width:none!important;padding:0!important;margin:0 auto!important}
 main:has(.xwalk-family-plans-page)>div,
 main:has(.xwalk-family-grid)>div,
 main:has(#family-plans--bring-your-own-device)>div,
@@ -759,81 +612,6 @@ body.xwalk-persona-offer-page .xwalk-campaign-hero{display:block!important;visib
 .xwalk-campaign-hero-visual{min-height:280px!important;order:-1!important}
 .xwalk-campaign-hero-copy{padding:32px 24px 40px!important}
 }
-
-@media(max-width:900px){
-html.xwalk-persona-path--family-texas body,
-html.xwalk-persona-path--college-student body,
-html.xwalk-persona-path--single-woman-nyc body,
-body.xwalk-persona-segment-landing,
-body.xwalk-persona-offer-page--family-texas,
-body.xwalk-persona-offer-page--college-student,
-body.xwalk-persona-offer-page--single-woman-nyc{
-background:#0A1A0F!important;padding-top:0!important}
-body.xwalk-persona-segment-landing main,
-body.xwalk-persona-offer-page--family-texas main,
-body.xwalk-persona-offer-page--college-student main,
-body.xwalk-persona-offer-page--single-woman-nyc main{
-display:block!important;visibility:visible!important;overflow:visible!important;height:auto!important;min-height:0!important;background:transparent!important}
-body.xwalk-persona-segment-landing header,
-body.xwalk-persona-offer-page--family-texas header,
-body.xwalk-persona-offer-page--college-student header,
-body.xwalk-persona-offer-page--single-woman-nyc header{
-display:block!important;visibility:visible!important;position:relative!important;top:auto!important;z-index:300!important;background:#0A1A0F!important;padding-top:max(8px,env(safe-area-inset-top,0px))!important}
-html.wolverine-mobile-sim body.xwalk-persona-segment-landing header,
-html.wolverine-mobile-sim body.xwalk-persona-offer-page header{
-padding-top:8px!important}
-body.xwalk-persona-segment-landing header nav,
-body.xwalk-persona-offer-page header nav{
-min-height:56px!important;padding-top:8px!important;padding-bottom:8px!important}
-body.xwalk-persona-segment-landing header .nav-hamburger,
-body.xwalk-persona-offer-page header .nav-hamburger{
-display:flex!important;visibility:visible!important;opacity:1!important}
-.xwalk-campaign-hero,.xwalk-campaign-hero-grid,.xwalk-campaign-hero-copy,.xwalk-campaign-hero-visual{
-display:block!important;visibility:visible!important;background:#0A1A0F!important}
-.xwalk-campaign-hero-grid{display:grid!important;grid-template-columns:1fr!important;width:100%!important}
-.xwalk-campaign-hero-visual{min-height:200px!important;order:-1!important}
-.xwalk-campaign-hero-copy{padding:24px 18px 28px!important}
-.xwalk-campaign-hero-headline{font-size:1.5rem!important;line-height:1.12!important;color:#fff!important}
-.xwalk-family-plans-page,.xwalk-persona-mockup,.xwalk-mockup-white{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important}
-.xwalk-family-plans-page--single-offer,.xwalk-mockup-white{background:#fff!important}
-}
-
-@media(max-width:900px){
-.xwalk-mockup-offers,.xwalk-mockup-offer-row,.xwalk-mockup-offer-main,.xwalk-mockup-white,.xwalk-family-plans-page,.xwalk-family-main,.xwalk-family-grid{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important;overflow:visible!important}
-.xwalk-mockup-offer-row{
-display:grid!important;grid-template-columns:1fr!important;gap:20px!important;align-items:stretch!important;width:100%!important}
-.xwalk-mockup-offer-main{width:100%!important;min-width:0!important}
-.xwalk-mockup-plan-head{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px!important;margin-bottom:20px!important}
-.xwalk-mockup-plan-pill{display:flex!important;flex-direction:column!important;gap:10px!important;width:100%!important;min-width:0!important;max-width:100%!important;flex:none!important}
-.xwalk-mockup-plan-pill .xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-tier-switch.xwalk-plan-line-pill--dark{
-display:block!important;visibility:visible!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:12px 18px!important;background:#1a1a1a!important;color:#fff!important;border-radius:8px!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-mockup-plan-pill .xwalk-plan-line-pill--accent,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--accent{
-display:block!important;visibility:visible!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:12px 18px!important;background:#d8f3e0!important;color:#0E7A3A!important;border:1px solid #1DB954!important;border-radius:8px!important;font-weight:700!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-mockup-plan-body{display:grid!important;grid-template-columns:1fr!important;gap:16px!important;width:100%!important}
-.xwalk-mockup-device-col,.xwalk-mockup-device,.xwalk-mockup-specs{display:block!important;visibility:visible!important;width:100%!important}
-.xwalk-mockup-specs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
-a.xwalk-mockup-cta,.xwalk-mockup-cta{
-display:flex!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:100%!important;min-height:120px!important;height:auto!important;
-align-items:center!important;justify-content:center!important;background:#1DB954!important;color:#fff!important;
-font-size:1.25rem!important;font-weight:900!important;text-decoration:none!important;border-radius:14px!important;
-padding:20px 16px!important;box-sizing:border-box!important}
-.xwalk-family-row{
-display:grid!important;grid-template-columns:1fr!important;gap:10px!important;padding:18px 16px!important;width:100%!important;box-sizing:border-box!important}
-.xwalk-family-line-label,.xwalk-family-line-price{display:block!important;visibility:visible!important}
-.xwalk-family-pill,.xwalk-family-pill--dark,.xwalk-family-pill--accent{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:14px 20px!important;text-align:center!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-family-pill--dark{background:#1a1a1a!important;color:#fff!important;border-radius:999px!important}
-.xwalk-family-pill--accent{background:#d8f3e0!important;color:#0E7A3A!important;font-weight:700!important;border:1px solid #1DB954!important;border-radius:999px!important}
-.xwalk-family-cta-wrap{display:block!important;visibility:visible!important;text-align:center!important;margin:32px 0 0!important;padding:0 16px!important}
-a.xwalk-family-cta,.xwalk-family-cta{
-display:inline-block!important;visibility:visible!important;width:100%!important;max-width:100%!important;padding:16px 24px!important;
-background:#1DB954!important;color:#fff!important;font-size:1.25rem!important;font-weight:900!important;text-decoration:none!important;border-radius:14px!important;box-sizing:border-box!important}
-[data-forge-variant].xwalk-mockup-offer-main,[data-forge-variant] .xwalk-mockup-offer-row{display:block!important}
-}
-
-
 .xwalk-mockup-intro{background:#fff;padding:28px 32px 12px;max-width:1200px;margin:0 auto;color:#111}
 .xwalk-mockup-intro h1{margin:0;font-family:Arial Black;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:900;line-height:1.1;color:#111}
 .xwalk-family-headline{margin:0 0 24px;font-family:Arial Black;font-size:clamp(1.75rem,3.5vw,2.25rem);font-weight:900;color:#1DB954}
@@ -849,8 +627,8 @@ body.xwalk-persona-offer-page main>.section:has(#keep-your-family-connected),
 body.xwalk-persona-offer-page main>.section:has(#wireless-that-fits-your-semester){display:block!important;visibility:visible!important}
 body.xwalk-persona-offer-page--family-texas main,
 body.xwalk-persona-offer-page--college-student main,
-body.xwalk-persona-offer-page--single-woman-nyc main{background:transparent!important}
-main:has(.xwalk-family-plans-page--single-offer){background:transparent!important}
+body.xwalk-persona-offer-page--single-woman-nyc main,
+main:has(.xwalk-family-plans-page--single-offer){background:#fff!important}
 main:has(.xwalk-persona-mockup):has(.xwalk-family-grid),
 main:has(.xwalk-persona-mockup):has(.xwalk-family-plans-page):not(:has(.xwalk-family-plans-page--single-offer)){display:block!important;max-width:none!important;padding:0!important;margin:0!important;background:#eef8f1!important}
 body.xwalk-persona-offer-page--family-texas main>div,
@@ -905,7 +683,7 @@ body:has(#family-plans--bring-your-own-device),
 body.xwalk-persona-offer-page--family-texas:not(.xwalk-persona-segment-landing),
 body.xwalk-persona-offer-page--college-student:not(.xwalk-persona-segment-landing),
 body.xwalk-persona-offer-page--single-woman-nyc:not(.xwalk-persona-segment-landing){background:#eef8f1!important;color:#111!important}
-body.xwalk-persona-segment-landing{background:#0A1A0F!important;color:#111!important}
+body.xwalk-persona-segment-landing{background:#fff!important;color:#111!important}
 body:has(#family-plans--bring-your-own-device) main,
 body.xwalk-persona-offer-page--family-texas main,
 body.xwalk-persona-offer-page--college-student main,
@@ -935,9 +713,9 @@ body.xwalk-persona-segment-landing .xwalk-mockup-ai-badge{display:none!important
 body.xwalk-persona-segment-landing .xwalk-campaign-hero-copy,
 body.xwalk-persona-segment-landing .xwalk-campaign-hero-headline,
 body.xwalk-persona-segment-landing .xwalk-campaign-hero-tagline{color:#fff!important}
-body.xwalk-persona-segment-landing .xwalk-mockup-plan-pill .xwalk-plan-line-pill--dark,
-body.xwalk-persona-segment-landing .xwalk-mockup-plan-pill .xwalk-plan-tier-switch.xwalk-plan-line-pill--dark{color:#fff!important}
-body.xwalk-persona-segment-landing .xwalk-mockup-plan-pill .xwalk-plan-line-pill--accent{color:#0E7A3A!important}
+body.xwalk-persona-segment-landing .xwalk-mockup-plan-pill .xwalk-plan-line-pill,
+body.xwalk-persona-segment-landing .xwalk-mockup-plan-pill .xwalk-plan-tier-switch,
+body.xwalk-persona-segment-landing .xwalk-plan-tier-switch{color:#fff!important}
 .xwalk-family-plans-page:not(.xwalk-family-plans-page--single-offer){background:#eef8f1!important;color:#111;width:100%}
 .xwalk-family-plans-page--single-offer{background:#fff!important;color:#111;width:100%}
 .xwalk-family-hero{margin:0;padding:0;background:#eef8f1;line-height:0;width:100%}
@@ -979,81 +757,6 @@ body:has(#family-plans--bring-your-own-device) main>div>p:has(strong) em{color:#
 .xwalk-mockup-plan-body,.xwalk-mockup-plan-body--family{grid-template-columns:1fr}
 .xwalk-mockup-cta{min-height:120px}
 }
-
-@media(max-width:900px){
-html.xwalk-persona-path--family-texas body,
-html.xwalk-persona-path--college-student body,
-html.xwalk-persona-path--single-woman-nyc body,
-body.xwalk-persona-segment-landing,
-body.xwalk-persona-offer-page--family-texas,
-body.xwalk-persona-offer-page--college-student,
-body.xwalk-persona-offer-page--single-woman-nyc{
-background:#0A1A0F!important;padding-top:0!important}
-body.xwalk-persona-segment-landing main,
-body.xwalk-persona-offer-page--family-texas main,
-body.xwalk-persona-offer-page--college-student main,
-body.xwalk-persona-offer-page--single-woman-nyc main{
-display:block!important;visibility:visible!important;overflow:visible!important;height:auto!important;min-height:0!important;background:transparent!important}
-body.xwalk-persona-segment-landing header,
-body.xwalk-persona-offer-page--family-texas header,
-body.xwalk-persona-offer-page--college-student header,
-body.xwalk-persona-offer-page--single-woman-nyc header{
-display:block!important;visibility:visible!important;position:relative!important;top:auto!important;z-index:300!important;background:#0A1A0F!important;padding-top:max(8px,env(safe-area-inset-top,0px))!important}
-html.wolverine-mobile-sim body.xwalk-persona-segment-landing header,
-html.wolverine-mobile-sim body.xwalk-persona-offer-page header{
-padding-top:8px!important}
-body.xwalk-persona-segment-landing header nav,
-body.xwalk-persona-offer-page header nav{
-min-height:56px!important;padding-top:8px!important;padding-bottom:8px!important}
-body.xwalk-persona-segment-landing header .nav-hamburger,
-body.xwalk-persona-offer-page header .nav-hamburger{
-display:flex!important;visibility:visible!important;opacity:1!important}
-.xwalk-campaign-hero,.xwalk-campaign-hero-grid,.xwalk-campaign-hero-copy,.xwalk-campaign-hero-visual{
-display:block!important;visibility:visible!important;background:#0A1A0F!important}
-.xwalk-campaign-hero-grid{display:grid!important;grid-template-columns:1fr!important;width:100%!important}
-.xwalk-campaign-hero-visual{min-height:200px!important;order:-1!important}
-.xwalk-campaign-hero-copy{padding:24px 18px 28px!important}
-.xwalk-campaign-hero-headline{font-size:1.5rem!important;line-height:1.12!important;color:#fff!important}
-.xwalk-family-plans-page,.xwalk-persona-mockup,.xwalk-mockup-white{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important}
-.xwalk-family-plans-page--single-offer,.xwalk-mockup-white{background:#fff!important}
-}
-
-@media(max-width:900px){
-.xwalk-mockup-offers,.xwalk-mockup-offer-row,.xwalk-mockup-offer-main,.xwalk-mockup-white,.xwalk-family-plans-page,.xwalk-family-main,.xwalk-family-grid{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important;overflow:visible!important}
-.xwalk-mockup-offer-row{
-display:grid!important;grid-template-columns:1fr!important;gap:20px!important;align-items:stretch!important;width:100%!important}
-.xwalk-mockup-offer-main{width:100%!important;min-width:0!important}
-.xwalk-mockup-plan-head{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px!important;margin-bottom:20px!important}
-.xwalk-mockup-plan-pill{display:flex!important;flex-direction:column!important;gap:10px!important;width:100%!important;min-width:0!important;max-width:100%!important;flex:none!important}
-.xwalk-mockup-plan-pill .xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--dark,.xwalk-mockup-plan-pill .xwalk-plan-tier-switch.xwalk-plan-line-pill--dark{
-display:block!important;visibility:visible!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:12px 18px!important;background:#1a1a1a!important;color:#fff!important;border-radius:8px!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-mockup-plan-pill .xwalk-plan-line-pill--accent,.xwalk-mockup-plan-pill .xwalk-plan-line-pill.xwalk-plan-line-pill--accent{
-display:block!important;visibility:visible!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:12px 18px!important;background:#d8f3e0!important;color:#0E7A3A!important;border:1px solid #1DB954!important;border-radius:8px!important;font-weight:700!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-mockup-plan-body{display:grid!important;grid-template-columns:1fr!important;gap:16px!important;width:100%!important}
-.xwalk-mockup-device-col,.xwalk-mockup-device,.xwalk-mockup-specs{display:block!important;visibility:visible!important;width:100%!important}
-.xwalk-mockup-specs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
-a.xwalk-mockup-cta,.xwalk-mockup-cta{
-display:flex!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:100%!important;min-height:120px!important;height:auto!important;
-align-items:center!important;justify-content:center!important;background:#1DB954!important;color:#fff!important;
-font-size:1.25rem!important;font-weight:900!important;text-decoration:none!important;border-radius:14px!important;
-padding:20px 16px!important;box-sizing:border-box!important}
-.xwalk-family-row{
-display:grid!important;grid-template-columns:1fr!important;gap:10px!important;padding:18px 16px!important;width:100%!important;box-sizing:border-box!important}
-.xwalk-family-line-label,.xwalk-family-line-price{display:block!important;visibility:visible!important}
-.xwalk-family-pill,.xwalk-family-pill--dark,.xwalk-family-pill--accent{
-display:block!important;visibility:visible!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:14px 20px!important;text-align:center!important;font-size:0.8125rem!important;line-height:1.4!important}
-.xwalk-family-pill--dark{background:#1a1a1a!important;color:#fff!important;border-radius:999px!important}
-.xwalk-family-pill--accent{background:#d8f3e0!important;color:#0E7A3A!important;font-weight:700!important;border:1px solid #1DB954!important;border-radius:999px!important}
-.xwalk-family-cta-wrap{display:block!important;visibility:visible!important;text-align:center!important;margin:32px 0 0!important;padding:0 16px!important}
-a.xwalk-family-cta,.xwalk-family-cta{
-display:inline-block!important;visibility:visible!important;width:100%!important;max-width:100%!important;padding:16px 24px!important;
-background:#1DB954!important;color:#fff!important;font-size:1.25rem!important;font-weight:900!important;text-decoration:none!important;border-radius:14px!important;box-sizing:border-box!important}
-[data-forge-variant].xwalk-mockup-offer-main,[data-forge-variant] .xwalk-mockup-offer-row{display:block!important}
-}
-
-
 </style>
 <style id="forge-persona-critical">
 .xwalk-ai-strip,.xwalk-ai-separator-bar,.xwalk-ai-badge,.xwalk-hero-image-note,.fragment.xwalk-ai-separator{display:none!important}
@@ -1153,39 +856,6 @@ main>div:has(.xwalk-persona-experience-stack){grid-column:1/-1}
 @media(max-width:768px){.xwalk-persona-plan-row{grid-template-columns:1fr}.xwalk-plan-line{grid-template-columns:1fr;gap:4px}}
 </style>
 <script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
-<script id="forge-strip-ai-copy">(function(){var RE=/Personalized for You|AI-Generated image|Generated based on target audience|Auto-generated with AI copy|personalized block, and brand design/i;function strip(){document.querySelectorAll("main p, main .xwalk-persona-below-copy p").forEach(function(p){if(p.closest(".xwalk-persona-mockup"))return;var t=(p.textContent||"").replace(/\s+/g," ").trim();if(RE.test(t)){p.remove();return;}});document.querySelectorAll("main .xwalk-persona-below-copy").forEach(function(el){if(el.closest(".xwalk-persona-mockup"))return;var t=(el.textContent||"").replace(/\s+/g," ").trim();if(!t||RE.test(t))el.remove();});}function watch(){strip();var m=document.querySelector("main");if(!m||m.__forgeAiStrip)return;m.__forgeAiStrip=1;new MutationObserver(strip).observe(m,{childList:!0,subtree:!0});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",watch);else watch();document.addEventListener("aem:loaded",strip);setTimeout(strip,800);setTimeout(strip,2500);})();</script>
 <link rel="stylesheet" href="/styles/styles.css"/>
-<style id="forge-retail-grid-lock">
-body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:12px!important;
-  max-width:1280px!important;
-  margin:0 auto!important;
-  padding:0 32px 40px!important;
-  box-sizing:border-box!important;
-  width:100%!important;
-  background:#0A1A0F!important;
-  color:#FFFFFF!important;
-}
-body.xwalk-boost-page main.xwalk-boost-main>div:first-child,main:has(#save-when-you-shop-online)>div:first-child,main:has([id*="shop-phones"])>div:first-child,main:has(#xwalk-plans-retail-head)>div:first-child,main:has(#plans-from-25mo)>div:first-child,main:has(#shop-deals-offers)>div:first-child,main.xwalk-boost-main>div:first-child,body.xwalk-boost-page main.xwalk-boost-main>div:nth-child(2),main:has(#save-when-you-shop-online)>div:nth-child(2),main:has([id*="shop-phones"])>div:nth-child(2),main:has(#xwalk-plans-retail-head)>div:nth-child(2),main:has(#plans-from-25mo)>div:nth-child(2),main:has(#shop-deals-offers)>div:nth-child(2),main.xwalk-boost-main>div:nth-child(2),body.xwalk-boost-page main.xwalk-boost-main>div:last-child,main:has(#save-when-you-shop-online)>div:last-child,main:has([id*="shop-phones"])>div:last-child,main:has(#xwalk-plans-retail-head)>div:last-child,main:has(#plans-from-25mo)>div:last-child,main:has(#shop-deals-offers)>div:last-child,main.xwalk-boost-main>div:last-child{grid-column:1/-1!important}
-body.xwalk-boost-page main.xwalk-boost-main>div,main:has(#save-when-you-shop-online)>div,main:has([id*="shop-phones"])>div,main:has(#xwalk-plans-retail-head)>div,main:has(#plans-from-25mo)>div,main:has(#shop-deals-offers)>div,main.xwalk-boost-main>div{margin:0!important}
-@media(max-width:1100px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:600px){body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{grid-template-columns:1fr!important;padding:0 16px 32px!important}}
-footer .footer .xwalk-footer-top-social ul,footer .footer ul:has(a[href*="facebook"]){
-  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:10px!important;
-  list-style:none!important;padding:0!important;margin:0!important;
-}
-footer .footer .xwalk-footer-top-social a,
-footer .footer ul:has(a[href*="facebook"]) a,
-footer .footer ul:has(a[href*="twitter"]) a,
-footer .footer ul:has(a[href*="instagram"]) a,
-footer .footer ul:has(a[href*="youtube"]) a{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  width:40px!important;height:40px!important;border-radius:50%!important;background:#1a1a1a!important;
-  color:#fff!important;font-weight:800!important;font-size:.8125rem!important;text-decoration:none!important;line-height:1!important;
-}
-header nav>.nav-hamburger~.nav-hamburger,header .nav-hamburger~.nav-hamburger{display:none!important}
-</style>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/cklein08/wolverine/main/styles/styles.css?v=forge-boost" data-forge-crosswalk-styles/>
 <link rel="stylesheet" href="/styles/forge-inline-edit.css?v=9"/>

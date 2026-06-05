@@ -2080,6 +2080,62 @@ main .forge-persona-plan {
   }
 }
 
+/* Home / plans / deals — copy + images at 80% of tile (tile column width unchanged) */
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-media,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:has(picture),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .default-content-wrapper>p:has(picture),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section h3,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card h3,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-kicker,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-kicker,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-price,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-price,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-fine,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-fine,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-details,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-details,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-plan,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-plan,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-cta-wrap,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-cta-wrap,main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:not(:has(picture)):not(:first-child),main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .default-content-wrapper>p:not(:has(picture)):not(:first-child){
+  width:80%!important;
+  max-width:80%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .default-content-wrapper>p:has(picture){
+  align-self:center!important;
+}
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-media img,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section picture img,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card .xwalk-deal-media img{
+  max-width:100%!important;
+  width:auto!important;
+  height:auto!important;
+}
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section h3,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-card h3{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-kicker,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-price,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-fine,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-details,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-plan,
+main:has(#save-when-you-shop-online),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers) .xwalk-deal-section .xwalk-deal-cta-wrap{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+/* Phones — green badge, titles, center copy: 5% right padding (tile width unchanged) */
+main:has([id*="shop-phones"]) .xwalk-deal-badge,
+main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:first-child,
+main:has([id*="shop-phones"]) .xwalk-deal-section h3,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-card h3,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-kicker,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-price,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-fine,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-details,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-plan,
+main:has([id*="shop-phones"]) .xwalk-deal-section .default-content-wrapper>p:not(:has(picture)):not(:first-child){
+  padding-right:5%!important;
+  box-sizing:border-box!important;
+}
+main:has([id*="shop-phones"]) .xwalk-deal-section h3,
+main:has([id*="shop-phones"]) .xwalk-deal-section .xwalk-deal-card h3{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+
 body.xwalk-boost-page main.xwalk-boost-main,main:has(#save-when-you-shop-online),main:has([id*="shop-phones"]),main:has(#xwalk-plans-retail-head),main:has(#plans-from-25mo),main:has(#shop-deals-offers),main.xwalk-boost-main{
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;

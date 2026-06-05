@@ -402,11 +402,16 @@
     );
   }
 
+  function personaIdFromPathname(pathname) {
+    const path = (pathname || '').replace(/\/$/, '');
+    const m = path.match(/\/(family-texas|college-student|single-woman-nyc)$/);
+    return m ? m[1] : null;
+  }
+
   function run() {
     if (!document.body) return;
-    const path = (location.pathname || '').replace(/\/$/, '');
-    if (path !== '/family-texas' && path !== '/college-student' && path !== '/single-woman-nyc') return;
-    const personaId = path.slice(1);
+    const personaId = personaIdFromPathname(location.pathname);
+    if (!personaId) return;
     const segment = hasSegmentParam();
     injectCss();
     document.body.classList.add('xwalk-persona-offer-page', 'xwalk-persona-offer-page--' + personaId);

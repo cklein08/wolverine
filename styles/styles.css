@@ -1490,6 +1490,26 @@ main:has([id*='shop-phones']) .xwalk-deal-section,
 main:has(.xwalk-retail-deals-head) .xwalk-deal-section {
   min-width: 0;
 }
+/* Constrain card tile width to 80% of grid cell */
+main:has([id*='shop-phones']) .xwalk-deal-section,
+main:has(.xwalk-retail-deals-head) .xwalk-deal-section,
+main:has(#xwalk-plans-retail-head) .xwalk-deal-section,
+main:has(#plans-from-25mo) .xwalk-deal-section,
+main.xwalk-boost-main > div.xwalk-deal-section {
+  width: 80%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  main:has([id*='shop-phones']) .xwalk-deal-section,
+  main:has(.xwalk-retail-deals-head) .xwalk-deal-section,
+  main:has(#xwalk-plans-retail-head) .xwalk-deal-section,
+  main:has(#plans-from-25mo) .xwalk-deal-section,
+  main.xwalk-boost-main > div.xwalk-deal-section {
+    width: 90%;
+    max-width: 100%;
+  }
+}
 main:has([id*='shop-phones']) > div:has(h3),
 main:has([id*='shop-phones']) .xwalk-deal-section,
 main:has(.xwalk-retail-deals-head) .xwalk-deal-section,

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module">
+    async function test() {
+      const resp = await fetch('/nav.html');
+      if (resp.ok) {
+        const html = await resp.text();
+        console.log('NAV HTML:', html);
+        const main = document.createElement('main');
+        main.innerHTML = html;
+        console.log('MAIN children:', main.children.length);
+        console.log('MAIN innerHTML:', main.innerHTML.substring(0, 200));
+        
+        const { decorateMain } = await import('/scripts/scripts.js');
+        console.log('decorateMain:', typeof decorateMain);
+        decorateMain(main);
+        console.log('After decorate, sections:', main.querySelectorAll('.section').length);
+        
+        // Check blocks in sections
+        main.querySelectorAll('.section').forEach((s, i) => {
+          console.log(`Section ${i} blocks:`, s.querySelectorAll('.block').length);
+          console.log(`Section ${i} display:`, s.style.display);
+        });
+        
+        const { loadSections } = await import('/scripts/aem.js');
+        console.log('About to loadSections...');
+        await loadSections(main);
+        console.log('loadSections complete');
+        
+        document.getElementById('output').textContent = main.innerHTML;
+      }
+    }
+    test().catch(e => console.error('TEST ERROR:', e));
+  </script>
+</head>
+<body>
+  <pre id="output">Loading...</pre>
+</body>
+</html>
